@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   The strange behavior of the panels (GUI)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    The strange behavior of the panels (GUI)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e446952d0bc6b7ae2f475b585fbfb790046e5f74bdc549b25f606696ea55cbe2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      IPcorp
+     </div>
+     <div class="post_content">
+      <p>
+       When I do so:
+      </p>
+      <pre><code>#include &lt;Urho3D\Engine\Application.h&gt;
+#include &lt;Urho3D\Input\Input.h&gt;
+#include &lt;Urho3D\UI\UI.h&gt;
+
+struct Temp : Urho3D::Application {
+
+		Temp(Urho3D::Context *context) : Urho3D::Application(context) {}
+
+		void Setup() {
+				engineParameters_["FullScreen"] = false;
+				engineParameters_["WindowWidth"] = 800;
+				engineParameters_["WindowHeight"] = 600;
+		}
+
+		void Start() {
+
+				GetSubsystem&lt;Urho3D::Input&gt;()-&gt;SetMouseVisible(true);
+
+				/// Root
+				Urho3D::UIElement *ui_root = GetSubsystem&lt;Urho3D::UI&gt;()-&gt;GetRoot();
+
+				/// Red panel
+				Urho3D::BorderImage *panel_red = new Urho3D::BorderImage(context_);
+				panel_red-&gt;SetColor(Urho3D::Color::RED);
+				panel_red-&gt;SetSize(750, 500);
+				panel_red-&gt;SetPosition(0, 50);
+				ui_root-&gt;AddChild(panel_red);
+
+				/// -----
+
+				/// Add blue panel to red
+				Urho3D::BorderImage *panel_blue = new Urho3D::BorderImage(context_);
+				panel_blue-&gt;SetColor(Urho3D::Color::BLUE);
+				panel_blue-&gt;SetSize(700, 400);
+				panel_blue-&gt;SetPosition(0, 50);
+				panel_red-&gt;AddChild(panel_blue);
+
+				/// Add small green panels to red
+				for (size_t i = 0; i &lt; 200; i++) {
+						Urho3D::BorderImage *panel_green = new Urho3D::BorderImage(context_);
+						panel_green-&gt;SetColor(Urho3D::Color::GREEN);
+						panel_green-&gt;SetSize(5, 100);
+						panel_green-&gt;SetPosition(6 * i, 30 + (i % 2) * 5);
+						panel_red-&gt;AddChild(panel_green);
+				}
+
+				/// -----
+
+		}
+
+};
+
+URHO3D_DEFINE_APPLICATION_MAIN(Temp);
+</code></pre>
+      <p>
+       I get this:
+      </p>
+      <p>
+       <img height="500" src="../../../images/1da8d87b5b12e8db2dd8fb56f627c2cdd6b376696202067de06f19c4994b0fe3.JPG" width="665"/>
+      </p>
+      <p>
+       Why is part of my mini-green panels behind the blue, and the other part is not?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       use priority to set order
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

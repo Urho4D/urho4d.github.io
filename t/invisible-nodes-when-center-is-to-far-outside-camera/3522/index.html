@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Invisible nodes when center is to far outside camera?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Invisible nodes when center is to far outside camera?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8daad2902a11e6bff640bb4d0917fd255702bfcf2d3459e4a62e658b57c935c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      AlexanderAtUrho
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       I am not sure how to explain this in a good way, and I am not sure about the proper terms, so please bear with me.
+      </p>
+      <p>
+       We have a situation where we have a node with a model, component and texture, and the centre of the node is somewhere outside what the camera can se. The model is big enough to be seen inside the camera, and as you would expect, it gets rendered in the scene and all is fine.
+      </p>
+      <p>
+       But, if I move the nodes centre a bit further away the model disappear from the scene. The model is still big enough to be visible in the scene, but for some reason it just disappear as soon as its position moves it “too far” away. It is moved outside, to the left or right so to speak, and not further into the scene.
+      </p>
+      <p>
+       I guess there is some optimisation going on, and that the SetViewport has part in it, but as the model should be visible in my scene, I do not want it to be optimized away
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Is there some parameter I should adjust? I have tried to play with the renderer and SetOccluderSizeThreshold and SetMaxOccluderTriangles without success. But honestly I do not know what I am doing.
+      </p>
+      <p>
+       Anyone got any suggestion? I would not be the least surprised if there is something obvious we have missed.
+      </p>
+      <p>
+       Sincerely,
+       <br/>
+       Alexander Sundqvist
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Any screenshots/vids?
+       <br/>
+       Is model’s bounding box valid?
+       <br/>
+       Could you reproduce the problem with the standard assets?
+       <br/>
+       If so, share the code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8daad2902a11e6bff640bb4d0917fd255702bfcf2d3459e4a62e658b57c935c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      AlexanderAtUrho
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for your answer.
+      </p>
+      <p>
+       The bounding box is valid. I will make screenshots to show the issue. But the screenshot will show a textured plane, and then the textured plane is gone. Not much to show.
+      </p>
+      <p>
+       I will have to look into if we can reproduce with standard assets or demo projects.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="3" data-topic="3522" data-username="AlexanderAtUrho">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4fdd8a12b85b31d97680073c8eec2720efbe017090b4df9fe14c5c35506d142c.png" width="20"/>
+        AlexanderAtUrho:
+       </div>
+       <blockquote>
+        <p>
+         I will have to look into if we can reproduce with standard assets or demo projects.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       That’s the best way if screenshots are not meaningul.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8daad2902a11e6bff640bb4d0917fd255702bfcf2d3459e4a62e658b57c935c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      AlexanderAtUrho
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       After you asked about the bounding box I went back to make sure it was valid. It is walid.
+       <br/>
+       However, if I make the box even bigger, in this case thicker, I can increase the distance for the plane center and still have a visible plane.
+      </p>
+      <p>
+       In other words, a thicker bounding box helps, but doesnt solve the problem. So the bounding box is clearely related to the issue.
+      </p>
+      <p>
+       I could not reproduce the problem using standard demo and assets.
+      </p>
+      <p>
+       Is there any drawback in having oversized boundingboxes? I our case, all elemnts in the scene are supposed to be visible all the time anyway.
+      </p>
+      <p>
+       Can I completely bypass the optimization and just show everything to save time?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="5" data-topic="3522" data-username="AlexanderAtUrho">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4fdd8a12b85b31d97680073c8eec2720efbe017090b4df9fe14c5c35506d142c.png" width="20"/>
+        AlexanderAtUrho:
+       </div>
+       <blockquote>
+        <p>
+         Is there any drawback in having oversized boundingboxes?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Nothing except performance.
+      </p>
+      <aside class="quote no-group" data-post="5" data-topic="3522" data-username="AlexanderAtUrho">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4fdd8a12b85b31d97680073c8eec2720efbe017090b4df9fe14c5c35506d142c.png" width="20"/>
+        AlexanderAtUrho:
+       </div>
+       <blockquote>
+        <p>
+         I could not reproduce the problem using standard demo and assets.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       That’s strange.
+       <br/>
+       If you remove everything except the camera and the drawable, is the problem reproducible?
+       <br/>
+       If you replace the drawable with scaled box with the same BB, is the problem reproducible?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3DPlayer path issue on Android
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3DPlayer path issue on Android
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/eae5aac0ff4255e30dd378246128979f487b854f5e5d6094a10eeac4da602bbd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      devhang
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, I am start to experiment with Urho3D on Android, I have already built the system and install into  mobile device successfully, I follow the launcher example to using Urho3DPlayer load the script from assets folder, but is it possible to load the script from app’s internal storage (eg. /data/data/com.github.urho3d.launcher) or sdcard storage (eg. /mnt/sdcard)?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/eae5aac0ff4255e30dd378246128979f487b854f5e5d6094a10eeac4da602bbd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      devhang
+     </div>
+     <div class="post_content">
+      <p>
+       After some testing, I find out I can set the resources prefix path to sdcard or internal storage to achieve the goal.
+       <br/>
+       from LauncherActivity.kt
+       <br/>
+       Urho3DPlayer:Scripts/$argument:-pp:/mnt/sdcard/urho3d/bin
+       <br/>
+       Thank for the nice engine.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Good to hear you solved your issue. Also, welcome to the forums!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+       <img alt=":slightly_smiling_face:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slightly_smiling_face:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

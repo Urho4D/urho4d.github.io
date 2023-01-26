@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to enable/drawdebug geometry for Urho camera?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to enable/drawdebug geometry for Urho camera?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hi!
+      </p>
+      <p>
+       As the title says, I just want to know, whether it is possible to enable/draw
+       <strong>
+        debug geometry
+       </strong>
+       for
+       <strong>
+        Urho camera
+       </strong>
+       ?
+      </p>
+      <p>
+       I am asking it, since the
+       <strong>
+        Camera
+       </strong>
+       class also has the method called
+       <strong>
+        DrawDebugGeometry( )
+       </strong>
+       .
+      </p>
+      <p>
+       BR,
+      </p>
+      <p>
+       Ladislav
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       You have to register to E_POSTRENDERUPDATE and call camera-&gt;DrawDebugGeometry() yourself. This might look something like this in your application code:
+      </p>
+      <pre><code>MyApplication::Start() {
+    SubscribeToEvent(E_POSTRENDERUPDATE, URHO3D_HANDLER(MyApplication, HandlePostRenderUpdate));
+}
+
+MyApplication::HandlePostRenderUpdate() {
+    DebugRenderer* debug = scene_-&gt;GetComponent&lt;DebugRenderer&gt;();
+    for (const auto&amp; camera : listOfCameras_)
+        camera-&gt;DrawDebugGeometry(debug, true);
+}</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+       <span class="mention">
+        @TheComet
+       </span>
+       !
+      </p>
+      <p>
+       Thanks for replying. Tried your code, it works well, but the debug geometry lines were displayed only for
+       <strong>
+        inactive
+       </strong>
+       cameras, but not for the current active one (which is attached to viewport). Is that OK?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       Debug geometry displays view frustum. Active camera can not see it’s own debug geometry because it’s lines align with screen edges.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       It makes sense!
+       <br/>
+       Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Line tracers for raycasts?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Line tracers for raycasts?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/290f67d83f57ff2bacadd0bad49e29e45fc74c6a1b1662c9983565ce85cf6358.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      burt
+     </div>
+     <div class="post_content">
+      <p>
+       I’m trying to reproduce the following technique:
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="kdjo7nQvD3g" data-youtube-title="CSGO Tracers">
+      </div>
+      <p>
+       Based on the Urho docs, the only thing I found was the DebugRenderer AddLine function.  But I’m pretty sure I’m not supposed to use that for an in-game feature. Does anyone have any suggestion on how to properly render lines on top of a raycast?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       You could use a
+       <code>
+        BillboardSet
+       </code>
+       for the bullets with the
+       <code>
+        FaceCameraMode
+       </code>
+       set to
+       <code>
+        FC_DIRECTION
+       </code>
+       . There’s a sample demonstrating its use.
+       <br/>
+       A single raycast is instant, so you’d have to add an artificial delay in that case.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Or paint them lines with particles
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       I think that technically comes down to the same with part of the desired control for this situation replaced by unneeded features.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       I had some prototypes, check this:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/eugeneko/Urho3D-Sandbox-Dirty/tree/networking-prototype/Source/FlexEngine/Physics" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/a5dc19796dddecf2f5d12f41a9f0c79d147ebcfc67b4710102cd621720fda39c.png" width="420"/>
+         <h3>
+          <a href="https://github.com/eugeneko/Urho3D-Sandbox-Dirty/tree/networking-prototype/Source/FlexEngine/Physics" rel="nofollow noopener" target="_blank">
+           eugeneko/Urho3D-Sandbox-Dirty
+          </a>
+         </h3>
+         <p>
+          [Dirty] Non-organized storage of Urho3D-related stuff - eugeneko/Urho3D-Sandbox-Dirty
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       It looks quite close to what you’ve shown in video
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

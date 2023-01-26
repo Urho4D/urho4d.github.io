@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Setting to remove shadow lines
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Setting to remove shadow lines
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I’m sure this has been discussed, but what is the shadow settings to remove the lines shown in the image?  And shouldn’t the default setting be set so that such thing is not shown?
+      </p>
+      <p>
+       <img alt="" src="../../../images/21fe8113de352b9d58e0be14c5afb7cf03a462dbb87361fb76cb702647b709ca.jpg"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Nvm, solved.
+       <em>
+        twenty chars
+       </em>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/02974071725a337b9c8cd9586a5e16b7a69387efc5322059d65949ae7f35fb57.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Alex-Doc
+     </div>
+     <div class="post_content">
+      <p>
+       Can you please tell how you solved?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Tweaking biases and distances, probably… That’s classic solution.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="1" data-topic="3424" data-username="Lumak">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/252640214a84be6077df450d5b247e7a6d76f6c970493425153a025bbd0e3fd0.png" width="20"/>
+        Lumak:
+       </div>
+       <blockquote>
+        <p>
+         And shouldn’t the default setting be set so that such thing is not shown?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       There is no basic setting that will cover all cases. This shadow acne artifact is very dependent on scene scale, geometry shape, light angle, and ways to fight it will vary too.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Could you please elaborate? I’d like to know what handles I’m to tweak with stuff like this…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Huh, let me recall…
+      </p>
+      <ul>
+       <li>
+        <p>
+         Tweak
+         <em>
+          Depth Constant Bias
+         </em>
+         ,
+         <em>
+          Depth Slope Bias
+         </em>
+         and
+         <em>
+          Normal Offset
+         </em>
+         parameters of
+         <code>
+          Light
+         </code>
+         component.
+        </p>
+       </li>
+       <li>
+        <p>
+         Make shadow distance smaller or use more cascades;
+        </p>
+       </li>
+       <li>
+        <p>
+         Increase depth buffer precision or resolution;
+        </p>
+       </li>
+       <li>
+        <p>
+         Use back face culling for shadow pass or vice versa.
+        </p>
+       </li>
+      </ul>
+      <p>
+       This usually helps to reduce artifacts (bias artifacts and peter panning)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       <a class="onebox" href="https://discourse.urho3d.io/t/shadow-map-normal-offset-bias/1904" target="_blank">
+        https://discourse.urho3d.io/t/shadow-map-normal-offset-bias/1904
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks so much for the help!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

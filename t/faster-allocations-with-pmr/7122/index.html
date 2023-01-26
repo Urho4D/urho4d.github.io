@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Faster allocations with PMR
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Faster allocations with PMR
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/cf339667cfaa410c5ef4618c54beca34eaf181c9c7cde942407cf2aa057d8544.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vmost
+     </div>
+     <div class="post_content">
+      <p>
+       I am building a component that creates a long-lived object. The object’s hot path contains two vectors with unknown size (in the worst case). These vectors require two allocations, and the vectors can’t be naively cached in a member variable because the hot path could be called recursively (e.g. how Object.SendEvent() can be called recursively, so that function unavoidably contains a HashMap allocation).
+      </p>
+      <p>
+       This
+       <a href="https://www.youtube.com/watch?v=Tof5pRedskI" rel="noopener nofollow ugc">
+        CPPCON talk
+       </a>
+       introduced me to ‘polymorphic memory resources’. Basically, pmr lets you cache a memory buffer (which can be defined on the stack or heap), then allocate out of that memory buffer. If you are using the default allocator to set the memory buffer (e.g. the normal heap allocator), then when the buffer is fully used it will re-allocate a larger buffer. If you initialize with a static buffer (e.g. a
+       <code>
+        char static_buffer[256];
+       </code>
+       ), then the buffer size is fixed.
+      </p>
+      <p>
+       Unfortunately, the STL only has pmr in C++17, and clang doesn’t even support it yet. Instead, Boost’s pmr has much more compiler support.
+      </p>
+      <p>
+       Here is how I used it.
+      </p>
+      <pre><code class="lang-auto"># CMakeLists.txt
+
+find_package(Boost 1.6 REQUIRED COMPONENTS container)
+target_link_library(my_target PRIVATE Boost::container)
+target_include_directories(my_target PUBLIC ${Boost_INCLUDE_DIRS})
+
+
+# object.h
+
+#include "boost/container/pmr/monotonic_buffer_resource.hpp"
+#include "boost/container/pmr/polymorphic_allocator.hpp"
+#include "boost/container/pmr/unsynchronized_pool_resource.hpp"
+#include "boost/container/pmr/vector.hpp"
+
+using MyType_Vec_t = boost::container::pmr::vector&lt;MyType&gt;;
+
+namespace config
+{
+    const std::size_t default_buffer_size{256};
+}
+
+class MyObject
+{
+public:
+    MyObject() :
+        m_pmr_buffer{config::default_buffer_size},  //start with some memory so the first use of the buffer doesn't require an allocation
+        m_pmr_resource{&amp;m_pmr_buffer},
+        m_pmr_allocator_MyType{&amp;m_pmr_resource}
+    {}
+    ...
+    void DoSomething();
+
+private:
+    boost::container::pmr::monotonic_buffer_resource m_pmr_buffer;
+    boost::container::pmr::unsynchronized_pool_resource m_pmr_resource;
+    boost::container::pmr::polymorphic_allocator&lt;MyType&gt; m_pmr_allocator_MyType;
+}
+
+
+# object.cpp
+
+#include "object.h"
+
+void MyObject::DoSomething()
+{
+    MyType_Vec_t new_vector{m_pmr_allocator_MyType};
+
+    new_vector.reserve(10);  //ask m_pmr_resource for an allocation, which gets memory from m_pmr_buffer
+
+    ...
+} //~new_vector(): m_pmr_resource releases the memory back to m_pmr_buffer
+</code></pre>
+      <p>
+       I don’t have rigorous performance numbers, but the impact is significant if you are reusing the pmr objects many times (and your worst-case doesn’t cause memory exhaustion).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/cf339667cfaa410c5ef4618c54beca34eaf181c9c7cde942407cf2aa057d8544.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vmost
+     </div>
+     <div class="post_content">
+      <p>
+       I suspect this mechanism could be very useful in the engine (although it may fall apart on deeper inspection). Suppose
+       <code>
+        Context
+       </code>
+       owns the monotonic buffer and pool resource. Different places that require allocations (especially
+       <code>
+        Object.SendEvent()
+       </code>
+       ) can dip into that resource pool at-will. Since allocations are one of the largest burdens outside rendering, this approach could have non-trivial and large scale benefits.
+      </p>
+      <p>
+       One concern is that every time the buffer needs to increase in size, it must reallocate the entire thing. This may be very expensive if the buffer gets large. I’m also not 100% sure if reallocating the buffer would invalidate iterators. EDIT: Nvm, it does not reallocate the entire thing - just adds more memory.
+      </p>
+      <p>
+       EDIT: It looks like
+       <code>
+        monotonic_buffer_resource
+       </code>
+       is only useful if you want the pool to obtain memory from a static buffer, or a dynamic buffer with an initial size. Otherwise the pool can exist on its own, obtaining more memory from the default allocator ad hoc when it runs out. One advantage of a standalone-pool is you can use
+       <code>
+        synchronized_pool_resource
+       </code>
+       for thread safety (
+       <code>
+        monotonic_buffer_resource
+       </code>
+       isn’t thread-safe).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

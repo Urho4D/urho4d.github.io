@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Homing Rockets Using SphereCast()
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Homing Rockets Using SphereCast()
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e851c7c5d84c9cd9def76f243815878077b5ac8871b5683ab63d912b560b1122.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      nickwebha
+     </div>
+     <div class="post_content">
+      <p>
+       I am trying to add homing rockets to my tank game. So far I have:
+      </p>
+      <pre><code class="lang-auto">rigidBody-&gt;SetUseGravity( false );
+rigidBody-&gt;SetLinearVelocity( Urho3D::Vector3( sin( objectNodeRotation * M_PI / 180 ), 0, cos( objectNodeRotation * M_PI / 180 ) ) * WEAPON_HOMINGROCKET_SPEED );
+...
+void WeaponHomingRocket::Update( Urho3D::StringHash eventType, Urho3D::VariantMap&amp; eventData ) {
+	auto* physicsWorld = scene-&gt;GetComponent&lt; Urho3D::PhysicsWorld &gt;();
+	for ( auto i = this-&gt;projectiles_.begin(); i != this-&gt;projectiles_.end() ; i++ ) {
+		auto position = i-&gt;node_-&gt;GetPosition();
+		Urho3D::PhysicsRaycastResult hitResults;
+		Urho3D::Ray ray( position, Urho3D::Vector3::ONE );
+		physicsWorld-&gt;SphereCast( hitResults, ray, WEAPON_HOMINGROCKET_HOMING_DISTANCE, WEAPON_HOMINGROCKET_HOMING_DISTANCE, LayerFlagsPlayer );
+
+		Urho3D::RigidBody* resultBody{ hitResults.body_ };
+		if ( resultBody ) {
+			auto* resultNode = resultBody-&gt;GetNode();
+			auto* resultPlayer = resultNode-&gt;GetComponent&lt; Player &gt;();
+
+			if ( playerComponent-&gt;GetId() != resultPlayer-&gt;GetId() ) {
+				auto resultPosition = resultNode-&gt;GetWorldPosition();
+
+				i-&gt;node_-&gt;LookAt( resultPosition );
+
+				i-&gt;objectNodeRotationCurrent_ = i-&gt;node_-&gt;GetRotation().YawAngle();
+
+				auto* rigidBody = i-&gt;node_-&gt;GetComponent&lt; Urho3D::RigidBody &gt;();
+				rigidBody-&gt;ApplyForce( Urho3D::Vector3( sin( i-&gt;objectNodeRotationCurrent_ * M_PI / 180 ), 0, cos( i-&gt;objectNodeRotationCurrent_ * M_PI / 180 ) ) * WEAPON_HOMINGROCKET_HOMING_SPEED );
+
+				#ifdef __DEBUG__
+					auto* debugRenderer = scene-&gt;GetComponent&lt; Urho3D::DebugRenderer &gt;();
+					Urho3D::Sphere sphere( resultPosition, WEAPON_HOMINGROCKET_HOMING_DISTANCE );
+					debugRenderer-&gt;AddSphere( sphere, Urho3D::Color::RED );
+				#endif
+			}
+		}
+	...
+	}
+}
+</code></pre>
+      <p>
+       and it works pretty well.
+      </p>
+      <p>
+       My problem is
+       <code>
+        SphereCast()
+       </code>
+       . None of the samples use it and I can not find it explained in the wiki or on the forums. That along with
+       <code>
+        Urho3D::Ray
+       </code>
+       which I have no idea how to use. It half works with this code but often does not track any targets or only does for a brief moment.
+      </p>
+      <p>
+       At the moment I do not care if it crashes into walls on its way to the target. Once I better understand
+       <code>
+        Urho3D::Ray
+       </code>
+       I can probably figure that part out on my own.
+      </p>
+      <p>
+       So how is
+       <code>
+        SphereCast()
+       </code>
+       used with
+       <code>
+        Urho3D::Ray
+       </code>
+       ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1081ac9e4b604d7b6969620bc43bbaeac598e93eb85782a14cfbad28294eb705.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      throwawayerino
+     </div>
+     <div class="post_content">
+      <p>
+       Physics
+       <code>
+        SphereCast()
+       </code>
+       internally does a bullet “sweep cast”, where it moves a sphere from A to B as defined by
+       <code>
+        ray
+       </code>
+       and
+       <code>
+        distance
+       </code>
+       and returns first hit. You probably want to set
+       <code>
+        radius
+       </code>
+       to 3 or something similar because I think the sphere you’re creating is massive
+       <br/>
+       This tests for rigidbodies, octree queries test for drawables in case you want something simpler.
+       <br/>
+       Also I think people prefer sphere casts more than straight ray casts, can’t remember why.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e851c7c5d84c9cd9def76f243815878077b5ac8871b5683ab63d912b560b1122.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      nickwebha
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="2" data-topic="6967" data-username="throwawayerino">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/6e592dc4376cd16b76b5e79953df0f52fd25c81b019e5a04eda486972084c95c.png" width="20"/>
+        throwawayerino:
+       </div>
+       <blockquote>
+        <p>
+         You probably want to set
+         <code>
+          radius
+         </code>
+         to 3 or something similar
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Here are my defines:
+      </p>
+      <pre><code class="lang-auto">#define WEAPON_HOMINGROCKET_SPEED			25
+#define WEAPON_HOMINGROCKET_DISTANCE		5000
+#define WEAPON_HOMINGROCKET_DAMAGE			500
+#define WEAPON_HOMINGROCKET_DELAY			2500
+#define WEAPON_HOMINGROCKET_HOMING_SPEED	50
+#define WEAPON_HOMINGROCKET_HOMING_DISTANCE	3
+</code></pre>
+      <p>
+       Now that
+       <code>
+        WEAPON_HOMINGROCKET_HOMING_DISTANCE
+       </code>
+       is 3 the rocket has to get awfully-- I mean very-- close to a target to detect it. Still, however, my problem is this only detects a nearby object ~50% of the time with everything in the same position (I fire multiple shots without moving anything).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1081ac9e4b604d7b6969620bc43bbaeac598e93eb85782a14cfbad28294eb705.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      throwawayerino
+     </div>
+     <div class="post_content">
+      <p>
+       It’s supposed to return the first
+       <code>
+        rigidbody
+       </code>
+       it finds. Is it detecting the ground or something, or is it just straight up returning null pointers?
+      </p>
+      <aside class="onebox githubblob" data-onebox-src="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Physics/PhysicsWorld.cpp#L484">
+       <header class="source">
+        <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Physics/PhysicsWorld.cpp#L484" rel="noopener nofollow ugc" target="_blank">
+         github.com
+        </a>
+       </header>
+       <article class="onebox-body">
+        <h4>
+         <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Physics/PhysicsWorld.cpp#L484" rel="noopener nofollow ugc" target="_blank">
+          urho3d/Urho3D/blob/master/Source/Urho3D/Physics/PhysicsWorld.cpp#L484
+         </a>
+        </h4>
+        <pre class="onebox">    <code class="lang-cpp">
+      <ol class="start lines" start="474" style="counter-reset: li-counter 473 ;">
+          <li>    }
+</li>
+          <li>
+</li>
+          <li>    // Didn't hit anything
+</li>
+          <li>    result.position_ = Vector3::ZERO;
+</li>
+          <li>    result.normal_ = Vector3::ZERO;
+</li>
+          <li>    result.distance_ = M_INFINITY;
+</li>
+          <li>    result.hitFraction_ = 0.0f;
+</li>
+          <li>    result.body_ = nullptr;
+</li>
+          <li>}
+</li>
+          <li>
+</li>
+          <li class="selected">void PhysicsWorld::SphereCast(PhysicsRaycastResult&amp; result, const Ray&amp; ray, float radius, float maxDistance, unsigned collisionMask)
+</li>
+          <li>{
+</li>
+          <li>    URHO3D_PROFILE(PhysicsSphereCast);
+</li>
+          <li>
+</li>
+          <li>    if (maxDistance &gt;= M_INFINITY)
+</li>
+          <li>        URHO3D_LOGWARNING("Infinite maxDistance in physics sphere cast is not supported");
+</li>
+          <li>
+</li>
+          <li>    btSphereShape shape(radius);
+</li>
+          <li>    Vector3 endPos = ray.origin_ + maxDistance * ray.direction_;
+</li>
+          <li>
+</li>
+          <li>    btCollisionWorld::ClosestConvexResultCallback
+</li>
+      </ol>
+    </code>
+  </pre>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e851c7c5d84c9cd9def76f243815878077b5ac8871b5683ab63d912b560b1122.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      nickwebha
+     </div>
+     <div class="post_content">
+      <p>
+       I have layers and masks setup so it only detect players. I am checking for
+       <code>
+        null
+       </code>
+       (which is most of it returns).
+      </p>
+      <p>
+       The
+      </p>
+      <pre><code class="lang-auto">#ifdef __DEBUG__
+...
+#endif
+</code></pre>
+      <p>
+       is helping me see what it is returning. When I first started playing with it it was detecting the terrain but I fixed that with the layers/masks (notice the
+       <code>
+        LayerFlagsPlayer
+       </code>
+       ).
+      </p>
+      <p>
+       Here is an example:
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="EWntSGDTehM" data-youtube-title="Homing Rocket - Test 1">
+       <a href="https://www.youtube.com/watch?v=EWntSGDTehM" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/b36605ac0d664372e6d371b631286353bfc9c93fa6909eb8938e698c2440a20e.jpg" title="Homing Rocket - Test 1" width="480"/>
+       </a>
+      </div>
+      <p>
+       Notice how it works at the start but does not work towards the end in this case.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1081ac9e4b604d7b6969620bc43bbaeac598e93eb85782a14cfbad28294eb705.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      throwawayerino
+     </div>
+     <div class="post_content">
+      <p>
+       Now I’m just going to start throwing suggestions around until someone better than me shows up.
+      </p>
+      <ul>
+       <li>
+        <p>
+         The problem showed up after the new tank was spawned in(?). Maybe the rigidbody is getting deactivated or maybe is set up different.
+        </p>
+       </li>
+       <li>
+        <p>
+         Note that the ray you’re casting will always point to
+         <strong>
+          (1,1,1)
+         </strong>
+         .
+         <code>
+          direction
+         </code>
+         is relative to origin so put in
+         <code>
+          GetWorldDirection()
+         </code>
+        </p>
+       </li>
+       <li>
+        <p>
+         Another option is to ditch physics altogether and use Octree queries instead. The closest thing it has to sphere sweep casts is the box query though and you would have to redo the detection code.
+        </p>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e851c7c5d84c9cd9def76f243815878077b5ac8871b5683ab63d912b560b1122.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      nickwebha
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the assist. I appreciate it.
+      </p>
+      <ul>
+       <li>
+        I thought of something happening to the rigidbody after respawn. However I can still collide with it with the other players and it still some times works. I can confirm it not working after respawn in the video was a coincidence.
+       </li>
+       <li>
+        I changed to
+        <code>
+         GetWorldDirection()
+        </code>
+        . That was a good catch, thanks for that. I changed
+        <code>
+         Urho3D::Vector3::ONE
+        </code>
+        to
+        <code>
+         Urho3D::Vector3::FORWARD
+        </code>
+        for giggles (I still do not grasp why it should be one or the other).
+       </li>
+       <li>
+        This whole physics-based approach is what used to ditch the old approach. The “old way” was way too cumbersome doing it all manually myself.
+       </li>
+      </ul>
+      <p>
+       I am betting that
+       <code>
+        GetWorldDirection()
+       </code>
+       change was important.
+      </p>
+      <p>
+       I changed
+       <br/>
+       <code>
+        Urho3D::Ray ray( i-&gt;node_-&gt;GetPosition(), Urho3D::Vector3::ONE )
+       </code>
+       <br/>
+       to
+       <br/>
+       <code>
+        Urho3D::Ray ray( i-&gt;node_-&gt;GetWorldPosition(), i-&gt;node_-&gt;GetWorldDirection() );
+       </code>
+      </p>
+      <p>
+       It seems to be working a lot better now. I will have to spend some more time playing with it and report back.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1081ac9e4b604d7b6969620bc43bbaeac598e93eb85782a14cfbad28294eb705.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      throwawayerino
+     </div>
+     <div class="post_content">
+      <p>
+       Good luck mate. One last thing, try visualizing the sphere cast (and any others) with a debug cylinder if you could.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e851c7c5d84c9cd9def76f243815878077b5ac8871b5683ab63d912b560b1122.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      nickwebha
+     </div>
+     <div class="post_content">
+      <p>
+       <code>
+        Urho3D::Ray ray( i-&gt;node_-&gt;GetWorldPosition(), i-&gt;node_-&gt;GetWorldDirection() )
+       </code>
+       was the key.
+      </p>
+      <p>
+       Working great now.
+      </p>
+      <p>
+       Thanks for your help!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

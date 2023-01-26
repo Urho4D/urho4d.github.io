@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex, follow" />
+<noscript><meta http-equiv="refresh" content="0;url=http://uploads.im/error-javascript" /></noscript>
+<script type="text/javascript" src="/content/system/js/jquery.min.js"></script>
+<script type="text/javascript" src="/content/system/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/content/system/js/jquery.easing.js"></script>
+<script type="text/javascript" src="/content/system/js/jquery.uploadify-3.1_chevereto.js"></script>
+<script type="text/javascript" src="/content/system/js/peafowl.php"></script>
+<link href="/content/themes/Peafowl/style.css" rel="stylesheet" type="text/css" />
+<link href="/content/themes/Peafowl/uploadify.css" rel="stylesheet" type="text/css" />
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<title>Not found (404)</title></head>
+<body>
+<div id="wrap">
+	<div id="top"><a href="/"><img src="/content/themes/Peafowl/theme-img/logo.png" alt="Image Upload" title="Image Upload" /></a></div>
+		<div id="content" class="notfound">
+		<h1>Not found (404)</h1>
+		<p>The server can't find the requested page.</p>
+	</div>
+</div>
+<div id="foot">
+	<div id="in-foot">
+    	<div id="foot-content">
+			<ul>
+				<li><a title="Upload Image" href="http://uploads.im/"><img alt="Upload Image" src="/content/system/img/us.png" width="16" height="11" /></a><a title="Загрузить изображение" href="http://uploads.ru/" style="margin-left:5px"><img alt="Загрузить изображение" src="/content/system/img/ru.png" width="16" height="11" /></a></li>
+				<li><a href="about">About Us</a></li><li><a href="tos">Terms of Service</a></li><li><a href="apidocs">API</a></li><li><a href="contact">Contact</a></li>
+			</ul>
+			<p>(C) 2012 Free image hosting. Service allows you to upload a photo image, and provides a link for posting on forums and blogs.</p>
+		</div>
+		<span style="float:right"><a title="Plug-in for Firefox" href="/addons/uploadsim_upload-1.0.1.xpi" style="margin-right:5px"><img alt="Plug-in for Firefox" src="/content/themes/Peafowl/theme-img/firefox-icon.png" width="16" height="16" /></a><a title="Plug-in for Chrome" href="/addons/uploadsim_upload-1.0.1.crx" style="margin-right:5px"><img alt="Plug-in for Chrome" src="/content/themes/Peafowl/theme-img/chrome-icon.png" width="16" height="16" /></a><!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t45.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='14' height='14'><\/a>")
+//--></script><!--/LiveInternet--></span>
+	</div>
+</div>
+</body>
+</html>

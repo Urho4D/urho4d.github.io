@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Detect if element is moving
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Detect if element is moving
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/33b2da9ed089707057476b8320da1ae8a94a74307e15dc1399038fed3ead3fd6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darkowic
+     </div>
+     <div class="post_content">
+      <p>
+       Hello!
+      </p>
+      <p>
+       I am writing a simple billiards game. I want to detect if an element is moving or it just has stopped. Basically, I want to check if an element has kinematic energy. Is there any method in the engine for checking this?
+      </p>
+      <p>
+       I am asking because I see that collision shape is changing color in debug mode when my object stops moving.
+      </p>
+      <p>
+       Thank you
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/33b2da9ed089707057476b8320da1ae8a94a74307e15dc1399038fed3ead3fd6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darkowic
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah - RigidBody-&gt;GetLinearVelocity is what I need probably
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Note that:
+       <br/>
+       a) LinearVelocity is a
+       <code>
+        Vector3
+       </code>
+       , you can use its
+       <code>
+        Length()
+       </code>
+       as a velocimeter.
+       <br/>
+       b) Alternatively could use
+       <code>
+        RigidBody::IsActive()
+       </code>
+       in your situation which will return true if either its linear
+       <em>
+        or
+       </em>
+       angular velocity are above their respective thresholds.
+       <br/>
+       c) Welcome to the forums!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Also note that if you don’t actually need the length but a metric to compare against, use Vector3::LengthSquared() to save a call to sqrt()
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/33b2da9ed089707057476b8320da1ae8a94a74307e15dc1399038fed3ead3fd6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darkowic
+     </div>
+     <div class="post_content">
+      <p>
+       My game is just a simple learning project and I didn’t measure the performance of LengthSquared but comparing Vector to Vector::ZERO should not be much slower and maybe it is even faster
+       <img alt=":thinking:" class="emoji" src="../../../images/eeb2678188b872361d37efb4df3e7ad71f2db34939269368594dc1e4ece2e3b1.png" title=":thinking:"/>
+       I am rather new to cpp and it is not the time for optimization
+       <img alt=":smile:" class="emoji" src="../../../images/ae89e05450587e8f1f4786c0d266cf94ef2b306782fb6f9c30e43c0023ed148b.png" title=":smile:"/>
+       Anyway both solutions will work just fine
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

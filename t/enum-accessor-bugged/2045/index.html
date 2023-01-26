@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   ENUM_ACCESSOR bugged?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    ENUM_ACCESSOR bugged?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Hey!
+      </p>
+      <p>
+       I’m trying to use URHO3D_ENUM_ACCESSOR_ATTRIBUTE but it’s adding an extra item into the dropdown menu that shouldn’t be there. I have the following code:
+      </p>
+      <p>
+       [code]void IKRoot::RegisterObject(Context* context)
+       <br/>
+       {
+       <br/>
+       context-&gt;RegisterFactory(IK_CATEGORY);
+      </p>
+      <pre><code>static const char* algorithmNames[] = {
+    "None",
+    "Jacobian Inverse",
+    "Jacobian Transpose",
+    "FABRIK"
+};
+URHO3D_ENUM_ACCESSOR_ATTRIBUTE("Algorithm", GetSolverType, SetSolverType, IKSolver::SolverAlgorithm, algorithmNames, IKSolver::FABRIK, AM_DEFAULT);
+</code></pre>
+      <p>
+       }[/code]
+      </p>
+      <p>
+       Where my enum is defined as:
+      </p>
+      <p>
+       <code>
+        enum SolverAlgorithm
+    {
+        NONE = 0,
+        JACOBIAN_INVERSE,
+        JACOBIAN_TRANSPOSE,
+        FABRIK
+    };
+       </code>
+      </p>
+      <p>
+       The result is a dropdown menu with 5 items instead of 4:
+      </p>
+      <p>
+       <img alt="" height="123" src="../../../images/565a9772e2db4ab57989b42a85884022022e4fd90eb46b926b37de5348d63205.png" width="356"/>
+      </p>
+      <p>
+       If I add another string to the array of strings:
+      </p>
+      <p>
+       <code>
+        static const char* algorithmNames[] = {
+        "None",
+        "Jacobian Inverse",
+        "Jacobian Transpose",
+        "FABRIK",
+        "This shouldn't be here"
+    };
+       </code>
+      </p>
+      <p>
+       Then the dropdown menu also gains another item, but it’s still one too many:
+      </p>
+      <p>
+       <img alt="" height="157" src="../../../images/15ca7abf577eacb93e658ab46e759e0a799b578646c019960b813bdf4a559a1e.png" width="357"/>
+      </p>
+      <p>
+       Is this a bug or am I doing something wrong?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       You need a terminator null ptr. See e.g. BillboardSet.cpp.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Aaah, that makes sense. Thanks a lot!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

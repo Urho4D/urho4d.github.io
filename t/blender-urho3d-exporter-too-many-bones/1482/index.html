@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Blender Urho3D Exporter Too Many Bones
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Blender Urho3D Exporter Too Many Bones
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, I’ve bought a bunch of animated models and the blender urho3d exporter complained that there are too many bones.  Is there a way around this without destroying the model?  Thanks for any help.
+      </p>
+      <p>
+       <img alt="" height="" src="../../../images/f932f0496838bd6ff11f1b968dcadf42108b97500ec8b34141a0004b4259d3b8.png" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       How much bones ? You are doing export only with deform bones or all ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       A plethora of bones, it’s just the nature of the beast.  I’m telling the exporter to export all actions.  I’m pretty sure there aren’t any unused bones.
+      </p>
+      <p>
+       <img alt="" height="" src="../../../images/f932f0496838bd6ff11f1b968dcadf42108b97500ec8b34141a0004b4259d3b8.png" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       There are a maximum of 64 bones per for hardware skinning. It sounds like the model that you purchased just uses one big mesh for the entire thing. You will likely need to break up the model to keep each mesh under the 64 bone limit.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        I’m pretty sure there aren’t any unused bones
+        <br/>
+        You need select the armature and enter into edit mode then look on blender window menu (header) there placed: info about: blender current version, verts/faces/tris/objects/lamps ect. There is will be a
+        <span class="bbcode-u">
+         bones number
+        </span>
+        used by this armature.
+       </p>
+      </blockquote>
+      <p>
+       after all, you may use my fork, it supporting 128 bones by default
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6456389.htm">
+        <img alt="" height="" src="../../../images/78ea6450476a8b6aa0d09fa087781f0703ca9fa95b9f0859ef7b5df0111b3b48.png" width=""/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   3D physics constraint problem
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    3D physics constraint problem
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8daad2902a11e6bff640bb4d0917fd255702bfcf2d3459e4a62e658b57c935c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      anako126n
+     </div>
+     <div class="post_content">
+      <p>
+       Hi All,
+      </p>
+      <p>
+       There is probably an easy way of achieving what I want, but after several days of playing with this I just can’t get my head around this issue.
+      </p>
+      <p>
+       I have few Nodes inside 3D Scene with RigidBodies etc. Some of these nodes have to fall on their side (either way on 3 axis, but always on one axis only. Might go left or right, front or back) without sliding (remaining in their original collision position)
+      </p>
+      <p>
+       See picture for visual, top part shows what I’m trying to achieve while the bottom shows what exactly happens.
+      </p>
+      <p>
+       <img alt="problem" height="500" src="../../../images/7566e70401bc9d896ba2efe2fbcad6691c8de6e9a14d76ec6a9de9a1ce3142a6.png" width="465"/>
+      </p>
+      <p>
+       I was trying to use constraints but with the collision enabled node wouldn’t even move, with collision disabled the node was rotating around the point (main problem here is that there is no collision with the node below)
+      </p>
+      <p>
+       Increasing restitution makes it even more awkward and unrealistic.
+      </p>
+      <p>
+       I could create several point-to-point constraints and active them as required (depending on node rotation), maybe checking for position on update and rectifying as required or is there a different approach I should take?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       What’s the shape of those objects is exactly?
+       <br/>
+       The collider capsule object have the same shape?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8daad2902a11e6bff640bb4d0917fd255702bfcf2d3459e4a62e658b57c935c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      anako126n
+     </div>
+     <div class="post_content">
+      <p>
+       Boxes exactly the same size as model, problem is that once it touches another model the bottom slides back.
+      </p>
+      <p>
+       This is logical, I’m trying to achieve something against physics by somehow fixing the corner point so it doesn’t move either way.
+      </p>
+      <p>
+       Similar to static pivot point where the object cannot get out of it, imagine a domino effect with dominoes attached to the ground on one side.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       I’m thinking you might be able to achieve what you want using
+       <code>
+        RigidBody::SetLinearFactor
+       </code>
+       and
+       <code>
+        RigidBody::SetAngularFactor
+       </code>
+       on collision, combined with high friction for both the floor and tumbling block.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

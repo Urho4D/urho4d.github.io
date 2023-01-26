@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Animated textures
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Animated textures
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1e0a99538f39dc80899aa462bf01fe5512740ad644d09d7f5b176cb87543a642.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gabdab
+     </div>
+     <div class="post_content">
+      <p>
+       I create a texture2d vector , then switch texture on material on update .
+       <br/>
+       Is this the best way to achieve textures animation on Urho3D ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       UV offset animation, you must prepare
+       <span class="bbcode-b">
+        one big texture atlas
+       </span>
+       with animation frames for this.
+       <br/>
+       code maybe look something like this:
+      </p>
+      <p>
+       [pastebin]gizQdYb2[/pastebin]
+       <br/>
+       for mat details see
+       <a href="http://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_material.html">
+        urho3d.github.io/documentation/H … erial.html
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1e0a99538f39dc80899aa462bf01fe5512740ad644d09d7f5b176cb87543a642.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gabdab
+     </div>
+     <div class="post_content">
+      <p>
+       Cool ,thanks .
+       <br/>
+       Movie like animation breaking framerate ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        Movie like animation breaking framerate ?
+        <br/>
+        I think yes. Old-style tech animation like drawed with pencil flying bird on corner of the book.
+       </p>
+      </blockquote>
+      <p>
+       and if you needed animation in 2D for this there are exist special 2d urho stuff, like AnimatedSprite2d and so on… there are some modern tech are using for animation.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Apart from using AttributeAnimation, this can also be made at the shader level.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        this can also be made at the shader level.
+        <br/>
+        You mean if use custom Uniforms, and calculate UV in vertex shader ? Yes I guess this will be best method. But need some knowledge with shader tweaking.
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1e0a99538f39dc80899aa462bf01fe5512740ad644d09d7f5b176cb87543a642.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gabdab
+     </div>
+     <div class="post_content">
+      <p>
+       …full option .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

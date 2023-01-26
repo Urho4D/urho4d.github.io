@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [solved] How to build external dependencies?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [solved] How to build external dependencies?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       Hi guys, Gwald here!
+       <br/>
+       Firstly Very Impressive engine!
+       <img alt=":sunglasses:" class="emoji" src="../../../images/0e96db4df869e8e4a38a76b7be66ebb1d80af768e193fcbb7e29abde3980af2a.png" title=":sunglasses:"/>
+      </p>
+      <p>
+       So, I’ve been struggling lately with GP3D (
+       <a href="http://github.com" rel="nofollow noopener">
+        github.com
+       </a>
+       / blackberry / GamePlay ) they’re dropping 32bit desktop support
+       <img alt=":angry:" class="emoji" src="../../../images/0242dfe442531236e973a437c02a6b1280c27e6bd220d7d4352b2daef6a1880b.png" title=":angry:"/>
+       and I failed to get a build script for the external dependencies from the authors
+       <img alt=":imp:" class="emoji" src="../../../images/ac07ad0d272514849144a78b87d5949a4f42b3e560e29c8cfb0e78f77da982ff.png" title=":imp:"/>
+       - then I found you guys! wow!
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       I love love love your you build system!!!
+      </p>
+      <p>
+       <span class="hashtag">
+        #1:
+       </span>
+       So, I’ve searched but couldn’t find any info on your external dependencies, build scripts or info on how it’s done.
+       <br/>
+       Is this public info?, do you guys know how to compile your own deps if you wanted/had to?
+      </p>
+      <p>
+       <span class="hashtag">
+        #2:
+       </span>
+       also, why is it a lightweight engine? That feature list is huge! and Raspberry Pi wow!
+      </p>
+      <p>
+       Cheers
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Hi. Welcome to our forum.
+      </p>
+      <p>
+       I am not quite sure I understand your first question. If you are asking about “Urho3D” external dependencies then they are all neatly grouped under “ThirdParty” sub-directory. Each third-party dependencies is being built as static library. It has its own CMakeLists.txt that configures and generates what are necessary to build just one individual static library found in the same scope as this CMakeLists.txt. Urho3D then has a main CMakeLists.txt which includes all these sub CMakeLists.txt and basically makes Urho3D library target depends on all those static libraries. It should be quite easy to add any third party libraries into
+       <span class="bbcode-b">
+        your own project
+       </span>
+       using CMake or not. But if you are asking how to add additional third party library into
+       <span class="bbcode-b">
+        Urho3D project
+       </span>
+       itself then I think you will have to study closely the existing CMakeLists.txt(s) to see how it is done.
+      </p>
+      <p>
+       I will leave the second question to Lasse (the original author of Urho) to answer it. I can only guess the reason as the relative measurement of the actual binary size of the library or the feature set compared to other big boys game engine out there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Hey gwald, Welcome to the forums and thank you for that youtube comment.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       As weitjong mentioned re external dependencies, you can just follow the process on how the third party libraries are built so you can get some idea to add your own. I remember I did an experimental sqlite bootstrap plugin one time and it worked straight out by following the existing libraries.
+      </p>
+      <p>
+       Cheers.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       Hi guys and thanks for the fast warm welcomes
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         they are all neatly grouped under “ThirdParty” sub-directory.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thank you!  you’re right under Urho3D/Source/ThirdParty/
+       <br/>
+       Wow! wow! very impressive!
+       <br/>
+       Now I see why it’s lightweight!
+      </p>
+      <p>
+       Then what’s the library on the home page  for? oh it’s a binary package! all prebuilt… and ready to go! again wow !
+       <br/>
+       I thought these were just the third party libs,
+       <br/>
+       Thanks again… looking forward to having a read and a play!  :mrgreen:
+      </p>
+      <p>
+       Last question, I’ve noticed the binary package has a bunch of demo (car, ragdoll etc) but I’ve compiled from source can’t find them are these a seprate download?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Urho is lightweight only comparatively, eg. it has less lines of code (excluding third party code) than Ogre3D, while Ogre3D is only a rendering engine, but very complex one. Or about 100x less code than Unreal Engine 4
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       At least on Windows the automatically built binary packages are likely
+       <em>
+        not
+       </em>
+       what you want for serious development, they’re just provided for quick testing. The Windows version is compiled with MinGW so it’s unusable for Visual Studios, and when we’re talking about C++ code, the compiler should match exactly to prevent C++ ABI compatibility mismatches and crashes resulting from that. The preferable option is always to build Urho yourself with your own toolchain.
+      </p>
+      <p>
+       To enable build of the C++ examples, use the CMake option -DURHO3D_SAMPLES=1 when you configure your Urho build. This and other CMake options are documented in the readme and in the Doxygen documentation (see bottom of
+       <a href="http://urho3d.github.io/documentation/HEAD/_building.html">
+        urho3d.github.io/documentation/H … lding.html
+       </a>
+       )
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/ca279ebb6e6913836d33ed2ab6856e015c310c0ee4589ca403b0e7e5a2b3f50f.png" width="20"/>
+        cadaver:
+       </div>
+       <blockquote>
+        <p>
+         At least on Windows the automatically built binary packages are likely
+         <em>
+          not
+         </em>
+         what you want for serious development, they’re just provided for quick testing.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks for the tips and the great engine!
+       <br/>
+       Got the samples working with no issues, I did a quick recording and I’ll upload to youtube tomorrow.
+       <br/>
+       Cheers
+      </p>
+      <p>
+       Edit:
+       <br/>
+       <a href="https://www.youtube.com/watch?v=Xl8c79MGI6c" rel="nofollow noopener">
+        youtube.com/watch?v=Xl8c79MGI6c
+       </a>
+       (linux openGL)
+       <br/>
+       <a href="https://www.youtube.com/watch?v=n8q1tDPKLko" rel="nofollow noopener">
+        youtube.com/watch?v=n8q1tDPKLko
+       </a>
+       (winXP DX9)
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

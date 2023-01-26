@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Light scattering
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Light scattering
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       Hi folks!
+       <br/>
+       How I may to render some of scene’s object into MRT-render target ?
+       <br/>
+       I tried to create an tech NoTextureUnlitMRT1.xml
+      </p>
+      <pre><code class="lang-auto">&lt;technique vs="Unlit" ps="Unlit" psdefines="MRT1" vsdefines="NOUV" &gt;
+    &lt;pass name="base" /&gt;
+    &lt;pass name="prepass" psdefines="PREPASS" /&gt;
+    &lt;pass name="material" /&gt;
+    &lt;pass name="deferred" psdefines="DEFERRED" /&gt;
+&lt;/technique&gt;</code></pre>
+      <p>
+       then i add MRT1 checking with (
+       <span class="hashtag">
+        #if
+       </span>
+       <span class="hashtag">
+        #else
+       </span>
+       <span class="hashtag">
+        #end
+       </span>
+       ) barricades in unlit.glsl shader
+      </p>
+      <pre><code class="lang-auto">    #if defined(PREPASS)
+        // Fill light pre-pass G-Buffer
+        gl_FragData[0] = vec4(0.5, 0.5, 0.5, 1.0);
+        gl_FragData[1] = vec4(EncodeDepth(vWorldPos.w), 0.0);
+    #elif defined(DEFERRED)
+        gl_FragData[0] = vec4(GetFog(diffColor.rgb, fogFactor), diffColor.a);
+        gl_FragData[1] = vec4(0.0, 0.0, 0.0, 0.0);
+        gl_FragData[2] = vec4(0.5, 0.5, 0.5, 1.0);
+        gl_FragData[3] = vec4(EncodeDepth(vWorldPos.w), 0.0);
+    #else
+        #ifndef MRT1 
+            gl_FragColor = vec4(GetFog(diffColor.rgb, fogFactor), diffColor.a);
+        #else
+            gl_FragData[0] = vec4(GetFog(diffColor.rgb, fogFactor), diffColor.a);
+            gl_FragData[1] = vec4(1.0);
+        #endif
+    #endif</code></pre>
+      <p>
+       fix Transform.glsl to avoid gl_FragData boundary error
+      </p>
+      <pre><code class="lang-auto">// Silence GLSL 150 deprecation warnings
+#ifdef GL3
+#define varying in
+
+// \todo: should not hardcode the number of MRT outputs according to defines
+#if defined(DEFERRED)
+out vec4 fragData[4];
+#elif defined(PREPASS)
+out vec4 fragData[2];
+#else
+#ifdef MRT1
+out vec4 fragData[2];
+#else 
+out vec4 fragData[1];
+#endif
+#endif</code></pre>
+      <p>
+       and finally I got a Render Path
+      </p>
+      <pre><code class="lang-auto">&lt;renderpath&gt;
+    &lt;rendertarget name="MRT" sizedivisor="1 1" format="rgba" filter="true" /&gt;
+    
+    &lt;command type="clear" color="fog" depth="1.0" stencil="0" &gt;
+        &lt;output index="0" name="viewport" /&gt;
+        &lt;output index="1" name="MRT" /&gt;
+    &lt;/command&gt;
+        
+    &lt;command type="scenepass" pass="base" vertexlights="true" metadata="base" &gt;
+        &lt;output index="0" name="viewport" /&gt;
+        &lt;output index="1" name="MRT" /&gt;
+    &lt;/command&gt;
+    &lt;command type="forwardlights" pass="light" /&gt;
+    
+    &lt;command type="scenepass" pass="postopaque" /&gt;
+    &lt;command type="scenepass" pass="refract"&gt;
+        &lt;texture unit="environment" name="viewport" /&gt;
+    &lt;/command&gt;
+    &lt;command type="scenepass" pass="alpha" vertexlights="true" sort="backtofront" metadata="alpha" /&gt;
+    &lt;command type="scenepass" pass="postalpha" sort="backtofront" /&gt;
+    
+    &lt;!-- preview MRT --&gt;  
+    &lt;command type="quad" tag="MRTTag" vs="CopyFramebuffer" ps="CopyFramebuffer" blend="replace" output="viewport"&gt;
+        &lt;texture unit="diffuse" name="MRT" /&gt;
+    &lt;/command&gt;
+    
+&lt;/renderpath&gt;</code></pre>
+      <p>
+       In last RP commands I just copy MRT into screen for debug view.
+       <br/>
+       but this is not working properly, if I try to decrease size of MRT for example to sizedivisor=“2 2”.
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6638466.htm">
+        <img alt="" height="" src="../../../images/1171a027cc5aa28f6eb338f2c6b40cc2f08112ef7eb5c0a645c81ee638aa0c61.png" width=""/>
+       </a>
+      </p>
+      <p>
+       How to fix this?
+       <br/>
+       Is it possible to use MRT various size ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        Is it possible to use MRT various size ?
+       </p>
+      </blockquote>
+      <p>
+       buffers should be same size
+      </p>
+      <p>
+       [spoiler]
+       <a href="http://steps3d.narod.ru/tutorials/mrt-tutorial.html">
+        http://steps3d.narod.ru/tutorials/mrt-tutorial.html
+       </a>
+      </p>
+      <p>
+       ??? ???, ??? ??? ??? ??? ??? ??? ? ?? ??? ??? ??? ? ??? gl_FragColor ? gl_FragData.[/spoiler]
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        buffers should be same size
+        <br/>
+        <img alt=":cry:" class="emoji only-emoji" src="../../../images/4a28359990e3a84f9a9157887dd2f484a548987fbb71e3eb485674b0acc4cd7c.png" title=":cry:"/>
+       </p>
+      </blockquote>
+      <p>
+       current process with mrt
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6630193.htm">
+        <img alt="" height="" src="../../../images/e41932600862d7049aebe85853c37bb0f25dd98b86f15c3470c97dc5a6990f85.png" width=""/>
+       </a>
+       <br/>
+       you may finding this there:
+       <a href="https://github.com/MonkeyFirst/urho3d-light-scattering">
+        github.com/MonkeyFirst/urho3d-light-scattering
+       </a>
+       <br/>
+       main changes:
+       <br/>
+       shaders\Transform.glsl (fixed with adding - out vec4 fragData[2]
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       <br/>
+       shaders\Unlit.glsl (fixed for
+       <span class="hashtag">
+        #ifdef
+       </span>
+       MRT)
+       <br/>
+       shaders\SunMRT.glsl (added)
+       <br/>
+       ForwardSun.xml (added)
+       <br/>
+       ForwardSunFast.xml (added)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Looking good!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

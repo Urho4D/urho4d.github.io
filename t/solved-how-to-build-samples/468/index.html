@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [solved]how to build samples?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [solved]how to build samples?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Do I need any specific directive to compile c++ samples? Im trying to foind them after compiling the engine and cant find any.
+      </p>
+      <p>
+       <span class="bbcode-b">
+        Found it in the docs!
+       </span>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       By default, CMAKE won’t generate the samples. Here’s how I would generate a VS2013 solution (just a manual edit to cmake_vs2013.bat):
+      </p>
+      <pre><code class="lang-auto">@%~dp0\cmake_vs2008.bat VERSION=12 -DURHO3D_SAMPLES=1 %*</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks, I will use that to compile the Win version.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

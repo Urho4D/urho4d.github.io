@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Skinned Mesh without a “master” model
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Skinned Mesh without a “master” model
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e823a89d08539b4e5b390a5f01f3c5e460eab7696dd53d2293d4db0de04d490f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dev4fun
+     </div>
+     <div class="post_content">
+      <p>
+       Hey guys, Im using a same skeleton to separate my character on many parts of meshes (body, hands, etc), but I got a problem and I dont found any solution until now.
+      </p>
+      <p>
+       Body:
+       <br/>
+       <img src="../../../images/604ea93caf4d707d68b72a2fdda5e4b1dd3c216b6f1d3945398e504820dc69f6.png"/>
+      </p>
+      <p>
+       Hands:
+       <br/>
+       <img src="../../../images/c841672b7b576077d1b2c3fb7d826e3665d20bbf8dd425b14268eb76b9170b4a.png"/>
+      </p>
+      <p>
+       I want to combine both models to share same animation… The problem its:
+       <br/>
+       when I import firstly body, this will be the master model, but Urho selects only used bones, and body dont use same bones of hands…
+      </p>
+      <p>
+       <img src="../../../images/07e92e1cc0e3ae9ec9028d84213deec6948ac085f58d60b0b0fc4a32254a407d.png"/>
+      </p>
+      <p>
+       This way I get the hands imported, but not your bones. I need exactly this way, because it isnt a clothes, so will not have a “master model” with all bones. I’ve already tried to made a custom mesh using all bones, change RootNode and nothing worked.
+      </p>
+      <p>
+       Demonstration of the problem:
+       <br/>
+       <a class="onebox" href="https://puu.sh/zMI0h/95af1304c5.mp4" rel="nofollow noopener" target="_blank">
+        https://puu.sh/zMI0h/95af1304c5.mp4
+       </a>
+      </p>
+      <p>
+       Someone knows what I should to do?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       If you’re using AssetImporter, use the
+       <strong>
+        -s
+       </strong>
+       option -
+      </p>
+      <pre><code class="lang-auto">"-s &lt;filter&gt; Include non-skinning bones in the model's skeleton. Can be given a\n"</code></pre>
+      <p>
+       Example 1: include all
+      </p>
+      <pre><code class="lang-auto">AssetImporter model mymodel.fbx mymodel.mdl -s</code></pre>
+      <p>
+       Example2: only specific joints/bones
+      </p>
+      <pre><code class="lang-auto">AssetImporter model mymodel.fbx mymodel.mdl -s "Leftfinger01;Leftfinger02;Rightfinger01;RightFinger02"</code></pre>
+      <p>
+       It’s easier to
+       <strong>
+        go with the example1
+       </strong>
+       to import the body model and same for gloves.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       By the way…
+       <br/>
+       Can I use a full rig with just part of the mesh hidden? I mean
+      </p>
+      <p>
+       <img alt="45" height="500" src="../../../images/43ec8db502fe8041c8f8d4faa8727a7be25634f97032c8e2c91b20b23fd5729f.png" width="293"/>
+      </p>
+      <p>
+       Just import the rig and selectively hide/unhide body parts at will? I haven’t tried it yet in Urho…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Nope. Shouldn’t be particularly hard to implement if you really need it though, it’d just be changing the batch and transform management in StaticModel and AnimatedModel I believe.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

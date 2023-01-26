@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Visualizing the depth buffer
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Visualizing the depth buffer
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f785448af96bc9739a9aae159fa9597ddcd509258f916294f696a75b6a9d166c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      extobias
+     </div>
+     <div class="post_content">
+      <p>
+       Hi there,
+       <br/>
+       I’m trying to visualize the depth buffer
+       <br/>
+       in a texture created in a example application
+       <br/>
+       and writing it through a quad command in the renderpath.
+      </p>
+      <p>
+       // texture creation
+      </p>
+      <pre><code class="lang-auto">SharedPtr&lt;Texture2D&gt; renderTexture(new Texture2D(context_));
+float div = 2.0f;
+renderTexture-&gt;SetSize(graphics-&gt;GetWidth() / div, graphics-&gt;GetHeight() / div, Graphics::GetRGBFormat(), TEXTURE_RENDERTARGET);
+renderTexture-&gt;SetName("DepthBuffer");</code></pre>
+      <p>
+       // command added to the renderpath Deferred.xml
+      </p>
+      <pre><code class="lang-auto">&lt;command type="quad" vs="CopyFramebufferDepth" ps="CopyFramebufferDepth" blend="replace" output="DepthBuffer"&gt;
+    &lt;texture unit="depth" name="depth" /&gt;
+&lt;/command&gt;</code></pre>
+      <p>
+       // PS  CopyFramebufferDepth.glsl
+      </p>
+      <pre><code class="lang-auto">float x = vScreenPos.x;
+float y = 1.0f - vScreenPos.y;
+float depth = DecodeDepth(texture2D(sDepthBuffer, vec2(x, y)).rgb);
+vec3 color = vec3(depth, depth, depth);
+gl_FragColor = vec4(color, 1.0);</code></pre>
+      <p>
+       What I get is the following. the depths should not be on a grayscale?
+       <br/>
+       should I define a readable depth texture, like docs says?
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/d/de4292dc80728946bdf1f095662494916871a780.jpeg" rel="nofollow noopener" title="depth.jpg">
+         <img alt="depth" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/d/de4292dc80728946bdf1f095662494916871a780_2_10x10.png" height="237" src="../../../images/63561e612223daf1b960136b335c50b8ba2930ce3e98bb08f5595ebb8b9b48a2.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/d/de4292dc80728946bdf1f095662494916871a780_2_517x237.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/d/de4292dc80728946bdf1f095662494916871a780_2_775x355.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/d/de4292dc80728946bdf1f095662494916871a780.jpeg 2x" width="517"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           depth.jpg
+          </span>
+          <span class="informations">
+           1021×469 58.7 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       the depth buffer is a grey scale texture, so your visualization is horribly wrong
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ef58f20a9606a3317eb82803a91a71ad7b5026b4a4c2841fd428046e70948053.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      UNDEFINED-BEHAVIOR
+     </div>
+     <div class="post_content">
+      <p>
+       Have you tried this?
+       <a href="https://renderdoc.org/" rel="nofollow noopener">
+        https://renderdoc.org/
+       </a>
+       maybe it works with urho.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f785448af96bc9739a9aae159fa9597ddcd509258f916294f696a75b6a9d166c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      extobias
+     </div>
+     <div class="post_content">
+      <p>
+       Apparently the depth buffer was read correctly
+       <br/>
+       for what you see in the texture is the content of sDepthBuffer.
+       <br/>
+       Use the Deferred.xml renderpath and add the command at the end, could it affect something?
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/1/1a64c5703ee14da0a0040dbe41ed61847b54c2d5.png" rel="nofollow noopener" title="renderdoc-capture.png">
+         <img alt="renderdoc-capture" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/1/1a64c5703ee14da0a0040dbe41ed61847b54c2d5_2_10x10.png" height="351" src="../../../images/7a0f2ec42c23cb271f7dda4d7d0edbfdc9fca8dec8598a6b6fc1f8864a979342.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/1/1a64c5703ee14da0a0040dbe41ed61847b54c2d5_2_690x351.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/1/1a64c5703ee14da0a0040dbe41ed61847b54c2d5_2_1035x526.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/1/1a64c5703ee14da0a0040dbe41ed61847b54c2d5.png 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           renderdoc-capture.png
+          </span>
+          <span class="informations">
+           1355×691 73.7 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f785448af96bc9739a9aae159fa9597ddcd509258f916294f696a75b6a9d166c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      extobias
+     </div>
+     <div class="post_content">
+      <p>
+       I thought that the rt depth was a direct reference to the opengl depth buffer. but as the documentation says “define a readable hardware depth texture, and instruct the render path to use it instead” was the solution.
+       <br/>
+       <span class="mention">
+        @UNDEFINED-BEHAVIOR
+       </span>
+       thanks, renderdoc really helped me.
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b6807a30497ca18c075445693d366803acf90c8e.jpeg" rel="nofollow noopener" title="renderdoc-capture2.jpg">
+         <img alt="renderdoc-capture2" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b6807a30497ca18c075445693d366803acf90c8e_2_10x10.png" height="235" src="../../../images/19515c14512023a48f7074904a04fcf7213177f2b8620c6dc14e6ca856ddb9fa.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b6807a30497ca18c075445693d366803acf90c8e_2_517x235.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b6807a30497ca18c075445693d366803acf90c8e_2_775x352.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b6807a30497ca18c075445693d366803acf90c8e.jpeg 2x" width="517"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           renderdoc-capture2.jpg
+          </span>
+          <span class="informations">
+           1022×466 55.2 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c432754588cadf47ee2eae36a91f4d2d6651de95ebf18895f4c28523236443a9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      guk_alex
+     </div>
+     <div class="post_content">
+      <p>
+       Btw, if you want to visualise it right you might know that depth buffer contains non-linear values, and if you render the raw values then you won’t be able to distinguish depth of the far objects, only the ones that are close to the camera.
+       <br/>
+       You can convert it to linear values like that (with ‘near’ and ‘far’ being your clip values) :
+      </p>
+      <pre><code>float LinearizeDepth(float depth) 
+{
+    float z = depth * 2.0 - 1.0; // back to NDC 
+    return (2.0 * near * far) / (far + near - z * (far - near));	
+}</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Multiply by W
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       This is not well covered in most literature, most people do not understand homogenous vec4
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       Considering the docs section on reading scene depth…
+       <br/>
+       <a href="https://urho3d.github.io/documentation/HEAD/_render_paths.html#RenderPaths_Depth" rel="nofollow noopener">
+        https://urho3d.github.io/documentation/HEAD/_render_paths.html#RenderPaths_Depth
+       </a>
+      </p>
+      <p>
+       <code>
+        ReconstructDepth()
+       </code>
+       , defined in our
+       <code>
+        Samplers.glsl
+       </code>
+       shader functions include, is to reconstruct linear 0-1 depth from hardware. Also there is
+       <code>
+        DecodeDepth()
+       </code>
+       …
+      </p>
+      <p>
+       These are used in e.g. DeferredLight.glsl, and I find some posts in the forum and insights by
+       <span class="mention">
+        @cadaver
+       </span>
+       <a class="inline-onebox" href="https://discourse.urho3d.io/t/way-to-getting-depth-texture-in-forward-render-path/1459">
+        Way to getting depth texture in forward render path?
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

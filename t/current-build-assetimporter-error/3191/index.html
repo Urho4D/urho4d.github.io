@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Current build AssetImporter error
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Current build AssetImporter error
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, It seems like the Asset Importer from the editor is broken in current build in Github.
+       <br/>
+       I tried to import model from the editor and get this error.
+      </p>
+      <p>
+       ERROR: Failed to execute AssetImporter to import model.
+      </p>
+      <p>
+       AssetImporter.exe existed inside the tool folder.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       What is your build options and build configuration?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       I used CMake 3.4.3 like I did before. I configure using the default option with static library for visual studio 2015.
+      </p>
+      <p>
+       <img height="500" src="../../../images/dc01ac7bf646a66beee441c6dcc4ad116906a0416755869966784e169067cf92.png" width="166"/>
+      </p>
+      <p>
+       <img height="500" src="../../../images/be59a0dba83b12edcced22c19050d52be567aa68e8ffff3ca483d729ebae4e19.png" width="234"/>
+      </p>
+      <p>
+       The Urho library engine runs find. Just the editor having that AssetImporter error.
+      </p>
+      <p>
+       Regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       That is only the build options. How about the build configuration? Did you use Release build config or Debug build config? On Windows platform the Debug build config generates binaries with “_d” suffix. However, the Editor script currently always expects to find the Release-built “AssetImporter.exe”. If that is indeed your issue then you could raise it as an issue in our GitHub issue tracker.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="4" data-topic="3191">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         se Release build
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Hi Weitjong, thanks I only build using debug in visual studio. I will build using release option, when I get access to my PC tonight.
+      </p>
+      <p>
+       Thanks mate
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

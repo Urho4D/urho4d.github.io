@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Having an issue with array of float uniforms on D3D11
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Having an issue with array of float uniforms on D3D11
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       Working on the terrain shader for my terrain editor, and having some issues with the D3D11 version. I am declaring an array of float uniforms as:
+      </p>
+      <pre><code>static const int numlayers=8;
+#ifdef COMPILEPS
+
+	cbuffer CustomPS : register(b6)
+	{
+		float cLayerScaling[numlayers];
+	};
+#endif
+</code></pre>
+      <p>
+       Then, I access it to scale a terrain texture layer by a specified amount:
+      </p>
+      <pre><code>float4 SampleDiffuse(float3 detailtexcoord, int layer, float3 blend)
+{
+	return tDetailMap2.Sample(sDetailMap2, float3(detailtexcoord.zy*cLayerScaling[layer], layer))*blend.x +
+		tDetailMap2.Sample(sDetailMap2, float3(detailtexcoord.xy*cLayerScaling[layer], layer))*blend.z +
+		tDetailMap2.Sample(sDetailMap2, float3(detailtexcoord.xz*cLayerScaling[layer], layer))*blend.y;
+}
+</code></pre>
+      <p>
+       In Lua script, I pass the material an array Variant object constructed like so:
+      </p>
+      <pre><code>local buf=VectorBuffer()
+buf:WriteFloat(2)
+buf:WriteFloat(2)
+buf:WriteFloat(1.0)
+buf:WriteFloat(1.0)
+buf:WriteFloat(1.0)
+buf:WriteFloat(1.0)
+buf:WriteFloat(1.0)
+buf:WriteFloat(0.25)
+
+local ary=Variant()
+ary:Set(buf)
+TerrainState.terrainMaterial:SetShaderParameter("LayerScaling", ary)
+</code></pre>
+      <p>
+       But for some reason, the shader isn’t receiving all of the floats in the array. It receives the first float correctly, it receives an incorrect value for the second one, and the rest it receives the value of 0.
+      </p>
+      <p>
+       <img src="../../../images/afd548217405487af795b26f7a9e2ac08ab523d4ca93c0139172faf14c737bf5.png"/>
+      </p>
+      <p>
+       It works on the OpenGL version just fine, so I don’t think it’s a problem with constructing the VectorBuffer and setting the parameter:
+      </p>
+      <p>
+       <img src="../../../images/626fca4b252ab7cb52fe252047a1e5f7cacf70a5e3eacb1f634d91c04a68f63c.png"/>
+      </p>
+      <p>
+       Anybody have any ideas?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Ty to debug
+       <code>
+        Graphics::SetShaderParameter(StringHash param, const float* data, unsigned count)
+       </code>
+       <br/>
+       Does it receive valid values?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       I added some logging code, and it looks like it is getting the values:
+      </p>
+      <pre><code>[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 0: 2
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 1: 2
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 2: 1
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 3: 1
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 4: 1
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 5: 1
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 6: 1
+[Thu Sep 21 16:29:59 2017] INFO: Shader parameter buffer index 7: 0.25
+</code></pre>
+      <p>
+       I added a check in ConstantBuffer as well to make sure it’s not overflowing the buffer, and everything looks good there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/02974071725a337b9c8cd9586a5e16b7a69387efc5322059d65949ae7f35fb57.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Alex-Doc
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe this can be useful for investigating further?
+       <br/>
+       <a class="onebox" href="https://renderdoc.org" rel="nofollow noopener" target="_blank">
+        https://renderdoc.org
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Arrays are not packed in DX11. Every element of the array is aligned to float4 vector.
+       <br/>
+       <a class="onebox" href="https://msdn.microsoft.com/ru-ru/library/windows/desktop/bb509632%28v=vs.85%29.aspx?f=255&amp;MSPPError=-2147217396" rel="nofollow noopener" target="_blank">
+        https://msdn.microsoft.com/ru-ru/library/windows/desktop/bb509632(v=vs.85).aspx?f=255&amp;MSPPError=-2147217396
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       Looks like that was the issue. Thank you!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

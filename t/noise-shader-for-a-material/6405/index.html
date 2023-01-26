@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Noise shader for a material
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Noise shader for a material
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00374e028c0b9437b331166f048a4764f1ca43c738c5f96011c9a6451ca494c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      evolgames
+     </div>
+     <div class="post_content">
+      <p>
+       So I have a low poly scene. I created a simple texture in gimp using a flat color + rgb noise. Super easy to do. In game it looks great, exactly how I wanted.
+       <br/>
+       <img alt="road" data-base62-sha1="tGXDkJepLFX06l3qoNSnRnYKKsH" height="128" src="../../../images/923b8442c9e254c58e0d1f17a5d94d82151d5713cb1c6ab57ab369675cc196e7.jpeg" width="128"/>
+       <br/>
+       Is it smarter to just use a noise shader for the materials (over top of the diffuse color) instead? Would that be faster or slower than texturing everything (no spec or normal)?
+       <br/>
+       I looked around online but I can’t figure out how to set up a noise shader for a material. Is it worth it in terms of performance? If it is, how could I achieve simple rgb noise in .glsl?
+      </p>
+      <p>
+       Here is the greyscale shader I use (faded in in-game for a certain effect):
+      </p>
+      <pre><code class="lang-auto">{
+    vec3 rgb = texture2D(sDiffMap, vScreenPos).rgb;
+    float intensity = GetIntensity(rgb)*(1-cGreyness.x);
+    vec3 rgb2 = rgb*cGreyness;
+    gl_FragColor = vec4(vec3(rgb2+intensity),1);
+}
+</code></pre>
+      <p>
+       For rgb noise, I suppose it would be something similar? Taking a function of gaussian or perlin and passing that output to the fragcolor? Anyone ever do something similar? Also, how can I tell a specific material to use a specific shader?
+      </p>
+      <p>
+       Of course, if it’s better to just use textures I’ll do that, but it’d be nice to know how to do this with shaders. Could be useful for things like paper effects.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="1" data-topic="6405" data-username="evolgames">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5546cd4204e2880f0abfb38719d5ce0bf72e5a0a3125b3b3b75289ae8ff2888a.png" width="20"/>
+        evolgames:
+       </div>
+       <blockquote>
+        <p>
+         Also, how can I tell a specific material to use a specific shader?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Shaders are specified by the Technique which
+       <a href="https://urho3d.github.io/documentation/HEAD/_materials.html">
+        Materials
+       </a>
+       (in docs
+       <a href="https://urho3d.github.io/documentation/HEAD/pages.html">
+        Related Pages
+       </a>
+       ) use.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="1" data-topic="6405" data-username="evolgames">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5546cd4204e2880f0abfb38719d5ce0bf72e5a0a3125b3b3b75289ae8ff2888a.png" width="20"/>
+        evolgames:
+       </div>
+       <blockquote>
+        <p>
+         Is it smarter to just use a noise shader for the materials (over top of the diffuse color) instead? Would that be faster or slower than texturing everything (no spec or normal)?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       The answer depends on your exact implementation, texture sizes and target platforms.
+       <br/>
+       I would cache noise in texture unless I have a good reason not to.
+      </p>
+      <aside class="quote no-group" data-post="1" data-topic="6405" data-username="evolgames">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5546cd4204e2880f0abfb38719d5ce0bf72e5a0a3125b3b3b75289ae8ff2888a.png" width="20"/>
+        evolgames:
+       </div>
+       <blockquote>
+        <p>
+         If it is, how could I achieve simple rgb noise in .glsl?
+        </p>
+       </blockquote>
+      </aside>
+      <ol>
+       <li>
+        Copy-paste existing shader(s) for geometry (LitSolid? Unlit? whatever you use now).
+       </li>
+       <li>
+        Copy-paste noise function from stackoverflow/shadertoy or write your own. Watch for performance!  Noise may be expensive to generate, depending on algorithm and options.
+       </li>
+       <li>
+        Apply noise function somewhere in pixel shader.
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00374e028c0b9437b331166f048a4764f1ca43c738c5f96011c9a6451ca494c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      evolgames
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        I would cache noise in texture unless I have a good reason not to.
+        <br/>
+        Noise may be expensive to generate, depending on algorithm and options.
+       </p>
+      </blockquote>
+      <p>
+       Hmm, okay. I definitely don’t want to hamper performance if textures work fine for this. They’d be smaller textures too. I’ll play around with it though
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

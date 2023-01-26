@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to disable physics on scene
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to disable physics on scene
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       I looking for a way to disable the physics on scene.
+       <br/>
+       First i try to don’t create PhysicsWorld component and nothing change, still all the RigidBody working, then i try to set enable to false for PhysicsWorld and again same. I don’t want to disable all rigid bodies one by one because scene have lot of nodes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       RigidBody forces the creation of a PhysicsWorld component in the scene, if one doesn’t exist.
+      </p>
+      <p>
+       Maybe PhysicsWorld::SetUpdateEnabled(false)?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       That’s worked
+       <img alt=":+1:" class="emoji" src="../../../images/42b43325b3edacba2a0e72b742bdc6fc5e4bc2ad38adca271fcc6d8353639887.png" title=":+1:"/>
+       <br/>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

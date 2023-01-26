@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <!-- Meta data -->
+        <title>
+            404 Page not found · 3dtotal dev blog · Showcase | Discover | Learn
+        </title>
+        <meta name="robots" content="noindex">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="
+            width=device-width,
+            initial-scale=1.0,
+            maximum-scale=1.0,
+            user-scalable=no"
+            >
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized" content="320">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="MobileOptimized" content="320">
+
+        <!-- Styles -->
+        <style>
+            /* Reset */
+            * {
+                box-sizing: border-box;
+                color: #fff;
+                font-family: Montserrat, sans-serif;
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 1;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Base */
+            html, body {
+                height: 100%;
+                width: 100%;
+            }
+
+            body {
+                background: #000 url('/static-assets/404.jpg') 80.0% center no-repeat;
+                background-size: cover;
+                border: 8px #fff solid;
+            }
+
+            @media only screen and (min-width: 640px) {
+                body {
+                    background-position: center center;
+                    border: 16px #fff solid;
+                }
+            }
+
+            /* Error */
+            .error {
+                background: linear-gradient(rgba(0, 0, 0, 0), #000);
+                bottom: 8px;
+                left: 8px;
+                padding: 48px 16px;
+                position: absolute;
+                right: 8px;
+            }
+
+            .error::after {
+                background: transparent url('/static-assets/logo.svg') 0 0 no-repeat;
+                background-size: cover;
+                bottom: 48px;
+                content: '';
+                display: block;
+                height: 59px;
+                left: calc(50% - 114px);
+                position: absolute;
+                width: 228px;
+            }
+
+            .error__code {
+                font-family: Montserrat, sans-serif;
+                font-size: 72px;
+                font-weight: 700;
+                margin-bottom: 32px;
+                text-align: center;
+            }
+
+            .error__reason {
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 28px;
+                margin-bottom: 48px;
+                text-align: center;
+                white-space: nowrap
+            }
+
+            .error__home {
+                box-shadow: 0 0 0 1px #fff;
+                display: block;
+                height: 50px;
+                line-height: 50px;
+                margin: 0 auto 128px;
+                text-align: center;
+                text-decoration: none;
+                width: 140px;
+            }
+
+            @media only screen and (min-width: 640px) {
+
+                .error {
+                    bottom: 16px;
+                    left: 16px;
+                    padding: 48px;
+                    position: absolute;
+                    right: 16px;
+                }
+
+                .error::after {
+                    bottom: 44px;
+                    left: auto;
+                    right: 48px;
+                }
+
+                .error__code {
+                    margin-bottom: 16px;
+                    text-align: left;
+                }
+
+                .error__reason {
+                    text-align: left;
+                }
+
+                .error__home {
+                    margin: 0;
+                }
+
+            }
+
+            @media only screen and (min-width: 1024px) {
+
+                .error::after {
+                    bottom: 34px;
+                    height: 77px;
+                    width: 297px;
+                }
+
+            }
+        </style>
+
+        <!-- Fonts - Monserrat & Roboto -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:500,700"
+            rel="stylesheet"
+            >
+    </head>
+
+    <body>
+        <!-- Error information -->
+        <div class="error">
+            <h1 class="error__code">404</h1>
+            <h2 class="error__reason">
+                You are lost adventurer, <wbr>best return home...
+            </h2>
+            <a href="/" class="error__home">Home</a>
+        </div>
+    </body>
+</html>

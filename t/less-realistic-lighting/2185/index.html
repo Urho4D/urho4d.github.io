@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Less realistic lighting
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Less realistic lighting
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="" height="366" src="../../../images/8a5f7bd83e014d1acb388696dd22cc00039fba79ead683bfd6763f6d43322eb3.png" width="411"/>
+      </p>
+      <p>
+       This is what i got now. First picture from blender is to give you idea what i am trying to shade. Cube on the left is what i have achieved with a point light + Diff technique and diffuse texture.
+      </p>
+      <p>
+       <code>
+        auto lightNode = _scene-&gt;CreateChild("Light");
+    lightNode-&gt;SetPosition(Vector3(-1, PLAY_FIELD_HEIGHT, -2));
+    auto light = lightNode-&gt;CreateComponent&lt;Light&gt;();
+    light-&gt;SetLightType(LIGHT_POINT);
+    light-&gt;SetCastShadows(true);
+    light-&gt;SetRange(100);
+    light-&gt;SetFadeDistance(100);
+       </code>
+      </p>
+      <p>
+       Any idea how i could get it lit so it looks like something like cube on the right? Basically i want each plane to geet same amount of light without taking into account distance from the light.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t know much about Urho internals yet, but an effect like that could be achieved in the shader code rather easily.
+      </p>
+      <p>
+       Usually, a light’s influence is calculated “realistically” by the angle difference between light direction and surface normal.
+       <br/>
+       Instead of doing this realistically, you could introduce different angle ranges.
+      </p>
+      <p>
+       1: Angle is very large - medium: full light influence
+       <br/>
+       2: Angle is medium - small: half light influence
+       <br/>
+       3: Angle is “same direction”: no light influence
+      </p>
+      <p>
+       Not sure if the same could be done by C++ code only, but it would surprise me.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Use flat shading in blender for model and directional light in urho.
+      </p>
+      <p>
+       EDIT : Or you mean cartoon shader?
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://savepic.ru/10985561.htm">
+        <img alt="" height="" src="../../../images/8b316d9c130f6357abdb197b3d65e7046078f861b44f07e89b5e155575c6bb2b.png" width=""/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       Ctrl+E - mark sharp
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://savepic.ru/10992710.htm">
+        <img alt="" height="" src="../../../images/8b316d9c130f6357abdb197b3d65e7046078f861b44f07e89b5e155575c6bb2b.png" width=""/>
+       </a>
+      </p>
+      <p>
+       and then use EdgeSplit and apply modif
+      </p>
+      <p>
+       and only then do export
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Did you set Flat Shading in Blender?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       Marking faces as flat shading in blender did the trick, thanks guys.
+       <br/>
+       I also reworked mesh a bit, it probably helped as well:
+       <br/>
+       <img alt="" height="425" src="../../../images/078c756af1e2ea9aadc6ee6aa42f1736868e85cad6b44b5f9356e54ac8fb9fea.png" width="640"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       Actually there is one more problem i can not wrap my head around. Flat shading causes object to jitter a bit (like by one pixel or so) when moving. Changing it to smooth shading makes it move smoothly. Are there any workarounds?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Use FXAA3 postprocess
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       That changes nothing, that square part in the middle still jitters up/down by 1px when object is going down on the screen…
+      </p>
+      <p>
+       Edit:
+       <br/>
+       To be more clear i made a
+       <a data-bbcode="true" href="https://www.youtube.com/watch?v=t5uI_6JEswM&amp;feature=youtu.be" rel="nofollow noopener">
+        video
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

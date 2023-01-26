@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3d in Fedora26 without illumination, texture does not show
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3d in Fedora26 without illumination, texture does not show
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aca527b3e933d9938a3a3e1ed726648370e9f29cfa9b6a95757253e71d64eae8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      seven
+     </div>
+     <div class="post_content">
+      <p>
+       I compiled the urho3d under Fedora26,
+       <br/>
+       and the compilation process is：
+      </p>
+      <pre><code class="lang-auto">mkdir build
+cd build
+cmake ..
+make
+cd bin
+./06_SkeletalAnimation
+</code></pre>
+      <p>
+       <img alt="2017-09-18 07-54-18 的屏幕截图" height="388" src="../../../images/da0a270ea8b84292c65fd41ba06682aec75388a1603e0927cc736df2b4c59548.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Make sure you are using proprietary graphics driver (kernel module) and not those from Mesa.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

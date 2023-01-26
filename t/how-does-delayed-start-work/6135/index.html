@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How does delayed start work?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How does delayed start work?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a3c83d79b476630cf9ee83eaccffa73a2485490d69bdaa51423e6183d606da86.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      archwind
+     </div>
+     <div class="post_content">
+      <p>
+       I changed start of the application to a delayed start and now it won’t render even when I restart it with new opts.
+      </p>
+      <p>
+       How does it work? I do not have start, stop and resume functions in UrhoSharp.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1081ac9e4b604d7b6969620bc43bbaeac598e93eb85782a14cfbad28294eb705.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      throwawayerino
+     </div>
+     <div class="post_content">
+      <p>
+       Delayed start is for components, it delays starting components until the scene is done so that you get to avoid race conditions. Obviously you cant have a delayed start if the application never starts at all!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a3c83d79b476630cf9ee83eaccffa73a2485490d69bdaa51423e6183d606da86.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      archwind
+     </div>
+     <div class="post_content">
+      <p>
+       After a lot of testing and tracing code, it is doing exactly what I want it to do.
+       <img alt=":blush:" class="emoji" src="../../../images/5dc76062acc5a80d95fdd823db908640d52dac05ad1a4899ab9e723bfa0bbbfb.png" title=":blush:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

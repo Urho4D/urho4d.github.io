@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [Solved] Text/Font texture filtering?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [Solved] Text/Font texture filtering?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Is there a way to set a fixed size Text3D or its font to render using FILTER_NEAREST, to avoid blur with some fonts that suppose to be pixel perfect?
+       <br/>
+       SDF fonts could be used as a workaround?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       If you don’t want Text3D to change its screen size due to perspective, you can use SetFixedScreenSize() on it.
+      </p>
+      <p>
+       To access a font’s textures for changing the filtering: first get the face of a certain size (Font::GetFace) then access the texture(s) with FontFace::GetTextures().
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks! FontFace was the missing piece.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

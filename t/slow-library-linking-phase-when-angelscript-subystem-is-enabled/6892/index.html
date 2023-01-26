@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Slow library linking phase when Angelscript subystem is enabled
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Slow library linking phase when Angelscript subystem is enabled
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       It has been awhile since I last build from the main branch. I observe there is now a huge delay in the linking phase for the Urho3D library when the Angelscript subsystem is enabled. In the past I did not recall there is such massive different between have it enabled or disabled. Does anyone else have similar observation? My observation is conducted by first removing the test build tree each time.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @1vanK
+       </span>
+       , do you know what could be the cause? Even if we have more complete AS script API binding now with your new generator, it still does not explain why because the time difference is really big. I have an Octa-core machine and it is still extremely slow to link the library with AS enabled now.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       It probably depends on the compiler. I did not take measurements, because I did not have such a problem.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       May be this is related
+       <a class="inline-onebox" href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/CMakeLists.txt#L45-L48">
+        Urho3D/CMakeLists.txt at master · urho3d/Urho3D · GitHub
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for your prompt reply. For me, this happened on a few compiler toolchains I have tried, but all using DBE. Still, like I said before I have never observed such massive linking time in the past. Originally I want to record some terminal sessions as the new assets for the website. Watching everything else just flying by makes this issue very glaring in my recordings. Later I will try using my host machine natively to build and compare the result and see whether any compiler flags tweak is necessary, if the large object is indeed the root cause.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       I also experienced this in the latest branch. After configured with CMake,  everytime we build a single example project in visual studio and run debug on it,  the whole library is rebuild again before the project is loaded.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I have created 2 new test build trees with native compiler toolchains, GCC 10.3.1 and Clang 11.0.0. I have observed the same slowness when linking the Urho3D library with AS enabled, which is consistent with what I have observed previously using DBE approach.
+      </p>
+      <p>
+       Checking on the large object files in the build tree, I did find one really huge on each build tree.
+      </p>
+      <p>
+       GCC build tree
+      </p>
+      <pre><code class="lang-auto">-rw-rw-r--. 1 weitjong weitjong   12M Jun 15 22:02 build/linux/Source/Urho3D/CMakeFiles/Urho3D.dir/AngelScript/Generated_Classes.cpp.o
+</code></pre>
+      <p>
+       Clang build tree
+      </p>
+      <pre><code class="lang-auto">-rw-rw-r--. 1 weitjong weitjong   12M Jun 15 22:21 ./Source/Urho3D/CMakeFiles/Urho3D.dir/AngelScript/Generated_Classes.cpp.o
+</code></pre>
+      <p>
+       The other object files do not even come close. The second largest produced by the code inside the
+       <code>
+        Source/Urho3D
+       </code>
+       is the
+       <code>
+        GraphicsLuaAPI.cpp.o
+       </code>
+       at 1010K.
+      </p>
+      <p>
+       Both GCC and Clang do not need any extra compiler flag to handle big object file, unlike MSVC. The build result also seems to be fine. I was able to run NSW and Editor without any runtime error. So, the only issue here is that it just takes too long (relatively speaking) to link the library now as compared to the past.
+      </p>
+      <p>
+       <span class="mention">
+        @1vanK
+       </span>
+       Is it possible to break the
+       <code>
+        Generated_Classes.cpp
+       </code>
+       into a few smaller translation units?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       hmm, I am not able to reproduce this one. It could be VS specific. I am using Makefile generator, touching a single cpp file in the sample project and build would only rebuild that single target executable without rebuilding the library again, as expected.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="7" data-topic="6892" data-username="weitjong">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         Is it possible to break the
+         <code>
+          Generated_Classes.cpp
+         </code>
+         into a few smaller translation units?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       It is possible , but I don’t have time for this yet
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Take your time. It is just a hunch anyway. Hopefully it will solve the issue. Building for Android platform is extremely painful to wait now as it has to go though the linking phase a few times for each build configs in the universal build.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       I see, but debug does take too long compare to older rev.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I notice the build cache is not working correctly anymore in the GitHub Action. The build cache for each job is evicted sooner than expected. I suspect the build cache is now getting too large and as such the cache from each build job is thrashing each other as it hits the quota limit of our free account. And, I suspect the large object file is the culprit. We use
+       <code>
+        ccache
+       </code>
+       which caches the compiled object files to speed up the CI build. Now only a few builds still have a good cache hit.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

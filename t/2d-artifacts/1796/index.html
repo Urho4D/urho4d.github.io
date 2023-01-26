@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   2D Artifacts
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    2D Artifacts
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/724a2b75ba9adb41df71f7da1650eb4c15e10a5c44894de4397da5c39ee4d1fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      russ
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I have been testing Urho3D for a 2D game that I’m making.  I’ve been having some strange artifacts that seem to be based on the position of the sprite, which seems really strange to me, since I’ve configured it with an orthographic camera.  When it’s near the origin, the sprite has some slight distortions, which mostly resolve as it moves away from the origin.  I’m using DX9 on Windows, and Urho3D is built from master on github from about a week ago.
+      </p>
+      <p>
+       The test code is below.  I also have an image gallery showing the issue, but this is my first post and it’s not letting me post a link.  I’ll try to post it as a reply.
+      </p>
+      <p>
+       Thanks in advance for any help!
+      </p>
+      <p>
+       Russ
+      </p>
+      <p>
+       [gist]
+       <a href="https://gist.github.com/russpowers/80ab8485e41e1a8b5923%5B/gist%5D" rel="nofollow noopener">
+        https://gist.github.com/russpowers/80ab8485e41e1a8b5923[/gist]
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/724a2b75ba9adb41df71f7da1650eb4c15e10a5c44894de4397da5c39ee4d1fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      russ
+     </div>
+     <div class="post_content">
+      <p>
+       Here are the images:
+       <a href="http://imgur.com/a/Tyd8H" rel="nofollow noopener">
+        imgur.com/a/Tyd8H
+       </a>
+      </p>
+      <p>
+       The first shows the problem when the position is near (0,0).  Once it moves a bit, it resolves to the second image.  The third image is the original.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/724a2b75ba9adb41df71f7da1650eb4c15e10a5c44894de4397da5c39ee4d1fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      russ
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve been playing around with it some more, and the distortion does not occur when the texture size is a power of two (my original image was 24x24).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

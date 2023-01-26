@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Tweeks Subsystem
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Tweeks Subsystem
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/871c8d7bfea8e10864202834697717c88933640802772bba4f8dd6dacf7fc8d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TrevorCash
+     </div>
+     <div class="post_content">
+      <p>
+       I recently have been working on a class with the goal of allowing easy and fast access to “Tweekable Values” Inside code.  I have been calling this class “Tweeks” and it works great as a subsystem.  Sometimes this is handy when you have a short subroutine that only happens once or twice.
+      </p>
+      <p>
+       Example In Code Usage:
+      </p>
+      <blockquote>
+       <p>
+        float scalar = GetSubsystem&lt;Tweeks&gt;()-&gt;Get&lt;float&gt;(“scalar”);
+       </p>
+       <p>
+        //use scalar in your routine
+       </p>
+      </blockquote>
+      <p>
+       You can also reference the the same Tweek elsewhere in code with another call to Get() with the same unique name “scalar”.
+      </p>
+      <p>
+       At any time you can save the state of tweeks or load the state of tweeks.
+      </p>
+      <p>
+       Get() should work with any Urho3D::Variant type.
+      </p>
+      <p>
+       For further control you can specify “sections” for tweeks to allow for better separation:
+      </p>
+      <blockquote>
+       <p>
+        float scalar = GetSubsystem&lt;Tweeks&gt;()-&gt;Get&lt;float&gt;(“scalar”, “myroutine”);
+       </p>
+      </blockquote>
+      <p>
+       Or default values:
+      </p>
+      <blockquote>
+       <p>
+        float scalar = GetSubsystem&lt;Tweeks&gt;()-&gt;Get&lt;float&gt;(“scalar”, 1.0f);
+       </p>
+      </blockquote>
+      <p>
+       You can also get more info on the state of a tweek by using GetTweek():
+      </p>
+      <blockquote>
+       <p>
+        Tweek* tweek =  GetSubsystem&lt;Tweeks&gt;()-&gt;GetTweek(“scalar”, “myroutine”);
+       </p>
+      </blockquote>
+      <p>
+       Tweeks have a “Lifetime” whereas they are marked as expired after their lifetime is up.  every call to Get or Update resets the tweek’s lifetime counter.
+      </p>
+      <p>
+       You can check if a tweek is expired using tweek-&gt;IsExpired().
+      </p>
+      <p>
+       default lifetime is 2 seconds.
+      </p>
+      <p>
+       There are methods for restricting and extending the lifetime of tweeks in the Tweek class, as well as a push/pop stack for sections and lifetimes in the subsystem:
+      </p>
+      <blockquote>
+       <p>
+        GetSubsystem&lt;Tweeks&gt;()-&gt;BeginSection(“mySection”);
+        <br/>
+        GetSubsystem&lt;Tweeks&gt;()-&gt;BeginLifetime(1000);
+       </p>
+       <p>
+        //tweeks modified here will be in the section: “mySection” and have a lifetime of 1000 milliseconds.
+       </p>
+       <p>
+        GetSubsystem&lt;Tweeks&gt;()-&gt;EndLifetime();
+        <br/>
+        GetSubsystem&lt;Tweeks&gt;()-&gt;EndSection();
+       </p>
+      </blockquote>
+      <p>
+       Link to code:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/TrevorCash/Urho3D/tree/master/Source/Urho3D/Tweeks" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/5549e952f587b084bfc45d9e4de68a5e2086e14847dfcdde2035061217b273ff.jpg" width="400"/>
+         <h3>
+          <a href="https://github.com/TrevorCash/Urho3D/tree/master/Source/Urho3D/Tweeks" rel="nofollow noopener" target="_blank">
+           TrevorCash/Urho3D
+          </a>
+         </h3>
+         <p>
+          [Unofficial] Urho3D on steroids. Fork focused on code first. - TrevorCash/Urho3D
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you. This is handy for saving global values without having to create a database…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/871c8d7bfea8e10864202834697717c88933640802772bba4f8dd6dacf7fc8d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TrevorCash
+     </div>
+     <div class="post_content">
+      <p>
+       I just fixed a glaring bug causing the Get() function always setting a tweek with the default value even if it had already existed.  You might want to re-integrate the code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Would it make sence to just add a kind of global variables into context?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/871c8d7bfea8e10864202834697717c88933640802772bba4f8dd6dacf7fc8d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TrevorCash
+     </div>
+     <div class="post_content">
+      <p>
+       My drive for making this is to provide a way of altering values on run-time using imgui or some other front end.
+      </p>
+      <p>
+       I want to integrate the concept of minimum and maximum values into the Tweek object as well (which has its problems with some Variant types).
+      </p>
+      <aside class="quote no-group" data-full="true" data-post="4" data-topic="3909" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        Eugene:
+       </div>
+       <blockquote>
+        <p>
+         Would it make sence to just add a kind of global variables into context?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I like the context’s use as providing glue for being able to access subsystems like this, but I’m not sure if its a good place to keep/manage the data, But It could be a nice thing to have for true application wide variables.
+      </p>
+      <p>
+       Right now you can make multiple Tweeks objects too is you want (without making it a subsystem) which could be nice…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/871c8d7bfea8e10864202834697717c88933640802772bba4f8dd6dacf7fc8d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TrevorCash
+     </div>
+     <div class="post_content">
+      <p>
+       One Thing that would be nice (and I’ve added this in my fork) is a shortcut for GetSubsystem&lt;subsystem&gt;().  Like GSS&lt;subsystem&gt;()
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

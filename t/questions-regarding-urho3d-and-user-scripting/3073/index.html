@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Questions Regarding Urho3D and User Scripting
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Questions Regarding Urho3D and User Scripting
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1fd909c238180cc131ed8c4a3042edf5ee688691fa1820db87f62f65ea307c01.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      zauberparacelsus
+     </div>
+     <div class="post_content">
+      <p>
+       I have plans to make a game with Urho3D, and one of the features I wish to support in it is modding.  So, I have the following questions:
+      </p>
+      <ol>
+       <li>
+        Does Urho3D require that scripts be bytecode compiled ahead of time, or will it just compile/recompile them as needed?
+       </li>
+       <li>
+        Does Urho3D (or rather, Lua or AngelScript) provide a way to restrict the script engines so that scripts cannot do potentially dangerous things, or to limit filesystem access to certain directories?
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <ol>
+       <li>
+        <p>
+         You can provide scripts in source code form and compile them at runtime (I’m doing it myself).
+        </p>
+       </li>
+       <li>
+        <p>
+         The script system is made to be sandboxed (can’t mess with the user’s machine).
+         <br/>
+         I asked about it before here:
+         <a href="https://discourse.urho3d.io/t/is-urhos-scripting-sandboxed/1985">
+          Is Urho’s scripting sandboxed?
+         </a>
+        </p>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1fd909c238180cc131ed8c4a3042edf5ee688691fa1820db87f62f65ea307c01.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      zauberparacelsus
+     </div>
+     <div class="post_content">
+      <p>
+       Excellent, thanks for the reply!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

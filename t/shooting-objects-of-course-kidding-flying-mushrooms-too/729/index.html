@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Shooting objects of course… Kidding flying mushrooms too
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Shooting objects of course… Kidding flying mushrooms too
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       Hey
+      </p>
+      <p>
+       Did anyone get any player to shoot a bullet or object? I’m looking over the Ninja code for a example but the  obvious answer I’m not seeing.
+      </p>
+      <p>
+       This is the code I’m tryiing. No matter what direction or rotation. It seems not to set and shoots in he same direction even if the character is turned around.
+      </p>
+      <p>
+       I would like some flying mushrooms. Kidding.
+      </p>
+      <p>
+       Vivienne
+      </p>
+      <p>
+       [code]    /// Create Node
+       <br/>
+       Node * mushroomNode = scene_ -&gt; CreateChild(“MushroomNode”);
+       <br/>
+       Node * characterNode = scene_ -&gt; GetChild(“Character”);
+      </p>
+      <pre><code>Vector3 characterPosition = characterNode -&gt; GetPosition();
+Quaternion characterRotation = characterNode-&gt; GetRotation();
+
+/// Get Node position
+mushroomNode-&gt;SetPosition(characterPosition+Vector3(0.0f,1.0f,3.0f));
+
+/// Load mushroom
+StaticModel* mushroomObject = mushroomNode-&gt;CreateComponent&lt;StaticModel&gt;();
+mushroomObject-&gt;SetModel(cache-&gt;GetResource&lt;Model&gt;("Models/Mushroom.mdl"));
+mushroomObject-&gt;SetMaterial(cache-&gt;GetResource&lt;Material&gt;("Materials/Mushroom.xml"));
+
+/// Create physics
+CollisionShape* mushroomShape = mushroomNode-&gt;CreateComponent&lt;CollisionShape&gt;();
+mushroomShape-&gt;SetBox(Vector3::ONE);
+mushroomShape -&gt;SetLodLevel(1);
+
+RigidBody* mushroomBody= mushroomNode -&gt;CreateComponent&lt;RigidBody&gt;();
+mushroomBody-&gt;SetCollisionLayer(1);
+mushroomBody-&gt;SetCollisionEventMode(COLLISION_ALWAYS);
+
+/// Set Lifetime
+GameObject * Lifetime = mushroomNode-&gt;CreateComponent&lt;GameObject&gt;();
+Lifetime-&gt;SetLifetime(20);
+
+mushroomBody-&gt;	SetMass (.5);
+mushroomNode-&gt; SetRotation(characterRotation);
+mushroomNode-&gt; Translate(Vector3::FORWARD*2.0f);[/code]</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       I have tried this before and honestly it is quite easy if you examine carefully the NSW Demo. You can change physics variables like respawn time, velocity, bounce etc. to simulate bullets instead of snowballs. Try also checking for direction and node points where the projectile is coming from.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b8883a447bcbb1d36874a9fc90803f0fdb5fe8513f3c24c96e383de1835f2ec.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      setzer22
+     </div>
+     <div class="post_content">
+      <p>
+       Also, this might be a bit offtopic, but bear in mind that (fast-traveling)bullets are not usually made using RigidBodies in videogames. Raycasting is used instead.
+      </p>
+      <p>
+       It’s very difficult to have an object moving as fast as a real bullet and not cause any physics-related bug.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“setzer22”]Also, this might be a bit offtopic, but bear in mind that (fast-traveling)bullets are not usually made using RigidBodies in videogames. Raycasting is used instead.
+      </p>
+      <p>
+       It’s very difficult to have an object moving as fast as a real bullet and not cause any physics-related bug.[/quote]
+       <br/>
+       Oh. Hmmm.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       [quote]Also, this might be a bit offtopic, but bear in mind that (fast-traveling)bullets are not usually made using RigidBodies in videogames. Raycasting is used instead.
+      </p>
+      <p>
+       It’s very difficult to have an object moving as fast as a real bullet and not cause any physics-related bug.[/quote]
+      </p>
+      <p>
+       I have tried Urho with the Ninja Demo and spawning 60-80 entities at one time. 20 of them are firing at my character on different intervals and I have setup to have my projectile fire at a very rapid rate and the performance is still good
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       I wish I recorded a video of that mod but I could try and replicate it again when I have the time…
+       <img alt=":bulb:" class="emoji" src="../../../images/bf0b74aa708457db96c21f658f0eff5ec185a10242f4aa157a86823149c7d704.png" title=":bulb:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb2140149e795ef872a78e23554bf906a48bc763c7b1c48549811bb6672eaed0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      devrich
+     </div>
+     <div class="post_content">
+      <p>
+       How I have done bullets or other projectiles before is use a stretched out invisible box to approximate the size and shape of the bullet/projectile.  Enable physics on that invisible box and disable physics on the mesh of the bullet/projectile while ensureing that they share the same pos/rot/scale either by attachment or by manually changing their pos/rot/scale.
+      </p>
+      <p>
+       Then I just calculate the distance per frame that the bullet/projectile will be travel during that frame and do a raycast call for from the front of the bullet/projectile to that distance +/- ( usually + ) 0.01meters in the vector direction of the bullet/projectile’s flight path.
+      </p>
+      <p>
+       By enabling physics on the stretched out invisible box – we allow other bullets/projectiles and other raycast calls to be able to “hit” the bullet/projectile and then send to the bullet/projectile to destroy it because it got hit by something
+       <em>
+        instead
+       </em>
+       of it hitting it’s target.  This allows for nice effects such as players in a multi-player setting to destroy incoming missles or in a flight simulator setting to fly close to the bullet/projectile as a means to “intercept” it and save the day.
+      </p>
+      <p>
+       just my 2 cents of experience
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

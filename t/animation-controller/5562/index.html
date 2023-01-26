@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Animation Controller
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Animation Controller
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b23e80a78209e3168f48a00f9dd1becb61751f744a99fc09ac623ba0b0e65e05.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Askhento
+     </div>
+     <div class="post_content">
+      <p>
+       Hello guys, I have a quick question about AnimationController class. I understand some of the features in it and I am able to run looping animation with Play/PlayExclusive method. And for some reason I need to pause the animation, but when I call Stop it resets to the beginning!  Is there any clever way to pause the animation?
+      </p>
+      <p>
+       Thanks for read this)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       I assume you could simply set its speed to
+       <code>
+        0.0f
+       </code>
+       .
+       <img alt=":thinking:" class="emoji" src="../../../images/eeb2678188b872361d37efb4df3e7ad71f2db34939269368594dc1e4ece2e3b1.png" title=":thinking:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b23e80a78209e3168f48a00f9dd1becb61751f744a99fc09ac623ba0b0e65e05.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Askhento
+     </div>
+     <div class="post_content">
+      <p>
+       You are a MAGICIAN!
+       <br/>
+       Thank you!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="Dark wizard" height="222" src="../../../images/045882a9a06f1b3d12bb9116636c1afcb1b841ee142db0759aaf489f0c1baf5d" width="402"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Don’t use speed - use Weight.
+       <br/>
+       A weight of zero means animation will have no effect, so we don’t bother to calculate for it.
+       <br/>
+       A speed of zero means we do all the same calculations based on the same time, every frame.
+       <br/>
+       Pretty sure animation controller does NOT check for zero time.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b23e80a78209e3168f48a00f9dd1becb61751f744a99fc09ac623ba0b0e65e05.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Askhento
+     </div>
+     <div class="post_content">
+      <p>
+       Wow this one is more like BLACK MAGIC haha!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Magic is the grey area.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Leith
+       </span>
+       But I recon with a weight of zero the animation
+       <em>
+        would
+       </em>
+       still progress. Also the pose would not be displayed when the weight is set to zero, which does not seem like
+       <span class="mention">
+        @Askhento
+       </span>
+       ’s desired behaviour.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       There’s code that checks for zero weight, an early out, which is not so for zero time, from what I saw… it’s used to stop interpolation when we blend weights, but basically, if weight hits zero, that part of the animation data is no longer considered - time on the other hand, matters not, it seems, to the animation system, it simply infers that the next frame is the current frame, and goes through all the effort to try to interpolate between now, and now, for no raison.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

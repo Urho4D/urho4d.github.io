@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Depth Reprojection Issue
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Depth Reprojection Issue
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       Good evening,
+      </p>
+      <p>
+       Recently I’ve been working on an SSAO implementation. One of the most integral parts of this shader is the ability to convert from screen space to world space and back. Finding screen space is simple since there is already a function in place. For the opposite conversion, I copied the code used to find position in the deferred shaders. To test this, I set up a post-process that takes the point of a fragment, converts it to world space, and then reprojects it back to the screen. It seems to work perfectly, except for the depth.
+      </p>
+      <p>
+       When comparing the raw depth buffer value and the depth after both conversions, they are slightly different. Both are [0, 1], but the reprojected one is always lower.
+      </p>
+      <p>
+       <div class="onebox imgur-album">
+        <a href="https://imgur.com/a/3cdEi" rel="nofollow noopener" target="_blank">
+         <span class="outer-box" style="width:600px">
+          <span class="inner-box">
+           <span class="album-title">
+            [Album] Depth Inconsistency
+           </span>
+          </span>
+         </span>
+         <img height="315" src="../../../images/eb1d8da1995b805075cdd1ae53c95ce66de4f65252355d043f8a050beeceb68e.jpg" title="Depth Inconsistency" width="600"/>
+        </a>
+       </div>
+      </p>
+      <p>
+       Why are these values different? What function can I use to map these values to the ones in the depth buffer? (I am already using ReconstructDepth) Thanks in advance to anyone who knows about the underlying processes here. I can post code if it would be helpful.
+      </p>
+      <p>
+       -Don
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       I figured out that the way to do this is to use ToScreenPos instead of ToScreenPosPreDiv in order to convert back. However, you have to look at the w component divided by the far clip instead of the z component.
+      </p>
+      <p>
+       SSAO is almost working now!
+       <br/>
+       <img alt="Screenshot from 2017-12-18 18-38-47" height="366" src="../../../images/d26643e7118c0cf53ea71c62cb2db99a5b84decbee1e4aa4035af62f6975018d.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

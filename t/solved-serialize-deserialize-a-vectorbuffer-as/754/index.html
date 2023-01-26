@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED] Serialize/Deserialize a VectorBuffer [AS]
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED] Serialize/Deserialize a VectorBuffer [AS]
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Are the AngelScript bindings for writing/reading a VectorBuffer in Serializer and Deserializer classes missing? (or is it performed otherwise?)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       You can write and read an array of uint8’s, but it’s not quite the same thing. Should be easy to add.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Has been added to master. It’s the user’s responsibility to know the size of the data, for example:
+      </p>
+      <pre><code class="lang-auto">    VectorBuffer test;
+    for (int i = 0; i &lt; 10; ++i)
+        test.WriteString("Test" + String(i));
+
+    File outFile("Test.bin", FILE_WRITE);
+    outFile.WriteUInt(test.size);
+    outFile.WriteVectorBuffer(test);
+    outFile.Close();
+
+    File inFile("Test.bin");
+    uint size = inFile.ReadUInt();
+    VectorBuffer test2 = inFile.ReadVectorBuffer(size);
+    inFile.Close();
+    
+    while(!test2.eof)
+      Print(test2.ReadString());</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Awesome! Works great, many thanks Cadaver
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

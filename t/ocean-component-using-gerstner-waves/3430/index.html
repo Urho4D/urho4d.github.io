@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Ocean Component using Gerstner Waves
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Ocean Component using Gerstner Waves
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7f99cd483250821675b1fb9f167bf6fe06f4920f3cafe7ce218e8f0fbd06c1cc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Gentle22
+     </div>
+     <div class="post_content">
+      <p>
+       Dear Urho3D community,
+      </p>
+      <p>
+       because this is my first Topic in this forum I am very excited about your feedback. But first I have to say thank to the people that created this great game engine. I stumbled over it when I was looking for an alternative to the Ogre3D engine, which is a little bit outdated, at least from my perspective. When I looked into the source code of the Urho3D engine I was really impressed how clean and easy to understand it is. I really do not understand why so few people are using it, but maybe I can contribute at least a little bit to change that. But now to my project.
+      </p>
+      <p>
+       As already mentioned in the title, I am working on a component to simulate waves in real time. Similar to what Lumak already did with his FFT Waves, but I decided to use the Gerstner Waves approach. The work is based on this
+       <a href="https://developer.nvidia.com/gpugems/GPUGems/gpugems_ch01.html" rel="nofollow noopener">
+        GPU Gems article
+       </a>
+       . My first version contains only the mesh transforming stuff and
+       <strong>
+        no texturing at all
+       </strong>
+       . But enough of the bla, bla now. Here is a video of what is already working.
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="RtDOIf-QqUE" data-youtube-title="Urho3D-Ocean (Gerstner Waves) - NoTexturing">
+      </div>
+      <p>
+       <strong>
+        How it works:
+       </strong>
+       <br/>
+       I created a component called Ocean that needs a planar mesh which is used as a water plane. By applying several sine wave calculation to a
+       <br/>
+       the vertices the waves are created. Currently everything is calculated on the CPU.
+      </p>
+      <p>
+       By pressing E, the Wave Editor shows up, which allows you to change the basic properties that are used to create waves. To create some variations the basic properties are not taken as they are but are randomized. To avoid visual jumps all waves are faded-in and out. All waves have a lifetime and if a wave dies it is faded out.
+      </p>
+      <p>
+       <strong>
+        Properties:
+       </strong>
+       <br/>
+       <em>
+        Waves
+       </em>
+       - The amount of active waves at the same time
+      </p>
+      <p>
+       <em>
+        Lifetime
+       </em>
+       - The time in seconds a wave is active. Randomized between half and double of the basic property.
+      </p>
+      <p>
+       <em>
+        Steepness
+       </em>
+       - Defines how steep the crest of a wave is (0 - 1). Higher values moves the vertices closer together at the
+       <br/>
+       top of the wave.
+      </p>
+      <p>
+       <em>
+        Length
+       </em>
+       - The distance between the crests. It is also randomized between the half and the double of the basic value.
+      </p>
+      <p>
+       <em>
+        Amplitude
+       </em>
+       - The height of the wave. Because the length is randomized the amplitude needs to hold the same ratio to
+       <br/>
+       the length as the basic properties.
+      </p>
+      <p>
+       <em>
+        Speed
+       </em>
+       - How fast a wave moves. Can be randomized with the Speed Variation checkbox.
+      </p>
+      <p>
+       <em>
+        Direction
+       </em>
+       - Is the direction of movement (x,z). To create some variation in the direction you specify an angle that defines the allowed variation of the direction vector.
+      </p>
+      <p>
+       <em>
+        Fading
+       </em>
+       - The editor allows to disable the fading but without fading you get jumps in the vertex positions.
+       <br/>
+       <em>
+        Speed Variation
+       </em>
+       - Enable speed variations.
+      </p>
+      <p>
+       <em>
+        Set Button
+       </em>
+       - Feeds the properties of the Wave Editor to the Wave System. Newly created waves use the new properties. It takes some time to see the change, depending on the set lifetime.
+      </p>
+      <p>
+       <em>
+        Reset Button
+       </em>
+       - Saves the new properties to the Wave System and erases all active waves from the Wave System to force a creation of new waves. If fading is disabled, this allows to see immediately the final state of the new properties.
+      </p>
+      <p>
+       The next steps could be something like this:
+      </p>
+      <ul>
+       <li>
+        Try to create a realistic texturing for the water plane. I think what I achieved until now was like a
+        <em>
+         walk in the park
+        </em>
+        compared to creating a realistic looking water surface
+        <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       </li>
+       <li>
+        Try to make other objects floating realistically in the water. There is a good but hard to understand article about that topic
+        <a href="http://www.gamasutra.com/view/news/237528/Water_interaction_model_for_boats_in_video_games.php" rel="nofollow noopener">
+         Water Interaction Model
+        </a>
+       </li>
+       <li>
+        Optimize by moving the calculations to a Vertex Shader. Not sure if it makes too much sense, because I need the height field also for the physics.
+       </li>
+      </ul>
+      <p>
+       I guess that`s it for now.
+      </p>
+      <p>
+       Ah one thing left, you find the source code on my
+       <a href="https://github.com/Gentle22" rel="nofollow noopener">
+        github
+       </a>
+       account. I have a Urho3D fork with a branch feature/ocean, but also a repository Urho3D-Ocean which contains only the added files and the water plane model.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7f99cd483250821675b1fb9f167bf6fe06f4920f3cafe7ce218e8f0fbd06c1cc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Gentle22
+     </div>
+     <div class="post_content">
+      <p>
+       I am not able to embed the video in my post, it is only a link. Can someone please tell me how to to it?
+      </p>
+      <p>
+       Thanks a lot.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Looking quite promising!
+      </p>
+      <p>
+       <a href="https://discourse.urho3d.io/t/fast-fft-ocean-ocean/1949">
+        Here
+       </a>
+       ’s a link to Lumak’s Fast FFT Ocean.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="2" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         I am not able to embed the video in my post, it is only a link. Can someone please tell me how to to it?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Simply placing a url on a line of its own creates a
+       <a href="https://github.com/discourse/onebox">
+        onebox
+       </a>
+       where possible.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7f99cd483250821675b1fb9f167bf6fe06f4920f3cafe7ce218e8f0fbd06c1cc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Gentle22
+     </div>
+     <div class="post_content">
+      <p>
+       Hey Modanung,
+      </p>
+      <p>
+       thanks for your reply. Yes I have seen Lumak`s work, I think I mentioned it in my post. I read about the FFT Waves in the paper of
+       <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.161.9102&amp;rep=rep1&amp;type=pdf" rel="nofollow noopener">
+        Tessendorf
+       </a>
+       but I couldn’t understand the math behind it
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       So I decided to use something I am able to understand and tweak to match my desires.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="5" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         I think I mentioned it in my post
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Right, read over that and went directly for the good stuff.
+       <img alt=":blush:" class="emoji" src="../../../images/5dc76062acc5a80d95fdd823db908640d52dac05ad1a4899ab9e723bfa0bbbfb.png" title=":blush:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Any plans on including in stock Urho? I’d sell a soul to have high level constructs like this in Urho.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       This looks awesome! Nice work.
+      </p>
+      <aside class="quote" data-post="1" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         Try to create a realistic texturing for the water plane. I think what I achieved until now was like a walk in the park compared to creating a realistic looking water surface
+         <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I hope you can come up with something better than what I got. Writing my water material/shader was my first attempt at learning about shaders and graphics in general and it just looks bad.
+      </p>
+      <p>
+       p.s. Can you please add some kind of License in your ocean repo.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7f99cd483250821675b1fb9f167bf6fe06f4920f3cafe7ce218e8f0fbd06c1cc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Gentle22
+     </div>
+     <div class="post_content">
+      <p>
+       First of all, thanks for the positive feedback.
+      </p>
+      <aside class="quote no-group" data-full="true" data-post="7" data-topic="3430" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         Any plans on including in stock Urho? I’d sell a soul to have high level constructs like this in Urho.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Sure, this is the long term goal, but I think in its current state it is not very usable. I think at least the following features must be implemented:
+      </p>
+      <ul>
+       <li>
+        Good looking GSLS/HSLS shaders
+       </li>
+       <li>
+        A way to scale the Ocean to any size, similar like it is done in the Terrain Component.
+       </li>
+       <li>
+        Some performance optimizations
+       </li>
+       <li>
+        Integration into the Urho3D Editor and making it scriptable
+       </li>
+      </ul>
+      <p>
+       Because I am working as  C++ developer in my day job and have a family my spare-time is very limited. So it could take a while to implement all that stuff. But your comments keep my motivation high
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <aside class="quote no-group quote-modified" data-full="true" data-post="8" data-topic="3430" data-username="Lumak">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/252640214a84be6077df450d5b247e7a6d76f6c970493425153a025bbd0e3fd0.png" width="20"/>
+        Lumak:
+       </div>
+       <blockquote>
+        <p>
+         This looks awesome! Nice work.
+        </p>
+        <aside class="quote no-group" data-post="1" data-topic="3430" data-username="Gentle22">
+         <div class="title">
+          <div class="quote-controls">
+          </div>
+          <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+          Gentle22:
+         </div>
+         <blockquote>
+          <p>
+           Try to create a realistic texturing for the water plane. I think what I achieved until now was like a walk in the park compared to creating a realistic looking water surface
+           <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+          </p>
+         </blockquote>
+        </aside>
+        <p>
+         I hope you can come up with something better than what I got. Writing my water material/shader was my first attempt at learning about shaders and graphics in general and it just looks bad.
+        </p>
+        <p>
+         p.s. Can you please add some kind of License in your ocean repo.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       MIT license added.
+      </p>
+      <p>
+       Maybe you recognized that I copied your style for my Urho3D repositories, but I have a question. My current workflow is to develop on a feature of my Urho3D fork. If the branch reaches a satisfying state, I copy the added/changed files into a new folder and create a new repository containing only the new or changed files. But that means, I have to copy theses files again if I changed something on the feature branch. Do you know of a way to have particular files/folders tracked by two repositories?
+      </p>
+      <p>
+       Regarding the shaders I have to admit that I am a pretty noob in that area. When I left the video game industry many years ago, shaders have been very new and I had not the opportunity to dive into them very deeply. But you are never too old to learn something new, so let’s see what I can do.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Looks very promising! Good work!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="9" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         Maybe you recognized that I copied your style for my Urho3D repositories
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes, I think that simplifies how a repo should be built because everyone should know how to build Urho3D samples.
+      </p>
+      <aside class="quote" data-post="9" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         Do you know of a way to have particular files/folders tracked by two repositories?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       There are more git commands you can perform from GitShell such as what you describe.  You can get help on gitshell topics and there are many tutorials on the github site, but I find doing a branch compare/merge/edit is just too much hassle for me, not to mention I’m still some what novice when it comes to git commands. My preferred way is to have my Urho3D repo untouched and download and copy Urho3D master on my local drive to work with to create samples.
+      </p>
+      <aside class="quote" data-post="9" data-topic="3430">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7a806c89fe9fe8723d59b7ed8ed76957e502346e11ef202a07836d082e3a8f2d.png" width="20"/>
+        Gentle22:
+       </div>
+       <blockquote>
+        <p>
+         Regarding the shaders I have to admit that I am a pretty noob in that area. When I left the video game industry many years ago, shaders have been very new and I had not the opportunity to dive into them very deeply. But you are never too old to learn something new, so let’s see what I can do.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       You’ll find that programming shaders are actually quite fun and some what easy once you get into it - but learning new shading technique (not in Urho3D’s list) is quite challenging.  I really didn’t learn “how to” until I started on my Urho3D Material Effects repo: to date, that repo has the highest commit count, ha. But you should be able to pick it up rather quickly.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/074485a4d3b24a4e403c13c72d3821f41cac4d8efa2e93ecadc1e38b1e40d700.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      najak3d
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, I’m blunt and honest.  I love Urho3D and appreciate what all has been done here.  You have done a TON of GREAT WORK.  And are currently our front runner.
+      </p>
+      <p>
+       This wave generator is “neat” (the math is cool), but the overall result in the “Ocean” sample demo makes Urho3D look “incapable” of a more realistic Ocean presentation.   The one we have now in Samples is cartoonish and lacking.
+      </p>
+      <p>
+       I’m only critical here because I want to see Urho become a “leading engine”, rather than a forgotten one.  I agree that this is a great replacement for OGRE3D.   But the samples, and momentum here are lacking – and I think don’t give proper demonstration of Urho3D capabilities (which is part of the reason it’s falling behind, or losing momentum?).
+      </p>
+      <p>
+       I am assuming that Urho3D is capable of producing a much better wavy-Ocean presentation.   Has
+       <em>
+        anyone
+       </em>
+       used Urho yet for more advance outdoor environment rendering?  (e,g, sun, layered fog, god-rays, day/night transitions, large streamed-terrain, with vegetation/tree imposters, streamed terrain, realistic ocean, clouds, etc?)
+      </p>
+      <p>
+       Right now, we’re debating between using
+       <a href="http://Urho3D.NET" rel="noopener nofollow ugc">
+        Urho3D.NET
+       </a>
+       or devising a new .NET/C# game engine wrapping Open3D.   We want to both pick the winner, and/or help determine “the winner”.  We’re approaching this mostly from a C#/.NET perspective, because coding in C# is much easier than C++, while still being just as robust, with a usually-negligible performance hit.
+      </p>
+      <p>
+       ===
+       <br/>
+       Ironically, back in 2003, I was the one who ported OGRE3D’s Water demo to Axiom3D (the C# port of OGRE), which employed a similar Wave algorithm.  Urho’s current “Ocean Sample” is not even as good as the OGRE3D water demo (as it had a reflection and diffraction effect).  I would assume that the current demo could be upgrade with similar effects in URHO3D with a modification to Shader techniques and settings.  (I would assume we could just apply the techniques from “Water” sample to the “Ocean” sample, right?)
+      </p>
+      <p>
+       BTW – I’m currently using Urho3D C++ compilation for my testing.   One of my projects uses UrhoSharp, and another now uses
+       <a href="http://Urho.NET" rel="noopener nofollow ugc">
+        Urho.NET
+       </a>
+       (by
+       <span class="mention">
+        @elix22
+       </span>
+       ).    And we’re hoping that Urho might be the best choice for our new project  (which is to provide a winning/easy solution for programmers wanting to add 3D rendering to their .NET apps).   (Program-First style audience.)   As of right now, we’re debating between
+       <a href="http://Urho.NET" rel="noopener nofollow ugc">
+        Urho.NET
+       </a>
+       (with Avalonia plugin for UI) vs.  starting a new componentized engine wrapping Open3D.   Our aim, is that we provide a solution that makes it onto the Microsoft website as “recommended platform for rendering 3D” (as UrhoSharp
+       <em>
+        used
+       </em>
+       to be, before they removed it).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

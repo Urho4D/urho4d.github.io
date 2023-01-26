@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Null pointer excepotion in script
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Null pointer excepotion in script
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       I started playing with AngelScript yesterday and of course, found my first problem:
+      </p>
+      <p>
+       <code>
+        [Tue Nov 25 07:49:46 2014] ERROR: Scripts/keyw.as:11,2 - Exception 'Null pointer access' in 'void Start()'
+AngelScript callstack:
+	Scripts/keyw.as:void Start():11,2
+       </code>
+      </p>
+      <p>
+       This is the main code:
+      </p>
+      <p>
+       [code]
+       <span class="hashtag">
+        #include
+       </span>
+       “Scripts/Engine/IsoCamera.as”
+      </p>
+      <p>
+       Scene@ gameScene;
+       <br/>
+       IsoCamera@ cam;
+      </p>
+      <p>
+       void Start()
+       <br/>
+       {
+       <br/>
+       gameScene = Scene(“castle-gates”);
+       <br/>
+       gameScene.LoadXML(cache.GetFile(“Scenes/NinjaSnowWar.xml”));
+       <br/>
+       cam = IsoCamera(); &lt;----- This is the error line
+      </p>
+      <pre><code>if (!engine.headless)
+{
+    renderer.viewports[0] = Viewport(gameScene, cam.gameCamera);
+}
+</code></pre>
+      <p>
+       }
+       <br/>
+       [/code]
+      </p>
+      <p>
+       This is the camera creation code:
+      </p>
+      <p>
+       [code]class IsoCamera
+       <br/>
+       {
+       <br/>
+       IsoCamera()
+       <br/>
+       {
+       <br/>
+       target = Node();
+       <br/>
+       camNode = target.CreateChild(“camnod”);
+       <br/>
+       gameCamera = camNode.CreateComponent(“Camera”);
+       <br/>
+       camNode.position = Vector3(0, 55, 52);
+       <br/>
+       camNode.LookAt(target.position);
+       <br/>
+       }
+      </p>
+      <pre><code>void SetPosition(Vector3 pos)
+{
+	target.position = pos;
+}
+Node@ target;
+Node@ camNode;
+Camera@ gameCamera;
+</code></pre>
+      <p>
+       }[/code]
+      </p>
+      <p>
+       Can somebody seee where is my mistake?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       Since IsoCamera is a class defined in the script and so can be value assigned as well you need to put:
+      </p>
+      <pre><code class="lang-auto">   @cam = IsoCamera();</code></pre>
+      <p>
+       Instead.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Hmm, I tried removing @ from IsoCamera@ cam; and worked too. Is that correct too?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       Yes. An @ symbol is a handle see:
+       <a href="http://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_handle.html" rel="nofollow noopener">
+        angelcode.com/angelscript/sd … andle.html
+       </a>
+       .
+      </p>
+      <p>
+       Its only not needed for urho defined c++ (or custom defined c++ classes) that don’t support value assignment (using certain asBEH_ when defining the class in c++), any classes you declare in scripts and have a variable declaration using the handle will need to be assigned
+       <span class="mention">
+        @varname
+       </span>
+       = Var();. If you’re not passing the variable around lots no need to use a handle, if you are you’d probably prefer it, its a wierd mix of c++ reference and pointer.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

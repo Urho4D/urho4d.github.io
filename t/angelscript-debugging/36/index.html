@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   AngelScript debugging
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    AngelScript debugging
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4e821437bc85e16a85b86bf660777da82ab713b954993068e72cae24344819f9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cin
+     </div>
+     <div class="post_content">
+      <p>
+       AngelScript allow to debug scripts:
+       <br/>
+       <a href="http://www.angelcode.com/angelscript/sdk/docs/manual/doc_debug.html" rel="nofollow noopener">
+        angelcode.com/angelscript/sd … debug.html
+       </a>
+       <br/>
+       <a href="http://www.angelcode.com/angelscript/sdk/docs/manual/doc_addon_debugger.html" rel="nofollow noopener">
+        angelcode.com/angelscript/sd … ugger.html
+       </a>
+      </p>
+      <p>
+       May be add script debugging in scene editor, but it must be rewriten on C++ code.
+      </p>
+      <p>
+       I think what may be add simple showing variables and their values to Windows console and write to log-file and continue execute. May be add command line flags for set breakpoint on specific file and line.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Making an interactive debugger in the text console window would be quite straightforward. The Script subsystem could read commands from it (enable breakpoint, disable breakpoint, stop, continue etc.)
+      </p>
+      <p>
+       Making it graphical is considerably harder, because to keep the application logic intact everything must suspend on the breakpoint, rendering included, as otherwise the engine is still processing frames and events will be sent (and we don’t want to make everything check “IsDebugging()” or something)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       Even if it is a cli I would really like this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       There is always the chance of implementing something similar to:
+       <a href="https://bitbucket.org/saejox/aspeek/wiki/Home" rel="nofollow noopener">
+        bitbucket.org/saejox/aspeek/wiki/Home
+       </a>
+       as that graphically would have no impact.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       There was talk about removing civetsweb for the newly relicenced RakNet.  I don’t know the timeline for replacing it or even if it will be replaced.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       There is no urgent need to integrate RakNet. It is good, but looking at the codebase, it also has its own weirdnesses and issues. Also, unlike websocketpp, neither Civetweb or RakNet provide a websocket server natively, but they provide TCP functionality so that you can implement one yourself.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Very nice!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Building with the asEP_BUILD_WITHOUT_LINE_CUES == true setting has been an “overzealous” optimization without hard evidence to back it up. I think that can be forced to false and it doesn’t need a switch. If I understand right it also affects compiled &amp; saved bytecode, and in that case it’s better that the user isn’t accidentally able to compile scripts to be incompatible with full debugging support.
+      </p>
+      <p>
+       Controlling whether the debugger is built in would preferably be a CMake option, like URHO3D_ANGELSCRIPT_DEBUGGING. It’s safest to default to false.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Storing include file names in lowercase is likely an artifact from the time we did not have nice case-insensitive compare functions. You should be able to remove that, if you ensure that case differences can’t cause the same file to be included twice.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Sinoid">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/984688db7ff4c5c20b844d2ec005f1730c075c6c17ef9794cf9338e8bfc3aeff.png" width="20"/>
+        Sinoid:
+       </div>
+       <blockquote>
+        <p>
+         <span class="bbcode-b">
+          Help request
+         </span>
+         :
+        </p>
+        <p>
+         Would anyone with a Linux box be interested in checking if this all works for them. I’ll shoot you the files to merge (just 4, and any diff tool should be sufficient). I’ve got it finished (well, finished-ish - a few quirks left to sort out) and compiling under MingW, so hopefully it all just works.
+        </p>
+        <p>
+         I’d like to get this all wrapped up.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I can help.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+      <aside class="quote no-group" data-username="Sinoid">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/984688db7ff4c5c20b844d2ec005f1730c075c6c17ef9794cf9338e8bfc3aeff.png" width="20"/>
+        Sinoid:
+       </div>
+       <blockquote>
+        <p>
+         For Windows folks, I’m probably going to put my Angelscript IDE / asPeek debugger up onto github in a few days. WPF based tool (hence, windows only), with autocompletion, snippet, data-snippet (snippet with fields), attribute/event browser, type/class browser, auto-place event subscribers/handlers, etc.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       What version of .net does it use?  Please say 4.0 or less then it will probably run in wine.
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       I don’t ever use windows and so booting into it is a huge pain because all of my tools and software is in linux.  Too bad mono doesn’t support WPF at all…
+      </p>
+      <p>
+       EDIT: This is my 42nd post!
+       <a data-bbcode="true" href="http://en.wikipedia.org/wiki/42_%28number%29#The_Hitchhiker.27s_Guide_to_the_Galaxy" rel="noopener nofollow ugc">
+        http://en.wikipedia.org/wiki/42_%28number%29#The_Hitchhiker.27s_Guide_to_the_Galaxy
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Cool thanks!  I would love to take a shoot at getting this running in wine.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Importing complicated scene into Urho
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Importing complicated scene into Urho
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, all!
+      </p>
+      <p>
+       I have full scene with a set of different objects animated together.
+       <br/>
+       Like 3 characters dancing and cubes rotating around them, everything made in Blender (no much
+       <br/>
+       relevance, just as an example), exported as FBX or DAE. Blend is also available. I want this scene
+       <br/>
+       to work in Urho as I see it in Blender. What is the process to
+       <br/>
+       do this? Scenes can be different and have more stuff in them, I want to know some kind of generic workflow/approach to them.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="1" data-topic="3291" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         I want this scene
+         <br/>
+         to work in Urho as I see it in Blender.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Those are big words… they’re different enough.
+       <br/>
+       What’s wrong with reattiva exporter?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        What’s wrong with reattiva exporter?
+       </p>
+      </blockquote>
+      <p>
+       It can’t export scenes. BTW, I can’t get your “big words” point. Elaborate?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Blender render gives you the classical 3d pipeline (dx9). Cycles gives st like PBR. Anyway I doubt you can get blender cycles shaders to work with urho by simply exporting… not sure anyway. didn’t tried for now. “Big words” means you don’t probably get wysiwyg…
+       <br/>
+       “No scenes” means you’re trying to export things like skyboxes? If I’m not mistaken asset importer does import scenes…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I did not mean that by “exactly” more like “geometrically” i.e. lets put materials aside for now.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       AssetImporter can’t blender. I can do static scenes using Collada export, but I’m more interested in animated scenes.
+       <br/>
+       Any ideas?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       With Collada you can do animated ones too… mean you don’t need blender…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c24c93e794e8d919ef829acfad2b3f83cbd23485bcd826225def4391e2fb0cb0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lezak
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="3" data-topic="3291" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         It can’t export scenes.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Actually it can - You need to check “Export Urho prefabs” and there will be option “scene prefab”. You just need to make sure that every thing is set up correctly, for example if You’re using export UV option, all models should have UVs.
+      </p>
+      <aside class="quote no-group" data-post="6" data-topic="3291" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         AssetImporter can’t blender.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Once again - it can, To import *.blend file You need to use ‘scene’ command (or You can use “import scene” in editor). It may not be the best solution, since all models will be imported as static, with no physics etc. (but with materials) also You’ll have to rotate whole scene in blender (blender - urho up axis mismatch). Because of that I wouldn’t recomend it to import ready scenes, but it’s verry useful to import large number of models at once.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, it looks like you did not use the tools yourself, so you don’t really know.
+      </p>
+      <ol>
+       <li>
+        <p>
+         You can’t export actual scene using exporter - you can only  export a model. That means
+         <br/>
+         if you have some stuff around model at some positions, these will not be kept.
+        </p>
+       </li>
+       <li>
+        <p>
+         AssetImporter doesn’t support .blend files. Not ones from Blender 2.7.x at least.
+        </p>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Also, please don’t pollute this topic with half-assed answers.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       OK. Please don’t pollute THE topic. Or I will create new one.
+      </p>
+      <p>
+       Half-assed = recommendations which are not tested in practice.
+       <br/>
+       Note that unlike most of the audience (it seems) I actually use engine and all its tools
+       <br/>
+       and ask questions only on grey topics which either not documented, not obvious, hard to discover
+       <br/>
+       OR unexplored field. Providing answers from Google search result (or other search engine) is pointless
+       <br/>
+       as I have already read them and tried them. If you don’t have time to test your suggested solution, please
+       <br/>
+       don’t suggest it. It just wastes everyone’s time and increases frustration. Each time you do this
+       <br/>
+       a flock of newborn kitties is eaten by neighbour’s dog. Trust me.
+      </p>
+      <p>
+       So if I ask question I want to get practical answer, not theoretical. If you did some similar stuff or are interested to do some research, or have some practical hints, I’m really interested. If you thought I can’t use search so do that for me - please don’t.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Recommendation for use of Blender to Urho exporter for scenes.
+       <br/>
+       It doesn’t support it.
+       <br/>
+       <a class="onebox" href="https://github.com/reattiva/Urho3D-Blender/issues/66" rel="nofollow noopener" target="_blank">
+        https://github.com/reattiva/Urho3D-Blender/issues/66
+       </a>
+      </p>
+      <p>
+       Use of Collada export only works for static scenes.
+      </p>
+      <p>
+       Also I know I can do everything manually. I basically ask how it is done by actual people
+       <br/>
+       who actually have this problem. This is workflow question, not a question about export tools.
+      </p>
+      <ol>
+       <li>
+        I know about blender exporter and its limitations.
+       </li>
+       <li>
+        I know about buggy Blender Collada exporter and its limitations and that I can use AssetImporter on that and recombine scene manually in script. This is a lot of manual labor.
+       </li>
+       <li>
+        I know about buggy Blender FBX exporter and its limitations and that I can use AssetImporter on that and recombine scene manually in script. This is a lot of manual labor.
+       </li>
+      </ol>
+      <p>
+       Please do not suggest tools without explanations.
+      </p>
+      <p>
+       And yes, I don’t believe you who have this task actually do this. I think somebody written some scripts OR
+       <br/>
+       uses some crafty methods. So I want to know about these.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Looks like it works.
+      </p>
+      <p>
+       The very basic blender scene:
+      </p>
+      <p>
+       <img height="500" src="../../../images/2bc9677725124645b1c5c26fc86ad5667eeaf286cd80a015b2a810ddb5fe0388.png" width="686"/>
+      </p>
+      <p>
+       The very easy setup:
+      </p>
+      <p>
+       <img height="410" src="../../../images/154953142b3151dd747c279dcaf473d1908644c1a64d5ceea0e5c411f3d3b9f9.png" width="440"/>
+      </p>
+      <p>
+       the urho reattiva plugin export options:
+      </p>
+      <p>
+       <img height="500" src="../../../images/85a99b7b9271f0bf2dc7dc1f47330645822018ff120941270bad57a0f49da604.png" width="330"/>
+       <br/>
+       <img height="500" src="../../../images/a0e20384096a031f97e7e66919c361e18243afd30ffa5c5256fd34d9771ee643.png" width="393"/>
+      </p>
+      <p>
+       the obtained objects in file system:
+      </p>
+      <p>
+       <img height="136" src="../../../images/8d21a687651d6dee4ee3eb4f23d677d6ead06991e47c4d81b131bff9f0f1a792.png" width="690"/>
+       <br/>
+       <img height="140" src="../../../images/052c0e34cc54dae53478e6621863ae025281b77c6cd215433c0e10187de47185.png" width="690"/>
+      </p>
+      <p>
+       the final result in the editor:
+      </p>
+      <p>
+       <img height="379" src="../../../images/030f4f440da88daa8ac980b05847ec1230feb31f8decaad5e5bac200a584c1e1.png" width="690"/>
+      </p>
+      <p>
+       Anyway, some times ago I tried to import miku hatsune and failed…
+       <img alt=":disappointed:" class="emoji" src="../../../images/599f957846dc95a228f037e45c098849a5e3a2bc26a722eff78f42b2b0e03d1f.png" title=":disappointed:"/>
+       <br/>
+       what a shame… must’ve been the physics…
+       <br/>
+       but I will try again…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       By doing this you exported all objects with origin set to 0 and geometry offset. You can check this in editor.
+       <br/>
+       You could also check the bug I linked here. Please think constructively - I have already passed all this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       <em>
+        facepalm
+       </em>
+       <em>
+        facepalm
+       </em>
+       <em>
+        facepalm
+       </em>
+      </p>
+      <p>
+       Please check the result and see what you got.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Also hint for stubborn - check python code for position XML values in scene/prefab output. Look hard.
+       <br/>
+       After the result, please come back. I hope that torment is enough for you. Sometimes I wonder if people can read at all. I made short post, so even tl;dr’ers will be happy, explained things, added links to bugs, but still nothing…
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Detention for you:
+      </p>
+      <ol>
+       <li>
+        Export to Collada. Import via AssetImporter. Look at scene in Editor. Check object origins.
+       </li>
+       <li>
+        Export via Blender exporter. Load into editor. Check object origins and placements. Compare with 1.
+        <br/>
+        Provide results.
+       </li>
+      </ol>
+      <p>
+       To be sure, by object origin I mean 0 in object-local coordinates, which is set in Blender.
+       <br/>
+       Closely related to actual object POSITION.
+      </p>
+      <p>
+       Don’t try to invent anything, I know what it can and can’t do and how it does that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Even just comparing xml data visually for scenes aquired via collada or Blender exportive should give you hint.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       I guess
+       <span class="mention">
+        @slapin
+       </span>
+       is right here. I’m trying by switching various options in the exporter, but one thing is for sure: if I use the options as I did above (export scene prefabs only), and I open the scene in the editor, the scene is imported as a node with all object correctly placed as i put them in blender - anyway, node position in the attribute inspector of every object is zero. And that is no good.
+       <span class="mention">
+        @Modanung
+       </span>
+       , what you did exactly? Can you share your process?
+       <br/>
+       While I’m looking that if I export one collective scene, the editor asks me to import as a prefab when I open the scene - I do, still the situation is as above - all object with zero position but set correctly - and the scene node alone instead has its own position with correct displacement in the attributes inspector…
+       <br/>
+       Needless to say that setting position to local in the exporter gets all object to zero position in the editor…
+       <img alt=":neutral_face:" class="emoji" src="../../../images/fa129602e5025a314b309f2dff231dfd8462624b6e398852bc3992a5c2b46585.png" title=":neutral_face:"/>
+       <br/>
+       How does this work?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Anyway that could be only a bug in the editor… I have to try to open the scene from code and check objects positions…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Look at scene/prefab xml using text editor. (If you don’t know the format, look at scenes from examples or
+       <br/>
+       export scene using Collada and use AssetImporter, and compare to what you get).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       I did. No sign of position. That probably means is hardcoded into exported mdls. No luck there, it’s binary.
+       <br/>
+       HATE binary…
+       <br/>
+       Haven’t tried with asset importer yet…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Tried with asset importer… works.
+       <br/>
+       All the blender scene imported, light, zone, models, everything.
+       <br/>
+       Just one thing: position inverted z = -z, y = -y.
+       <br/>
+       <img alt=":cry:" class="emoji" src="../../../images/4a28359990e3a84f9a9157887dd2f484a548987fbb71e3eb485674b0acc4cd7c.png" title=":cry:"/>
+       <br/>
+       it that’s confirmed, there’s no other way short of creating a manual importer
+       <img alt=":persevere:" class="emoji" src="../../../images/f10179ea7968f507bee151fbd7a5622cc81843d4f460af6a4e2e56da5d395e65.png" title=":persevere:"/>
+       <br/>
+       but i’m going to look at it tomorrow.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       IIRC there was some settings to make -Z +Y facing scene in exporter. But that is actually not what I point in discussion.
+      </p>
+      <p>
+       <strong>
+        TL;DR’ers, skip the following paragraph please, your brain might explode
+       </strong>
+       <br/>
+       Ideally I want to have some kind of animation-ready setup, which collada/fbx export do not provide but
+       <br/>
+       it looks not too complicated to implement. While I can do this for Torque3D, for example,
+       <br/>
+       somehow this doesn’t work for Urho - i.e. I want to setup global animation for scene and have this one exported. So that everything is transformed over time just after loading scene/spawning prefab. This might work for close interaction animations (fighting) or cutscenes (at least). At very least that would reduce needed work to set such things up…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @slapin
+       </span>
+       ,
+       <span class="mention">
+        @Modanung
+       </span>
+      </p>
+      <aside class="quote" data-post="30" data-topic="3291">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/bd9c0b80f345bb4b6426f2be8825c479a2ceae3cfe9b7f97108844690af3a640.png" width="20"/>
+        johnnycable:
+       </div>
+       <blockquote>
+        <p>
+         Tried with asset importer… works.
+         <br/>
+         All the blender scene imported, light, zone, models, everything.
+         <br/>
+         Just one thing: position inverted z = -z, y = -y.
+         <br/>
+         <img alt=":cry:" class="emoji" src="../../../images/4a28359990e3a84f9a9157887dd2f484a548987fbb71e3eb485674b0acc4cd7c.png" title=":cry:"/>
+         <br/>
+         it that’s confirmed, there’s no other way short of creating a manual importer
+         <img alt=":persevere:" class="emoji" src="../../../images/f10179ea7968f507bee151fbd7a5622cc81843d4f460af6a4e2e56da5d395e65.png" title=":persevere:"/>
+         <br/>
+         but i’m going to look at it tomorrow.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       What exactly happens it Z position ONLY is negated. Everything gets -Z. I exported a plane in 0,0,0 and it’s got 0,0,-0…
+       <br/>
+       AND everything is rotated 90° ccw around y…
+       <br/>
+       The problem is in the scene xml file and not in the editor.
+      </p>
+      <pre><code>&lt;node id="3"&gt;
+	&lt;attribute name="Is Enabled" value="true" /&gt;
+	&lt;attribute name="Name" value="Plane" /&gt;
+	&lt;attribute name="Tags" /&gt;
+	&lt;attribute name="Position" value="0 0 -0" /&gt;
+	&lt;attribute name="Rotation" value="1 0 0 0" /&gt;
+	&lt;attribute name="Scale" value="2 2 1" /&gt;
+	&lt;attribute name="Variables" /&gt;
+	&lt;component type="StaticModel" id="5"&gt;
+		&lt;attribute name="Model" value="Model;Models/Plane.mdl" /&gt;
+		&lt;attribute name="Material" value="Material;Materials/DefaultMaterial.xml"/&gt;
+	&lt;/component&gt;
+&lt;/node&gt;
+</code></pre>
+      <p>
+       So it’s probably st in the exporter… I’m on 1.6 stable on osx. Going to test head.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       More on Reattiva.
+      </p>
+      <p>
+       the very simple scene:
+      </p>
+      <p>
+       <img height="500" src="../../../images/0399ed6440a48a564d0b09781e6d6af4fd6080b24e08a237451f35e273569d9f.png" width="681"/>
+      </p>
+      <p>
+       the setup:
+      </p>
+      <p>
+       <img height="500" src="../../../images/5057fa5bd0843aa5550aa99a371eacad46e05ca29a96d04458c5709bd72bdf4e.png" width="265"/>
+       <br/>
+       <img height="500" src="../../../images/9ff18cc27be2ea3bdc12881cd9612e0b0f89c7359e51f5b73979eab52e42a06f.png" width="187"/>
+      </p>
+      <p>
+       the scene loaded in example 38_SceneAndUILoad with:
+      </p>
+      <blockquote>
+       <p>
+        void SceneAndUILoad::CreateScene()
+        <br/>
+        {
+        <br/>
+        ResourceCache* cache = GetSubsystem();
+       </p>
+      </blockquote>
+      <blockquote>
+       <pre><code>scene_ = new Scene(context_);
+</code></pre>
+      </blockquote>
+      <blockquote>
+       <pre><code>// Load scene content prepared in the editor (XML format). GetFile() returns an open file from the resource system
+// which scene.LoadXML() will read
+SharedPtr&lt;File&gt; file = cache-&gt;GetFile("TestScene/TestScene.xml");
+scene_-&gt;LoadXML(*file);
+</code></pre>
+      </blockquote>
+      <p>
+       running the exe shows every object crammed at position 0,0,0:
+      </p>
+      <p>
+       <img height="431" src="../../../images/dbb5c8af15fd0163541c7f5e827b7519e902156482e3f823b8e89c31bf5e06bf.jpg" width="690"/>
+      </p>
+      <p>
+       When loaded in the editor, objects are in correct position but with zero position values…
+      </p>
+      <p>
+       <img height="431" src="../../../images/0b9fd379c843df713166d4e789df139c63917a39bd6279e0b5aa0d70382605d9.png" width="690"/>
+      </p>
+      <p>
+       So it is beginning to look like Urho Reattiva exporter for blender doesn’t work.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       As a side note…
+       <br/>
+       HEAD is the same
+       <br/>
+       Asset Importer shows similar problem. Asset position is correct, reference system is exchanged, suzanne doesn’t export correctly and the pyramid shows wrong geometry…
+       <img alt=":no_mouth:" class="emoji" src="../../../images/e14f0ccf56e8c7c123e4da42b3578b18a4d03231de63c592a9a83d038465818e.png" title=":no_mouth:"/>
+       <br/>
+       the blend file (rename in TestScene.blend)
+       <br/>
+       <a class="attachment" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/ff567c5f1f388ac89b9d03c3f83e63940052b396.csv" rel="nofollow noopener">
+        TestScene.csv
+       </a>
+       (600.0 KB)
+       <br/>
+       Urho3d 1.6, Os X 10.12.3, Blender 2.77
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       With these settings, the only thing that doesn’t seem to work is rotation and scaling.
+      </p>
+      <p>
+       <img height="441" src="../../../images/c8a395250db0d1221358f59e37c383245059b98c1fae6457876c75e5aae95034.png" width="690"/>
+      </p>
+      <p>
+       <img height="456" src="../../../images/12ddeeb5ec4664670b0c6177b7dbeae97c52c9aa4225cc193889fde79766c163.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       wait… I don’t have those options in my reattiva plugin. “Save node position”, “rigidbody mass”. Where is it from?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Those options appear when you enable
+       <em>
+        Export Urho Prefabs
+       </em>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c24c93e794e8d919ef829acfad2b3f83cbd23485bcd826225def4391e2fb0cb0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lezak
+     </div>
+     <div class="post_content">
+      <p>
+       For such  a simple scene directly importing .blend file works fine (assetimporter or import scene in editor) , all You need to do is place 3d cursor at 0,0,0 and rotate whole scene around it by -90 on x axis (and of course remember to apply rotation and scale - in attached blend file suzanne don’t have rotation applied). Just keep in mind that it will import everything as static model.
+       <br/>
+       <img height="356" src="../../../images/356cf06b564a2c74118761f91cea4e8467cd2848c8f7579e700446251b426209.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       The settings should be
+       <strong>
+        Front View = Back
+       </strong>
+       <br/>
+       <a class="onebox" href="https://github.com/reattiva/Urho3D-Blender/commit/dda553d1c1259f53497e68e116392b0f0e690087" rel="nofollow noopener" target="_blank">
+        https://github.com/reattiva/Urho3D-Blender/commit/dda553d1c1259f53497e68e116392b0f0e690087
+       </a>
+      </p>
+      <p>
+       and in Blender, you still have to set
+       <strong>
+        Apply Visual Transform (CTRL+A)
+       </strong>
+      </p>
+      <p>
+       <span class="mention">
+        @lezak
+       </span>
+       <br/>
+       green arrow is
+       <code>
+        Up
+       </code>
+       on Urho, not the same with Blender
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       No need to rotate the whole scene, just apply visual transform…
+      </p>
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+       <br/>
+       Using the latest, I also don’t see the
+       <code>
+        Use Gravity
+       </code>
+       and other sub options there even when you toggle Export Urho Prefabs, are you using a custom or older version?
+      </p>
+      <h2>
+       <img src="../../../images/1dfc69ef8d2efdd4f71973bfcb22f56d1cadc8b7f4fb766330fda38d1443b008.png"/>
+      </h2>
+      <p>
+       <img src="../../../images/85aeb870f956afe0ea2a6846a18963b689fae52b54a5454d17e7ba91fd17e58d.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="39" data-topic="3291">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/3e2a75049fa3e36d2aba5f96a64271574b8ae79d77613ef622923e65536ed92c.png" width="20"/>
+        rasteron:
+       </div>
+       <blockquote>
+        <p>
+         are you using a custom or older version?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Apparently, yes. I seem to have both 0.5 and 0.6 installed, and 0.5 was activated.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Ok got it thanks
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @rasteron
+       </span>
+       did as you said, but to no avail. The issue opened by
+       <span class="mention">
+        @slapin
+       </span>
+       is confirmed in
+       <a href="https://github.com/reattiva/Urho3D-Blender/issues/66" rel="nofollow noopener">
+        https://github.com/reattiva/Urho3D-Blender/issues/66
+       </a>
+       where they explain exporting scenes was not foreseen in the beginning… it’s in the way but not ready yet.
+       <br/>
+       Meanwhile exporting into the editor gives some results, but with a different coord system…
+       <br/>
+       <span class="mention">
+        @Modanung
+       </span>
+       could you share the v.5 version plugin? I’m not able to find it anywhere…
+       <br/>
+       Thank you
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Experimental version should be available tomorrow
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+       <br/>
+       I’m currently doing some cleaning and finishing documentation
+       <img alt=":face_with_monocle:" class="emoji" src="../../../images/36db3512ea89976cd734e544a1edd6a0609a824da59b596146f955cb6274040c.png" title=":face_with_monocle:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Version 0.5 starts
+       <a href="https://github.com/reattiva/Urho3D-Blender/tree/c7f586ce38704fa515e8005be19ed2f2cb3d27d4" rel="nofollow noopener">
+        here
+       </a>
+       but it looks like
+       <span class="mention">
+        @Modanung
+       </span>
+       has a specific commit version.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Actually, did some more quick export tests just recently and I don’t see any problem with the exporter and it is applying the positions properly. I do have to note that the
+       <strong>
+        Apply Visual Transform
+       </strong>
+       setting is just a specific case since I usually export single mesh lightmapped scenes for mobile testing, you can discard that part and try again. You still need to set
+       <strong>
+        Front = Back
+       </strong>
+       btw.
+      </p>
+      <p>
+       <img height="388" src="../../../images/cc46925ca17511dd5344c691df4b137ac7ef1d04578dbaf02f8664b849af09ac.jpg" width="690"/>
+      </p>
+      <p>
+       <img height="250" src="../../../images/ce3f6ead9a353745060aeeb15ff3133baaf1c348394ff0a16a1d8ff6854e69e8.jpg" width="690"/>
+      </p>
+      <p>
+       <img height="437" src="../../../images/c2ba2e8928410f432b9012e038d03a3618f248f0cb01e2a93c48489b5922eae6.jpg" width="317"/>
+      </p>
+      <p>
+       .
+       <br/>
+       Blender v2.77 64-bit, Exporter 0.6 (
+       <a href="https://github.com/reattiva/Urho3D-Blender/tree/9ead493c92787e8014353244bda5fecbd285c6ce" rel="nofollow noopener">
+        9ead493
+       </a>
+       )
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       A more complete test with position, rotation and scale exported. All suzanne meshes scaled 2x, looking at ball and positioned 8 units away from center and at ground.
+      </p>
+      <p>
+       <img height="431" src="../../../images/e4614757949cb5478385ad0dd8c9e846421ca8b3673101a7af26ff2a946e8b24.png" width="690"/>
+      </p>
+      <p>
+       <img height="297" src="../../../images/d8d8fb7edb2ffd1fd688af030ccde523594b40c2802e01e0fcb4ddf085e43cff.jpg" width="690"/>
+      </p>
+      <p>
+       For the scaling part, values are correct but this should be done inside blender since you should apply the final
+       <strong>
+        mesh
+       </strong>
+       dimensions before export (apply visual transform, scale only).
+      </p>
+      <p>
+       <img height="276" src="../../../images/e56d82b69ed1faba82fa47f71597a63883b2cc0a5db4638ac0c45211019f1c58.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Experimental derivative available
+       <a href="https://github.com/Mike3D/Urho3D-Blender-Mod">
+        here
+       </a>
+       .
+       <br/>
+       Please read the 2 supplied guides thoroughly to grasp the new features.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       This is awesome Mike, will check it out
+       <img alt=":+1:" class="emoji" src="../../../images/42b43325b3edacba2a0e72b742bdc6fc5e4bc2ad38adca271fcc6d8353639887.png" title=":+1:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       For those who want to stick to vanilla exporter, the ‘Transform objects’ option (as seen in Modanung screenshot) has been added by Reattiva on june 3rd. So if you don’t have this option available, you are encouraged to upgrade your exporter (currently only Front-view = ‘Front (-Y +Z)’ supported).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you, I’ll try asap.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       So here it is, in blender:
+      </p>
+      <p>
+       <img height="422" src="../../../images/c6d59068f81d01c61d0213053a3fdad241cd84170622f654d034061ca7712681.png" width="690"/>
+      </p>
+      <p>
+       and the editor:
+      </p>
+      <p>
+       <img height="363" src="../../../images/e519ba12fa3fb54ea8e6a2b338dc40df54f8a353128c79979f7f25095a3475d8.png" width="690"/>
+      </p>
+      <p>
+       exported with the new plugins, thanks to
+       <span class="mention">
+        @Mike
+       </span>
+       . Back (+Y+Z) chosen (the one with the asterisk
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+       )  position is correct now. Rotation is different in sign, anyway orientation is correct; changing the sign rotate the items wrong. I don’t know if this is correct…
+       <br/>
+       I tried using the new scene exporter with the momo project inside the zip. I only obtained partial results, but probably I messed up something… procedure should be: first open and export the momo asset.blend, then open and export the momo scene.blend, right?
+       <br/>
+       In the editor I’ve got some scenery correctly but some other wrong. I’ll try that again later.
+       <br/>
+       Thank you to all of you guys for the help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Mike
+       </span>
+       thank you so much for feature.
+      </p>
+      <p>
+       Now, while you’re at this could you please add bone Z-facer (with animations)?
+       <br/>
+       It looks like Urho heavily depends and assumes that bones face Z axis (Y axis in blender),
+       <br/>
+       but animated models I have here do have different rolling scheme, so direct bone control
+       <br/>
+       never works properly… It is possible to sort of fix this by using helper Nodes with known direction
+       <br/>
+       attached to bones, but it looks like nobody actually cares about actual bone roll. Somehow other engines
+       <br/>
+       like UE4 and Unity cope with this automatically, but for Urho some magic have to be added…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       I always export my armatures with bone roll set to +Y Axis, this makes life easier in Urho.
+      </p>
+      <p>
+       I think we’d better, focus on motion retargeting in Urho, which could benefit the whole community.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, the main problem is that if you get your models from animator already with animations and you simply can’t rework them, that will be show stopper now. And changing bone roll in exporter would really help many people (I think).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       BTW what you mean by motion retargeting - engine feature or exporter feature?
+       <br/>
+       Could you elaborate a bit more?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       I mean something like
+       <a href="https://www.evl.uic.edu/sjames/mocap/motionviewer.html">
+        this
+       </a>
+       . Retargeting a mocap or ani file to any skeleton in Urho,
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, Blender already contains quite good set of tools both for retargeting and mocap handling.
+       <br/>
+       Or do you mean something different?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Then why don’t you simply retarget your animations to a +Y Axis armature ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       I’m not really animator, retargetting is heavy work.
+       <br/>
+       For roll fixing there is no need to do full-blown retargetting - it is easiest to do during export and can be done automatically.
+       <br/>
+       Fixing the roll is just calculation of proper inverse transformation and applicating it to each bone fixed for each animation frame.
+       <br/>
+       BTW, some export optimizations are needed beforehand, as it is extremely slow now (I suggested some ways before, like
+       <br/>
+       limiting amount of steps wrapping some loops around).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/92028b5b94650c5db30122b34a44946b7fc1cfc731bd7f99650f6e64feafdcc1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      artgolf1000
+     </div>
+     <div class="post_content">
+      <p>
+       I have never exported a whole scene, for the Blender exporter had been designed to export models.
+      </p>
+      <p>
+       There is another limitation in the exporter: It can export all ‘Shape Keys’, but it will not export any keyframes of these ‘Shape Keys’.
+      </p>
+      <p>
+       The official exporter(AssetImporter version) does not export any ‘Shape Keys’ at all.
+      </p>
+      <p>
+       In short, if you want to support vertex morph, you need to write your own code to load keyframes of ‘Shape Keys’, and implement your own shape key sub-system.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

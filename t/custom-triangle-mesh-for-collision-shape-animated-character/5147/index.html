@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Custom Triangle Mesh for collision shape animated character
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Custom Triangle Mesh for collision shape animated character
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       I looked in the docs, and all I can find is
+       <code>
+        shape-&gt;SetTriangleMesh(tutorialCollision)
+       </code>
+       for static mesh. Is it not possible to make a very simple collision mesh for a character, and use this instead of a sphere or box or capsule.
+      </p>
+      <p>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, GodMan!
+      </p>
+      <p>
+       The clue is in the name: static mesh - it’s typically not animated. That does not mean it is impossible to assign a dynamic mesh at runtime, but it is impractical to modify a physics mesh in realtime using today’s consumer-grade technology.
+      </p>
+      <p>
+       A more feasible approach is to provide an armature of simple collision hulls (they can be detailed meshes, or primitives like in this screen shot). We can animate the armature, by connecting it to the model’s skeleton. This is just like a Ragdoll, except that these rigidbodies are “kinematic” - they are being driven by animation.
+      </p>
+      <p>
+       <img alt="Screenshot%20from%202019-05-13%2017-24-03" height="403" src="../../../images/4c763ea24b66bfed197e31e4aa017db9321d3ab136bad7c5c1736fd3713afe7e.jpeg" width="690"/>
+      </p>
+      <p>
+       These ragdoll bodies are using a different collision layer / mask than the outer hull, meaning that the number of collision tests required at runtime remains reasonably low. The collision mask ensures that ALL collisions between bodyparts are disabled (not just those between directly connected bodyparts), and no joint constraints are required - we rely on entirely on the animation of the skeleton.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       When basic shapes are not an option for you, dynamic collision shapes
+       <em>
+        can
+       </em>
+       be
+       <a href="https://en.wikipedia.org/wiki/Convex_hull" rel="nofollow noopener">
+        convex hulls
+       </a>
+       ; simply use
+       <code>
+        SetConvexHull
+       </code>
+       instead.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       If I use a simple model which is basically some smaller hit boxes, and use convexhull does this behave like the skinned mesh “animated model” or do I have to assign them manually to each bone.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       ConvexHulls “cannot” change shape, if that’s what you mean.
+       <br/>
+       If you’re looking for pixel-perfect sniping (for instance) you might be better off using
+       <em>
+        octree
+       </em>
+       raycasts, btw. For something like a ragdoll you’ll need separate shapes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       So this is what I’m trying to do. I was trying to use a very very simple collision geometry for an animated character.
+      </p>
+      <p>
+       <img alt="collision" height="291" src="../../../images/a07d148320fa87f81750434feb228ef42d285e658cfc157d746a4970012a91f1.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, you can use your own mesh shapes for the physics hull on your animated character, just noting that they won’t deform correctly when the character is animated. If you can live with that, then yeah sure, you can provide your own shapes that closely match your geometry. There’s a few more rules, such as, the shapes must be convex. If they are not convex shapes, they can always be split into convex shapes. But know that Bullet physics does not like concave shapes to move around at runtime. So think in convex terms.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       Well what did you do in your screenshot where you have individual pieces?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       I see. I took at look at the Rag Doll Sample. I will see what I can come up with.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I used a bunch of primitive convex shapes - mostly capsules, but theres at least two box shapes in there too - I was able to get a “close enough fit” without actually defining any custom geometry.
+       <br/>
+       For each major bone in my skeleton, there is a corresponding bodypart.
+       <br/>
+       For things like the spine, I simplified the number of bodyparts / active bones, thus, there is not a strictly one to one relationship between bones and bodyparts.
+      </p>
+      <p>
+       So, in Urho3D, when we load our animated model and instantiate it in our scene, there are a bunch of nodes with names matching our skeleton bones. Before playing any animations, we are in the “bind pose” … We attach rigidbody components to those bone nodes, and set the rigidbodies to “kinematic mode”. Now the rigidbodies will automatically be animated when we play animations on that character - but we won’t get any collision responses on our armature because its in kinematic mode. If we want the armature to respond to collisions, we need to do a bit more work.
+      </p>
+      <p>
+       I used the Ragdoll Sample as a guide to help me construct my armature, but I did not leave the rigidbodies in “dynamic mode” (aka ragdoll mode). Making them kinematic means they get their world transform from their parent node, which in our case means a bone node, which in turn, is likely to be animated.
+      </p>
+      <p>
+       I separated the hardcoded data from the sourcecode, and moved it into an xml file per character:
+      </p>
+      <aside class="quote no-group">
+       <blockquote>
+        <pre><code>&lt;Comment&gt;Ragdoll Bodypart Descriptors&lt;/Comment&gt;
+&lt;BodyPart Name="Hips"         Shape="Box"     Size=".3 .15 .2"   Position="0 .05 0"    Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="Spine1"       Shape="Box"     Size=".35 .35 .25" Position="0 .1 0"     Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="Head"         Shape="Capsule" Size=".25 .35 0"   Position="0 .125 0"   Orientation="0 0 0" /&gt;
+
+&lt;BodyPart Name="RightUpLeg"   Shape="Capsule" Size=".2 .45 0"    Position="0 -.2 0"    Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="RightLeg"     Shape="Capsule" Size=".2 .45 0"    Position="0 -.2 0"    Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="RightFoot"    Shape="Capsule" Size=".125 .25 0"  Position="0 -.07 -.1" Orientation="90 0 0" /&gt;
+
+&lt;BodyPart Name="LeftUpLeg"    Shape="Capsule" Size=".2 .45 0"    Position="0 -.2 0"    Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="LeftLeg"      Shape="Capsule" Size=".2 .45 0"    Position="0 -.2 0"    Orientation="0 0 0" /&gt;
+&lt;BodyPart Name="LeftFoot"     Shape="Capsule" Size=".125 .25 0"  Position="0 -.07 -.1" Orientation="90 0 0" /&gt;
+
+&lt;BodyPart Name="LeftArm"      Shape="Capsule" Size=".15 .25 0"   Position=".15 0 0"    Orientation="0 0 90" /&gt;
+&lt;BodyPart Name="LeftForeArm"  Shape="Capsule" Size=".1  .25 0"   Position=".15 0 0"    Orientation="0 0 90" /&gt;
+
+&lt;BodyPart Name="RightArm"     Shape="Capsule" Size=".15 .25 0"   Position="-.15 0 0"   Orientation="0 0 -90" /&gt;
+&lt;BodyPart Name="RightForeArm" Shape="Capsule" Size=".1  .25 0"   Position="-.15 0 0"   Orientation="0 0 -90" /&gt;
+
+
+&lt;Comment&gt;Ragdoll Joint Constraint Descriptors&lt;/Comment&gt;
+&lt;Joint BodyPart="LeftUpLeg"  ParentPart="Hips" Type="ConeTwist"   Axis="0 0 -1" ParentAxis="0 0 1"  HighLimit="45 45" LowLimit="0 0" Collides="false" /&gt;
+&lt;Joint BodyPart="LeftLeg"    ParentPart="LeftUpLeg" Type="Hinge"  Axis="0 0 -1" ParentAxis="0 0 -1" HighLimit="90 0" LowLimit="0 0" Collides="false" /&gt;
+&lt;Joint BodyPart="LeftFoot"   ParentPart="LeftLeg" Type="ConeTwist" Axis="0 1 0" ParentAxis="0 -1 0" HighLimit="30 30" LowLimit="0 0" Collides="false" /&gt;
+
+&lt;Joint BodyPart="RightUpLeg" ParentPart="Hips" Type="ConeTwist"   Axis="0 0 -1" ParentAxis="0 0 1"  HighLimit="45 45" LowLimit="0 0" Collides="false" /&gt;
+&lt;Joint BodyPart="RightLeg"    ParentPart="RightUpLeg" Type="Hinge"  Axis="0 0 -1" ParentAxis="0 0 -1" HighLimit="90 0" LowLimit="0 0" Collides="false" /&gt;
+&lt;Joint BodyPart="RightFoot"   ParentPart="RightLeg" Type="ConeTwist" Axis="0 1 0" ParentAxis="0 -1 0" HighLimit="30 30" LowLimit="0 0" Collides="false" /&gt;
+
+ &lt;Joint BodyPart="LeftArm"   ParentPart="Spine1" Type="ConeTwist" Axis="0 -1 0" ParentAxis="0 1 0" HighLimit="45 45" LowLimit="0 0" Collides="false" /&gt;
+&lt;Joint BodyPart="LeftForeArm" ParentPart="LeftArm" Type="Hinge" Axis="0 0 -1" ParentAxis="0 0 -1" HighLimit="90 0" LowLimit="0 0" Collides="false" /&gt;
+
+ &lt;Joint BodyPart="RightArm"   ParentPart="Spine1" Type="ConeTwist" Axis="0 -1 0" ParentAxis="0 1 0" HighLimit="45 45" LowLimit="0 0" Collides="false" /&gt;
+ &lt;Joint BodyPart="RightForeArm" ParentPart="RightArm" Type="Hinge" Axis="0 0 -1" ParentAxis="0 0 -1" HighLimit="90 0" LowLimit="0 0" Collides="false" /&gt;
+
+&lt;Joint BodyPart="Spine1" ParentPart="Hips"   Type="Hinge"     Axis="0 0 1"  ParentAxis="0 0 1"  HighLimit="45 0" LowLimit="-10 0" Collides="false" /&gt;
+&lt;Joint BodyPart="Head"   ParentPart="Spine1" Type="ConeTwist" Axis="-1 0 0" ParentAxis="-1 0 0" HighLimit="0 30" LowLimit="0 0" Collides="false" /&gt;
+</code></pre>
+       </blockquote>
+      </aside>
+      <p>
+       When this xml file is read back in at runtime, the data completely informs the code how to construct the armature for that character - this is my understanding of a “data-driven approach”. Note that our code requires no knowledge of the bone topology - this will “just work” for any skeleton, from an octopus to a dinosaur. We just need to craft the right data!
+       <br/>
+       Since the names of bones might differ between character models, we are specifying the bone names explicitly in the per character data, so that is never a problem. Oh yeah - the position and rotation values are relative to the space of the parent node , ie, “in bonespace”. We use them as “offsets” to position and orient the bodyparts, relative to their parent bones, IN THE BIND POSE.
+      </p>
+      <p>
+       I have data for joint constraints, but I don’t need any joints until I want to switch from animated to ragdoll mode… and when that happens, I may choose to set only part of the armature to ragdoll mode, and leave the rest animated…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="6" data-topic="5147" data-username="GodMan">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b56b520b5d298f900746a9777d7d8dfc62ef714e78fc2aa41df4d809ff22b191.png" width="20"/>
+        GodMan:
+       </div>
+       <blockquote>
+        <p>
+         I was trying to use a very very simple collision geometry for an animated character.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       What should this character collide with? Is it for actual ragdoll purposes? If not, it’s likely for there to be a more efficient solution to your problem.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       In my case? The provision of ragdoll bodyparts was an experiment, to see if I could derive momentum / acceleration stuff at the moment in time when we hand over control from animation to physics. I needed a way to carry on, from the animated state, to the physically plausible result state.
+       <br/>
+       As a bonus, I found myself able to discern which bodypart was being hit during attacks (and where, and at what angle), and therefore implement plausible response.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Which causes clashes between dynamic and animated-kinematic bodies that are hard to fix. Therefor I’m trying to figure out whether a two-state solution (capsule &amp; ragdoll) would maybe make more sense for
+       <span class="mention">
+        @GodMan
+       </span>
+       ’s sake.
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+       I want something a little bit closer to the mesh of the character like in my pic above, but something still really simple and fast. I just need the collision for the characters environment which is mostly static, and a few dynamic things. I do not currently have ragdolls on the characters.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       You may want to stick to spheres, capsules and boxes for the shapes where feasible to save a bit of resources.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       So could I use capsules for the limbs and maybe a box for his head. Similar to the ragdoll demo? Using bullet physics shapes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I certainly did. It’s not the only option, but the result is “good enough” for me.
+       <br/>
+       The “good part” of using convex physics primitive shapes, is that you get “curves for free” - the shapes are usually only expressions of mathematical formulas describing the surfaces (capsule is a perfect example), although the low-quality physics debug drawing could lead you to believe otherwise - you have more fine detail on curved surfaces, and more plausible physical outcomes, using simple physics shapes than you can generally achieve with a triangle based mesh.
+       <br/>
+       I just wish that Bullet supported “ellipsoids”, where we can set the radius for the capsule different at each end. The tangent is naturally derived in such a case, and the mathematical expression of the shape is not difficult to cope with.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I still use an outer capsule hull around my animated ragdoll - but the collision group and masking values are set up to ensure that the bodyparts can’t hit the hull, given that they have entirely different purposes. I’ve extended (but respected) Bullet’s default enumeration for filter groups (layers in urho), and probably already have more than I need, but I note there’s not much fuss made in the Urho3D Samples, or in Bullet, about exactly how these are intended to be used. I’m happy to share something back in terms of how to effectively apply collision filtering in Urho (ie in Bullet), if I felt it might end up being posted in, or referenced by a FAQ for future reference, and not lost in a haystack.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   I would like to create animation of Star and Mouse from Blender export. An exception error occurred in (Star animation + Mouse animation.)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    I would like to create animation of Star and Mouse from Blender export. An exception error occurred in (Star animation + Mouse animation.)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d12702c634a1272323de1df53dcac5687b2cddc86e134632d1bf3fb3d298f234.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      kenji
+     </div>
+     <div class="post_content">
+      <p>
+       I would like to create animation of Star and Mouse from Blender export.
+       <br/>
+       An exception error occurred in (Star animation + Mouse animation.)
+      </p>
+      <p>
+       (OK) Star animation, there was no problem.
+       <br/>
+       (OK) Mouse animation.there was no problem.
+      </p>
+      <p>
+       (NG)(Star animation, + Mouse animation.)
+      </p>
+      <p>
+       (Exception error)
+       <br/>
+       System.Exception: Can not add animation state to non-master model. You can omit this exception by subscribing to Urho.Application.UnhandledException event and set Handled property to True.
+       <br/>
+       ApplicationOptions: args - w - p “CoreData; Data” - hd - landscape - portrait.
+      </p>
+      <p>
+       (Part of code)
+      </p>
+      <pre><code class="lang-auto">     private async Task CreateScreent()
+        {
+            //星のアニメーションを作成します。
+            var cache01 = ResourceCache;
+            model01 = node.CreateComponent&lt;AnimatedModel&gt;();
+            //Polyout.mdl
+            model01.Model = cache01.GetModel("Models/Polyout01.mdl");
+            model01.SetMaterial(cache01.GetMaterial("Materials/Material.xml"));
+			//Walk.ani
+            Animation Walk01 = cache01.GetAnimation("Models/Walk01.ani");
+            run_walk01 = model01.AddAnimationState(Walk01);
+            run_walk01.Weight = 0.5f;
+            run_walk01.Looped = true;
+
+
+            //ねずみのアニメーションを作成します。
+	  var cache02 = ResourceCache;
+            model02 = node.CreateComponent&lt;AnimatedModel&gt;();
+            //Polyout.mdl
+            model02.Model = cache02.GetModel("Models/Polyout02.mdl");
+            model02.SetMaterial(cache02.GetMaterial("Materials/Material.xml"));
+			//Walk.ani
+            Animation Walk02 =cache02.GetAnimation("Models/Walk02.ani");
+            run_walk02 = model02.AddAnimationState(Walk02);
+            run_walk02.Weight = 0.5f;
+            run_walk02.Looped = true;
+	}
+
+        protected override void OnUpdate(float timeStep)
+        {
+
+            var model = node?.GetComponent&lt;AnimatedModel&gt;();
+            if (model.NumAnimationStates &gt; 0)
+            {//アニメーション効果を出します。
+                run_walk01.AddTime(timeStep);
+                run_walk02.AddTime(timeStep);
+            }
+        }
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Avoid multiple drawables created over single node.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

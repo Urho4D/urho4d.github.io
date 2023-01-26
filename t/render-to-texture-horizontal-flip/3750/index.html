@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Render to texture horizontal flip
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Render to texture horizontal flip
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8f5367735420e58b91eda6d4f15703469e596b17abcba973991742a73761b827.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      zedraken
+     </div>
+     <div class="post_content">
+      <p>
+       Hello all folks,
+      </p>
+      <p>
+       I am writing that support request in the frame of my experiments on Urho3D through the design of a small space simulation game:
+       <br/>
+       <a href="https://discourse.urho3d.io/t/spacegates-simulation-preview/3620/13">
+        https://discourse.urho3d.io/t/spacegates-simulation-preview/3620/13
+       </a>
+      </p>
+      <p>
+       I recently added a head down display in the spaceship cockpit in order to display what is seen from a front camera that is looking forward. Moreover, such camera is able to track a selected target whatever the spaceship movements are.
+      </p>
+      <p>
+       Here is a first screenshot…
+       <br/>
+       <img alt="SpaceGate003" height="500" src="../../../images/7e090b226af7a4ae791b21b2bb7864d79dac0c0766ea14127293f912f78421a6.jpg" width="625"/>
+      </p>
+      <p>
+       On that screenshot, the head down display shows what is in front of the spaceship, with a zoom factor less than 1.0 to have a wide view. Such zoom can be configured on the fly.
+      </p>
+      <p>
+       Every thing seems to be ok, however…
+      </p>
+      <p>
+       Now, I activate the tracking system on another spaceship…
+      </p>
+      <p>
+       <img alt="SpaceGate004" height="500" src="../../../images/66c4e7761fa29f9ea980f324139f8e6d118f83bc39a763b41d205fcb77d3573a.jpg" width="625"/>
+      </p>
+      <p>
+       You can see that the big spaceship is oriented from left to right (and it is moving in that way), however on the head down display, it is displayed like if it has been horizontally flipped (left =&gt; right, and right =&gt; left). No vertical flip at all !
+      </p>
+      <p>
+       Here is another screenshot…
+      </p>
+      <p>
+       <img alt="SpaceGate005" height="500" src="../../../images/eeaf72b302924127ea43fc2ed2f4370276bf321284022a5642310a0f35312e0c.jpg" width="625"/>
+      </p>
+      <p>
+       I do not know if it is relevant to show the code snippet I wrote but it is largely inspired from the “10_RenderToTexture” sample coming along with Urho3D engine.
+      </p>
+      <p>
+       For the front camera, I create it in a regular way, like this:
+      </p>
+      <blockquote>
+       <p>
+        …
+        <br/>
+        mFrontCameraNode = mModelNode-&gt;CreateChild(“Front Camera”);
+        <br/>
+        mFrontCameraNode-&gt;SetPosition(CAMPOSFRONT);
+        <br/>
+        mFrontCamera = mFrontCameraNode-&gt;CreateComponent();
+        <br/>
+        mFrontCamera-&gt;SetViewOverrideFlags(VO_DISABLE_OCCLUSION);
+        <br/>
+        mFrontCamera-&gt;SetZoom(mDisplayZoom);
+        <br/>
+        mFrontCamera-&gt;SetFarClip(10000.0);
+        <br/>
+        …
+       </p>
+      </blockquote>
+      <p>
+       Then I get the rendering surface from the previously created rendering texture…
+      </p>
+      <blockquote>
+       <p>
+        RenderSurface *renderSurface = renderTexture-&gt;GetRenderSurface();
+       </p>
+      </blockquote>
+      <p>
+       I create a view port…
+      </p>
+      <blockquote>
+       <p>
+        SharedPtr displayViewport(new Viewport(context_, mScene, mFrontCamera));
+       </p>
+      </blockquote>
+      <p>
+       I assign the viewport to the rendering surface…
+      </p>
+      <blockquote>
+       <p>
+        renderSurface-&gt;SetViewport(0, displayViewport);
+       </p>
+      </blockquote>
+      <p>
+       There is nothing strange in that code, but for the moment, I cannot figure out why is there such horizontal flip.
+       <br/>
+       Maybe this has something to deal with how the camera view is rendered on the rendering surface ? Or maybe I forgot to configure something ?
+       <br/>
+       Well, if you have some ideas or tips, I would be very pleased to hear from you.
+      </p>
+      <p>
+       Thanks !
+      </p>
+      <p>
+       Charles
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Is the screen part of the ship’s model? You should probably mirror its UVs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8f5367735420e58b91eda6d4f15703469e596b17abcba973991742a73761b827.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      zedraken
+     </div>
+     <div class="post_content">
+      <p>
+       The screen is part of the instrument panel model. I did not think at the UV mapping and as you suggested, I flipped the UV map under Blender, then exported again the screen and now, the orientation is fine.
+       <br/>
+       Now that the issue is solved, it seems quite obvious !
+       <br/>
+       Thanks a lot for your help, this has been very efficient.
+       <br/>
+       Charles
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       I’m glad I could help!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

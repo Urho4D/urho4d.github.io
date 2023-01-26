@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Heman Image Lib
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Heman Image Lib
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       I just stumbled upon an interesting library for doing some advanced image manipulation. It can do some pretty cool stuff like making occlusion and normal maps.
+      </p>
+      <p>
+       Repo
+       <br/>
+       <a href="https://github.com/prideout/heman" rel="nofollow noopener">
+        github.com/prideout/heman
+       </a>
+      </p>
+      <p>
+       Documentation
+       <br/>
+       <a href="http://heman.readthedocs.io/en/latest/" rel="nofollow noopener">
+        heman.readthedocs.io/en/latest/
+       </a>
+      </p>
+      <p>
+       Here’s a code snippet on converting image from heman -&gt; Urho and Urho -&gt; heman
+      </p>
+      <pre><code class="lang-auto">/// Convert heman image to Urho3D image.
+void ImageHelper::ConvertHeman2Urho(Context* context, heman_image* image, Image*&amp; result)
+{
+    for (int y = 0; y &lt; image-&gt;height; y++) {
+        for (int x = 0; x &lt; image-&gt;width; x++) {
+            kmVec3 color = *((kmVec3*) heman_image_texel(image, x, y));
+            Color pixel(color.x, color.y, color.z);
+            result-&gt;SetPixel(x, y, pixel);
+        }
+    }
+}
+
+// Convert image to Urho from heman
+// (could be a heightmap so we check the nbands
+void ImageHelper::ConvertUrho2Heman(Image* image, heman_image*&amp; result)
+{
+    if (result-&gt;nbands == 3) {
+        kmVec3* colors = (kmVec3*) result-&gt;data;
+
+        for (int y = 0; y &lt; image-&gt;GetHeight(); y++) {
+            kmVec3* color = colors + y * result-&gt;width;
+
+            for (int x = 0; x &lt; image-&gt;GetWidth(); x++, color++) {
+                Color pixel = image-&gt;GetPixel(x, y);
+                color-&gt;x = pixel.r_;
+                color-&gt;y = pixel.g_;
+                color-&gt;z = pixel.b_;
+            }
+        }
+
+        return;
+    }
+
+    float* colors = result-&gt;data;
+    for (int y = 0; y &lt; image-&gt;GetHeight(); y++) {
+        float* color = colors + y * result-&gt;width;
+
+        for (int x = 0; x &lt; image-&gt;GetWidth(); x++, color++) {
+            Color pixel = image-&gt;GetPixel(x, y);
+            *color = pixel.r_;
+        }
+    }
+}</code></pre>
+      <p>
+       Here’s how I’ve used it in my Urho app:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/6hRIrnd.png" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/f7c5a6cfb15af230a64fc5e1df47bd52e1022d14d40cd76026dcd8a61206fa87.png" width="622"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×822
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <p>
+       By the power of Greyskull!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/211b5c3ff075cc3199cdcef1a49c4725d1c0a6c3a35dbbc47195606b06d840fe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      namic
+     </div>
+     <div class="post_content">
+      <p>
+       Amazing library. Thanks for the info!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

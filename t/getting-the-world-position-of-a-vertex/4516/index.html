@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Getting the world position of a vertex
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Getting the world position of a vertex
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aea7711bf7e7531d4e15c75dcfdabf963a657553112a2d5b6baf6f2cde534e34.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HaeferlKaffee
+     </div>
+     <div class="post_content">
+      <p>
+       I’m trying to create an effect that requires the world position, or at least position relative to node, of a random vertex on a mesh’s surface
+      </p>
+      <p>
+       I’m currently using this:
+      </p>
+      <pre><code>		Geometry* geom = ((AnimatedModel*)adjNode-&gt;GetComponent&lt;AnimatedModel&gt;())-&gt;GetLodGeometry(0, 0);
+
+		const unsigned char* vertexData;
+		const unsigned char* indexData;
+		unsigned vertexSize;
+		unsigned indexSize;
+		const PODVector&lt;VertexElement&gt;* elements;
+
+		geom-&gt;GetRawData(vertexData, vertexSize, indexData, indexSize, elements);
+
+		// If data is bad:
+		if (!vertexData || !elements || VertexBuffer::GetElementOffset(*elements, TYPE_VECTOR3, SEM_POSITION) != 0) {
+			return;
+		}
+		const auto* vertices = (const unsigned char*)vertexData;
+
+		// 16-bit indices ; short
+		if (vertexSize == sizeof(unsigned short)) {
+			surfacePoint = *(Vector3*)(&amp;vertices[(short)Random(0, (int)vertexSize)]);
+
+			// Rotate
+			surfacePoint = adjNode-&gt;GetWorldRotation() * surfacePoint;
+			// Scale
+			surfacePoint *= adjNode-&gt;GetWorldScale();
+			// Position
+			surfacePoint = surfacePoint + adjNode-&gt;GetWorldPosition();
+
+		}
+</code></pre>
+      <p>
+       Currently, the position of the vertex seems to be totally wrong. When I tried to create small spheres at each random location, they would group together at a point not on the mesh, and when enough spheres were created, they didn’t form the mesh they were supposed to be placed upon
+      </p>
+      <p>
+       Ideally, it should get the skinned position, i.e. use the animated model not the static mesh
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/105839e69d27c067bd9a0955790821ffa9eb0c5b592927071dc1ac1d23e7c24b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SFrost
+     </div>
+     <div class="post_content">
+      <p>
+       change:
+      </p>
+      <pre><code class="lang-auto">surfacePoint = *(Vector3*)(&amp;vertices[(short)Random(0, (int)vertexSize)]); 
+// Rotate 
+surfacePoint = adjNode-&gt;GetWorldRotation() * surfacePoint; 
+// Scale 
+surfacePoint *= adjNode-&gt;GetWorldScale(); 
+// Position 
+surfacePoint = surfacePoint + adjNode-&gt;GetWorldPosition();</code></pre>
+      <p>
+       to
+      </p>
+      <pre><code class="lang-auto">surfacePoint = *(Vector3*)(&amp;vertices[(short)Random(0, (int)vertexSize)]); 
+
+// local to world
+surfacePoint = adjNode-&gt;GetWorldTransform() * surfacePoint;</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Nodes even have a function for that:
+       <code>
+        Node::LocalToWorld(const Vector3&amp;)
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/105839e69d27c067bd9a0955790821ffa9eb0c5b592927071dc1ac1d23e7c24b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SFrost
+     </div>
+     <div class="post_content">
+      <p>
+       That’s a really helpful function for someone who’s not familiar with linear algebra.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aea7711bf7e7531d4e15c75dcfdabf963a657553112a2d5b6baf6f2cde534e34.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HaeferlKaffee
+     </div>
+     <div class="post_content">
+      <p>
+       Using the single world transform doesn’t help. I think it’s the way vertex positions are found, which I’ve mirrored from the Geometry GetHit function
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @SFrost
+       </span>
+       Welcome to the forums, btw!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/105839e69d27c067bd9a0955790821ffa9eb0c5b592927071dc1ac1d23e7c24b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SFrost
+     </div>
+     <div class="post_content">
+      <p>
+       I didn’t realize that
+       <em>
+        (Vector3
+       </em>
+       ) surfacePoint assignment was also incorrect.
+       <br/>
+       Change it to:
+      </p>
+      <pre><code class="lang-auto">surfacePoint = *(Vector3*)(&amp;vertices[(short)Random(0, (int)geom-&gt;GetVertexCount()) * vertexSize]);
+</code></pre>
+      <p>
+       Thank you, Modanung.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <pre><code class="lang-auto">surfacePoint = *(Vector3*)(&amp;vertices[(short)Random(0, (int)vertexSize)]);</code></pre>
+      <p>
+       This part doesnt seem right !
+      </p>
+      <p>
+       EDIT : Oh you just realised it too !
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aea7711bf7e7531d4e15c75dcfdabf963a657553112a2d5b6baf6f2cde534e34.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HaeferlKaffee
+     </div>
+     <div class="post_content">
+      <p>
+       This is what I was looking for, thanks
+      </p>
+      <p>
+       I must’ve misunderstood how the GetHit function worked. Now to figure out how to get the skinned mesh…
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

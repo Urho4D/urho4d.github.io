@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Improve FPS for StaticModelGroup
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Improve FPS for StaticModelGroup
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/30980367faf5b62c10691731597516b158da4fa59eb24e46f91aabe000bce2e3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ab4daa
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       Today I figured out that when running application like sample 20_HugeObjectCount(toggle object moving and object group),
+       <br/>
+       the bottleneck of URHO3D_PROFILE(ReinsertToOctree) comes from StaticModelGroup::OnWorldBoundingBoxUpdate() in Drawable::GetWorldBoundingBox().
+      </p>
+      <p>
+       Maybe it could be updated multi-threaded?
+       <br/>
+       I added the following in Octree.cpp
+      </p>
+      <pre><code>
+void UpdateDrawablesBBWork(const WorkItem* item, unsigned threadIndex)
+{
+	Drawable** start = reinterpret_cast(item-&gt;start_);
+	Drawable** end = reinterpret_cast(item-&gt;end_);
+
+	while (start != end)
+	{
+		Drawable* drawable = *start;
+		if (drawable)
+			const BoundingBox&amp; box = drawable-&gt;GetWorldBoundingBox();
+		++start;
+	}
+}
+...
+void Octree::Update(const FrameInfo&amp; frame)
+{
+...
+// Reinsert drawables that have been moved or resized, or that have been newly added to the octree and do not sit inside
+    // the proper octant yet
+    if (!drawableUpdates_.Empty())
+    {
+        URHO3D_PROFILE(ReinsertToOctree);
+    /*****parallel update world bounding box*****/
+		WorkQueue* queue = GetSubsystem();
+		int numWorkItems = queue-&gt;GetNumThreads() + 1; // Worker threads + main thread
+		int drawablesPerItem = Max((int)(drawableUpdates_.Size() / numWorkItems), 1);
+		PODVector::Iterator start = drawableUpdates_.Begin();
+		// Create a work item for each thread
+		for (int i = 0; i &lt; numWorkItems; ++i)
+		{
+			SharedPtr item = queue-&gt;GetFreeItem();
+			item-&gt;priority_ = M_MAX_UNSIGNED;
+			item-&gt;workFunction_ = UpdateDrawablesBBWork;
+			item-&gt;aux_ = NULL;
+
+			PODVector::Iterator end = drawableUpdates_.End();
+			if (i &lt; numWorkItems - 1 &amp;&amp; end - start &gt; drawablesPerItem)
+				end = start + drawablesPerItem;
+
+			item-&gt;start_ = &amp;(*start);
+			item-&gt;end_ = &amp;(*end);
+			queue-&gt;AddWorkItem(item);
+
+			start = end;
+		}
+
+		queue-&gt;Complete(M_MAX_UNSIGNED);
+ /*****end parallel update world bounding box*****/
+        for (PODVector::Iterator i = drawableUpdates_.Begin(); i != drawableUpdates_.End(); ++i)
+        {
+            Drawable* drawable = *i;
+            drawable-&gt;updateQueued_ = false;
+            Octant* octant = drawable-&gt;GetOctant();
+            const BoundingBox&amp; box = drawable-&gt;GetWorldBoundingBox();
+...
+}
+</code></pre>
+      <p>
+       The result is satisfying, I got 113FPS =&gt; 133 FPS for sample 20_HugeObjectCount(toggle object moving and object group).
+       <br/>
+       I ran some other samples, looks normal.
+       <br/>
+       But I am unfamilier with engine code, I guess I should ask here whether this modification is valid.
+       <br/>
+       Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Looks valid to me.
+      </p>
+      <p>
+       The threaded-updates already go before what you’re doing so as far as I’m aware it’s okay to be priming the bounds in the WorkQueue.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Would you mind to submit that as a PR, if you are OK to contribute that code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/30980367faf5b62c10691731597516b158da4fa59eb24e46f91aabe000bce2e3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ab4daa
+     </div>
+     <div class="post_content">
+      <p>
+       If the code helps, of course.
+       <br/>
+       But I never make a pull request. haha
+      </p>
+      <p>
+       Would you mind to elaborate a bit about which branch to pull request, coding style…etc?
+       <br/>
+       Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       You can find the documentation on Urho’s coding conventions
+       <a href="https://urho3d.github.io/documentation/HEAD/_coding_conventions.html" rel="nofollow noopener">
+        here
+       </a>
+       . For pull requests it is common to create a new branch containing all the modifications.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/30980367faf5b62c10691731597516b158da4fa59eb24e46f91aabe000bce2e3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ab4daa
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks, I created my first pull request XD.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Two comments:
+      </p>
+      <p>
+       <span class="hashtag">
+        #1
+       </span>
+       )
+      </p>
+      <pre><code>        PODVector&lt;Drawable*&gt;::Iterator end = drawableUpdates_.End();
+        if (i &lt; numWorkItems - 1 &amp;&amp; end - start &gt; drawablesPerItem)
+            end = start + drawablesPerItem;
+</code></pre>
+      <p>
+       Was there a reference you got that from, it’s not the clearest thing. I get the intent but it took a bit of looking at it to see it.
+      </p>
+      <p>
+       <span class="hashtag">
+        #2
+       </span>
+       )
+      </p>
+      <p>
+       For testing purposes (on your end, not in the actual final code) I’d add an assert on the WorkQueue’s incomplete tasks right before you start filling it with your new code, just to be sure that the engine doesn’t have anything going that could be in contention, ie.
+       <code>
+        assert(workQueue-&gt;IsComplete(0));
+       </code>
+       If that doesn’t trigger on any of the samples than I think you’re solid, user WorkQueue tasks are not Urho3D’s responsibility - thus check samples only.
+      </p>
+      <p>
+       I did do this locally (but I’m very very out of date with master) and had nothing trip it.
+      </p>
+      <hr/>
+      <p>
+       This is a noticeable boost though on the garbage Intel HD4000 I tried your changes out. 17% is nothing to scoff at.
+      </p>
+      <p>
+       <strong>
+        Edit:
+       </strong>
+       please examine more, a lot of us have worked with this code so long we’re blind, fresh eyes catch so much, I wouldn’t be surprised if you can find another boost the work-queue can bring that we’d miss. (do note though that threaded update already covers particles/animation/etc)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/30980367faf5b62c10691731597516b158da4fa59eb24e46f91aabe000bce2e3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ab4daa
+     </div>
+     <div class="post_content">
+      <p>
+       Hi Sinoid,
+       <br/>
+       <span class="hashtag">
+        #1
+       </span>
+       )
+       <br/>
+       You mean it is not so readable?
+      </p>
+      <p>
+       <span class="hashtag">
+        #2
+       </span>
+       )
+       <br/>
+       Thanks for the test method.
+       <br/>
+       I added the assertion( assert(queue-&gt;IsCompleted(0)); )
+       <br/>
+       and ran through samples (except some network related) in debug build of both github version and 1.7.
+      </p>
+      <p>
+       It is not triggered.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Correct on
+       <span class="hashtag">
+        #1
+       </span>
+       , just would like some corroboration on that style as it’s not very readable. I understood what you were doing, but I don’t expect everyone to understand it. A comment could be enough.
+      </p>
+      <p>
+       <span class="hashtag">
+        #2:
+       </span>
+       then I think you’re genuinely good.
+      </p>
+      <p>
+       Nice work!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Can’t make asset imp get animations into Urho
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Can’t make asset imp get animations into Urho
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       I’m getting problems at importing animations in Urho using asset importer. I’ve made a dead fish animation
+      </p>
+      <p>
+       <img alt="25" height="405" src="../../../images/fd430ef6360d95a73fc4e1f551e010b9a7e2c52506fe899552a4f1fad3e5d91a.png" width="690"/>
+      </p>
+      <p>
+       Can someone give it a try?
+       <a href="https://drive.google.com/open?id=1Yg85tqVhLQSDu7QG90WhIJsimkFK0AQd" rel="nofollow noopener">
+        the blend
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Have you tried using the
+       <a href="https://github.com/reattiva/Urho3D-Blender">
+        exporter
+       </a>
+       ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, the exporter works well, except for cameras and framing; I have multiple cameras and wasn’t able to export them, just one is exported. Anyway, apart from this is ok for animation and the rest.
+       <br/>
+       I’ve tried assimp over and over and I’ve got to think there’s a bug in it. The assimp library itself has the same problem, so I think I’ll have to open a bug there and then notify it in our bug list. Just wanted some confirmation about it before I do…
+       <br/>
+       I’m pretty sure asset imported worked in 1.6 (that is, in that assimp version), but at the moment I’m unable to set it up…
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

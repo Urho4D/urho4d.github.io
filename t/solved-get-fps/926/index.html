@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [Solved]Get FPS
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [Solved]Get FPS
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       I feel really stupid about asking this but… how you get the current fps?  I grep’ed the entire urho3d source code and it didn’t help all I found is where Urho3D caps the fps limit but it doesn’t use the current fps to do this as far as I can tell.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/093b3f4d84ad145d3264d8fb8f320a1af14d40a48fc58e8f95153f0018c57938.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TikariSakari
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b9d688c700978c8c8e441e752ef38d3eac946c22f442681087bf5596731c5d07.png" width="20"/>
+        GoogleBot42:
+       </div>
+       <blockquote>
+        <p>
+         I feel really stupid about asking this but… how you get the current fps?  I grep’ed the entire urho3d source code and it didn’t help all I found is where Urho3D caps the fps limit but it doesn’t use the current fps to do this as far as I can tell.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       On windows and linux at least you can press F2 to see the hud. The leftmost number is how many times each of the thing gets called per second. Then at the bottom is something called applyframelimit, which up to my understanding means how much it sleeps per second. So if you cap the fps to 60, and it shows 10ms, then it only takes 7ms to render + update the whole frame.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       You want the debug hud. FPS is the number on the left.
+      </p>
+      <p>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Samples/Sample.inl#L175" rel="nofollow noopener">
+        github.com/urho3d/Urho3D/blob/m … e.inl#L175
+       </a>
+       <br/>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Samples/Sample.inl#L200" rel="nofollow noopener">
+        github.com/urho3d/Urho3D/blob/m … e.inl#L200
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       I guess this should help…
+       <br/>
+       <a data-bbcode="true" href="http://discourse.urho3d.io/t/solved-debughud-display-explanation/378/1">
+        http://discourse.urho3d.io/t/solved-debughud-display-explanation/378/1
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/093b3f4d84ad145d3264d8fb8f320a1af14d40a48fc58e8f95153f0018c57938.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TikariSakari
+     </div>
+     <div class="post_content">
+      <p>
+       Like people said you can open hud with F2, if you use the samples.
+      </p>
+      <p>
+       You can see how many times something is being called per second. Also there is a thing called apply limit, which shows how much time per frame you are sleeping. So in my picture even with 200 fps there is almost 3 milliseconds (2.952) extra time per frame, meaning each frame takes only 2ms time to create+render, so the fps could be as high as 500 in theory.
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://i.imgur.com/xP4glUc.png" rel="nofollow noopener">
+        http://i.imgur.com/xP4glUc.png
+       </a>
+      </p>
+      <p>
+       Edit: The green fps-number on top is just a ui-text that I manually added. So it doesn’t really exist there normally.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       OK Thanks guys!  I cannot find fps on the debug hud but I can it is easy to look at the profiler and tell if the graphics is lagging thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       I wrote my own  simple FPS calculator, just counting frames and adding the elapsed time each frame until it reaches 1 second, not strictly prceise, but I have a single number and not several rows of values.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

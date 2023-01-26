@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Best practices for creating a project suitable for Dockerized compilation
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Best practices for creating a project suitable for Dockerized compilation
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/2194203647fc71ebd3a81c178cf976e0334bd969987373fb0b53451359637a38.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      mizahnyx
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all,
+      </p>
+      <p>
+       First, thanks to all developers for creating such a hidden jewel. To the date Urho3D remains as one of my favorite engines to play around with.
+      </p>
+      <p>
+       I want to create a project that could be Docker-compiled to at least native (Linux), web, and Android platforms. I was succesful at installing Docker and compiling the engine for those 3 platforms. However, the compilation is dependent on the environments inside the respective Docker images, so to compile a project, I must also do it using those same Dockerized environments.
+      </p>
+      <p>
+       How do I do that?
+      </p>
+      <p>
+       Thanks in advance.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Have you looked at our Dockerized Build Environment? Our approach externalizes the build options as variables that can be set during DBE runtime (which is the project build time).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

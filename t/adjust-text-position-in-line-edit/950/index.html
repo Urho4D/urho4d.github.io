@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Adjust text position in Line Edit
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Adjust text position in Line Edit
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       I’m currently creating a little UI and I was wondering how to adjust the text position in the LineEdit element. The default places the user entered text too close to the boundary of the UIElement:
+       <br/>
+       <img alt="" height="" src="../../../images/7b8938cb6ee4ef3265a5eaaecb13644488ff9746cfc668f893bc65678acfdf11.PNG" width=""/>
+      </p>
+      <p>
+       Is there a way to adjust the borders of this element? Here is the XML that I’m using…
+      </p>
+      <pre><code class="lang-auto">&lt;element type="LineEdit"&gt;
+			&lt;attribute name="Name" value="CCFInput" /&gt;
+			&lt;attribute name="Min Size" value="74 24" /&gt;
+			&lt;attribute name="Max Size" value="2147483647 24" /&gt;	
+			&lt;attribute name="Layout Border" value="5 0 5 0" /&gt;
+&lt;/element&gt;</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       It’s slightly non-intuitive, you can adjust the line edit’s Clip Border attribute (left + top values) to make it push the text right &amp; downward.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       Ah, that works great (would not have figured that out on my own). Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

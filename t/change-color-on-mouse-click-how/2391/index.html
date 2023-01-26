@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Change Color on Mouse Click. How!?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Change Color on Mouse Click. How!?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dfe1052b18bbff9ad6bd03fd25f28f90841aafcd0a62cc90c8c43926b41d7e48.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      OMID-313
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all,
+      </p>
+      <p>
+       I want to change the color of a model when the user right clicks on mouse.
+      </p>
+      <p>
+       The following is my code:
+      </p>
+      <p>
+       [code]
+       <span class="hashtag">
+        #include
+       </span>
+       “Scripts/Utilities/Sample.as”
+      </p>
+      <p>
+       Node@ mushroomNode;
+       <br/>
+       StaticModel@ mushroomObject;
+       <br/>
+       Material@ My_Mat;
+       <br/>
+       ValueAnimation@ My_Color;
+      </p>
+      <p>
+       bool My_Click = false;
+       <br/>
+       bool My_Click2 = false;
+       <br/>
+       int Clk = 1;
+      </p>
+      <p>
+       void Start()
+       <br/>
+       {
+       <br/>
+       SampleStart();
+       <br/>
+       CreateScene();
+       <br/>
+       SetupViewport();
+       <br/>
+       SubscribeToEvents();
+       <br/>
+       }
+      </p>
+      <p>
+       void CreateScene()
+       <br/>
+       {
+       <br/>
+       scene_ = Scene();
+       <br/>
+       scene_.CreateComponent(“Octree”);
+      </p>
+      <pre><code>Node@ lightNode = scene_.CreateChild("DirectionalLight");
+lightNode.direction = Vector3(0.6f, -1.0f, 0.8f); // The direction vector does not need to be normalized
+Light@ light = lightNode.CreateComponent("Light");
+light.lightType = LIGHT_DIRECTIONAL;
+light.brightness = 2.0f;
+
+    My_Mat = cache.GetResource("Material", "Materials/wire_255013019.xml");
+    My_Color = ValueAnimation();
+
+            mushroomNode = scene_.CreateChild("Mushroom");
+
+                    mushroomNode.position = Vector3(0.0f, 0.0f, 300.0f);
+
+            mushroomNode.rotation = Quaternion(0.0f, 0.0f, 0.0f);
+            mushroomNode.SetScale(0.5f);
+            mushroomObject = mushroomNode.CreateComponent("StaticModel");
+
+            mushroomObject.model = cache.GetResource("Model", "3D_Models/Shoe_3.mdl");
+            mushroomObject.ApplyMaterialList();
+
+    ScriptInstance@ instance = mushroomNode.CreateComponent("ScriptInstance");
+    instance.CreateObject(scriptFile, "Rotator");
+    Rotator@ rotator = cast&lt;Rotator&gt;(instance.scriptObject);
+    rotator.rotationSpeed = Vector3(10.0f, 10.0f, 10.0f);
+
+
+cameraNode = scene_.CreateChild("Camera");
+cameraNode.CreateComponent("Camera");
+cameraNode.position = Vector3(0.0f, 20.0f, 0.0f);
+</code></pre>
+      <p>
+       }
+      </p>
+      <p>
+       void SetupViewport()
+       <br/>
+       {
+       <br/>
+       Viewport@ viewport = Viewport(scene_, cameraNode.GetComponent(“Camera”));
+       <br/>
+       renderer.viewports[0] = viewport;
+       <br/>
+       }
+      </p>
+      <p>
+       void MoveCamera(float timeStep)
+       <br/>
+       {
+       <br/>
+       if (ui.focusElement !is null)
+       <br/>
+       return;
+      </p>
+      <pre><code>const float MOVE_SPEED = 10.0f;
+const float MOUSE_SENSITIVITY = 0.05f;
+
+IntVector2 mouseMove = input.mouseMove;
+yaw += MOUSE_SENSITIVITY * mouseMove.x;
+pitch += MOUSE_SENSITIVITY * mouseMove.y;
+pitch = Clamp(pitch, -90.0f, 90.0f);
+    mushroomNode.Rotate(Quaternion(MOUSE_SENSITIVITY * mouseMove.x, MOUSE_SENSITIVITY * mouseMove.y, 0.0f));
+
+if (input.keyDown['W'])
+    cameraNode.Translate(Vector3(0.0f, -5.0f, 0.0f) * MOVE_SPEED * timeStep);
+if (input.keyDown['S'])
+    cameraNode.Translate(Vector3(0.0f, 5.0f, 0.0f) * MOVE_SPEED * timeStep);
+if (input.keyDown['A'])
+    cameraNode.Translate(Vector3(5.0f, 0.0f, 0.0f) * MOVE_SPEED * timeStep);
+if (input.keyDown['D'])
+    cameraNode.Translate(Vector3(-5.0f, 0.0f, 0.0f) * MOVE_SPEED * timeStep);
+if (input.keyDown['Q'])
+    cameraNode.Translate(Vector3(0.0f, 0.0f, -5.0f) * MOVE_SPEED * timeStep);
+if (input.keyDown['E'])
+    cameraNode.Translate(Vector3(0.0f, 0.0f, 5.0f) * MOVE_SPEED * timeStep);
+
+if (input.keyDown['Z'])
+    mushroomNode.position = Vector3(0.0f, 0.0f, 400.0f);
+if (input.keyDown['X'])
+    mushroomNode.position = Vector3(0.0f, 0.0f, 500.0f);
+
+
+    if (input.mouseButtonPress[MOUSEB_LEFT])
+    {
+            My_Click = !My_Click;
+            if (My_Click)
+                    Clk = 0;
+            else
+                    Clk = 1;
+    }
+
+
+    if (input.mouseButtonPress[MOUSEB_RIGHT])
+    {
+            My_Click2 = !My_Click2;
+            if (My_Click2)
+                    My_Color.SetKeyFrame(0.0f, Variant(Color(0.0f, 0.0f, 0.1f, 1.0f)));
+            else
+                    My_Color.SetKeyFrame(0.0f, Variant(Color(1.0f, 0.0f, 0.1f, 1.0f)));
+
+            mushroomObject.model = cache.GetResource("Model", "3D_Models/Shoe_3.mdl");
+            My_Mat.SetShaderParameterAnimation("MatDiffColor", My_Color);
+            mushroomObject.ApplyMaterialList();
+    }
+</code></pre>
+      <p>
+       }
+      </p>
+      <p>
+       void SubscribeToEvents()
+       <br/>
+       {
+       <br/>
+       SubscribeToEvent(“Update”, “HandleUpdate”);
+       <br/>
+       }
+      </p>
+      <p>
+       void HandleUpdate(StringHash eventType, VariantMap&amp; eventData)
+       <br/>
+       {
+       <br/>
+       float timeStep = eventData[“TimeStep”].GetFloat();
+       <br/>
+       MoveCamera(timeStep);
+       <br/>
+       }
+      </p>
+      <p>
+       class Rotator : ScriptObject
+      </p>
+      <p>
+       {
+       <br/>
+       Vector3 rotationSpeed;
+       <br/>
+       void Update(float timeStep)
+       <br/>
+       {
+       <br/>
+       node.Rotate(Quaternion(rotationSpeed.x * timeStep * Clk, rotationSpeed.y * timeStep * Clk, rotationSpeed.z *$
+       <br/>
+       }
+       <br/>
+       }
+      </p>
+      <p>
+       String patchInstructions = “”;[/code]
+      </p>
+      <p>
+       Everything works fine, but the color doesn’t change on right click.
+       <br/>
+       What is the problem !!?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       At first look you never apply your material to your StaticModel
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dfe1052b18bbff9ad6bd03fd25f28f90841aafcd0a62cc90c8c43926b41d7e48.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      OMID-313
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Dave82”]At first look you never apply your material to your StaticModel
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       I have imported this .obj model by AssetImporter. It creates a .txt file containing the list of 3 .xml material files.
+       <br/>
+       So, I apply the materials with :
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       But I want to change only one of those .xml material files.
+      </p>
+      <p>
+       So, what should I do !!?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Have a look at ValueAnimation documentation and samples 30_LightAnimation/31_MaterialAnimation. Then ponder if it actually suits your needs.
+       <br/>
+       If not, simply get your material and modify its color:
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dfe1052b18bbff9ad6bd03fd25f28f90841aafcd0a62cc90c8c43926b41d7e48.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      OMID-313
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Mike”]Have a look at ValueAnimation documentation and samples 30_LightAnimation/31_MaterialAnimation. Then ponder if it actually suits your needs.
+       <br/>
+       If not, simply get your material and modify its color:
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       Thanks
+       <span class="mention">
+        @Mike
+       </span>
+       for your reply.
+       <br/>
+       I’ve used sample codes from examples 30 and 31, but no help.
+      </p>
+      <p>
+       If I use this code:
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       Do I have to run
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       to be applied !? or not !?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Calling ApplyMaterialList() once in CreateScene() is enough, calling it after resets the materials, the exact opposite of what you want to achieve (apply new color value).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dfe1052b18bbff9ad6bd03fd25f28f90841aafcd0a62cc90c8c43926b41d7e48.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      OMID-313
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Mike">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/f6aa4b4b954b794e2d02bba63c9b797d821ff803e0c148d4870e5aa3816bc425.png" width="20"/>
+        Mike:
+       </div>
+       <blockquote>
+        <p>
+         Calling ApplyMaterialList() once in CreateScene() is enough, calling it after resets the materials, the exact opposite of what you want to achieve (apply new color value).
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks
+       <span class="mention">
+        @Mike
+       </span>
+       for your reply.
+       <br/>
+       This solved the problem.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

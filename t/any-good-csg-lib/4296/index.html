@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Any good CSG lib?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Any good CSG lib?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/89c4777e709cb2aec736c4010a9421f7a960e5b2b2866f9de3348bcdd0b5fd41.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      esakylli
+     </div>
+     <div class="post_content">
+      <p>
+       Does anyone know of any good, easy-to-use CSG lib out there?
+       <br/>
+       In a first step I just want to subtract (difference) a sphere from a box.
+       <br/>
+       Preferably a lib that could easily be integrated into Urho3D.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Have a look at
+       <a href="http://pymesh.readthedocs.io/en/latest/index.html#" rel="nofollow noopener">
+        PyMesh
+       </a>
+       . It’s a python wrapper over a number of such C++ libraries. Check the docs. Integration should be easy as every of them is managed as cmake project.
+      </p>
+      <p>
+       EDIT: possibly CSG afaik are carve and cork.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Can I hijack your topic and ask for good C or C++ CSG library with permissive license (like MIT, BSD, Zlib)?
+       <br/>
+       Bad library with above conditions are fine too though…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       <a class="onebox" href="http://www.openscad.org/" rel="nofollow noopener" target="_blank">
+        http://www.openscad.org/
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       You could use the godot implementation.
+       <br/>
+       I’m also looking for a csg library for a near future…
+      </p>
+      <p>
+       <a href="https://godotengine.org/article/godot-gets-csg-support" rel="nofollow noopener">
+        article : Godot gets CSG support
+       </a>
+      </p>
+      <p>
+       <a href="https://github.com/godotengine/godot/tree/master/modules/csg" rel="nofollow noopener">
+        code : godot csg module
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/89c4777e709cb2aec736c4010a9421f7a960e5b2b2866f9de3348bcdd0b5fd41.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      esakylli
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the pointers!
+      </p>
+      <p>
+       I also found this javascript lib:
+       <br/>
+       <a class="onebox" href="https://evanw.github.io/csg.js/" rel="nofollow noopener" target="_blank">
+        https://evanw.github.io/csg.js/
+       </a>
+      </p>
+      <p>
+       And a C# port of it:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/johnmott59/CGSinCSharp" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="206" src="../../../images/6666b4919c3720ce6469e2a3a11f81a6e7d327b1faecd59da6fe13c90d1bc68a.png" width="206"/>
+         <h3>
+          <a href="https://github.com/johnmott59/CGSinCSharp" rel="nofollow noopener" target="_blank">
+           johnmott59/CGSinCSharp
+          </a>
+         </h3>
+         <p>
+          This is a port of CSG.JS to CSharp. Contribute to johnmott59/CGSinCSharp development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       I’m thinking of giving the C# lib a try (because I’m using C# with UrhoSharp).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/2844a0b585b4b2a8051140aae431ed1d86b9b9a38f453c4cf482dc2cbc4edf40.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Numerator
+     </div>
+     <div class="post_content">
+      <p>
+       I think that blender uses carve
+      </p>
+      <p>
+       <a class="onebox" href="https://code.google.com/archive/p/carve/downloads" rel="nofollow noopener" target="_blank">
+        https://code.google.com/archive/p/carve/downloads
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       I experimented with cpp port of csgjs:
+       <a href="https://github.com/rokups/Urho3D/commits/feature/CSG" rel="nofollow noopener">
+        https://github.com/rokups/Urho3D/commits/feature/CSG
+       </a>
+       <br/>
+       But csgjs is slow, you most likely do not want to use that code. I would work on porting godot’s implementation. It is so much faster.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

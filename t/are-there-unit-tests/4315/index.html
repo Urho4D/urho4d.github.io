@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Are there unit tests?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Are there unit tests?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Does Urho3D have anything that resembles unit testing? I’m doing some work with IK and keeping trees synchronized and it would help if I were able to make sure I’m dirtying the solver properly for all possible scene changes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Not at the moment. For testing the solver or anything that is non-graphical, I can see the value of having unit test in place.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/61b8fd1eed63ed0708a15ee428397103824f2a7ffc31dfb23a06e24ea65a9212.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      LordGolias
+     </div>
+     <div class="post_content">
+      <p>
+       I second this. In my experience in Open Source, this is actually a great way of building trust in the code without rellying on extremely knowledgable people about the code to review every PR: if it breaks tests, there must be a very good reason to do so (and change the test).
+      </p>
+      <p>
+       Some things that would need to be done:
+      </p>
+      <ol>
+       <li>
+        Decide on a testing framework to do it (e.g.
+        <a href="https://github.com/google/googletest" rel="nofollow noopener">
+         google tests
+        </a>
+        )
+       </li>
+       <li>
+        Implement the barebones of unit testing (directories, Cmake)
+       </li>
+       <li>
+        Integrate Unit testing to CI/Travis
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

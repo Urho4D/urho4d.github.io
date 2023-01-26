@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Blending issue with render textures
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Blending issue with render textures
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f1cfcf50015940aaf632138753d65c0b0416c352470a8310ee59001fe4bb1370.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      MystMagus
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve been having an issue with blending for UI when rendered to a texture to include in the scene. See this issue:
+       <a href="https://github.com/urho3d/Urho3D/issues/2500" rel="nofollow noopener">
+        https://github.com/urho3d/Urho3D/issues/2500
+       </a>
+      </p>
+      <p>
+       I’ve made sure that it wasn’t something I introduced myself with local changes to the engine (unless I really messed up), and I’ve run out of ideas for how to solve it. I’ve tried changing around the blend modes and while it can have some effect none of them seem to result in the right appearance. I’ve also tried making sure that blending actually is on, and separating the batches for different elements, but no luck. Does anyone else have any ideas or experience on this topic?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f1cfcf50015940aaf632138753d65c0b0416c352470a8310ee59001fe4bb1370.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      MystMagus
+     </div>
+     <div class="post_content">
+      <p>
+       It seems like this issue isn’t limited to only UI, but at least to Urho2D as well. I updated the linked issue with a better example app. I really would like for some other people to check on this as well (especially would like to hear from a native windows user to see if it happens with directx as well). As mentioned, I have no ideas on how to solve this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Have you tried updating your drivers or even using an older version of them?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f1cfcf50015940aaf632138753d65c0b0416c352470a8310ee59001fe4bb1370.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      MystMagus
+     </div>
+     <div class="post_content">
+      <p>
+       Just tried updating to the most recent driver (was close to it before), but it made no difference. Are you saying that the issue doesn’t occur for you in the test case I provided? If so I suppose I can try downgrading as well, but it’s just a GeForce GTX 1060 nothing strange. I’m running Ubuntu 18.04.3 LTS.
+      </p>
+      <p>
+       Ed.: I built a native file and a cross compiled exe if it helps:
+       <a href="https://www.dropbox.com/s/1r38z1dcc1y0n71/test.zip?dl=1" rel="nofollow noopener">
+        https://www.dropbox.com/s/1r38z1dcc1y0n71/test.zip?dl=1
+       </a>
+       (the middle square should be gray, but is green; pressing space changes from rendering to texture to rendering directly)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Indeed the square starts out green. I’m afraid it’s reproductive. (on Linux Mint 19)
+      </p>
+      <aside class="quote no-group" data-post="4" data-topic="5558">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/df73135415c4697be5b803df1200bdf320772501e0dae7e0025aced165560fd8.png" width="20"/>
+        MystMagus:
+       </div>
+       <blockquote>
+        <p>
+         Just tried updating to the most recent driver (was close to it before), but it made no difference. Are you saying that the issue doesn’t occur for you in the test case I provided?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I ran into a
+       <a href="https://github.com/urho3d/Urho3D/issues/2367" rel="nofollow noopener">
+        UI render glitch
+       </a>
+       that seems to have vanished, but I guess it’s unrelated.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

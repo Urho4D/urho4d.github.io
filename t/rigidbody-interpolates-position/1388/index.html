@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   RigidBody interpolates position?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    RigidBody interpolates position?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Does RigidBody interpolates it’s position?
+       <br/>
+       I tried to make a kinematic character controller which sets its position manually, and without vsync I get a motion stutter every once in a while for few seconds, as if it’s going out of sync.
+      </p>
+      <p>
+       If that’s the reason is there a way to manually interpolate the rigidbody position over render frames, like a normal rigidbody?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       I think you can set the position only for passive rigid bodies for active you would need to set the velocity with setLinearVelocity .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Did you set your body as kinematic?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Mike">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/f6aa4b4b954b794e2d02bba63c9b797d821ff803e0c148d4870e5aa3816bc425.png" width="20"/>
+        Mike:
+       </div>
+       <blockquote>
+        <p>
+         Did you set your body as kinematic?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes. Tho it also happens when I have non-kinematic body with manual velocity using SetPosition()
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       On
+       <a href="http://urho3d.github.io/documentation/HEAD/_physics.html" rel="nofollow noopener">
+        urho3d.github.io/documentation/H … ysics.html
+       </a>
+       it says:
+       <br/>
+       “When the rendering framerate is higher than the physics update rate, physics motion is interpolated so that it always appears smooth.”
+      </p>
+      <p>
+       Does it happen in Urho or Bullet?
+       <br/>
+       It appear Bullet’s MotionState doesn’t update non-moving objects:
+       <br/>
+       <a href="http://bulletphysics.org/Bullet/BulletFull/classbtMotionState.html" rel="nofollow noopener">
+        bulletphysics.org/Bullet/BulletF … State.html
+       </a>
+       <br/>
+       I guess that non-moving means 0 velocity.
+      </p>
+      <p>
+       EDIT:
+       <br/>
+       Currently fixed it by manually interpolating the position.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

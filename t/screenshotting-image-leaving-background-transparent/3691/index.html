@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Screenshotting image, leaving background transparent?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Screenshotting image, leaving background transparent?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb6904f0f23492a32bb745db5e8e73e913b0a3a2734782b3456b89a6113f6a17.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ppsychrite
+     </div>
+     <div class="post_content">
+      <p>
+       Saving screenshots to .png on file works fine but the background color is saved too, is there any built in Urho3D way of making the background transparent?
+       <br/>
+       If no is there any possible libraries I could use?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       You can render to texture, like this but with GetRGBAFormat() instead.
+       <br/>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Samples/10_RenderToTexture/RenderToTexture.cpp#L184">
+        https://github.com/urho3d/Urho3D/blob/master/Source/Samples/10_RenderToTexture/RenderToTexture.cpp#L184
+       </a>
+      </p>
+      <p>
+       RenderPath related things (fog)
+       <br/>
+       <a href="https://discourse.urho3d.io/t/how-to-save-alpha-information-by-using-render-surface/2723">
+        How to save alpha information by using render surface
+       </a>
+      </p>
+      <p>
+       Some code here to save a PNG with alpha from Texture2D:
+       <br/>
+       <a href="https://discourse.urho3d.io/t/saving-scene-to-2d-texture-with-transparency/3523/4">
+        Saving scene to 2D texture with transparency
+       </a>
+      </p>
+      <p>
+       HTH
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb6904f0f23492a32bb745db5e8e73e913b0a3a2734782b3456b89a6113f6a17.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ppsychrite
+     </div>
+     <div class="post_content">
+      <p>
+       I’ll look into it!
+       <br/>
+       Many Thanks
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb6904f0f23492a32bb745db5e8e73e913b0a3a2734782b3456b89a6113f6a17.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ppsychrite
+     </div>
+     <div class="post_content">
+      <p>
+       Hmm. Some interesting stuff came out of me adding it to the RTT sample.
+      </p>
+      <pre><code>    SharedPtr&lt;Image&gt; image(new Image(context_));
+	image-&gt;SetSize(tex-&gt;GetHeight(), tex-&gt;GetWidth(), tex-&gt;GetComponents());
+	tex-&gt;GetData(0, image-&gt;GetData());
+
+	image-&gt;SavePNG("test.png");
+</code></pre>
+      <p>
+       Looks perfectly find but the file created is this:
+       <img alt="test" height="500" src="../../../images/e91e8e59053192bf43e6ee3c3863db832bc4ae3a0e30dcd48c4ca4599f8cd12c.jpg" width="375"/>
+       <br/>
+       You can
+       <em>
+        kind of
+       </em>
+       see the cubes but nothing to what I was projecting for. (Yes I did try RGBA)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       Your code seems to be typical with regard to getting the image components.
+      </p>
+      <p>
+       I have not seen this before, but maybe someone can identify what’s going on, based on the artifacts…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       I’m not sure what’s going on with the artifacts – I assume the cubes are not supposed to be stripes, correct? Also, I assume you converted the image to a jpg from a png later in another program?
+       <br/>
+       I will say, make sure you set the clear color to transparent when you render it. I use a custom render path when I’m trying to save transparent images: (note the clear command)
+      </p>
+      <pre><code class="lang-xml">&lt;!--Forward--&gt;
+&lt;renderpath&gt;
+    &lt;command type="clear" color="0 0 0 0" depth="1.0" stencil="0" /&gt;
+    &lt;command type="scenepass" pass="base" vertexlights="true" metadata="base" /&gt;
+    &lt;command type="forwardlights" pass="light" /&gt;
+    &lt;command type="scenepass" pass="postopaque" /&gt;
+    &lt;command type="scenepass" pass="refract"&gt;
+        &lt;texture unit="environment" name="viewport" /&gt;
+    &lt;/command&gt;
+    &lt;command type="scenepass" pass="alpha" vertexlights="true" sort="backtofront" metadata="alpha" /&gt;
+    &lt;command type="scenepass" pass="postalpha" sort="backtofront" /&gt;
+&lt;/renderpath&gt;
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb6904f0f23492a32bb745db5e8e73e913b0a3a2734782b3456b89a6113f6a17.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ppsychrite
+     </div>
+     <div class="post_content">
+      <p>
+       No, I call SavePNG() directly instead of JPG.
+       <br/>
+       hmm thanks for the RenderPath I’ll try it after school.
+       <img alt=":smile:" class="emoji" src="../../../images/ae89e05450587e8f1f4786c0d266cf94ef2b306782fb6f9c30e43c0023ed148b.png" title=":smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/48f642b8f7850780cf702a7a1857639decd8e8c465ca3e3220e1315da9819c39.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      t.artikov
+     </div>
+     <div class="post_content">
+      <p>
+       Width and height are passed in the wrong order into image-&gt;SetSize(…).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       Nice spot.
+       <img alt=":slightly_smiling_face:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slightly_smiling_face:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bb6904f0f23492a32bb745db5e8e73e913b0a3a2734782b3456b89a6113f6a17.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ppsychrite
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @t.artikov
+       </span>
+       How foolish of me
+       <img alt=":man_facepalming:" class="emoji" src="../../../images/9d7c273a316ab8873be0fbac31d2834eadc77fc44f2ef27cca074d0382067bd7.png" title=":man_facepalming:"/>
+       <br/>
+       Always the simple things that I mess up on
+       <br/>
+       Many thanks!
+      </p>
+      <p>
+       <span class="mention">
+        @SirNate0
+       </span>
+       <br/>
+       Thank you a ton for your example xml file, I do not know how to make material/etc xml files but this will provide great reference I hope
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

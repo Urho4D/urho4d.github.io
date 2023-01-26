@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Sphere as light source
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Sphere as light source
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hi!
+      </p>
+      <p>
+       Is it possible somehow add a spot light inside a sphere and make the sphere act like a light source?
+      </p>
+      <p>
+       Edit: Point light!
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/138937667855a8668d050e16912c524cb5b3d1e12b712bc1c3697a0c4e1788ee.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      I3DB
+     </div>
+     <div class="post_content">
+      <p>
+       It seems to me it should work putting a point light inside a sphere. But I’m a beginner and don’t know.
+      </p>
+      <p>
+       You can use emissive material and bloom and bloomhdr to make the effect more dramatic and noticed.
+      </p>
+      <p>
+       I sure wish people would answer questions instead of going off on tangents unrelated to the question. It makes this board useful for those to come in the future who are trying to solve problems. Movie comments make me want to look elsewhere and not on this board.
+      </p>
+      <p>
+       Here’s an example, note the DiffEmissive. This is with a lit material and light outside the sphere.
+       <br/>
+       <img alt="PNG" height="500" src="../../../images/85973b8c4c34328ec3361736e2046b989a4a5742b663742009fa70d9ab27b033.jpeg" width="544"/>
+      </p>
+      <p>
+       Also
+       <a href="https://urho3d.github.io/samples/07_Billboards.html" rel="nofollow noopener">
+        check out the billboards sample and the use of lights
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @lheller
+       </span>
+       Do you mean area lights or would a light mask (or even near clip) be enough?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Create a node and add a StaticModel and a Light component to it. For the staticModel use Sphere.mdl resource and that’s about it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Why would you put a spotlight (which has Direction) inside a sphere, then try to model a spherical light, when a point light represents a light with “all” directions (a spherical light)?
+       <br/>
+       Are you looking for a spherical light which is more intense in a particular direction?
+       <br/>
+       I’m confused
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       If I’m right about your wanting to model a spherical light which is more intense in some direction, you could try combining some basic lighting models - first try mixing a directional light with a spherical light, and if it’s not good enough, try mixing a spotlight, and a spherical light, connected to the same parent node (so having the same world position).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       What I want to reach is to create something like a star (a celestial object).
+       <br/>
+       As we know, star is a light emitting object.
+      </p>
+      <p>
+       Anyway, the below works well without any light (UrhoSharp code):
+      </p>
+      <pre><code>var sphere = StarNode.GetOrCreateComponent&lt;Sphere&gt;();
+var material = Material.FromColor(Color.White);
+material.CullMode = CullMode.None;
+material.LineAntiAlias = true;
+material.SetTechnique(0u, CoreAssets.Techniques.NoTextureVColAddAlpha);
+sphere.SetMaterial(material);
+</code></pre>
+      <p>
+       Anybody a solution with point light?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, yep, point light is what I want here.
+       <br/>
+       But see my “solution” without any light.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I like pictures - even bad ones - pictures are more clear, generally, than a thousand words - please show me what you see, and just after that, describe again what your goal is, I will try to do it in my project just to make sure it works before i reply.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       My goal is something like this:
+       <br/>
+       <img alt="image" height="447" src="../../../images/a20ef8491ac3d8452829b16e9e679fcd2ca68953be89b08c74ae6d86515e06bc.jpeg" width="690"/>
+      </p>
+      <p>
+       I am developing a planetarium application where I also want to simulate the star
+       <a href="https://en.wikipedia.org/wiki/Magnitude_(astronomy)" rel="nofollow noopener">
+        magnitude
+       </a>
+       .
+       <br/>
+       The idea is to render small spheres with point light inside where the light range/brightness is set based on star magnitude value.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       stop using spotlights, switch to point lights, you’ll be fine, and I’m here to help
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c432754588cadf47ee2eae36a91f4d2d6651de95ebf18895f4c28523236443a9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      guk_alex
+     </div>
+     <div class="post_content">
+      <p>
+       Question regarding these lights: do you need these starts to light some objects near it (planets and so on)? Or do you only need the starts only?
+       <br/>
+       If you do not need to light any object by these starts and you just want this bloom effect around the spheres than you don’t need any light source inside the spheres (and you will save a lot of performance) -  only special material is required for these starts and bloom post-processing effect.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       I already switched to point lights.
+       <br/>
+       But now I think
+       <span class="mention">
+        @guk_alex
+       </span>
+       suggested a better solution.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hello
+       <span class="mention">
+        @guk_alex
+       </span>
+      </p>
+      <p>
+       No, I don’t need to light near objects.
+      </p>
+      <p>
+       Can u pls give a short example only with one sphere and such material and that bloom effect?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       many hands, make light work
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c432754588cadf47ee2eae36a91f4d2d6651de95ebf18895f4c28523236443a9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      guk_alex
+     </div>
+     <div class="post_content">
+      <p>
+       I3DB mention it here:
+       <a class="inline-onebox" href="https://discourse.urho3d.io/t/sphere-as-light-source/5000/4?u=guk_alex">
+        Sphere as light source
+       </a>
+       <br/>
+       Material you looking for is DiffEmissive. And the effect is Bloom or BloomHDR.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       If your stars remain without texture you might as well use
+       <a href="https://github.com/urho3d/Urho3D/tree/master/Source/Samples/07_Billboards" rel="nofollow noopener">
+        billboards
+       </a>
+       instead of spheres for maximum performance.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+       <br/>
+       OK, but how to make one billboard component look like a sphere (or at least a circle) ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Simply assign a material with a circle as texture - which can be made in a few clicks using
+       <a href="https://gimp.org" rel="nofollow noopener">
+        GIMP
+       </a>
+       - and some unlit or additive
+       <em>
+        Diff
+       </em>
+       technique to the billboards.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+      </p>
+      <p>
+       Did it, and used DiffAdd technique for billboardset’s material.
+       <br/>
+       But unfortunately only some of the circles are glowing. Like on the screenshot.
+       <br/>
+       <img alt="image" height="447" src="../../../images/be95f2524342c31ca6e1a7ecb19c01696f2fe01dab7ad5bd19ea2b23f94be6f8.png" width="690"/>
+      </p>
+      <p>
+       I need all the circles glowing.
+       <br/>
+       Any idea?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe you could incorporate the glow into the circle image? Or use two billboards per star, one unlit opaque and one additive.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+      </p>
+      <p>
+       Two billboards per star finally solved the problem: All circles are glowing!
+      </p>
+      <p>
+       But now there is another question (problem?): I need various colors for circles, in other words for each billboard in billboardset. Is it possible to do this for the same billboardset?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, this is perfectly possible by using vertex colors. Simply set the billboards’
+       <code>
+        color_
+       </code>
+       s and then
+       <code>
+        Commit()
+       </code>
+       . Make sure your textures are in grisaille - since it will be
+       <em>
+        multiplied
+       </em>
+       with the vertex color - and the materials’ techniques should be VCol ones.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+      </p>
+      <p>
+       Thanks for help, now everything works as expected!
+      </p>
+      <p>
+       <img alt="image" height="447" src="../../../images/0667b1d6fbf74bbfae4cae8d830cd5ef9e0bd03c2871512a315e41d2c6798690.jpeg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       This solution seems really inefficient to me. Do the stars
+       <em>
+        need
+       </em>
+       to additivly blend for some reason? Why not just use alpha scissoring and an emissive texture? Sorry to necro an old thread BTW, but this seems like a really silly solution, unless there is a particular reason it needs to be done like this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Heck, you just need one texture used in both albedo and emssive and to use the DiffEmissive technique, though ideally it’s an unlit technique which has a strength float to multiply the diffuse color by. Actually shouldn’t be hard to make. I’ll do it RN.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Hi!
+      </p>
+      <p>
+       Please if you can provide an example code (and also a texture),  I would appreciate it.
+      </p>
+      <p>
+       BR,
+      </p>
+      <p>
+       Ladislav
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Already working on it lol.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       What I need is to make stars glowing like on the above screenshot.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       And you are using HDR, right?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Using BloomHDR, yes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Ok, good. That means I’m right about this then. Next post will be a video of what I do.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Ok, breaking my promise, but I remember there being a bug with a few of the post effects, including both bloom variants (LDR &amp; HDR) where the naming of some of the uniforms was messed up in the post effect XML. Is this fixed currently? If not I’ll just fix it myself (it’s honestly a pretty simple issue to remedy) but if it is fixed I want to make sure the build of the engine I’m using has these fixes.
+       <span class="mention">
+        @Modanung
+       </span>
+       You’d probably know.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       Anyway, you are still welcome to post a super efficient and fast way to produce glowing stars like on the above screenshot
+       <img alt=":blush:" class="emoji" src="../../../images/5dc76062acc5a80d95fdd823db908640d52dac05ad1a4899ab9e723bfa0bbbfb.png" title=":blush:"/>
+       <br/>
+       BTW you also think, the BillboardSet is the best way ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Yes. Instead of rendering a sphere which has, at least 8 tris, a billboard is a quad which is 2 tris. I’ve done some experimenting in another engine with shading a billboard to make it look like a 3D object.
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/vxYRAYVrvXO6lkOn99Eh3tQ5rwD.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/d/dd1ac3cf286f49ff76c8053e0e244e9153e9ea0b.png" rel="nofollow noopener" title="SPHERE">
+         <img alt="SPHERE" data-base62-sha1="vxYRAYVrvXO6lkOn99Eh3tQ5rwD" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/d/dd1ac3cf286f49ff76c8053e0e244e9153e9ea0b_2_10x10.png" height="500" src="../../../images/7e1bcf68e083bff27988e4ce57ee56a580d83b8cbb2590767ad524a4e5375070.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/d/dd1ac3cf286f49ff76c8053e0e244e9153e9ea0b_2_683x500.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/d/dd1ac3cf286f49ff76c8053e0e244e9153e9ea0b.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/d/dd1ac3cf286f49ff76c8053e0e244e9153e9ea0b.png 2x" width="683"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           SPHERE
+          </span>
+          <span class="informations">
+           821×601 202 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       I found the issue on github, it’s not fixed.
+       <a href="https://github.com/urho3d/Urho3D/issues/2542" rel="nofollow noopener">
+        https://github.com/urho3d/Urho3D/issues/2542
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @GoldenThumbs
+       </span>
+       Maybe you could review the PR?
+       <br/>
+       <aside class="onebox githubpullrequest">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/pull/2546" target="_blank">
+          github.com/urho3d/Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <div class="github-row">
+          <div class="github-icon-container" title="Pull Request">
+           <svg aria-hidden="true" class="github-icon" height="60" viewbox="0 0 12 16" width="60">
+            <path d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z">
+            </path>
+           </svg>
+          </div>
+          <div class="github-info-container">
+           <h4>
+            <a href="https://github.com/urho3d/Urho3D/pull/2546" target="_blank">
+             Bloom and BloomHDR PostProcess Fix
+            </a>
+           </h4>
+           <div class="branches">
+            <code>
+             urho3d:master
+            </code>
+            ←
+            <code>
+             PsychoCircuitry:master
+            </code>
+           </div>
+           <div class="github-info">
+            <div class="date">
+             opened
+             <span class="discourse-local-date" data-date="2019-11-18" data-format="ll" data-time="17:45:28" data-timezone="UTC">
+              05:45PM - 18 Nov 19 UTC
+             </span>
+            </div>
+            <div class="user">
+             <a href="https://github.com/PsychoCircuitry" target="_blank">
+              <img alt="PsychoCircuitry" class="onebox-avatar-inline" height="20" src="../../../images/bffff4112eb1ffbe26aebadbc52a458e16f60c9763bc53f6996cbee9ed798142" width="20"/>
+              PsychoCircuitry
+             </a>
+            </div>
+            <div class="lines" title="4 commits changed 2 files with 50 additions and 50 deletions">
+             <a href="https://github.com/urho3d/Urho3D/pull/2546/files" target="_blank">
+              <span class="added">
+               +50
+              </span>
+              <span class="removed">
+               -50
+              </span>
+             </a>
+            </div>
+           </div>
+          </div>
+         </div>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       <a href="https://www.youtube.com/watch?v=gOG2Vy-66gY" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=gOG2Vy-66gY
+       </a>
+       so this is what I got to before I fell asleep, but I’m going to try to make the bloom look better.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       Ok, so all the shader stuff I did seems to be pointless. You get the same result with the bloom even if values above 1 are used. HDR stuff doesn’t seem to effect BloomHDR, from what I can see at least… So, in conclusion, just use an unlit material. That’s it. I’d still use “ALPHAMASK” in the pixel defines, unless you want some gradient effect with alpha.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       This does kind of lead to a question… Why use bloom at all? Why not just use a circular gradient with an unlit material and alpha blending?
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/9xMTuweL2LNpC0hBnpzemw5MakQ.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/4/42e559d30ba29ff669ac42387d2daffea56a7184.png" rel="nofollow noopener" title="grad_sphere">
+         <img alt="grad_sphere" data-base62-sha1="9xMTuweL2LNpC0hBnpzemw5MakQ" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/4/42e559d30ba29ff669ac42387d2daffea56a7184_2_10x10.png" height="500" src="../../../images/452e6c6c6eb403a623e5e663f1b62767252e58bd7a88ee2d4d0604379d0fda05.png" width="500"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           grad_sphere
+          </span>
+          <span class="informations">
+           512×512 20.3 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       CORRECTION! Turns out HDR Rendering was turned off in my test, I turned it on and everything worked like it should.
+       <a href="https://github.com/GoldenThumbs/Urho3d_HDR_Glow/tree/master/CoreData/Shaders" rel="nofollow noopener">
+        https://github.com/GoldenThumbs/Urho3d_HDR_Glow/tree/master/CoreData/Shaders
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/68d48e7dc3373b41f96035ee729a9ed8e57acc01eb7aad63b28a5ceb3a3ff169.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lheller
+     </div>
+     <div class="post_content">
+      <p>
+       If anybody is interested, how I did, then here are the steps:
+      </p>
+      <ol>
+       <li>
+        Loaded the material from image (Circle.png).
+       </li>
+       <li>
+        Set technique for material to
+        <strong>
+         DiffVColAddAlpha
+        </strong>
+        .
+       </li>
+       <li>
+        Generated an array of positions for circles (billboard in the set).
+       </li>
+       <li>
+        Create a billboard set with number off billboards
+        <strong>
+         two times
+        </strong>
+        as many as the required visible circles.
+       </li>
+       <li>
+        Iterated through the array of positions and set the current position for (2n)th billboard and at the same iteration also set the same position for (2n+1)th billboard. In other words, at the same position there are always two billboards from billboardset.
+       </li>
+       <li>
+        Set size and color for current billboard and enabled it.
+       </li>
+       <li>
+        Commit.
+       </li>
+       <li>
+        Added
+        <strong>
+         BloomHDR
+        </strong>
+        postprocess effect.
+       </li>
+      </ol>
+      <p>
+       Example animated 3D starfield with glowing stars:
+       <br/>
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="kaD0aVXVObA" data-youtube-title="3D animated starfield">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1a4431c8ad77585931bae6b714f343d7a08401f6373a42a1197549b1f6dc692b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      pldeschamps
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="44" data-topic="5000" data-username="lheller">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b1b862ad6ed9cee73ddb6cf6f792e1cf9ecb33893427f60cd2302057d71ceb99.png" width="20"/>
+        lheller:
+       </div>
+       <blockquote>
+        <p>
+         Set technique for material to
+         <strong>
+          DiffVColAddAlpha
+         </strong>
+         .
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thank you, this is what I was missing to give different colors to each Billbord item.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

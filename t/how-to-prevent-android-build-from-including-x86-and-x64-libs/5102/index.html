@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to prevent android build from including x86 and x64 libs?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to prevent android build from including x86 and x64 libs?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5120fe8981e421df0f41c135eb6873b5996d3ad032e62a06089fae90a87595de.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      att
+     </div>
+     <div class="post_content">
+      <p>
+       I have noticed that x86 and x86_64 lib exist in the lib folder of apk, how can prevent it?
+       <br/>
+       This will make the apk size very big.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Use the
+       <code>
+        ANDROID_ABI
+       </code>
+       Gradle parameter. If it is set, it is expected to be a comma separated list of ABI without any white spaces. So, list all the ABIs you need.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

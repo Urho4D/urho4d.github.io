@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How can I generate Android App Bundle format?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How can I generate Android App Bundle format?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac7eacb75ed8aa48d46fc23b9c02524377a57f22d7dd9a962c96dd68649fd575.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      att1
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, I encountered a problem, I want to submit my game app created with urho3d engine to google play, but I must submit it with Android App Bundle format.
+       <br/>
+       How can I compile my project with this format?
+       <br/>
+       Thank you very much!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Hi there, and welcome to the forums.
+      </p>
+      <p>
+       Does
+       <a href="https://discourse.urho3d.io/t/package-files-on-android/1982/2">
+        this thread
+       </a>
+       provide an answer to your question?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac7eacb75ed8aa48d46fc23b9c02524377a57f22d7dd9a962c96dd68649fd575.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      att1
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you for your reply, but I think it has no help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       As any other Android App.
+      </p>
+      <p>
+       <a class="onebox" href="https://developer.android.com/guide/app-bundle/" rel="nofollow noopener" target="_blank">
+        https://developer.android.com/guide/app-bundle/
+       </a>
+      </p>
+      <p>
+       cmd line is probably faster:
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="16" src="../../../images/0213fc8fee43fc4d8e9255f9a8070fdb3e0bf2241a3eacf6cb5ae7287066b7ab.png" width="16"/>
+        <a href="https://developer.android.com/studio/build/building-cmdline#build_bundle" rel="nofollow noopener" target="_blank">
+         Android Developers
+        </a>
+       </header>
+       <article class="onebox-body">
+        <div class="aspect-image" style="--aspect-ratio:113/63;">
+         <img class="thumbnail" src="../../../images/9699f00e27db3d9b47df8dd2704ac3fcf9cd6c36a06f8996b7a6e0859bc91ff7.png"/>
+        </div>
+        <h3>
+         <a href="https://developer.android.com/studio/build/building-cmdline#build_bundle" rel="nofollow noopener" target="_blank">
+          Build your app from the command line  |  Android Developers
+         </a>
+        </h3>
+        <p>
+         Find out how you can execute all the build tasks available to your Android project using the Gradle wrapper command line tool.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       and that boils down to run:
+      </p>
+      <blockquote>
+       <pre><code class="lang-auto">./gradlew :base:bundleDebug
+</code></pre>
+      </blockquote>
+      <p>
+       into your app directory
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Simplest way is to use Android Studio:
+       <br/>
+       1 - Build your Urho3D project for Android
+       <br/>
+       2 - rest shown in the images below:
+      </p>
+      <p>
+       <a class="onebox" href="https://imgur.com/DEbxGaw" rel="nofollow noopener" target="_blank">
+        <img alt="Imgur" height="315" src="../../../images/cf170c733458f3282b4aa7efb75eb82335c0870478cb38d33e5ba519579f48db.png" title="Imgur" width="600"/>
+       </a>
+      </p>
+      <p>
+       <a class="onebox" href="https://imgur.com/O4scyn9" rel="nofollow noopener" target="_blank">
+        <img alt="Imgur" height="315" src="../../../images/a1ac8ab273e5ffd1dcf20e43412098f47709216572f77143fe4f17b14e958ddb.png" title="Imgur" width="600"/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac7eacb75ed8aa48d46fc23b9c02524377a57f22d7dd9a962c96dd68649fd575.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      att1
+     </div>
+     <div class="post_content">
+      <p>
+       I opened my project with android studio, it says must use android studio with version 3.5, so I download the android studio version 3.5 beta, but it can not update the Gradle plugin.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       You’ll need to manually edit the gradle wrapper properties file as shown here
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/Lumak/Urho3D-Android-Project#android-studio-import" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/842ab46a12d55283a6cc714c58d1bd1641df6d8bc03863f8ee3c9e483b89e660" width="400"/>
+         <h3>
+          <a href="https://github.com/Lumak/Urho3D-Android-Project#android-studio-import" rel="nofollow noopener" target="_blank">
+           Lumak/Urho3D-Android-Project
+          </a>
+         </h3>
+         <p>
+          Android project to load specific C++ executable file directly instead of Urho3DPlayer.  - Lumak/Urho3D-Android-Project
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       <strong>
+        Note
+       </strong>
+       There is entirely new build process for Urho3D for Android (head of master branch) and it’s not something that I use. The method that I use is prior to the latest method, using Urho3D 1.7 version – just FYI.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Zarevo: landscape experiments
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Zarevo: landscape experiments
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       Here is the list of things I did there:
+      </p>
+      <p>
+       -Real world terrain, using SRTM elevation data and Landsat 8 satellite imagery. Great thanks to Sinoid for awesome
+       <a data-bbcode="true" href="http://discourse.urho3d.io/t/urho3-geomapping/994/12">
+        16bit heightmap packer.
+       </a>
+       <br/>
+       -Custom terrain shader. For now it uses one diffuse texture(40mb DXT5 5632x5632) and two normal maps packed into one RGBA texture.
+       <br/>
+       -Hemisphere skylight instead of plain ambient color.
+       <br/>
+       -Day-Night cycle.
+       <br/>
+       -Screen-space exponential fog. I decided to use deferred shading, so I can render sky and fog in post-process. I was wondering if I can make a decent(not super realistic) atmospheric scattering with simple math, instead of logarithms. Not completly pleased with result, yet.
+       <br/>
+       -Linear space lighting and gamma-correction.
+      </p>
+      <p>
+       <span class="bbcode-b">
+        Download link
+       </span>
+       :
+       <a href="https://www.dropbox.com/s/6ufgsnrthkzb6c0/zrv_13082015.zip" rel="nofollow noopener">
+        dropbox.com/s/6ufgsnrthkzb6 … 082015.zip
+       </a>
+       <br/>
+       Windows exe provided, but it’s script(and shaders) only, so you can replace binary and run on any platform.
+       <br/>
+       OpenGL only.
+      </p>
+      <p>
+       Controls:
+       <br/>
+       WASD and mouse - fly aroud
+       <br/>
+       Shift - fly faster
+       <br/>
+       Mouse Wheel - change time of day
+       <br/>
+       F - toggle fog
+       <br/>
+       E - toggle auto-exposure
+       <br/>
+       B - toggle bloom and gamma-correction
+      </p>
+      <p>
+       Work in progress. C&amp;C are welcome.
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://i.imgur.com/Qm9LaBX.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/de245724e5f200de159e19ed7d06caf70319ced406b88300ec9fb4209d39b88d.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/mFRu2Il.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/2ef5409ac15a6422c55d3f8f1f7fbfab550ebd592779c1cabe86b36ed8ba9bf0.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/4Ao0g5j.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/fbc2cecc832335b391e5e0fd9bee84eed02fc1afe321427479cb588fcd51b4fa.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/FebLDt2.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/7fb4ca33096c17df2452a962e682e21f1fcb5164eb3ce105f2447bb5577b5480.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/6nhi3I5.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/414dec607db26aae45afb55bcf7beeecde02bfc59596eaa1d4132213a02c1a96.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/iDsRXS0.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/e834eb04bd28b2ff48c63c74ffbba285bf3fbdde1829a3839b95c87164798c4c.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/NW80s4q.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/dfb260bc6d210985df3d087451b1b8ba74a6dee13eea2d5dff77cd193a2c29b7.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/6eY7foR.jpg" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/41a726185faf4a300459033c058f68633fec83f5a25227b2921aa9b05f917ad0.jpg" width="320"/>
+       </a>
+       <a data-bbcode="true" href="http://i.imgur.com/ZNzVkGJ.png" rel="nofollow noopener">
+        <img alt="" height="170" src="../../../images/d844aa9638493cc622bbe723ee39913c45d5eac680747d1f786fca90ee51defb.jpg" width="320"/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Amazing!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       It has been nice seeing the play by play on twitter.  Very beautiful!  Did you have to do any terrain paging?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Looks great! will definitely try this out.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       Nice Zarevo !
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you all for feedback.
+      </p>
+      <p>
+       [quote=“Sinoid”]Very cool.
+      </p>
+      <p>
+       On an Intel HD4000 there’s something up with your light volumes (turned off bloom and gamma so it’s more visually apparent):
+       <br/>
+       [/quote]
+       <br/>
+       Oh, it actually runs on integrated video card, nice. How is FPS?
+       <br/>
+       Looks like some GPUs have different solution to " pow(1-lightDist,2.6) " in Lighting.glsl. I should clamp this thing.
+      </p>
+      <p>
+       Edit: this should do it:
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a27c760b0f0e4cc7cfef9678119aba515d73b166b14480ad72604173ec6142a1.png" width="20"/>
+        friesencr:
+       </div>
+       <blockquote>
+        <p>
+         It has been nice seeing the play by play on twitter.  Very beautiful!  Did you have to do any terrain paging?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Let’s we all use
+       <a data-bbcode="true" href="https://twitter.com/search?q=Urho3d&amp;src=typd" rel="nofollow noopener">
+        #Urho3d
+       </a>
+       more often. No paging. Just one standard urho-terrain 3072x3072 with 128 patch size. Not going to do paging before I run out of memory
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       When Present takes long, it’s nothing unusual, it’s just the gfx driver doing the actual rendering work there. Sometimes the driver buffer may also fill up earlier, during submitting draw calls, and in that case you could see the majority of time spent inside the frame rendering (actually inside the draw call which causes the buffer to fill and the work be actually performed)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6cb14f8bd2d643c84678a0f4bae3f1554abf88f44c39a3aeef6c35044af6ad49.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      theak472009
+     </div>
+     <div class="post_content">
+      <p>
+       I am trying to port the Sky shader code to hlsl.
+       <br/>
+       It works for the models but the sky does not show up (Black background even in day)
+       <br/>
+       Also no lights show up.
+      </p>
+      <p>
+       Here is the hlsl shader code
+      </p>
+      <pre><code class="lang-auto">#include "Uniforms.hlsl"
+#include "Samplers.hlsl"
+#include "Transform.hlsl"
+#include "ScreenPos.hlsl"
+#include "Lighting.hlsl"
+
+#ifdef COMPILEPS
+cbuffer CustomPS : register (b6)
+{
+  float3 cSkyColor;
+  float3 cSunColor;
+  float3 cSunDir;
+  float cFogDist;
+  float cCamHeight;
+}
+#endif
+
+void VS(
+        float4 iPos : POSITION,
+        out float2 oScreenPos : TEXCOORD0,
+        out float3 oFarRay : TEXCOORD1,
+        out float4 oPos : OUTPOSITION)
+{
+    float4x3 modelMatrix = iModelMatrix;
+    float3 worldPos = GetWorldPos(modelMatrix);
+    oPos = GetClipPos(worldPos);
+
+    oScreenPos = GetScreenPosPreDiv(oPos);
+    oFarRay = GetFarRay(oPos);
+}
+
+
+void PS(
+        float2 iScreenPos : TEXCOORD0,
+        float3 iFarRay : TeXCOORD1,
+        out float4 oColor : OUTCOLOR0)
+{
+// oColor = float4 (1.0, 1.0, 1.0, 1.0);
+    // If rendering a directional light quad, optimize out the w divide
+
+    #ifdef HWDEPTH
+        float depth = ReconstructDepth(Sample2D (DepthBuffer, iScreenPos).r);
+    #else
+        float depth = DecodeDepth(Sample2D (DepthBuffer, iScreenPos).rgb);
+    #endif
+
+    float3 worldPos = iFarRay * depth;
+
+    float4 diffuseInput = Sample2D (DiffMap, iScreenPos);
+
+
+    float4 projWorldPos = float4 (worldPos, 1.0);
+
+    float depth2 = 1 - clamp (length(worldPos) / cFogDist, 0.0, 1.0);
+    float height = (worldPos.y + cCamHeight) * 0.01;
+
+    float fogFactor =  clamp (exp (-height * depth2 + 0.7) * (1 - exp (depth2 * 2 - 2)), 0, 1);
+    float diffFactor = 1 - fogFactor;//(1-exp(-height*depth2)) * (exp(depth2*3-3));
+    //float skyfactor = (exp((1-depth2)*10-10));
+
+    //float skydiff = 0.5 * (normal.y + 1.0);
+    float3 DirRay = normalize (iFarRay);
+  //  float layer = min(pow((1-abs(DirRay.y)),3.5),1);//*2*(1-diffFactor)-2*(1-diffFactor)
+    //float layer = pow(1-DirRay.y, 1-cCamHeight);
+    float layer = clamp (exp (((1 - DirRay.y) - 1) * (0.5 + cCamHeight * 0.001)), 0, 1);
+    float sunDot = max (dot (DirRay, -1 * cSunDir), 0);
+    float sunAmount = pow (exp ((sunDot - 1) * 5), 1 + (1 - layer) * 60); //exp(sunDot*20*(1-layer)-20*(1-layer)); //pow (sunDot, 1 + (1-layer) * 6);// * (1-diffFactor);//max (dot(DirRay ,-1 * cSunDir ),0);
+
+    //sunAmount *= 1+layer*2;
+    //
+
+    float3 fogColor = 1.0 * cSkyColor * layer + cSunColor * sunAmount; //mix( cSkyColor,cSunColor, sunAmount );// pow(sunAmount,8.0)
+
+    float3 result = diffuseInput.rgb * diffFactor + fogColor * fogFactor; //diffuseInput.rgb * (1-0.95*diffFactor) + fogcolor * fogFactor;
+
+    //result = pow( result ,float3( 1/2.2 ) );
+
+    oColor = float4 (result, 0.0);
+    // float camHeight = (500.0 - cCamHeight) / 500.0; // For testing if the cbuffer input is working
+    // oColor = float4 (camHeight, camHeight, camHeight, 1.0);
+    // oColor = float4 (fogcolor, 0.0); // FogColor is computed correctly
+    // oColor = float4 (depth2, depth2, depth2, 1.0);
+}</code></pre>
+      <p>
+       Here is a screenshot for reference:
+       <br/>
+       <a href="https://drive.google.com/file/d/0Bxa7g0oZu4tEaGRKempONTJfX3c/view?usp=sharing" rel="nofollow noopener">
+        drive.google.com/file/d/0Bxa7g0 … sp=sharing
+       </a>
+      </p>
+      <p>
+       Note: The terrain in the image is using default terrain shader provided by Urho3D.
+       <br/>
+       It might be a silly mistake somewhere due to my limited knowledge in hlsl (maybe depth in range [0,1] instead of [-1,1]?). Please help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="cadaver">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/ca279ebb6e6913836d33ed2ab6856e015c310c0ee4589ca403b0e7e5a2b3f50f.png" width="20"/>
+        cadaver:
+       </div>
+       <blockquote>
+        <p>
+         When Present takes long, it’s nothing unusual, it’s just the gfx driver doing the actual rendering work there.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       <img alt="" height="35" src="../../../images/ababfa31ccc921a7caaaf9e440164cf56af8c00dbdfbbb908a7a70b0679fef11.gif" width="33"/>
+       <img alt="" height="49" src="../../../images/cca7e14847dd0621c791cadc5f8059101fdbd159e676a4c9040ab5fccfc51513.gif" width="48"/>
+       <span class="bbcode-b">
+        CONGRATULATIONS!! THIS IS YOUR 1000th POST!!!
+       </span>
+       <img alt="" height="49" src="../../../images/cca7e14847dd0621c791cadc5f8059101fdbd159e676a4c9040ab5fccfc51513.gif" width="48"/>
+       <img alt="" height="35" src="../../../images/ababfa31ccc921a7caaaf9e440164cf56af8c00dbdfbbb908a7a70b0679fef11.gif" width="33"/>
+      </p>
+      <p>
+       [quote=“theak472009”]I am trying to port the Sky shader code to hlsl.
+       <br/>
+       It works for the models but the sky does not show up (Black background even in day)
+       <br/>
+       Also no lights show up.
+       <br/>
+       [/quote]
+      </p>
+      <p>
+       Hello and welcome to the forum!
+      </p>
+      <p>
+       I’m really glad you got interested in my shaders, but taking them into your project probably not the best idea because:
+      </p>
+      <ol>
+       <li>
+        My code is ugly hacky uncommented mess.
+       </li>
+       <li>
+        I work only in DeferredHWDepth mode and never tested it in any other.
+       </li>
+       <li>
+        Sky-pass requires several parameters to be set by script or code in each frame: sky and sun colors and camera height(because I don’t know a better way to get pixel’s global world height).
+       </li>
+      </ol>
+      <p>
+       Anyway, here is a couple links, that could help you:
+       <br/>
+       Differences between Direct3D and OpenGL in Urho documentation:
+       <br/>
+       <a href="http://urho3d.github.io/documentation/1.4/_a_p_i_differences.html" rel="noopener nofollow ugc">
+        urho3d.github.io/documentation/1 … ences.html
+       </a>
+      </p>
+      <p>
+       Tutorial, I’ve started with:
+       <br/>
+       <a href="http://www.iquilezles.org/www/articles/fog/fog.htm" rel="noopener nofollow ugc">
+        iquilezles.org/www/articles/fog/fog.htm
+       </a>
+      </p>
+      <aside class="quote no-group" data-username="Sinoid">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/984688db7ff4c5c20b844d2ec005f1730c075c6c17ef9794cf9338e8bfc3aeff.png" width="20"/>
+        Sinoid:
+       </div>
+       <blockquote>
+        <p>
+         None of the post processing has any meaningful impact on that.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Whoa, really? I would expect at least Bloom to affect fps, on my machine it eats more than rest of the render.
+      </p>
+      <p>
+       Does looking upwards, affects fps?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Error export 3d model materials in 2.83 blender
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Error export 3d model materials in 2.83 blender
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Hi Guys,
+       <br/>
+       I’m using new exporter from 1vanka branch to export imported obj file.
+      </p>
+      <p>
+       The model and texture are exported fine.  The material file has problem exporting.
+      </p>
+      <p>
+       I get an error in exporting material file like below using both eeve and cycle renderers.
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="zRWJse0HXYdOKfDy8lNjPoCzqNt" height="265" src="../../../images/108ffe5f0d9d800d82a3fa4015ab354c3a3443232de55aab386b852c6b356ac8.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       You can not use any material. You need clone and tune predefined materials as shown on video
+       <a class="inline-onebox" href="https://discourse.urho3d.io/t/exporting-materials-from-blender-2-83-to-urho3d/5845">
+        Exporting materials from Blender 2.83 to Urho3D
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       I see, is this always the case with existing exporter?
+      </p>
+      <p>
+       Thanks I’ll check the other video out.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Converting ANY cycles shader node tree required generating Urho’s shader on the fly. In Urho we have 3 predefined shaders, so in Blender you need use predefined materials wich corresponds to existed Urho’S shaders.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       I see, because I was using the Principled BSDF material. We don’t have that.
+      </p>
+      <p>
+       Sorry, I never have to deal with shader, so my knowledge is limitted.  But which three shaders are you referred to.   LitSolid, PBRLitSolid, Basic or BRDF.
+      </p>
+      <p>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       LitSolid, Unlit, PBR
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

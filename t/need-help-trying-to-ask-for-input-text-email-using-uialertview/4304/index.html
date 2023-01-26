@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Need help, trying to ask for input text (email) using UIAlertView
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Need help, trying to ask for input text (email) using UIAlertView
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e4def68a42c361a1f92d069c9a23eefc0309432719d624376c23127331c36654.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      galileolajara
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, I’m wondering if someone knows how can I ask for input text popout using UIAlert. I have a single “.m” file which I use to open url, so basically I have a setup where I can call native iOS functions.
+      </p>
+      <p>
+       `
+       <br/>
+       <span class="hashtag">
+        #import
+       </span>
+       &lt;sys/sysctl.h&gt;
+       <br/>
+       <span class="hashtag">
+        #import
+       </span>
+       “UIKit/UIKit.h”
+      </p>
+      <p>
+       int urho3d_open_url(const char* url) {
+       <br/>
+       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@“Get notified on our launch” message:@“Enter your email address” preferredStyle:UIAlertControllerStyleAlert];
+       <br/>
+       [alert addAction:[UIAlertAction actionWithTitle:@“Subscribe” style:UIAlertActionStyleDefault handler:nil]];
+       <br/>
+       [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+       <br/>
+       textField.placeholder = @“Enter email address”;
+       <br/>
+       textField.secureTextEntry = NO;
+       <br/>
+       }];
+       <br/>
+       [self presentViewController:alert animated:YES completion:nil];
+       <br/>
+       }
+      </p>
+      <p>
+       int urho3d_open_url(const char* url) {
+       <br/>
+       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:url]]];
+       <br/>
+       return 0;
+       <br/>
+       }
+       <br/>
+       `
+      </p>
+      <p>
+       I’m receiving an error from Xcode saying that “self” is undefined.
+      </p>
+      <p>
+       I also have no idea how to get the string that the user typed. If this would be in javascript, what I’m trying to do is simply:
+      </p>
+      <p>
+       var email = prompt(“Enter your email”,
+       <a>
+        "sample@gmail.com
+       </a>
+       ");
+      </p>
+      <p>
+       Any help would be appreaciated!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Transparent object
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Transparent object
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7cae8a659af55c20edb85afbf2ccfe53e13c00b02f4a77e13a5dc1e4e656d87d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SteveU3D
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       I try to apply alpha technique to an object but I don’t get the expected result.
+      </p>
+      <p>
+       <img height="418" src="../../../images/05da36c280038c0896447b9638643a1428d986509e3c274fb577a0824f83c1f5.png" width="690"/>
+      </p>
+      <p>
+       On the image, on the left, I use NoTextureVCol.xml as technique
+      </p>
+      <pre><code>&lt;technique vs="LitSolid" ps="LitSolid" vsdefines="NOUV VERTEXCOLOR" psdefines="VERTEXCOLOR" &gt;
+    &lt;pass name="base" /&gt;
+    &lt;pass name="litbase" psdefines="AMBIENT" /&gt;
+    &lt;pass name="light" depthtest="equal" depthwrite="false" blend="add" /&gt;
+    &lt;pass name="prepass" psdefines="PREPASS" /&gt;
+    &lt;pass name="material" psdefines="MATERIAL" depthtest="equal" depthwrite="false" /&gt;
+    &lt;pass name="deferred" psdefines="DEFERRED" /&gt;
+    &lt;pass name="depth" vs="Depth" ps="Depth" /&gt;
+    &lt;pass name="shadow" vs="Shadow" ps="Shadow" /&gt;
+&lt;/technique&gt;
+</code></pre>
+      <p>
+       and on the right I use NoTextureVColAddAlpha.xml
+      </p>
+      <pre><code>&lt;technique vs="Unlit" ps="Unlit" vsdefines="VERTEXCOLOR NOUV" psdefines="VERTEXCOLOR"&gt;
+    &lt;pass name="alpha" depthwrite="false" blend="addalpha" /&gt;
+&lt;/technique&gt;
+</code></pre>
+      <p>
+       I put a box behind the face and it can be seen when I use NoTextureVColAddAlpha.xml. It’s ok but the problem is that the different triangles on the face are not visible anymore. So how to combine those two techniques to have the left model but with transparency?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       I think you don’t want to use additive blending. You need something like “NoTextureVColAlpha”.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7cae8a659af55c20edb85afbf2ccfe53e13c00b02f4a77e13a5dc1e4e656d87d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SteveU3D
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       Sorry but I don’t get it. It tried with :
+      </p>
+      <pre><code>&lt;technique vs="Unlit" ps="Unlit" vsdefines="VERTEXCOLOR NOUV" psdefines="VERTEXCOLOR"&gt;
+&lt;pass name="alpha" depthwrite="false" blend="alpha" /&gt;
+</code></pre>
+      <p>
+       but it gives the same result as the right image. I have transparency but the edges are not visible.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Based off of the DiffAlpha.xml technique, I think you need to add the litalpha pass:
+      </p>
+      <pre><code class="lang-auto">&lt;pass name="litalpha" depthwrite="false" blend="addalpha" /&gt;
+</code></pre>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED] Setting a Vector2 individual property
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED] Setting a Vector2 individual property
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Trying to scale a sprite (healthBar) in lua using one of these lines of code, I experience a weird behavior:
+      </p>
+      <pre><code class="lang-auto">		healthBar.scale.x = healthBar.scale.x - 1 / 10
+		healthBar.scale = healthBar.scale - Vector2(1 / 10, 0)</code></pre>
+      <p>
+       Both lines return the correct scale but only the last one ‘updates’ the UIElement’s scale.
+      </p>
+      <p>
+       Same code in AngelScript complains that scale.x is read-only.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1bca8162c8fb8bd8bbf1363c8e32df234b5a88bc6b94675ee9e4989fc5bc09c8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      aster2013
+     </div>
+     <div class="post_content">
+      <pre><code class="lang-auto">It look like:
+[code]
+    Vector2&amp; scale = healthBar-&gt;GetScale();
+    scale.x = scale.x - 1.0f / 10.0f;
+[/code]
+
+But when you call:
+[code]healthBar.scale = healthBar.scale - Vector2(1 / 10, 0)[/code]]
+It look like:
+[code]
+    Vector2&amp; scale = healthBar-&gt;GetScale();
+    healBar-&gt;SetScale(scale - Vector2(1.0f / 10.0f, 0.0f));
+[/code]
+
+    
+
+It will call healthBar:GetScale(), then set the scale's x value.</code></pre>
+      <p>
+       It look like:
+      </p>
+      <pre><code class="lang-auto">    Vector2&amp; scale = healthBar-&gt;GetScale();
+    scale.x = scale.x - 1.0f / 10.0f;</code></pre>
+      <p>
+       But when you call:
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       It look like:
+      </p>
+      <pre><code class="lang-auto">    Vector2&amp; scale = healthBar-&gt;GetScale();
+    healBar-&gt;SetScale(scale - Vector2(1.0f / 10.0f, 0.0f));</code></pre>
+      <p>
+       It will call healthBar:GetScale(), then set the scale’s x value.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks Aster, now I understand what’s going on.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

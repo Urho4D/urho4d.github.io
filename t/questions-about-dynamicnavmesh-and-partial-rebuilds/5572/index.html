@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Questions about DynamicNavMesh and partial rebuilds
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Questions about DynamicNavMesh and partial rebuilds
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Hey guys
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       I’ve just implemented an orientation tool in my ingame editor project.
+       <br/>
+       The current test scene includes a dynamic navmesh.
+      </p>
+      <p>
+       I have two questions.
+      </p>
+      <p>
+       <span class="hashtag">
+        #1
+       </span>
+       - how could I programatically deternine if a Drawable is Navigable, without specifically adding Navigable components everywhere?
+      </p>
+      <p>
+       <span class="hashtag">
+        #2
+       </span>
+       - When I rotate some Navigable in my scene, I perform a partial rebuild of the navmesh, using the boundingbox of the subject. This works as expected…
+       <br/>
+       Should I assume that any nearby Offmesh Links are NOT re-evaluated once that local region of the navmesh has been re-established?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

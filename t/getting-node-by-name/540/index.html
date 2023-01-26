@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Getting node by name
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Getting node by name
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       After a quick look at docs, I couldnt find a way to get a node from the scene by its name, is that possible?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       Scene or Node have a method called GetNode(String name, bool recursive)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Take also a look at GetChild() function (it is used  in various samples).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       According to docs, scene doesnt has such GetNode implementation, only one that uses node id. But node does has GetChild in all flavours.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Scene inherits all the GetChild() methods from Node class.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

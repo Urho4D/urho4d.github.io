@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How should I remove nodes after collision?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How should I remove nodes after collision?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/66a49b3c7ef9cd42ed2bcb322edb3bcf87d8ca340de0cd4726cc57576a4c63f2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      RobertoOG
+     </div>
+     <div class="post_content">
+      <p>
+       I’d like my character to remove a pickup’s node he collides with.
+      </p>
+      <p>
+       Currently I listen to collision events in my character and the pickup but if I do Remove(node_) in the pickup sometimes the collision event is not listened by the character.
+      </p>
+      <p>
+       I was thinking of having an extra boolean member in the pickup, which is made true in the collision listener, and then remove the node in next update cycle, but I’m wondering if there is a better way.
+      </p>
+      <p>
+       Thank you!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

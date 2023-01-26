@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Compiling to android
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Compiling to android
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00c457a18cebaed5bfc2d08f4f1fc3562ae6dcc83b81fd849273232eccce930.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lexx
+     </div>
+     <div class="post_content">
+      <p>
+       I have a problem while compiling to android (w7, newest android sdk and ndk, newest urho3d from github).
+      </p>
+      <ul>
+       <li>
+        I setup some paths:
+       </li>
+      </ul>
+      <blockquote>
+       <p>
+        set path="%PATH%;c:\android-ndk-r15\prebuilt\windows-x86_64\bin;C:\android-ndk-r15\build;C:\Program Files (x86)\Android\android-sdk\tools;C:\Program Files (x86)\Android\android-sdk\tools\bin;C:\Program Files (x86)\Android\android-sdk\platform-tools"
+        <br/>
+        set path="%PATH%;C:\Program Files\CMake\bin"
+       </p>
+       <p>
+        set ANDROID_NDK=c:\android-ndk-r15
+       </p>
+      </blockquote>
+      <blockquote>
+       <p>
+        call cmake_android.bat  Build
+       </p>
+      </blockquote>
+      <p>
+       I think cmake starts right:
+      </p>
+      <blockquote>
+       <p>
+        – The C compiler identification is Clang 5.0.300080
+        <br/>
+        – The CXX compiler identification is Clang 5.0.300080
+        <br/>
+        – Check for working C compiler: c:/android-ndk-r15/toolchains/llvm/prebuilt/win
+        <br/>
+        dows-x86_64/bin/clang.exe
+        <br/>
+        – Check for working C compiler: c:/android-ndk-r15/toolchains/llvm/prebuilt/win
+        <br/>
+        dows-x86_64/bin/clang.exe – works
+        <br/>
+        – Detecting C compiler ABI info
+        <br/>
+        – Detecting C compiler ABI info - done
+        <br/>
+        – Detecting C compile features
+        <br/>
+        – Detecting C compile features - done
+        <br/>
+        – Check for working CXX compiler: c:/android-ndk-r15/toolchains/llvm/prebuilt/w
+        <br/>
+        indows-x86_64/bin/clang++.exe
+        <br/>
+        – Check for working CXX compiler: c:/android-ndk-r15/toolchains/llvm/prebuilt/w
+        <br/>
+        indows-x86_64/bin/clang++.exe – works
+        <br/>
+        – Detecting CXX compiler ABI info
+        <br/>
+        – Detecting CXX compiler ABI info - done
+        <br/>
+        – Detecting CXX compile features
+        <br/>
+        – Detecting CXX compile features - done
+        <br/>
+        – Looking for stdint.h
+        <br/>
+        – Looking for stdint.h - found
+        <br/>
+        – Looking for inttypes.h
+       </p>
+      </blockquote>
+      <p>
+       etc etc…
+      </p>
+      <p>
+       But in the end:
+      </p>
+      <blockquote>
+       <p>
+        – The ASM compiler identification is GNU
+        <br/>
+        – Found assembler: c:/android-ndk-r15/toolchains/arm-linux-androideabi-4.9/preb
+        <br/>
+        uilt/windows-x86_64/bin/arm-linux-androideabi-gcc.exe
+        <br/>
+        – Performing Test HAVE_NATIVE_COMPILER
+        <br/>
+        – Performing Test HAVE_NATIVE_COMPILER - Failed
+        <br/>
+        CMake Error at CMake/Modules/CheckCompilerToolchain.cmake:134 (message):
+        <br/>
+        Could not find native compiler toolchain.  This is usually caused by wrong
+        <br/>
+        PATH env-var value.
+       </p>
+      </blockquote>
+      <blockquote>
+       <p>
+        CMake Error in CMakeLists.txt:
+       </p>
+      </blockquote>
+      <blockquote>
+       <pre><code>No CMAKE_C_COMPILER could be found.
+</code></pre>
+      </blockquote>
+      <blockquote>
+       <pre><code>Tell CMake where to find the compiler by setting either the environment
+variable "CC" or the CMake cache entry CMAKE_C_COMPILER to the full path to
+the compiler, or to the compiler name if it is in the PATH.
+</code></pre>
+      </blockquote>
+      <blockquote>
+       <p>
+        CMake Error in CMakeLists.txt:
+       </p>
+      </blockquote>
+      <blockquote>
+       <pre><code>No CMAKE_CXX_COMPILER could be found.
+</code></pre>
+      </blockquote>
+      <blockquote>
+       <pre><code>Tell CMake where to find the compiler by setting either the environment
+variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path
+to the compiler, or to the compiler name if it is in the PATH.
+</code></pre>
+      </blockquote>
+      <blockquote>
+       <p>
+        Call Stack (most recent call first):
+        <br/>
+        Source/Urho3D/CMakeLists.txt:195 (check_native_compiler_exist)
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       That error is typically happened in Windows host system. Our build system is designed in such a way that it builds all the targets (either cross-compiling or native one), plus all the build tools that it required for the build itself on the fly in a single “make” process. The tricky part is the building of the build tool, which of course has to be built as native target using a native compiler toolchain. Now back to your problem, when using Windows host system to target Android platform, you actually need two compiler toolchains: Android NDK and MinGW (or something like that) in the PATH so that CMake can find them. Good luck.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00c457a18cebaed5bfc2d08f4f1fc3562ae6dcc83b81fd849273232eccce930.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lexx
+     </div>
+     <div class="post_content">
+      <p>
+       Installed MinGW and got libraries and examples compiled.
+      </p>
+      <p>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

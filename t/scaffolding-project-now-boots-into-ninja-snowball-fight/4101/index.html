@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Scaffolding Project now boots into ninja snowball fight
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Scaffolding Project now boots into ninja snowball fight
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/661f15f962846e44c0c266c23676d7c8b790e8694ece29b45dc75b601d782fd4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      KamiGrave
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve just pulled the latest ~17 commits and rebuilt the Urho3D library, but now my application just boots into the Ninja Snowball demo and not into my game.
+      </p>
+      <p>
+       I had previously build my game with the scaffolding project. I was having issues with physics and thought I’d best update to make sure I had latest, and now I’m not entirely sure how to get my version of the Urho3DPlayer in my project to run. There appears to be no calls into my code at all.
+      </p>
+      <p>
+       Any help is appreciated.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/661f15f962846e44c0c266c23676d7c8b790e8694ece29b45dc75b601d782fd4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      KamiGrave
+     </div>
+     <div class="post_content">
+      <p>
+       False alarm.
+      </p>
+      <p>
+       It turns out Visual Studio messed up some include directories, so Urho3D wasn’t to blame. Just some side effect from having compiled the library and having the original scaffolding Urho3DPlayer still around in the default location (I had moved it to tidy it up a bit but looks like I didn’t delete the originals).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

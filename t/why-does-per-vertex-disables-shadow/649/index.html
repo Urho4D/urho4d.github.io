@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Why does per vertex disables shadow
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Why does per vertex disables shadow
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       While editing my scenes I found that enabling “Per vertex” in the light properties disables shadows for everything. First I thought it was that intel gfraphics didnt support something, but later at home, I confirmed it with my R7 250. Why does this happens, are they mutually exclusive?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       As the attribute name implies, it switches light calculation for that light completely to the vertex shader, while shadows are a (per-pixel) operation executed in the pixel shader, so the end result is that per vertex lights cannot produce shadows.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       then, whats the advantage of per vertex lights? Perhaps having better perfomance for lights that wont cast shadows?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, better performance for
+      </p>
+      <ul>
+       <li>
+        simpler pixel shader code
+       </li>
+       <li>
+        less batches in forward rendering (normally each per-pixel light is an additional additive pass, but vertex lights are all performed at once in the ambient pass)
+       </li>
+      </ul>
+      <p>
+       The main concern is whether the effect of the light looks good enough with per vertex lighting. For example, if you have normal mapping and specular in your material, those will not be included in per vertex light calculations either, so it arguably looks uglier. Light attenuation will also be inaccurate, though this depends on how closely spaced your vertices are. For something like adjusting the ambient color subtly, vertex lights can work OK.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

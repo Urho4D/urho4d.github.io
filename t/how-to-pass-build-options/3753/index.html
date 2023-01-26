@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to pass build options?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to pass build options?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f9703ffb00c8847d65024351ebe220eaf54a66e1de25c2bb92c2a600498318a7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SeeSoftware
+     </div>
+     <div class="post_content">
+      <p>
+       Im trying to build Urho3D on Windows myself using the build script but i dont know how to pass aditional parameters into the build options, i currently have this:
+      </p>
+      <pre><code>cmake_vs2017.bat build64 -URHO3D_64BIT=1 -URHO3D_LUAJIT=1 -URHO3D_SAFE_LUA=1 -URHO3D_C++11=1 -URHO3D_SSE=1 -URHO3D_D3D11=1 -URHO3D_LIB_TYPE=STATIC  
+</code></pre>
+      <p>
+       it works but it doesnt generate a 64bit vs2017 project even though i have  -URHO3D_64BIT=1 specified.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       You have to prepend -D to the option. -DURHO3D_64BIT=1 etc… See
+       <a href="https://urho3d.github.io/documentation/HEAD/_building.html" rel="nofollow noopener">
+        https://urho3d.github.io/documentation/HEAD/_building.html
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f9703ffb00c8847d65024351ebe220eaf54a66e1de25c2bb92c2a600498318a7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SeeSoftware
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the answer !
+       <br/>
+       but is it normal to have A LOT of Warnings while building because i got about 300 warnings about type conversion and i even got 3 errors but the library still compiled successfully.
+       <br/>
+       some screen:
+      </p>
+      <p>
+       <img src="../../../images/0b4db9282f6a466c05152408b27ce9040c4913a03f3c30683b40c03a41602c35.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       The compiler warnings are normal, especially when they are from 3rd-party library dependency. Although we could fix the code to get rid of those warnings, we try not to do so because it will make the 3rd-party library upgrade process more difficult than they already are. As for compiler error, there should not be any, but I haven’t tried to build Urho using VS lately. Show us what are those errors.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f9703ffb00c8847d65024351ebe220eaf54a66e1de25c2bb92c2a600498318a7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SeeSoftware
+     </div>
+     <div class="post_content">
+      <p>
+       its something with the Assimp lib
+      </p>
+      <p>
+       <img src="../../../images/8cd2bcb57a24fc63ff0ed8be8528711e167ef2dab043f38f87f227fc14938388.png"/>
+      </p>
+      <p>
+       it says that ‘!=’ is not valid for a struct and that ‘!=’ wasnt overloaded for type Assimp::WordIterator
+       <br/>
+       but its like in the algorithm file
+      </p>
+      <p>
+       <img src="../../../images/804d78ff722cd4bc48001b7a9587e91a0abe61b760c3b2bc092da8c40d0855bf.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       We recently just upgraded Assimp to version 4.0.1 form 3.2, and the X3D support is a new addition in version 4.0.0. So, it would appear you have found a bug when building that on VS. The latest Assimp build fine on Linux using GCC with all the options enabled. You can raise this as an issue in our issue tracker or better yet, try to fix it and submit it as a PR.
+      </p>
+      <p>
+       The Assimp is a dependency for AssetImporter tool only.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f9703ffb00c8847d65024351ebe220eaf54a66e1de25c2bb92c2a600498318a7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SeeSoftware
+     </div>
+     <div class="post_content">
+      <p>
+       apparently there is allready a issue open for that exact problem
+      </p>
+      <aside class="onebox githubissue">
+       <header class="source">
+        <a href="https://github.com/assimp/assimp/issues/1548" rel="nofollow noopener" target="_blank">
+         github.com/assimp/assimp
+        </a>
+       </header>
+       <article class="onebox-body">
+        <a href="https://github.com/rathaROG" rel="nofollow noopener">
+         <img class="thumbnail onebox-avatar" height="96" src="../../../images/c493f55ff396277efe77a791660915361f5c8161117f5140c7383fb63fde8c0f.jpg" width="96"/>
+        </a>
+        <h4>
+         <a href="https://github.com/assimp/assimp/issues/1548" rel="nofollow noopener" target="_blank">
+          Issue: Microsoft Visual Studio 2017 Building Issue C2678 / C2088
+         </a>
+        </h4>
+        <div class="date" style="margin-top:10px;">
+         <div class="user" style="margin-top:10px;">
+          opened by
+          <a href="https://github.com/rathaROG" rel="nofollow noopener" target="_blank">
+           rathaROG
+          </a>
+          on
+          <a href="https://github.com/assimp/assimp/issues/1548" rel="nofollow noopener" target="_blank">
+           2017-11-06
+          </a>
+         </div>
+         <div class="user">
+         </div>
+        </div>
+        <pre class="content" style="white-space: pre-wrap;">Hello! I've got this problem while building with Visual Studio 2017 on Windows 10 64-bit.
+3&gt;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.11.25503\include\algorithm(909): error C2678:...</pre>
+        <div class="labels">
+         <span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">
+          bug
+         </span>
+        </div>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       its probably going to be fixed in the next release
+       <br/>
+       in the meantime im going to fallback to visual studio 2015
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the link. I have raised it as a new issue, so other VS users could find it if they hit the same problem.
+       <br/>
+       <aside class="onebox githubissue">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/issues/2175" rel="nofollow noopener" target="_blank">
+          github.com/urho3d/Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <a href="https://github.com/weitjong" rel="nofollow noopener">
+          <img class="thumbnail onebox-avatar" height="96" src="../../../images/72001665260457cfb508904adf006f31060bf9595dfe36376501e9afebe12c78.jpg" width="96"/>
+         </a>
+         <h4>
+          <a href="https://github.com/urho3d/Urho3D/issues/2175" rel="nofollow noopener" target="_blank">
+           Issue: VS 2017 having problem compiling Assimp 4.0.1
+          </a>
+         </h4>
+         <div class="date" style="margin-top:10px;">
+          <div class="user" style="margin-top:10px;">
+           opened by
+           <a href="https://github.com/weitjong" rel="nofollow noopener" target="_blank">
+            weitjong
+           </a>
+           on
+           <a href="https://github.com/urho3d/Urho3D/issues/2175" rel="nofollow noopener" target="_blank">
+            2017-11-19
+           </a>
+          </div>
+          <div class="user">
+           closed by
+           <a href="https://github.com/weitjong" rel="nofollow noopener" target="_blank">
+            weitjong
+           </a>
+           on
+           <a href="https://github.com/urho3d/Urho3D/issues/2175" rel="nofollow noopener" target="_blank">
+            2017-12-15
+           </a>
+          </div>
+         </div>
+         <pre class="content" style="white-space: pre-wrap;">https://discourse.urho3d.io/t/how-to-pass-build-options/3753/5
+See assimp/assimp#1548</pre>
+         <div class="labels">
+          <span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">
+           bug
+          </span>
+         </div>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

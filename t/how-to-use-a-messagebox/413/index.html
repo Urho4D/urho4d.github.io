@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to use a MessageBox?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to use a MessageBox?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1cfd2c8e7543733b11af30970eb6435396fa2f013b4a7064d4bc410cf88143e4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      scorvi
+     </div>
+     <div class="post_content">
+      <p>
+       hey,
+      </p>
+      <p>
+       i want to use the MessageBox class in a c++ project but i get every time an Error !!
+       <br/>
+       the error is at:
+      </p>
+      <p>
+       <code>
+        void RefCounted::ReleaseRef()
+{
+    assert(refCount_-&gt;refs_ &gt; 0);
+    (refCount_-&gt;refs_)--;
+    if (!refCount_-&gt;refs_)
+        delete this;
+}
+       </code>
+       <br/>
+       refCount is zero … but i dont know what i did wrong!
+      </p>
+      <p>
+       i am using as a quit message:
+      </p>
+      <pre><code class="lang-auto">void SimpleSnake::Quit()
+{
+
+	GetSubsystem&lt;UI&gt;()-&gt;GetCursor()-&gt;SetVisible(true);
+
+	messageBox_ = new Urho3D::MessageBox(context_, "Do you really want to exit the Game ?", "Quit Game ?");
+	if (messageBox_-&gt;GetWindow() != NULL)
+	{
+		Button* cancelButton = (Button*)messageBox_-&gt;GetWindow()-&gt;GetChild("CancelButton", true);
+		cancelButton-&gt;SetVisible(true);
+		cancelButton-&gt;SetFocus(true);
+		SubscribeToEvent(messageBox_, E_MESSAGEACK, HANDLER(SimpleSnake, HandleQuitMessageAck));
+	}
+}
+
+void SimpleSnake::HandleQuitMessageAck(StringHash eventType, VariantMap&amp; eventData)
+{
+	using namespace MessageACK;
+
+	bool ok_ = eventData[P_OK].GetBool();
+	
+
+	GetSubsystem&lt;UI&gt;()-&gt;GetCursor()-&gt;SetVisible(false);
+
+
+	if (ok_)
+	{
+		engine_-&gt;Exit();
+	}
+	
+}</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       MessageBox is a bit unusual class, as it destroys itself after it has been acknowledged. This is done by the “this-&gt;ReleaseRef()” call in the following code:
+      </p>
+      <pre><code class="lang-auto">void MessageBox::HandleMessageAcknowledged(StringHash eventType, VariantMap&amp; eventData)
+{
+    using namespace MessageACK;
+
+    VariantMap&amp; newEventData = GetEventDataMap();
+    newEventData[P_OK] = eventData[Released::P_ELEMENT] == okButton_;
+    SendEvent(E_MESSAGEACK, newEventData);
+
+    this-&gt;ReleaseRef();
+}</code></pre>
+      <p>
+       Calling ReleaseRef() is illegal and will assert/crash if the object is not being currently held in a SharedPtr. I assume that your messageBox_ member variable is a raw pointer? In that case, changing it to a SharedPtr should fix the issue.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1cfd2c8e7543733b11af30970eb6435396fa2f013b4a7064d4bc410cf88143e4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      scorvi
+     </div>
+     <div class="post_content">
+      <p>
+       yes at first i had a raw pointer and i got an assert/crash at the MessageACK Event.
+      </p>
+      <p>
+       now i am using the SharedPtr but i get an  assert/crash the second time i call Quit() …  because
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       calls ReleaseRef() …
+       <br/>
+       how do i use it the right way ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I agree with Lasse that the MessageBox class is a little unusual. It was created for showing modal dialog box in the Editor via AngelScript API binding. As it is now, it would be a little clumsy to use in C++ language directly. Try not to use SharedPtr instance variable. Just declare the SharedPtr as local variable to your Quit() method and call AddRef() before the local variable goes out of scope. As already pointed out, the class will destroy itself later on when it has been acknowledged by calling ReleaseRef().
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1cfd2c8e7543733b11af30970eb6435396fa2f013b4a7064d4bc410cf88143e4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      scorvi
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         I agree with Lasse that the MessageBox class is a little unusual. It was created for showing modal dialog box in the Editor via AngelScript API binding. As it is now, it would be a little clumsy to use in C++ language directly. Try not to use SharedPtr instance variable. Just declare the SharedPtr as local variable to your Quit() method and call AddRef() before the local variable goes out of scope. As already pointed out, the class will destroy itself later on when it has been acknowledged by calling ReleaseRef().
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       i am doing it now this way, thx!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       Hello.
+      </p>
+      <p>
+       Is this advice somehow still valid in 2018?
+      </p>
+      <p>
+       I try smth. like:
+      </p>
+      <pre><code class="lang-auto"> SharedPtr&lt;Urho3D::MessageBox&gt; msgbox = new Urho3D::MessageBox(context_, "Check the USB connection", "USB AIR GAP");
+</code></pre>
+      <p>
+       which yields:
+      </p>
+      <blockquote>
+       <p>
+        D:\QtProjects\Urho3d\CPS_GAME\Navigation.cpp:1457: Fehler: C2039: “MessageBoxW”: is not an element von “Urho3D”
+       </p>
+      </blockquote>
+      <p>
+       What shall I do?
+      </p>
+      <p>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="6" data-topic="413">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/e4222e5e29241ad601aa8fc7b5f32fb54c04378d6f4fa92aa037c70bc8c64370.png" width="20"/>
+        sirop:
+       </div>
+       <blockquote>
+        <p>
+         What shall I do?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Congratulations! You triggered WinAPI mine and died.
+       <br/>
+       Good way: Ensure that no Windows.h bullshit is exposed into your source code. Probably impossible.
+       <br/>
+       Bad way: “Escape” your code like this
+       <code>
+        (Urho3D::MessageBox)
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       See. So it is easier to make up  one’s own ad hoc MessageBox out of UIElement and some Text.
+       <br/>
+       That’s which I’ll do.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Huh. Nope, it’s easier to escape these terrible WinApi macros.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Sorry, I was wrong about escaping, it won’t work in this case.
+       <br/>
+       Well, the simplest solution is to
+       <code>
+        #undef MessageBox
+       </code>
+       after your C++ includes. Thanks MS for this shitty WinAPI design.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       Yes,  I had my doubts already, but was too shy to reask.
+       <br/>
+       Your latest post with
+      </p>
+      <blockquote>
+       <p>
+        <span class="hashtag">
+         #undef
+        </span>
+        MessageBox after your C++ includes
+       </p>
+      </blockquote>
+      <p>
+       lets my code compile now.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Oh the ugly WinAPI… if it’s not enough to fiddle with gibberish C spagetti, they had to use lowercase macros.Seriously… Who the hell would use lowercase macros ? And if that’s not enough already, they had to use the most generic keywords like MessageBox , min , max. I really want to speak with the idiot who greenlit these dumb ideas… How dumb one can be defining a macro NOMINMAX to actually NOT HAVE min and max defined ? That’s like asking someone “Hey , you don’t want a beer ?” and expecting a yes or no as answer…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":rofl:" class="emoji" src="../../../images/d86c7993513087b67699be76acb88d122460facdce0a879b38f302ac6857a895.png" title=":rofl:"/>
+       i tried methods mentioned in this thread, but still cant get rid of it
+       <br/>
+       <img alt="image" height="41" src="../../../images/e222e08a8dfc1d0d95ce43cebd7edfbb7b29fb6319189d08074ac9773f4abbc6.jpeg" width="690"/>
+       <br/>
+       does MessageBox work with precompiled urho3d?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       I suspect (given that the error is about some MessageBox
+       <strong>
+        W
+       </strong>
+       ) that you’re including the WinAPI files that have the define, then including the Urho MessageBox include, then you have your
+       <span class="hashtag">
+        #undef
+       </span>
+       . If that’s the case, move the undef before the Urho includes and see if that works.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       im using precomplied headers for external libraries, this is my pch for urho3d
+      </p>
+      <pre><code>#if defined __cplusplus
+
+//#undef MessageBox
+#define URHO3D_PHYSICS true
+#define URHO3D_LOGGING
+#include &lt;Urho3D/Urho3DAll.h&gt;
+#include &lt;Urho3D/UI/MessageBox.h&gt;
+
+#endif
+</code></pre>
+      <p>
+       this gives the above compile error, if i uncomment the undef, it says
+       <code>
+        'MessageBox': is not a member of 'Urho3D'
+       </code>
+      </p>
+      <p>
+       btw im using qt creator as ide, not sure if its the culprit.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       oh and i only use Poco and Urho3D and those c++ standard libraries, no Qt or windows ones
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       Unfortunately the fix:
+      </p>
+      <pre><code class="lang-auto">#ifdef MessageBox
+#undef MessageBox
+#endif
+</code></pre>
+      <p>
+       doesn’t always work for me too, this issue keeps appearing from time to time with my projects. I would like to suggest changing
+       <code>
+        MessageBox
+       </code>
+       object to something else like
+       <code>
+        PopupMessage
+       </code>
+       or
+       <code>
+        NonWinApiMessageBox
+       </code>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

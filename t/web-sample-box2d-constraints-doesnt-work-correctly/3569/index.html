@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Web Sample Box2D Constraints - Doesn’t Work Correctly
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Web Sample Box2D Constraints - Doesn’t Work Correctly
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/266964ee4aa0a1176776b4bc94219f389c1b6f53d3732ee99ff3ed68ccb1afbc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Synex
+     </div>
+     <div class="post_content">
+      <p>
+       Hey guys, just to let you know the Box2D constraints sample hosted at
+       <a href="https://urho3d.github.io/samples/32_Urho2DConstraints.html" rel="nofollow noopener">
+        https://urho3d.github.io/samples/32_Urho2DConstraints.html
+       </a>
+       doesn’t work correctly.
+      </p>
+      <p>
+       Tested on Firefox
+       <em>
+        (55.0.3 (32-bit))
+       </em>
+       and Chrome
+       <em>
+        (Version 60.0.3112.113 (Official Build) (64-bit))
+       </em>
+       , I am unable to drag the footballs around and test the constraints. Keyboard input seems to work so I unsure why mouse input wouldn’t work.
+      </p>
+      <p>
+       I would investigate further, but I don’t have much time on my hands but I thought its worth mentioning.
+      </p>
+      <p>
+       In the meantime can anyone else confirm this issue?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Chrome 60.0. Confirmed. Emscripten is such a pain…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I think the problem is with the sample or the engine itself and has nothing to do with the compiler toolchain or the viability of the Web platform. In general all our samples were originally written just for native desktop platform. Over time when we added additional support for the other platforms, Rasperry-PI, Web, tvOS, you name it, we didn’t retrofit them one by one to ensure each sample works as intended. Contribution is welcome.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

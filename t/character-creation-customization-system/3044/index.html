@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Character creation/customization system
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Character creation/customization system
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, all!
+       <br/>
+       Have anybody done character creation systems based on morphs?
+       <br/>
+       Like ability to set height for character, leg size, face features, etc.
+       <br/>
+       What is required to do so? I know I can make morph target (shape key) for each change needed,
+       <br/>
+       but I see that some changes to skeleton are required, is there some articles on topic to
+       <br/>
+       look into, or examples, or anything? I don’t need anything fancy, something average should do.
+      </p>
+      <p>
+       I know I can use bones to set basic macro parameters like height, arms/legs size, etc. but these
+       <br/>
+       do affect a lot and require some complex calculations to look right. I knwo tweaking these I eventually can get
+       <br/>
+       to right direction, but I hope somebody did this and could tell about how to do it properly from start.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       <a class="onebox" href="http://www.manuelbastioni.com/index.php" rel="nofollow noopener" target="_blank">
+        http://www.manuelbastioni.com/index.php
+       </a>
+      </p>
+      <p>
+       <a class="onebox" href="http://blog.machinimatrix.org/2015/12/17/avastar-2/" rel="nofollow noopener" target="_blank">
+        http://blog.machinimatrix.org/2015/12/17/avastar-2/
+       </a>
+      </p>
+      <p>
+       <a class="onebox" href="http://www.geocities.jp/higuchuu4/index_e.htm" rel="nofollow noopener" target="_blank">
+        http://www.geocities.jp/higuchuu4/index_e.htm
+       </a>
+      </p>
+      <p>
+       <a class="onebox" href="http://www.tombraiderforums.com/showthread.php?t=147100" rel="nofollow noopener" target="_blank">
+        http://www.tombraiderforums.com/showthread.php?t=147100
+       </a>
+      </p>
+      <p>
+       these are free ones. Of course, if you want you can shop for iclone character generator / daz 3d / poser, for some ready made content.
+      </p>
+      <p>
+       And obviously Maya / Max has rigging, animations…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, these are already completed character generators (you forgot makehuman btw).
+       <br/>
+       Thanks for the links.
+       <br/>
+       I want to do in-game character generator and trying to guess what is needed to do that…
+       <br/>
+       The reason for doing it in game - character customization is fun for player. Also, if NPCs look diffrent
+       <br/>
+       game feels more diverse and look better. I’m aware of some commercial systems in Unity,
+       <br/>
+       but I want to make my own, but I have not enough knowledge to make this effectively yet…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       What about starting with a base? that is, a master model?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Also the license for Manuel Bastioni Lab meshes is AGPL, which might not suit all.
+       <br/>
+       Makehuman with CC0 license is much preferred as generator tool.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, I start with base, and I already can change general height and arm/leg lengths.
+       <br/>
+       This is already not trivial, as I need to compensate proportions. These all changes are skeleton-based
+       <br/>
+       (I just scale bones).
+       <br/>
+       I’ve got a feeling that I’m reinventing the wheel and in not most efficient way. I need some insight
+       <br/>
+       from more experienced people.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       And no, I don’t want to go too far with it now, but I need to understand I can get hight level of flexibility
+       <br/>
+       if I need to be.
+       <br/>
+       My current list of required features:
+      </p>
+      <p>
+       Macro:
+       <br/>
+       height
+       <br/>
+       torso size (proportional)
+       <br/>
+       legs size (proportional)
+       <br/>
+       arms size (proportional)
+       <br/>
+       head size (proportional)
+      </p>
+      <p>
+       Micro:
+       <br/>
+       eyes size (height/width)
+       <br/>
+       eye position (vertical)
+       <br/>
+       eye slant
+       <br/>
+       nose size (width/height)
+       <br/>
+       nose position (vertical)
+       <br/>
+       mouth size (width/height)
+       <br/>
+       mouth position (vertical)
+      </p>
+      <p>
+       I use face rig, so the above changes require morph + bone changes, as I can’t get good results
+       <br/>
+       with just bone pose…
+      </p>
+      <p>
+       So I basically need to find a system to do such changes, which I could extend as I need…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c24c93e794e8d919ef829acfad2b3f83cbd23485bcd826225def4391e2fb0cb0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lezak
+     </div>
+     <div class="post_content">
+      <p>
+       It looks like You have all pieces that are needed for character customization:
+      </p>
+      <ul>
+       <li>
+        base model (rigged);
+       </li>
+       <li>
+        softwere for defining morphs (shape keys in blender)
+       </li>
+       <li>
+        animated model class with setmorphweight in Urho
+        <br/>
+        Just put them together and find right configurations.
+        <br/>
+        Also it may be a good idea to have some non deform bones (I dont’t know how it’s called in other softwere then blender) responsible for animations with child deform bones responsible for customizations (non animated). For example, to control eyes position and scalling this setup should work:
+       </li>
+       <li>
+        “head bone” - non deform, used in animations but doesn’t directly affect verticies of model. This bone is parent to:
+        <ul>
+         <li>
+          eye bones - deform bones, non animated - they will be moved by parent “head bone”. Since they are deform bones You can manipulate eyes position by moving them or eyes size by scaling them (of course You will need good bone weight setup) without affecting animations.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       I think the way to go is to store a map between bone name and 4 vertices id that define bone position (you could use edge loops would you need more accuracy). This could be easily exported from Blender.
+      </p>
+      <p>
+       Then after applying the morph in Urho3D, which can stretch or shorten the limbs in non linear fashion, modify skeleton based on new vertices positions. That way the skeleton will “follow” the mesh.
+      </p>
+      <p>
+       Alternatively, if you’re using some morph targets, you could store bone length with full morph applied and modify skeleton based on fractional weight applied.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Mike
+       </span>
+       thanks a lot for explanation. I see that makehuman uses vertice markers which are stored with mesh,
+       <br/>
+       looks like way to go. But it looks like the same morph needs to be applied to clothes meshes, which makes
+       <br/>
+       the whole thing a bit more complicated…
+      </p>
+      <p>
+       <span class="mention">
+        @lezak
+       </span>
+       - a problem is that I need different pieces of clothing (and naked) applied to the same
+       <br/>
+       character, so it looks like somehow the morph needs to produce the same effect on all meshes
+       <br/>
+       for animation to work properly…
+      </p>
+      <p>
+       Makehuman uses clothes helpers for this, but I don’t really understand how this works.
+       <br/>
+       Probably some form of weight transform, or distance-based…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Makehuman (and certainly every other app) maps each cloth vertice to character nearest vertice, which ensures that clothes tightly fit the character, without poking (this was explained in old MH tutorials).
+       <br/>
+       The map is exported by
+       <a href="http://www.makehumancommunity.org/wiki/Documentation:MHBlenderTools:MakeClothes">
+        MakeClothes
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Manuel Bastion is AGPL for the code part, the models you generate for your use are CC-BY.
+       <br/>
+       The tool is intended for creating a master model the way you want.
+       <br/>
+       By the way,
+       <span class="mention">
+        @Mike
+       </span>
+       , the character lab sports an automatic proxy fitter while make clothes need adjusting weights manually… much more time consuming and error prone.
+       <br/>
+       Looks like Manuel Bastioni has been a long-time contributor to MakeHuman…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Manuel stopped activity a few years ago and left about 2 years ago.
+       <br/>
+       Basically Makehuman stagnated since about 2013 or so. But the software itself is quite stable
+       <br/>
+       and very usable.
+      </p>
+      <p>
+       Also I find workflow in Manuel Bastioni Lab more complex, and I can’t find any support for clothing
+       <br/>
+       (and for hair either). Also face handling is quite primitive requiring lots of morphs and no rig.
+       <br/>
+       I’d follow the project but now it is 100 years to have Makehuman features.
+       <br/>
+       I wish them both success though, having both will benefit users.
+       <br/>
+       However Manuel’s license is not really nice for OSS products wishing
+       <br/>
+       permissive licenses:
+       <br/>
+       <a class="onebox" href="http://www.manuelbastioni.com/guide_license.php" rel="nofollow noopener" target="_blank">
+        http://www.manuelbastioni.com/guide_license.php
+       </a>
+       <br/>
+       As CC-BY is intended only for closed source works, all the rest have to use AGPL3.
+      </p>
+      <p>
+       But that is really not what I want to discuss here - I want techniques,
+       <br/>
+       not external character generator products.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       I see. By the way, what about a morphing library?
+       <br/>
+       I didn’t inquire into that, I must remember to check…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       What about morphing library? I don’t think I need it as Urho supports morph targets.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I see some problems with marker approach.
+      </p>
+      <p>
+       I have no problems setting origin of bone transform and it works fine. The problem is tip placement.
+       <br/>
+       As Urho does not care about bone tips, there’s no way to have rotational data for all bones using markers.
+       <br/>
+       Or do I miss something?
+      </p>
+      <p>
+       Well, bone bounding boxes are all messed up in my skeletons (due to limitation
+       <br/>
+       of exporter probably) so I have to rebuild them to prevent crashes in debug build of Urho, but that is another story,
+       <br/>
+       so if I have proper bounding boxes, could they help me to calculate bone tips?
+      </p>
+      <p>
+       I need to have bone tips to calculate rotation changes in bones. Or is there another approach?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c24c93e794e8d919ef829acfad2b3f83cbd23485bcd826225def4391e2fb0cb0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lezak
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve never tried it but having same/similar shape keys on several meshes should be easily achived in blender by merging all meshes into one and then using sculpt mode to make shape keys (propably there will be to many verticies to do something in edit mode). After that just seperete meshes, do some tweaking and You should have similar effects on all of them.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="17" data-topic="3044">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/27ce73007d7b4bf20469469a38f7fc913c7cded4998c804bafb3a9e8a1d0b029.png" width="20"/>
+        lezak:
+       </div>
+       <blockquote>
+        <p>
+         (propably there will be to many verticies to do something in edit mode)
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       How about proportional editing (toggled with
+       <strong>
+        O
+       </strong>
+       )?
+      </p>
+      <p>
+       Couldn’t you use layered one-frame animations for the scaling of the bones? Exporting only the scale for those and not in multi-frame animations.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I believe more in generated maps, a problem is to make all shape keys to be similar,
+       <br/>
+       that all looks too complicated…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4b6da94ce9adab8331a1520c819e1d4ab2b8720bd4a1305bfa6f982ab9e9cf90.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      suncaller
+     </div>
+     <div class="post_content">
+      <p>
+       For best effect on a humanoid character generator, I would personally create multiple geometries based first on gender, then age, and then body type. Create the appropriate morphs for each of these geometries. Modify the base skeleton according to the necessary animation sets, and finally in-engine smoothly blend between drastic changes in height or girth.
+      </p>
+      <p>
+       It’s a lot of work, but you seem to have most of what you need
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, it looks an additional problem I have is that I need to have base mesh split due to bone per mesh limitation.
+       <br/>
+       And all that have to be done in engine. It all looks like real challenge. I’d really like if I complete this task
+       <br/>
+       to have some core subsystem for this for others to have easier path next time…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4b6da94ce9adab8331a1520c819e1d4ab2b8720bd4a1305bfa6f982ab9e9cf90.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      suncaller
+     </div>
+     <div class="post_content">
+      <p>
+       For a character creator you generally do need to split the meshes. I think there’s a GDC talk on youtube about Bungee’s approach for Destiny.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Could you please provide direct link? For some reason I can’t find anything meaningful about
+       <br/>
+       Bungee’s Destiny which would relate to the topic…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4b6da94ce9adab8331a1520c819e1d4ab2b8720bd4a1305bfa6f982ab9e9cf90.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      suncaller
+     </div>
+     <div class="post_content">
+      <p>
+       I saw it a while back, and my flash player at work is disabled so I can’t be sure this is the one, but the title sounds right:
+       <a href="http://www.gdcvault.com/play/1020412/Building-Customizable-Characters-for-Bungie" rel="nofollow noopener">
+        http://www.gdcvault.com/play/1020412/Building-Customizable-Characters-for-Bungie
+       </a>
+       . If I remember correctly, it’s a high level talk from a tooling/asset creation perspective. Not sure how useful it will be to you.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        Have anybody done character creation systems based on morphs?
+       </p>
+      </blockquote>
+      <p>
+       Sort of, I use morphs as control shapes for the sub-meshes of an aggregate, cooking the morphs down before the final CSG or merge-independent steps.
+      </p>
+      <hr/>
+      <p>
+       There isn’t that much out there since it’s all just the same stuff as the usual mesh-pipeline with sources/application changed around.
+      </p>
+      <p>
+       <a href="http://twvideo01.ubm-us.net/o1/.../Brad_Stokan_VisualArts_Ultimate_Customizability.pptx" rel="nofollow noopener">
+        Brad Stokan’s “Ultimate Customization” slides
+       </a>
+       - very hand-wavey, but also detailed enough that the full talk isn’t even needed.
+      </p>
+      <p>
+       <a href="https://www.cs.cmu.edu/~jkh/video_games/lecture_cust.ppt" rel="nofollow noopener">
+        Slides from some random lecture
+       </a>
+       - not actually that useful but is less hand-wavey.
+      </p>
+      <p>
+       <a href="http://www.gdcvault.com/play/1022822/Adaptive-Clothing-System-in-Kingdom" rel="nofollow noopener">
+        Adaptive Clothing in Kingdom Come
+       </a>
+       , work-load reduction in layered materials.
+      </p>
+      <p>
+       <a>
+        Maskle
+       </a>
+       , while intended for facial animation it can just as well be used for a control-rig similar to cages.
+      </p>
+      <p>
+       Any Signed-distance field or distortion function can be used for manipulating vertices, some more coherently than others (the bramble is
+       <em>
+        interesting
+       </em>
+       ).
+      </p>
+      <hr/>
+      <p>
+       Destiny’s tools are built around Maya and XRefs (in FBX), and tied into their task-graph system.
+      </p>
+      <p>
+       That same general approach goes back at least as far as Hellgate: London as I recall some slides from nVidia on the texture packing and budgets for each character.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I geve the whole idea some thought and see the following picture.
+      </p>
+      <ol>
+       <li>
+        In Blender I compose all model as whole (Blender is bad at splitting things and keeping normals intact)
+        <br/>
+        I compose all required morphs directly on model.
+       </li>
+       <li>
+        I split model either during export or in engine (in game). The later looks more promising as engine should
+        <br/>
+        know its limits. The best way to split is by blend indices, but if that gets boring/complicated I could always split
+        <br/>
+        using geometry.
+       </li>
+       <li>
+        I apply resulting pieces to AnimatedModel each on the same Node, which allows to control everything from
+        <br/>
+        first component.
+       </li>
+      </ol>
+      <p>
+       <span class="mention">
+        @cadaver
+       </span>
+       <span class="mention">
+        @Modanung
+       </span>
+       <span class="mention">
+        @Sinoid
+       </span>
+       - does it look good?
+      </p>
+      <p>
+       I tried to split in blender using additional geometry by using different material for different pieces,
+       <br/>
+       but that produced very buggy result, so it have to be separate meshes.
+      </p>
+      <p>
+       What I want to achieve here is not some kind of character with parts of body replaced,
+       <br/>
+       but more layered approach, where clothes are layered on top of body. This approach allows nude/semi nude options
+       <br/>
+       and is more flexible in general.
+      </p>
+      <p>
+       I use makehuman Default skeleton, the one with complex face structure (which I lake as it helps making
+       <br/>
+       facial gestures even for me which is neither animator nor character designer). As I found most
+       <br/>
+       flexibility I look for is in face area, but I also want macro parameters (height, head size, boldness, fatness
+       <br/>
+       also changeable).
+       <br/>
+       When I look at examples it is more into either SR2-4 character customization or Japanese games like AG3
+       <br/>
+       character design options. So it is not like character is built of bricks, but more of shape, i.e. you not
+       <br/>
+       just select body type from a set, you morph one to other, so you can have fine-grained control.
+      </p>
+      <p>
+       So it looks like I have the following challenges to overcome before this becomes true:
+      </p>
+      <ol>
+       <li>
+        <p>
+         20/64 bone limit overcoming - as I plan addition of hair and clothing rig (and hair physics if somebody will help me do this), I will get to 200+ bones on the skeleton, which will require some automatic handling. So
+         <br/>
+         I will need a way to effectively autosplit models or some other great ideas (I tried Unity and UE4 - models with 300 bones work great there on GLES2 type hardware - how?).
+         <br/>
+         (
+         <span class="bbcode-b">
+          this is what I currently struggle with
+         </span>
+         )
+        </p>
+       </li>
+       <li>
+        <p>
+         I will need to rebuild skeleton according to all morphs. Just fine-tuning stuff in code according to morph values will
+         <br/>
+         become boring and I don’t want boredom in hobby project so I will need markers exportable via Blender as part of mesh. These should be morphable by morphs too. I can just model internal cubes as Makehuman uses and move them together witm morphs. These should be placed at root of each bone. I will be able to find bone rotation by
+         <br/>
+         consulting parent cube position, so that should be doable with plain loop over all bones. The only problem is tiip of “leaf” (no child) bones, but this can be handled by special tip cubes.
+         <br/>
+         The problem is I currently don’t understand how to access such data from Model, as these will be individual named
+         <br/>
+         vertex groups without bone associated.
+         <span class="mention">
+          @cadaver
+         </span>
+         - is it even possible?
+        </p>
+       </li>
+       <li>
+        <p>
+         As this only done on character customization, not on actual game play, the result should be saveable in some way
+         <br/>
+         so that save data will not grow too much. Any ideas on this? Carrying .mdls through all game saves doesn’t make me happy…
+        </p>
+       </li>
+       <li>
+        <p>
+         Performance - as we will have quite a lot of batches per character (for 200 bones we will have 10 meshes for
+         <br/>
+         only a body in worst cast, not including clothes) I will want only close characters (a limited number of them) to have
+         <br/>
+         such details, especially in case of crowds. So a set of LOD versions of a character should be creatable
+         <br/>
+         using the same metadata. So we need a few versions of original mesh with simplified skeleton, and have full set
+         <br/>
+         of similar looking morphs on them (where necessary) so creation process will create full set of meshes.
+        </p>
+       </li>
+      </ol>
+      <p>
+       Any ideas where to look farther?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Looks like this topic is not interesting to much of the audience, but thinking in self-centric way and to keep the topic up
+       <br/>
+       for interested people I’d update.
+      </p>
+      <p>
+       I started writing a function in AS which splits Model into a set of Models which comply to bone limit.
+       <br/>
+       I loop through Geometry and split IndexBuffer as soon as enough diferent blend weights are collected.
+       <br/>
+       The code looks extremely complicated, I wonder how I could simplify it.
+      </p>
+      <aside class="onebox githubgist">
+       <header class="source">
+        <a href="https://gist.github.com/anonymous/589ee443dc181d7d72e6d83b058df2df" rel="nofollow noopener" target="_blank">
+         gist.github.com
+        </a>
+       </header>
+       <article class="onebox-body">
+        <h4>
+         <a href="https://gist.github.com/anonymous/589ee443dc181d7d72e6d83b058df2df" rel="nofollow noopener" target="_blank">
+          https://gist.github.com/anonymous/589ee443dc181d7d72e6d83b058df2df
+         </a>
+        </h4>
+        <p>
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       Now I need to split VertexBuffers as splitting IndexBuffer is not enough.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="27" data-topic="3044" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         Looks like this topic is not interesting to much of the audience
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well I am following your progress. The reason I don’t have a lot to say is that you are beyond what I did so far with character creation. I never exceeded the max number of bones and only used morphs for random characters/birds without stretched skeletons.
+      </p>
+      <aside class="quote no-group" data-post="26" data-topic="3044" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         Carrying .mdls through all game saves doesn’t make me happy…
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Does saving a list of deform values and recreating the model at startup make you happy?
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="28" data-topic="3044">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         Does saving a list of deform values and recreating the model at startup make you happy?
+         <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well, I’d say it would make me happy if that will ever work. It looks like a problem is complex enough
+       <br/>
+       that I can’t cope without help of others. There’s a lot of questions that arise every moment.
+      </p>
+      <ol>
+       <li>
+        <p>
+         I don’t understand the actual mechanism limiting number of bones. I tried the following tests,
+         <br/>
+         and I don’t quite understand the results. First I tried to have model with single VertexBuffer for 10 geometries,
+         <br/>
+         containing 200 bone weights (i.e 200 bones). Each geometry had a portion of VB set in draw ranges. The problem
+         <br/>
+         was the same as with single geometry, which means that won’t help. However, if I use separate Model and separate VBs, everything works like intended. I wonder if there is some in-middle possibility to have single .mdl and still get
+         <br/>
+         the required result (animatable model with 200 bones).
+        </p>
+       </li>
+       <li>
+        <p>
+         I wonder is there some simple mechanism to split models except for processing individual bits in
+         <br/>
+         IndexBuffer and VertexBuffer? The process of recreating model is quite time-consuming and brain-exploding
+         <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+         <br/>
+         Also AngelScript doesn’t have access to many model bits like morphs so I don’t even know if that can work.
+         <br/>
+         I’d look at some code examples for Model processing… And please don’t sugest dynamic geometry example -
+         <br/>
+         I work with these resources for so long, that I would consider this offensive trolling.
+        </p>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       I wonder why these models work unmodified in Unity and UE4, what is the magic?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Bone limit is for gl es 2, if i’m not mistaken.
+       <br/>
+       Single mesh bone limit, gles 2 / dx9, circa 2007. or so.
+       <br/>
+       They work in unreal because you’re probably using gl3+/dx10+
+       <br/>
+       Change gl version you’re building against in urho.
+       <br/>
+       There’s a special version of reattiva export somewhere which export more bones per model.
+       <br/>
+       Import options from command line importer allows you to import more bones.
+       <br/>
+       Or so I think.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       well, it is not dependent on GLES but more in number of uniforms. And GLES3 limit is 128 bones
+       <br/>
+       for Urho which is still too low.
+       <br/>
+       And my model with 176 bones work fine in UE4 GLES2 exports. I think it is something
+       <br/>
+       more about software than hardware.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       As mesh splitting fixes the problem, I think something could be done inside engine to represent
+       <br/>
+       mesh so that it will work, so the result will be the same as with mesh splitting.
+       <br/>
+       Or I can write special mesh loader in my code nobody will see. I think which idea is more attractive…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I think nobody got an idea of what I want… Lets add some illustrations…
+      </p>
+      <p>
+       <img height="500" src="../../../images/364abe38350018faa905a9185720d12b3de2e5bb229834e5f043bd1e812248ee.png" width="128"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       And about fundamental problem with customization (actually second problem counting from bone limit)
+      </p>
+      <p>
+       <img height="500" src="../../../images/baf7fa94f125830ceaf9540dc20309897b827f784f2e0e52c209dfa7fb193f6d.png" width="128"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        Looks like this topic is not interesting to much of the audience, but thinking in self-centric way and to keep the topic up
+       </p>
+      </blockquote>
+      <p>
+       No, you just went off into rebuilding Poser/Daz, so there’s not exactly a lot to comment on.
+      </p>
+      <hr/>
+      <p>
+       Don’t the exporters/assimp-converter already deal with splitting?
+      </p>
+      <aside class="quote no-group" data-post="26" data-topic="3044" data-username="slapin">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/237961ae9435b764c47cf0017625ceef2da2dad7dd8dea88e7197aecc4daca40.png" width="20"/>
+        slapin:
+       </div>
+       <blockquote>
+        <p>
+         I will need to rebuild skeleton according to all morphs.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       You really don’t want to do that. You want to have bone weights for every vertex ahead of time. Calculating bone weights is incredibly slow even using the sloppy Bone-Heat method, Bone-Glow is even slower, and voxel-methods have the woes of voxels.
+      </p>
+      <p>
+       Bone weight calculation is slower than trying 10,000 different chart layouts for UV maps. This I know as I do both, automatic UV charting and automatic bone weighting.
+      </p>
+      <p>
+       Picking up the existing weights from a surface isn’t much a problem, because you’d just LL^T them through the rest of the mesh via Eigen.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, many people do this even in indie projects, so I think that all should not be too complicated.
+       <br/>
+       I do not plan rebuilding Poser/Daz, I just want to gracefully handle macro morphs on character.
+      </p>
+      <p>
+       And no, neither assimp nor epxporter do handle model splitting AFAIK.
+      </p>
+      <p>
+       I do not plan to recalculate bone weights, I just want to move joints when body is scaled.
+       <br/>
+       That should keep weights valid.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I think exporting additional vertex group is not a problem, a problem is putting it inside .mdl file.
+       <br/>
+       As this should work together with morph, it should go with model… Or I could just save custom .xml with vertex indices,
+       <br/>
+       having custom group for each model. I wonder what is best approach…
+       <br/>
+       <span class="mention">
+        @cadaver
+       </span>
+       <span class="mention">
+        @reattiva
+       </span>
+       - any ideas?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Well, I think of pipeline like this.
+       <br/>
+       I think markers can be set as different material and be connected to cubes,
+       <br/>
+       which will effectively save them as different geometry. Also distance to root of each bone can be used to find which
+       <br/>
+       marker belongs where. This should be doable. Probably some assimp-based tool could be implemented to do this and save xml or json with indices.
+       <br/>
+       Second problem is how to apply morphs in software and get the resulting point data. This is probably not too hard to do. And then the resulting mesh should be split (together with morphs which remain not applied) or the data should be copied (+morph data) to pre-split meshes. I wonder how to do this step. Should be some trick.
+      </p>
+      <p>
+       <img height="1000" src="../../../images/df1a2b57233555a0ee50b493efaeb9080b9a9249a26ae4b2a168cc24a6129c49.png" width="128"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6c0534b2d654d093a86c1854af37526996deb871a657ce37a4fd1d6c19bc1ddd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hicup_82017
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+       <br/>
+       I am interested with 300 bones
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       from this big gigantic thread.
+       <br/>
+       All I find is Slapin, trying to break his model, so that he can get lower bone count, which will make it under
+       <br/>
+       cSkinMatrices[MAXBONES] , where for opengl ES2 is 64.
+      </p>
+      <p>
+       <strong>
+        How my use case is relevant?
+       </strong>
+       <br/>
+       I just had a dream to animate a max of 2 human characters at a time in my game, but wanted them to look lively.
+       <br/>
+       <strong>
+        A . Can I approach this problem like this?
+       </strong>
+       <br/>
+       <strong>
+        A.1 Theory:
+       </strong>
+       <br/>
+       All I understand is Uniforms.hlsl in which cSkinMatrices are used, will be used once per draw call. So all it aims to finish per draw call, shall be limited to 64 bones.
+       <br/>
+       <strong>
+        A.2 Approach:
+       </strong>
+       <br/>
+       Can I just fake my input model as different materials, if the model has more than 64 bones (this will not be a mesh splitting, So no abnormal skinning weight issues). For example in this case of 300 bones, I could fake my model as 5 different materials.
+       <br/>
+       <strong>
+        A.3 Why I want to do this:
+       </strong>
+       <br/>
+       A.3.1 I believe for every different material, a separate draw call will be used, Came across in unity google.
+       <br/>
+       A.3.2   I believe I will have Max of 2 Models in my game.
+      </p>
+      <p>
+       <strong>
+        A.4 Problems I see:
+       </strong>
+       <br/>
+       line 2231 in AssetImporter.C,  if (model.bones_.Size() &gt; maxBones_) it was designed to throw an error.
+       <br/>
+       Will different materials be treated as different models?
+      </p>
+      <p>
+       <strong>
+        Disclaimer:
+       </strong>
+       Some of this might be terribly wrong, considering my practical experience with animation world is very limited (just 2.5 months
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       ).
+       <br/>
+       My target of game would be mobile platforms with OpenGLES 2.0
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6c0534b2d654d093a86c1854af37526996deb871a657ce37a4fd1d6c19bc1ddd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hicup_82017
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Sinoid
+       </span>
+       ,I just noticed that AssImp actually supports, mesh splitting by maximum bones specified. But this was not used in Urho3D --&gt; Tools/ AssetImporter.cpp.
+      </p>
+      <p>
+       Did any one had information, regarding this option being tested in Urho3d?
+      </p>
+      <p>
+       /** This step splits meshes with many bones into sub-meshes so that each
+       <br/>
+       * sub-mesh has fewer or as many bones as a given limit.
+       <br/>
+       */
+       <br/>
+       <strong>
+        aiProcess_SplitByBoneCount  = 0x2000000,
+       </strong>
+      </p>
+      <p>
+       I guess this option would ease bone limitation part, if one has to go with more bones.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+       <br/>
+       Thanks for find. I use Blender so I’d prefer splitting model in exporter. Or (which I think would be best) in engine,
+       <br/>
+       as engine actually knows how many bones it can use. But even AssImp solution would be great to have.
+      </p>
+      <p>
+       Also I was never able to use materials to make bones work - only full mesh split works.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

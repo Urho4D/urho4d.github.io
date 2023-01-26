@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Text3D - Edge Dithering
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Text3D - Edge Dithering
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/074485a4d3b24a4e403c13c72d3821f41cac4d8efa2e93ecadc1e38b1e40d700.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      najak3d
+     </div>
+     <div class="post_content">
+      <p>
+       Currently, since Text3D seems to create a billboard where the font pixels are flush to the edge, it causes a nasty dithering effect when the camera is moved slowly pixel-by-pixel.   I’ve noticed with our other Billboards, to avoid this dither, the image we render to the billboard simply needs to have a transparent margin around the edge.   Whenever we have opaque pixels near the edge of the image, it causes this same dither.
+      </p>
+      <p>
+       The solution seems clear-- just make sure you have transparent pixels at the edge of all images intended for billboards.  However, since Text3D is built in, I think we’d have to modify the Core Urho3D code to fix this – or we’ll have to make our own version of Text3D (we could base it off Urho’s).
+      </p>
+      <p>
+       The two defects we have with Text3D right now are:
+      </p>
+      <ol>
+       <li>
+        This dithering defect, and
+       </li>
+       <li>
+        We can’t set the “RenderOrder” – it’s stuck at 128.
+       </li>
+      </ol>
+      <p>
+       Right now, it’s looking like we’ll have to make our own Text3D Rendering feature, unless there is an easy workaround for these two defects.
+      </p>
+      <p>
+       Here’s an image of the Samples of Text3D (“SignedDistanceFieldText”).   If you set the Camera motion scalar to 0.01, and the move forwards or backwards, those edges look like crazy escalators… very distracting.  As a still shot, this isn’t too bad.  But when you start moving slowly – these are turn into animated escalators!  (and our Map application in Track mode, moves slowly, pixel-by-pixel, this Text3D looks pretty bad).
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="1IDw5YrcTQz84OPootAowAmBQnb" height="348" src="../../../images/b450d739ad7c7b7533f88cc22d5f8af2b2babeb24c56f47364c2f366bdf257ef.png" width="604"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

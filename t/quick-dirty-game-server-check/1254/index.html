@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Quick Dirty Game Server Check
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Quick Dirty Game Server Check
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       Is there a quick and dirty way to see if a game server is online.
+       <br/>
+       Vivivenne
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       The easiest way I can think of is using *nix “telnet” command.
+      </p>
+      <p>
+       EDIT: That is if your server is using TCP. If you are using UDP as what has been provided by Urho3D network subsystem then probably you can use ‘netstat’ on the server side and ‘nc’ on the client side.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

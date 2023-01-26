@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Slow GUI
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Slow GUI
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/58b4f207d3f8e0645e5bbefd30220ef466447b0f61de0ec7c78bf00764bf39a4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      exessuz
+     </div>
+     <div class="post_content">
+      <p>
+       Hi guys, the game I am currently developing was running very smoothly with high FPS until I started adding menus and GUI objects.
+       <br/>
+       I have at the moment three buttons in root, each opens a different window, each window has about 25 buttons, im adding the childs to each window with the following code.
+      </p>
+      <pre><code class="lang-auto">
+        window = new Window(core-&gt;GetContext());
+	window-&gt;SetStyle("Window1");
+	window-&gt;SetVisible(false);
+	window-&gt;SetAlignment(HorizontalAlignment::HA_CENTER, VerticalAlignment::VA_CENTER);
+	window-&gt;SetLayout(LayoutMode::LM_FREE, 6, IntRect(6, 6, 6, 6));
+	window-&gt;SetSize(320, 390);
+	window-&gt;SetEnabled(false);
+
+	root-&gt;AddChild(window);
+
+	int offset = 14;
+	int pz = 0;
+
+	for (int z = 0; z &lt; 5; z++)
+	{
+		for (int x = 0; x &lt; 5; x++)
+		{
+			Button *b = new Button(core-&gt;GetContext());
+			b-&gt;SetStyle("EmptySpace");
+			pz = z * 64 + (offset*z);
+			b-&gt;SetPosition(x * 64, pz);
+			b-&gt;SetName(std::to_string(z * 5 + x).c_str());
+			window-&gt;AddChild(b);
+
+			Text *text = new Text(core-&gt;GetContext());
+			text-&gt;SetStyle("Text");
+
+			text-&gt;SetPosition(x * 64 + 32, pz + (64));
+			text-&gt;SetName(std::to_string(z * 5 + x).c_str());
+
+			window-&gt;AddChild(text);
+		}
+	}
+
+	window-&gt;SetEnabledRecursive(false);
+</code></pre>
+      <p>
+       with only 1 window it was working great but now with 3, the profiler gives me from 1 to 2+ on GetUIBatch. What am I doing wrong? I have all the windows hidden and enablerecursive to false on init, so I would expect that all the ui elements of the windows would not be tested for collition each frame neither rendered. I was thinking that maybe I should switch to Urho2D instead for the GUI rendering.
+      </p>
+      <p>
+       Thanks for any advice.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/58b4f207d3f8e0645e5bbefd30220ef466447b0f61de0ec7c78bf00764bf39a4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      exessuz
+     </div>
+     <div class="post_content">
+      <p>
+       Sinoid I am using a custom skin but I kept the same .png size as the default also Im not switching from texture to texture, 1 to 2+ is the average (sometimes way more than 2) that I get on the GetUIBatch (the units i guess milli seconds). The trouble is that I have many StaticModelGroup with many objects and it runs great but as soon as I add the gui the fps drops a lot in both release and debug mode.
+      </p>
+      <p>
+       Thank you
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

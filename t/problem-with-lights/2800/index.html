@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Problem with lights
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Problem with lights
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, i exported some trees from blender to my scene, but i have some problems with lights.
+       <br/>
+       I don’t know if i did something worng during exporting or it’s an Urho3D bug.
+       <br/>
+       Video:
+       <a href="https://vid.me/asiI" rel="nofollow noopener">
+        https://vid.me/asiI
+       </a>
+       <br/>
+       Anyone know how fix it?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       I had similar problem when my Zone component was too small.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       I changed the zone bounds to 1000 but it still happens
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       Does the bounding box look correct? Does changing light range change the distance of the popping effect? Are the normals exported?
+      </p>
+      <p>
+       Looks like there is some z-fighting when you rotated the camera, that seems strange too.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Does the bounding box look correct? Yes
+       <br/>
+       Does changing light range change the distance of the popping effect? Yes
+       <br/>
+       Are the normals exported? Yes i think, i follow the same steps to export all models of scene.
+       <br/>
+       I noticed that if I use Diff.xml instead of VegetationDiff.xml the light works correctly.
+       <br/>
+       It seems a VegetationDiff.xml bug.
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       I found the problem, I was using a material only with the technique VegetationDiff.xml, when i add a new technique Diff.xml to the material the problem disappeared.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       It’s an issue or an noob error?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Pls show your material (xml file)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/52e88dd81e49283eb2c72f1cd6a96d39cd114f88fa6d1c50a2fcff54a026c42b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      szamq
+     </div>
+     <div class="post_content">
+      <p>
+       What are your setup of near and far in camera? It looks like you set some large amount like 1000000 to far parameter.
+      </p>
+      <p>
+       Edit: Ah ok you already solved the issue:)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-full="true" data-post="7" data-topic="2800">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a1e7f9ad87f0f286c93981b5211d942802658cbde3e5ac7e346468cf1d0aceb2.png" width="20"/>
+        1vanK:
+       </div>
+       <blockquote>
+        <p>
+         Pls show your material (xml file)
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       <a class="onebox" href="http://pastebin.com/t8KmqBgV" rel="nofollow noopener" target="_blank">
+        http://pastebin.com/t8KmqBgV
+       </a>
+      </p>
+      <p>
+       Working material:
+       <br/>
+       <a class="onebox" href="http://pastebin.com/JahVsMYm" rel="nofollow noopener" target="_blank">
+        http://pastebin.com/JahVsMYm
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       material should contain only one technique with same lod
+      </p>
+      <p>
+       EDIT:
+       <a href="https://urho3d.github.io/documentation/HEAD/_materials.html">
+        https://urho3d.github.io/documentation/HEAD/_materials.html
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Apparently, the second material only worked because Diff.xml was overwriting VegetationDiff.xml
+       <br/>
+       Is there something wrong with the first material? (which only contains VegetationDiff.xml)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Vegetation should animate vertices of model, but I do not see it on video. So need more info about exporting settings
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       I realized that VegetationUnlit.xml works
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+       <br/>
+       I tried to export using .blend, .dae, .fbx formats but none worked.
+       <br/>
+       I also tried using the urho plugin but i get the same problem.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       Well I think I have spotted a typo or error in vegetation shader. Simple test, turn off dynamic instancing-- does the issue still occur?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-full="true" data-post="14" data-topic="2800">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/49c683eb6f86bb756c0c41cb6639ce3c1bde410081b08d0fb8ff33ae7a6152e2.png" width="20"/>
+        hdunderscore:
+       </div>
+       <blockquote>
+        <p>
+         Well I think I have spotted a typo or error in vegetation shader. Simple test, turn off dynamic instancing-- does the issue still occur?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       No, everything works well (:
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       Offending line is:
+       <br/>
+       <aside class="onebox githubblob">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/blob/master/bin/CoreData/Shaders/HLSL/Vegetation.hlsl#L98" rel="nofollow noopener" target="_blank">
+          github.com
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h4>
+          <a href="https://github.com/urho3d/Urho3D/blob/master/bin/CoreData/Shaders/HLSL/Vegetation.hlsl#L98" rel="nofollow noopener" target="_blank">
+           urho3d/Urho3D/blob/master/bin/CoreData/Shaders/HLSL/Vegetation.hlsl#L98
+          </a>
+         </h4>
+         <pre class="onebox"><code class="lang-hlsl"><ol class="start lines" start="88" style="counter-reset: li-counter 87 ;">
+<li>#endif
+</li>
+<li>out float4 oPos : OUTPOSITION)
+</li>
+<li>{
+</li>
+<li>// Define a 0,0 UV coord if not expected from the vertex data
+</li>
+<li>#ifdef NOUV
+</li>
+<li>float2 iTexCoord = float2(0.0, 0.0);
+</li>
+<li>#endif
+</li>
+<li>
+</li>
+<li>float4x3 modelMatrix = iModelMatrix;
+</li>
+<li>float3 worldPos = GetWorldPos(modelMatrix);
+</li>
+<li class="selected">
+</li>
+<li>float windStrength = max(iPos.y - cWindHeightPivot, 0.0) * cWindHeightFactor;
+</li>
+<li>float windPeriod = cElapsedTime * cWindPeriod + dot(worldPos.xz, cWindWorldSpacing);
+</li>
+<li>worldPos.x += windStrength * sin(windPeriod);
+</li>
+<li>worldPos.z -= windStrength * cos(windPeriod);
+</li>
+<li>
+</li>
+<li>oPos = GetClipPos(worldPos);
+</li>
+<li>oNormal = GetWorldNormal(modelMatrix);
+</li>
+<li>oWorldPos = float4(worldPos, GetDepth(oPos));
+</li>
+<li>
+</li>
+<li>#if defined(D3D11) &amp;&amp; defined(CLIPPLANE)
+</li>
+</ol></code></pre>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       if anyone wants to confirm. Replacing cModel with modelMatrix seems to work.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Works for me, ty
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       <br/>
+       I think you should commit.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

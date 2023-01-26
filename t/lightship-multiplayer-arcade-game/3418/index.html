@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Lightship (multiplayer arcade game)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Lightship (multiplayer arcade game)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Way back in the day when I made games with DarkBASIC, I wrote a fun little online multiplayer arcade game that was based on a game mechanic I first saw in a Mario Party 7 minigame:
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="NsEBCZfrVBU" data-youtube-title="Mario Party 7 minigame: Light Speed 60fps">
+      </div>
+      <p>
+       I took this idea of driving over a grid of tiles to claim them as your own and scaled it way up. Bigger maps, more players, fun powerups. Here’s a video of my DarkBASIC implementation in action:
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="M-5yaHqDP8o" data-youtube-title="LightShip Beta 1.8.4 - First massive online test">
+      </div>
+      <p>
+       I’ve decided to re-implement this game in Urho3D and add even more stuff to it. I’ll also be giving it a graphics overhaul.
+      </p>
+      <p>
+       It’s still in it’s extremely early stages, as of now I wrote the map loader so I can import all of the old maps from the DarkBASIC game (which uses some ungodly binary format). Here you can see a map loaded in Urho3D:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/4442f45165e878f699afc21e93b30cb13f7ca2bf.jpg" rel="nofollow noopener" title="IMG-20170801-WA0009.jpg">
+         <img alt="IMG-20170801-WA0009" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/4442f45165e878f699afc21e93b30cb13f7ca2bf_2_10x10.png" height="479" src="../../../images/6038fe5b8f24c271fa4e56bcb0a46b136df50cfba70c6868cd0b49c839902f54.jpg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/4442f45165e878f699afc21e93b30cb13f7ca2bf_2_690x479.jpg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/4442f45165e878f699afc21e93b30cb13f7ca2bf_2_1035x718.jpg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/4442f45165e878f699afc21e93b30cb13f7ca2bf.jpg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           IMG-20170801-WA0009.jpg
+          </span>
+          <span class="informations">
+           1259×875 171 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       I created new models for the various tile types (Tile, Wall and Teleporter) as well as a new player model. You can see them here:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/edeebf9260c26a3c2e3a80b0f45c90e09bb6859a.jpg" rel="nofollow noopener" title="IMG-20170801-WA0010.jpg">
+         <img alt="IMG-20170801-WA0010" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/edeebf9260c26a3c2e3a80b0f45c90e09bb6859a_2_10x10.png" height="500" src="../../../images/be26557b897dc2b1483b7060d48147ec6c3172837414bcce169e0c7dbfa88e7c.jpg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/edeebf9260c26a3c2e3a80b0f45c90e09bb6859a_2_566x500.jpg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/edeebf9260c26a3c2e3a80b0f45c90e09bb6859a_2_849x750.jpg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/edeebf9260c26a3c2e3a80b0f45c90e09bb6859a.jpg 2x" width="566"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           IMG-20170801-WA0010.jpg
+          </span>
+          <span class="informations">
+           1041×919 62.5 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       That is all for now!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       SuperDuper! Looks really funny!
+       <br/>
+       Darkbasic! (What’s darkbasic?)
+       <img alt=":no_mouth:" class="emoji" src="../../../images/e14f0ccf56e8c7c123e4da42b3578b18a4d03231de63c592a9a83d038465818e.png" title=":no_mouth:"/>
+       <br/>
+       Joking… It reminds me of good ol’ times when I programming machine language on C64…
+       <img alt=":blush:" class="emoji" src="../../../images/5dc76062acc5a80d95fdd823db908640d52dac05ad1a4899ab9e723bfa0bbbfb.png" title=":blush:"/>
+       <br/>
+       I like the warp special effect! Go on!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       What a cool tiny game!
+      </p>
+      <p>
+       I think that could make a great tutorial material for Urho to attract new youtube users…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks!
+      </p>
+      <p>
+       I bounced some ideas off of an artist friend of mine, and a cool idea that popped up is to add some actual scenery objects to the level in addition to the tiles and walls to make the levels feel more alive.
+      </p>
+      <p>
+       We thought about creating different themes or “biomes”, too. One might be a snow theme, another might be a desert theme, etc.
+      </p>
+      <p>
+       Here’s a wooden house he made that could fit into a snow themed map:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/8fce95db7212c51f182bbcb8c38287efa0cedd51.jpg" rel="nofollow noopener" title="1.jpg">
+         <img alt="1" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/8fce95db7212c51f182bbcb8c38287efa0cedd51_2_10x10.png" height="468" src="../../../images/4c933444b6abe77de43e0754324a7c0bbf3b49954a3f1f24c4ccd95232854dab.jpg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/8fce95db7212c51f182bbcb8c38287efa0cedd51_2_690x468.jpg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/8fce95db7212c51f182bbcb8c38287efa0cedd51_2_1035x702.jpg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/8fce95db7212c51f182bbcb8c38287efa0cedd51.jpg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           1.jpg
+          </span>
+          <span class="informations">
+           1222×830 452 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Could one paint the floor inside the house? That would raise the roof!
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       How is your game feels? There is no updates for so long time
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="5" data-topic="3418">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         Could one paint the floor inside the house? That would raise the roof!
+         <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I like the idea and will keep it in mind. Supporting buildings with interiors will make the map editor a lot more complicated, though, but maybe I can come up with something.
+      </p>
+      <p>
+       <strong>
+        Updates
+       </strong>
+       <br/>
+       I’ve mostly been learning how Urho3D’s networking works, and have been doing so by implementing menu system.
+      </p>
+      <p>
+       When you start the game, you will be presented with this screen:
+      </p>
+      <p>
+       <img alt="1" height="500" src="../../../images/2f0b62098670effd3dd9900d3b88d31324844312440a8e27805fa794ac8f35c5.png" width="517"/>
+      </p>
+      <p>
+       From there you can connect to a server with a username and address:
+      </p>
+      <p>
+       <img alt="2" height="478" src="../../../images/91eb54f7ef1d224c17e608d04876a1bcae23a4cd49df7a67217222dbb171107d.png" width="652"/>
+      </p>
+      <p>
+       And here’s the main server menu, where you can chat with people, join queued games, or create your own games (which other people can then join).
+      </p>
+      <p>
+       <img alt="3" height="500" src="../../../images/e1c35f0ca3bbde0dfd636cd8391a824f0eb393d9c1150ee97e601253bb967d1c.png" width="638"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

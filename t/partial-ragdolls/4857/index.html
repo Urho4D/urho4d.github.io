@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Partial Ragdolls
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Partial Ragdolls
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I’m reworking the Ragdoll code to support the ability to ‘break’ (and ‘repair’) animated limbs individually.
+       <br/>
+       The public code assumes that we want the entire skeleton to enter ragdoll mode at once.
+       <br/>
+       It’s entirely possible to toggle that state for specific subtrees of the skeleton.
+       <br/>
+       For example, to break the left shoulder, so the entire left arm becomes a ragdoll, but attached to a model that otherwise attempts to provide base animation.
+      </p>
+      <p>
+       I’ll yell in a day or two whether I run into any major problems, but I have already restructured the sample code to create the ragdoll structure in advance, and written the recursive enabler method (with respect to disabling bone animation).
+      </p>
+      <p>
+       A side effect of this arrangement, is that since our models have rigidbody armatures from the beginning, we can use them to provide more accurate information about collisions between the character (and any attachments), and the big bad world… we can get detailed information about where our sword hit that monster, and possibly use IK to delimit animations in a physically plausible way.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

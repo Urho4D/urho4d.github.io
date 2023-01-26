@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Cast Shadows just works on Flipped Faces
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Cast Shadows just works on Flipped Faces
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e823a89d08539b4e5b390a5f01f3c5e460eab7696dd53d2293d4db0de04d490f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dev4fun
+     </div>
+     <div class="post_content">
+      <p>
+       Hey, Im importing some FBX models on Urho editor to test somethings, and I noted that cast shadows of directional light, just works on hidden faces (as Im using Cull Mode none, the face appears on editor, otherwise, wouldnt show). Check the pictures:
+      </p>
+      <p>
+       <img src="../../../images/85a1ec22e305fbf1d8a8691718ddb95485f20429303f6218f341e29de59fa3e5.jpg"/>
+      </p>
+      <p>
+       This way, to test, I flipped the others faces to test if cast shadows would works:
+       <br/>
+       (more one time, if not have cull mode = none, the face would be hidden on urho editor)
+       <br/>
+       <a class="onebox" href="https://puu.sh/zpd4q/af98e8f472.gif" rel="nofollow noopener" target="_blank">
+        https://puu.sh/zpd4q/af98e8f472.gif
+       </a>
+      </p>
+      <p>
+       And… cast shadows works
+       <br/>
+       <img src="../../../images/9b0c652f6e499c24c8bece3f5873defa48970405cf3f154d93d8b3d3fdcb8d82.jpg"/>
+      </p>
+      <p>
+       Material Settings:
+       <br/>
+       <img src="../../../images/ce0427e096d571f569c86b4ed7a26e2175e12bf602d2aebc99a140ad200e9098.png"/>
+      </p>
+      <p>
+       Some notes:
+       <br/>
+       All materials its using the technique DiffAlphaMask.xml, and all uses cullmode=none, I’ve already tried to use Diff.xml and uses cullmode normally, but nothing works.
+      </p>
+      <p>
+       Anyone knows what can be?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Looks like you’ll need to generate
+       <strong>
+        tangents
+       </strong>
+       by using the
+       <strong>
+        -t
+       </strong>
+       option for AssetImport.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e823a89d08539b4e5b390a5f01f3c5e460eab7696dd53d2293d4db0de04d490f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dev4fun
+     </div>
+     <div class="post_content">
+      <p>
+       Hmmm… Didnt work
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+      <p>
+       <span class="mention">
+        @Was
+       </span>
+       need triangulate mesh on 3ds max, reset pivot and export FBX again to fix it.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Cannot send message because of reserved ID (Networking)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Cannot send message because of reserved ID (Networking)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       Hello
+      </p>
+      <p>
+       I’m trying to get the networking setup but getting this message. Do anybody know whats wrong?
+      </p>
+      <p>
+       Vivienne
+      </p>
+      <p>
+       <span class="bbcode-b">
+        [Thu Aug 13 10:02:03 2015] ERROR: Can not send message with reserved ID
+       </span>
+      </p>
+      <p>
+       Info: Database Maps table found.
+      </p>
+      <p>
+       [code]Info: Loading network configuration .
+       <br/>
+       Info: Loading network configuration failed. Using 127.0.0.1 and port 3632 as default.
+       <br/>
+       Headless Server Model
+       <br/>
+       Programmer Vivienne Anthony
+      </p>
+      <p>
+       Info : Starting networking on localhost(127.0.0.1)
+       <br/>
+       [Thu Aug 13 10:01:37 2015] INFO: Started server on port 3632
+       <br/>
+       [Info]Starting scene.
+       <br/>
+       Debug: Creating trader node with parameters (P’tiauc,0,0,0)
+       <br/>
+       Debug: Creating trader node with parameters (Agtika,0,0,0)
+       <br/>
+       Debug: Creating trader node with parameters (Shyeth,0,0,0)
+       <br/>
+       Debug: Creating trader node with parameters (Itis,0,0,0)
+       <br/>
+       Debug: Pusing new trader to market subsystem with parameters (Orin Open,0,0,0,100)
+       <br/>
+       Debug: Pusing new trader to market subsystem with parameters (Suzu Exchange,0,1,0,0)
+       <br/>
+       Debug: Pusing new trader to market subsystem with parameters (ArSoft Corp Black,0,2,0,0)
+      </p>
+      <p>
+       Enter Command &gt;&gt; [Thu Aug 13 10:02:00 2015] INFO: Client 127.0.0.1:50661 connected
+       <br/>
+       Network: New connection established Client(127.0.0.1:50661)
+       <br/>
+       [Thu Aug 13 10:02:00 2015] INFO: Client 127.0.0.1:50661 disconnected
+       <br/>
+       [Thu Aug 13 10:02:03 2015] INFO: Client 127.0.0.1:44824 connected
+       <br/>
+       Network: New connection established Client(127.0.0.1:44824)
+       <br/>
+       [Thu Aug 13 10:02:03 2015] ERROR: Can not send message with reserved ID
+      </p>
+      <p>
+       Network: SentNetworkMessage (“aisha”) to (127.0.0.1:44824)
+       <br/>
+       Network: Poll (127.0.0.1:44824 Type 1 Arrival 660479152)
+       <br/>
+       [/code]
+      </p>
+      <p>
+       Related Functions
+      </p>
+      <p>
+       [code]void GameEconomicServer::SendNetworkMessage(NetworkMessageTypes NetworkMessageType, bool flag1, bool flag2, String MessageText, Urho3D::Connection * SenderTo)
+       <br/>
+       {
+      </p>
+      <pre><code>/// A VectorBuffer object is convenient for constructing a message to send
+VectorBuffer msg;
+msg.WriteString(MessageText);
+
+/// Get current system time
+Urho3D::Time SystemTime(context_);
+unsigned int currentTime = SystemTime.GetSystemTime();
+
+SenderTo-&gt;SendMessage(NetworkMessageType,flag1,flag2, msg, currentTime);
+
+cout &lt;&lt; "\r\nNetwork: SentNetworkMessage (\"" &lt;&lt; MessageText.CString() &lt;&lt;"\") to (" &lt;&lt; SenderTo-&gt;ToString().CString() &lt;&lt;")" &lt;&lt; endl;
+
+return;
+</code></pre>
+      <p>
+       }
+       <br/>
+       void GameEconomicServer::HandleNetworkMessage(StringHash eventType, Urho3D::VariantMap&amp; eventData)
+       <br/>
+       {
+       <br/>
+       Network* network = GetSubsystem();
+      </p>
+      <pre><code>using namespace NetworkMessage;
+
+int msgID = eventData[P_MESSAGEID].GetInt();
+
+/// Urho related variables
+String PromptInput;
+Vector&lt;String&gt; SplitPromptInput;
+
+if (msgID == 999)
+{
+    const PODVector&lt;unsigned char&gt;&amp; data = eventData[P_DATA].GetBuffer();
+    // Use a MemoryBuffer to read the message data so that there is no unnecessary copying
+    MemoryBuffer msg(data);
+
+
+    String text = msg.ReadString();
+
+    Urho3D::Connection* sender = static_cast&lt;Urho3D::Connection*&gt;(eventData[P_CONNECTION].GetPtr());
+
+    /// parse command
+    SplitPromptInput = ParseCommand(text.Trimmed());
+
+    /// First command
+    String FirstCommand = SplitPromptInput[0];
+
+    /// Check sisze for arguments
+    if(SplitPromptInput.Size()&gt;0)
+    {
+        /// Remove first element since its not needed
+        SplitPromptInput.Erase(0);
+    }
+
+    /// ExecuteCommand
+    ExecuteCommand(FirstCommand, SplitPromptInput, sender);
+}
+if (msgID == NetMessageAuthenticateSend)
+{
+    const PODVector&lt;unsigned char&gt;&amp; data = eventData[P_DATA].GetBuffer();
+    // Use a MemoryBuffer to read the message data so that there is no unnecessary copying
+    MemoryBuffer msg(data);
+
+    String text = msg.ReadString();
+
+    /// Get Sender
+    Urho3D::Connection* sender = static_cast&lt;Urho3D::Connection*&gt;(eventData[P_CONNECTION].GetPtr());
+
+    /// Parse received message
+    SplitPromptInput = ParseCommand(text.Trimmed());
+
+    /// Verify password - case sensitive
+    bool authorized = VerifyIdentityDB(DBAccount, SplitPromptInput.At(0),SplitPromptInput.At(1));
+
+    cout &lt;&lt; "Client to authorize  " &lt;&lt; SplitPromptInput.At(0).CString() &lt;&lt; " " &lt;&lt;SplitPromptInput.At(1).CString() &lt;&lt; " with server response " &lt;&lt; authorized &lt;&lt; endl;
+
+    /// Send a response for authorized user or not
+    if(authorized)
+    {
+        /// Send a message saying authorized
+        SendNetworkMessage(NetMessageAuthenticatedApproved,true,true,"",sender);
+    }else
+    {
+        /// Send a message saying denied
+        SendNetworkMessage(NetMessageAuthenticatedDenied,true,true,"",sender);
+    }
+}
+</code></pre>
+      <p>
+       }
+       <br/>
+       [/code]
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       What message ID are you trying to use?
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://urho3d.github.io/documentation/1.4/_network.html" rel="nofollow noopener">
+        Per the documentation
+       </a>
+       :
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         The first ID you can use for custom messages is 22 (lower ID’s are either reserved for kNet’s or the Network subsystem’s internal use.)
+        </p>
+       </blockquote>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“thebluefish”]What message ID are you trying to use?
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://urho3d.github.io/documentation/1.4/_network.html" rel="nofollow noopener">
+        Per the documentation
+       </a>
+       :
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         The first ID you can use for custom messages is 22 (lower ID’s are either reserved for kNet’s or the Network subsystem’s internal use.)[/quote]
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Its higher the 22 but I can change it easy
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Note also that ID’s higher than 0x3ffffffe are kNet reserved.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/ca279ebb6e6913836d33ed2ab6856e015c310c0ee4589ca403b0e7e5a2b3f50f.png" width="20"/>
+        cadaver:
+       </div>
+       <blockquote>
+        <p>
+         Note also that ID’s higher than 0x3ffffffe are kNet reserved.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks. Worked like a charm.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   WorkQueue Lock Contention
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    WorkQueue Lock Contention
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       It seems the WorkQueue implementation suffers from lock contention problem.
+      </p>
+      <p>
+       I’ve ran concurrency profiling in VS2017 on sample 18_CharacterDemo, and I’m getting ~400 lock contentions at any given moment (per frame?):
+       <br/>
+       <img src="../../../images/352ee798c274af78a4c103e727ff26291b23c8af89200abbb61b7f5080ebadb2.png"/>
+      </p>
+      <p>
+       Which mostly come from WorkQueue::ProcessItems():
+       <br/>
+       <img src="../../../images/a0af3c823a9ca66b64f7e0a6025868289575962d96225583180993bb6f772bcd.png"/>
+      </p>
+      <p>
+       Probably depends on the CPU, for some users this doesn’t have any noticeable effect, for others it causes small stuttering, and if they use -nothreads it significantly reduces the stuttering.
+      </p>
+      <p>
+       I’m not proficient with multithreaded programming, but maybe lock-free queue can be used here to solve this problem?
+       <br/>
+       There’re libraries such as
+       <a href="http://www.boost.org/doc/libs/1_64_0/doc/html/lockfree.html" rel="nofollow noopener">
+        Boost.Lockfree
+       </a>
+       and
+       <a href="https://github.com/khizmax/libcds" rel="nofollow noopener">
+        libcds
+       </a>
+       that provide implementations.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       It could be looked into; from what I investigated the worst part is the possible latency when spinning up a worker thread, not necessarily lock contention itself. On the other hand, workers shouldn’t spin 100% of the CPU when they don’t have work to do.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       When C++11 is enabled maybe we can have something like this:
+       <a href="https://github.com/cameron314/concurrentqueue" rel="nofollow noopener">
+        https://github.com/cameron314/concurrentqueue
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Forgot to say that some of the lock contention is intentional, because blocking the worker threads and preventing them spinning the CPU when they don’t have work is done with the same lock. Tried a signal back then (for waking them up) and it resulted in worse latency.
+      </p>
+      <p>
+       This is an unorthodox design, so better solutions are gladly received. Possibly something like that once a worker thread wakes up for one frame, it doesn’t go to sleep, but spins for more tasks.
+      </p>
+      <p>
+       The problem is that we’re not a 100% task-driven engine, but the main thread still orchestrates things heavily, and worker threads do only occasional work.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       I think I ran into an issue where my WorkerThreads were running on the main thread, and for some reason I couldn’t push them off into their own thread. My guess is that my implementation was just incorrect, so I ended up making my own thread class that extended Urho3D::Thread, and I created a ThreadManager class.
+      </p>
+      <p>
+       Perhaps there could be an example at some point with the proper use of using the worker thread system. While the documentation seems pretty straight forward, I feel like I was still not grasping some of the concepts, and therefore my implementation was just wrong. Perhaps an example of creating a loading screen would be ideal (if any has some time).
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       How about
+       <a href="http://en.cppreference.com/w/cpp/thread/condition_variable" rel="nofollow noopener">
+        condition variables
+       </a>
+       . Implementing a worker thread is straightforward, push some work into a queue and signal through a condition variable that one/many workers are waiting.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Indeed, I just did profiling in my project - the worker threads are spending more time in mutex locking than 3 of my worker threads for decoding/rendering full HD mpeg4 video. I’d be glad to PR once I get some spare time.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Cant download latest release
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Cant download latest release
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       I trying to download Urho 1.4 for windows, but cant find a working download. The links in the official page stays forever loading, only once I got the download started, and got an error: Authentication failed. Tried to use mirrorservice, but get the same error. any idea about whats happening? I even tried in a  public internet room, with broadband and cant make sourceforge start download.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Looks ok from here. Also try using download managers, like this one I use it’s opensource
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+      <p>
+       <a href="http://www.freedownloadmanager.org/" rel="nofollow noopener">
+        freedownloadmanager.org/
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       Buenos di?s, roger
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Some sourceforge downloads have been problematic for me in the past couple of days, sometimes not starting.
+       <br/>
+       <a href="http://jdownloader.org/">
+        jdownloader.org/
+       </a>
+       - a free Java download manager that can resume.
+       <br/>
+       Chromium can resume as well, but you may have to enable that in chrome://flags/
+      </p>
+      <p>
+       If you still have trouble, let us know specifically which version you want, and we can find a way.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Will try using jdownloader. Im currently using downthemall, a firefox add-on.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Negative. JDownloader cant capture the link (reports the file as offline). Tried to download the recent snapshot, but got the authentication failed error. Can project admins check if the downloads are enabled for all countries? It is not the typical Sourceforge alert that the download is blocked, but I cant think what else could be.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I am sorry to hear that. I am not sure why it happened but I would try one of these. Verify the browser setting does not prevent
+       <a href="http://SF.net">
+        SF.net
+       </a>
+       to redirect to its download mirror. Try to download using direct link provided by
+       <a href="http://SF.net">
+        SF.net
+       </a>
+       . Try to download using other mirrors that you haven’t tried so far. Perhaps US mirrors instead of local ones although it would be slower probably. Try to use a CLI instead of GUI to download. I would recommend “aria2”, “wget”, “curl” (in that order). The first two knows how to follow “HTTP redirects” automatically, while the third has to be told by passing “-L” option.
+      </p>
+      <p>
+       I have also double checked the settings in the Admin page. The only check box I can think of that could limit the download for certain countries is the US “Export Control” for encryption software, but we have that check box unticked since the very beginning. Besides Cuba is friend of US already, isn’t it?
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="bbcode-b">
+        <span class="mention">
+         @rogerdv
+        </span>
+       </span>
+      </p>
+      <p>
+       told you, freedownloadmanager never fails (at least for me )
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/UjPd1jR.png" rel="nofollow noopener" title="">
+         <img alt="" height="172" src="../../../images/fa04ef2583f1082dd2d45ded1faec61b181994c1ec47e5fd1b7fa85f9408ed6a.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1071×267
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       and as
+       <span class="bbcode-b">
+        weitjong
+       </span>
+       mentioned, also try using the SF direct link with that. good luck.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Changed mirror to heanet, didnt worked, then tried with wget and it is downloading now.
+       <span class="mention">
+        @weitjong
+       </span>
+       , the “friendship” process will still take a long time, or might even halt, because our government insists in asking without giving.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="rogerdv">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a1d8d86eda1f6c5e65b06cdbac5eec181b2a02a1746095647ba61651d79a2bea.png" width="20"/>
+        rogerdv:
+       </div>
+       <blockquote>
+        <p>
+         Changed mirror to heanet, didnt worked, then tried with wget and it is downloading now.
+         <span class="mention">
+          @weitjong
+         </span>
+         , the “friendship” process will still take a long time, or might even halt, because our government insists in asking without giving.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       There has been inflexibility on other sides as well, but things change… To friendship!
+      </p>
+      <p>
+       Glad you got it working
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

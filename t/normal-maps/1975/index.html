@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Normal maps
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Normal maps
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6d90e70413bd1e1073e533bde93f58e8d8cc7f3c40caba29597051b5caef0d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codder
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I’m trying to render the scene normals as post effect. Is possible to achieve something like this with post processing?
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://snakehillgames.files.wordpress.com/2013/12/hoboculvert_normals.png" rel="nofollow noopener" title="">
+         <img alt="" height="389" src="../../../images/9b30652168bb5f07e62342034f22db729d34fab4e2bd21785ec9f9064537cab6.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×578
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       Or any ideas how to achieve something like that? Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       as material
+      </p>
+      <p>
+       gl_FragColor = vec4(vNormal.x, vNormal.y, vNormal.z, diffColor.a);
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://savepic.ru/9460900.htm">
+        <img alt="" height="" src="../../../images/8b316d9c130f6357abdb197b3d65e7046078f861b44f07e89b5e155575c6bb2b.png" width=""/>
+       </a>
+      </p>
+      <p>
+       U can create custom pass, save normals to texture and use as postpocess
+      </p>
+      <p>
+       EDIT: with considering a normal map:
+      </p>
+      <p>
+       gl_FragColor = vec4(normal.x, normal.y, normal.z, diffColor.a);
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6d90e70413bd1e1073e533bde93f58e8d8cc7f3c40caba29597051b5caef0d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codder
+     </div>
+     <div class="post_content">
+      <p>
+       By creating custom pass do you mean doing it in a technique? Can you make a longer example? thanks. I’m very very new to CG and I’m trying to learn it with Urho3D.
+       <br/>
+       I saw normals are very important to achieve different effects and I simply got stuck
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        By creating custom pass do you mean doing it in a technique?
+       </p>
+      </blockquote>
+      <p>
+       in a technique and in renderpath
+      </p>
+      <blockquote>
+       <p>
+        Can you make a longer example? thanks. I’m very very new to CG and I’m trying to learn it with Urho3D.
+       </p>
+      </blockquote>
+      <p>
+       renerpath Deffered.xml writes normals to texture
+       <br/>
+       for custom passes u can see also
+       <a href="https://github.com/1vanK/Urho3DOutlineSelectionExample">
+        github.com/1vanK/Urho3DOutlineSelectionExample
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

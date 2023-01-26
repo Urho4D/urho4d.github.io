@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Plug WebRTC / WebSocket to Urho
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Plug WebRTC / WebSocket to Urho
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1daab4ad480bbb954b7a56fcccc6e275f6a771143800828b3a040279655b452a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hcomere
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I currently have my network layer done with WebSockets / WebRTC DataChannels for both Desktop and Web worlds.
+       <br/>
+       I have also done some kind of client predicition / server reconciliation / redundancy to fight packet lost and some other networking techniques.
+      </p>
+      <p>
+       But as i am porting my game to Urho3D, i feel most of my work is redundant with Urho3D network subsystem so i plan to use it instead of redoing it myself.
+      </p>
+      <p>
+       My first observation is that UrhoPlayer does not work on web, i guess it is due to absence of network subsystem when compiling with emscripten ?
+      </p>
+      <p>
+       How can replace the kNet part with my WebSockets / WebRTC layer and still can use Urho3D network stuff like world replication ?
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Harold
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

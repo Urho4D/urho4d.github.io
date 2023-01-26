@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   File as an std::istream
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    File as an std::istream
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aaf32fbdeb46ab0d4eb31cb4511f76d22e8951d615e8eb69f2fe76d7eee5cca4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sir_Nate
+     </div>
+     <div class="post_content">
+      <p>
+       I needed to use an Urho3D::File (for resource cache support) as an std::istream (for a 3rd party library). This seems to work (though I’ve not thoroughly tested it)
+       <br/>
+       FileStream.hpp
+      </p>
+      <p>
+       [code]
+       <span class="hashtag">
+        #pragma
+       </span>
+       once
+      </p>
+      <p>
+       //based on
+       <a href="http://www.mr-edd.co.uk/blog/beginners_guide_streambuf" rel="nofollow noopener">
+        http://www.mr-edd.co.uk/blog/beginners_guide_streambuf
+       </a>
+      </p>
+      <p>
+       <span class="hashtag">
+        #include
+       </span>
+       <br/>
+       <span class="hashtag">
+        #include
+       </span>
+       <br/>
+       <span class="hashtag">
+        #include
+       </span>
+       <br/>
+       <span class="hashtag">
+        #include
+       </span>
+      </p>
+      <p>
+       <span class="hashtag">
+        #include
+       </span>
+       &lt;IO/Deserializer.h&gt;
+      </p>
+      <p>
+       class FileStream : public std::streambuf
+       <br/>
+       {
+       <br/>
+       public:
+       <br/>
+       explicit FileStream(Urho3D::Deserializer &amp;src, std::size_t buff_sz = 256, std::size_t put_back = 8);
+       <br/>
+       virtual ~FileStream() {};
+       <br/>
+       private:
+       <br/>
+       // overrides base class underflow()
+       <br/>
+       int_type underflow();
+      </p>
+      <pre><code>    // copy ctor and assignment not implemented;
+    // copying not allowed
+    FileStream(const FileStream &amp;);
+    FileStream &amp;operator= (const FileStream &amp;);
+
+private:
+    Urho3D::Deserializer&amp; src_;
+    const std::size_t put_back_;
+    std::vector&lt;char&gt; buffer_;
+</code></pre>
+      <p>
+       };
+       <br/>
+       [/code]
+      </p>
+      <p>
+       FileStream.cpp
+      </p>
+      <p>
+       [code]
+       <span class="hashtag">
+        #include
+       </span>
+       “FileStream.hpp”
+      </p>
+      <p>
+       #include
+       <br/>
+       <span class="hashtag">
+        #include
+       </span>
+      </p>
+      <p>
+       using std::size_t;
+      </p>
+      <p>
+       FileStream::FileStream(Urho3D::Deserializer &amp;src, size_t buff_sz, size_t put_back) :
+       <br/>
+       src_(src),
+       <br/>
+       put_back_(std::max(put_back, size_t(1))),
+       <br/>
+       buffer_(std::max(buff_sz, put_back_) + put_back_)
+       <br/>
+       {
+       <br/>
+       char *end = &amp;buffer_.front() + buffer_.size();
+       <br/>
+       setg(end, end, end);
+       <br/>
+       }
+      </p>
+      <p>
+       std::streambuf::int_type FileStream::underflow()
+       <br/>
+       {
+       <br/>
+       if (gptr() &lt; egptr()) // buffer not exhausted
+       <br/>
+       return traits_type::to_int_type(*gptr());
+      </p>
+      <pre><code>char *base = &amp;buffer_.front();
+char *start = base;
+
+if (eback() == base) // true when this isn't the first fill
+{
+    // Make arrangements for putback characters
+    std::memmove(base, egptr() - put_back_, put_back_);
+    start += put_back_;
+}
+
+// start is now the start of the buffer, proper.
+// Read from fptr_ in to the provided buffer
+</code></pre>
+      <p>
+       //    size_t n = std::fread(start, 1, buffer_.size() - (start - base), fptr_);
+       <br/>
+       unsigned n = src_.Read(start,buffer_.size() - (start - base));
+       <br/>
+       if (n == 0)
+       <br/>
+       return traits_type::eof();
+      </p>
+      <pre><code>// Set buffer pointers
+setg(base, start, start + n);
+
+return traits_type::to_int_type(*gptr());
+</code></pre>
+      <p>
+       }
+       <br/>
+       [/code].
+       <br/>
+       You can then create an istream like:
+      </p>
+      <p>
+       <code>
+        File f(context_,filename,FILE_READ);
+    FileStream fs(f);
+    std::istream is(&amp;fs);
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

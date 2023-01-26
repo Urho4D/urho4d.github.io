@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Minimum APK size for simple 2D mobile game
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Minimum APK size for simple 2D mobile game
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/88497a7d12adb4484986adc798080e5d6d1d36a0d081809c264215531fce26df.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sehlit
+     </div>
+     <div class="post_content">
+      <p>
+       Hello.
+      </p>
+      <p>
+       I’m considering using Urho for moibile games, they are simple 2d games and I don’t need physics or network, just basic input/sounds/sprites, can i strip out the features I don’t need and if I do what’s the expected APK size for a hello world application?
+      </p>
+      <p>
+       Thank you al help is appreciated.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, you can disable what you don’t need. That is perfectly safe.
+      </p>
+      <p>
+       What takes a bunch of memory is and will always be the scripting components. Lua for example has to generate wrappers for every exposed API and AngelScript also has to generate a ton of function calls for registering the API.
+      </p>
+      <p>
+       Second would be disabling the Database component if you don’t need it. No reason to include SQLite or ODBC(?) into your code if you don’t need it. Followed by the web-server if you don’t need that too.
+      </p>
+      <p>
+       IK component can also be disabled since I’m guessing you won’t be using that either.
+      </p>
+      <p>
+       The NavigationSystem can probably be disabled too if you don’t need it.
+      </p>
+      <p>
+       Not sure if the WebP image library can be disabled if you can live with just the standard DDS/PNG/JPEG/BMP/PSD etc. formats. I’ll have to look into that to say for sure.
+      </p>
+      <p>
+       Network and Physics can probably be disabled too without any effects. The network can definitely be disabled if you don’t need it.
+      </p>
+      <p>
+       Not sure if the 3D physics can be omitted if you only need 2D scene and physics. A more experienced used
+       <br/>
+       can tell you that for sure. Or how it can be achieved. I only know you can omit the 2D component entirely.
+      </p>
+      <p>
+       Disabling most of these can significantly reduce the size of your executable. Especially the script components.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/88497a7d12adb4484986adc798080e5d6d1d36a0d081809c264215531fce26df.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sehlit
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you for your detailed reply.
+      </p>
+      <p>
+       I’m going to use C++ directly so I don’t need the script interpretors too. When you say i can
+       <em>
+        disable
+       </em>
+       what i don’t need is that done on cmake or something like that?
+       <br/>
+       Also, yeah i don’t need physics not even 2D so i could disable that too.
+      </p>
+      <p>
+       Do you have however any rough idea on the apk size after disabling all of that? I ask because the apk size for unreal engine is like hundred MBs while unity about 10MB so that varies a lot
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="3" data-topic="4258" data-username="Sehlit">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/6929ac62683c79bcc4077a6f101f94148830e2f9ad625134577b246654c46b3a.png" width="20"/>
+        Sehlit:
+       </div>
+       <blockquote>
+        <p>
+         When you say i can
+         <em>
+          disable
+         </em>
+         what i don’t need is that done on cmake or something like that?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Just open generated Urho3D build folder with CMake GUI, go through items and disable whatever you don’t need.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       I have not created any APK so far. So I can’t say for sure how large it would be. But if I hope it to be close an x86 executable, then it should be roughly the same as Unity. Excluding any game resources, like textures/models/sounds etc.
+      </p>
+      <p>
+       As for disabling 2D physics. I haven’t looked whether you can. I can only remember you can disabled the whole 2D subsystem.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       From playing around with it about a year ago, without stripping out all of the extra things, I ended up with a debug apk of about 40 MB, but almost all of that was from ~50MB of assets – the actual .so that is the built game is about 10 MB uncompressed. Since I did not strip out all of the extra features, and I’m pretty sure the library is a debug build, I’d say you’re looking at something a decent amount smaller, though you’ll probably need to go ahead and build it to find out, unless someone with more experience with it than I have can help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       It’s 35,8 Mb on my morning build for armeabi-v7a in debug mode, without scripting (I don’t use that) and without assets of any kind. All the rest included.
+       <br/>
+       I cannot tell you about release right now, my build facility is not configured for that. But you can figure it will be lower, of course.
+       <br/>
+       HTH
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

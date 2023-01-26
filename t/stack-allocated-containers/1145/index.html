@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Stack allocated containers
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Stack allocated containers
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       I came across this articles yesterday about stack allocated containers:
+       <a href="http://tuxedolabs.blogspot.co.uk/2015/02/stack-allocated-containers.html" rel="nofollow noopener">
+        tuxedolabs.blogspot.co.uk/2015/0 … iners.html
+       </a>
+       <br/>
+       I wonder if Urho3d containers have something similar.
+       <br/>
+       Is it safe to be used with existing Urho3d containers ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“sabotage3d”]I came across this articles yesterday about stack allocated containers:
+       <a href="http://tuxedolabs.blogspot.co.uk/2015/02/stack-allocated-containers.html" rel="nofollow noopener">
+        <span>
+         http
+        </span>
+        <span>
+         ://
+        </span>
+        <span>
+         tuxedolabs
+        </span>
+        <span>
+         .
+        </span>
+        <span>
+         blogspot
+        </span>
+        <span>
+         .
+        </span>
+        <span>
+         co
+        </span>
+        <span>
+         .
+        </span>
+        <span>
+         uk
+        </span>
+        <span>
+         /
+        </span>
+        <span>
+         2015
+        </span>
+        <span>
+         /
+        </span>
+        <span>
+         02
+        </span>
+        <span>
+         /
+        </span>
+        <span>
+         stack
+        </span>
+        <span>
+         -
+        </span>
+        <span>
+         allocated
+        </span>
+        <span>
+         -
+        </span>
+        <span>
+         containers
+        </span>
+        <span>
+         .
+        </span>
+        <span>
+         html
+        </span>
+       </a>
+       <br/>
+       I wonder if Urho3d containers have something similar.
+       <br/>
+       Is it safe to be used with existing Urho3d containers ?[/quote]
+      </p>
+      <p>
+       There is no reason why it shouldn’t be as long as you are still using pointers to urho3d objects that urho3d needs to keep track of.  But for anything that the urho3d won’t need to keep track of such as temporary objects can be allocated on the stack.  It should work just fine but you will run into problems that the blog post shows when you try to pass such values.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       I also found this as a more complete production code:
+       <a href="https://code.google.com/p/chrome-browser/source/browse/trunk/src/base/stack_container.h" rel="nofollow noopener">
+        code.google.com/p/chrome-browse … ontainer.h
+       </a>
+       <br/>
+       And it can be used in conjunction with STL containers. Let me know your thoughts if there is something better out there.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

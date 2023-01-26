@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Foliage Rendering
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Foliage Rendering
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve been working on a few modifications to my foliage system and started to add multiple foliage types to it. I’ve also removed the StaticModelGroup and I’m only using StaticModel now, grouping the triangles into large batches of my CustomMesh class for performance.
+      </p>
+      <p>
+       My next goal is to load the different foliage patches onto another thread to save on memory resources. I’ve done this before, but I need to rewrite my class since I’ve refactored a bunch of stuff.
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="bZnO0qLi3bY" data-youtube-title="Urho3D Foliage 2">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       The performance here is really great! Would you mind sharing the code to your CustomMesh class and what hardware you’re running on? I’m looking to implement something similar.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       Here’s the updated version of the CustomMesh class. It’s originally based off of this post:
+       <a href="http://discourse.urho3d.io/t/a-mesh-generator/2361">
+        A Mesh Generator
+       </a>
+       by
+       <span class="mention">
+        @rbnpontes
+       </span>
+       .
+      </p>
+      <p>
+       The key factors right now for the foliage to render as a single mesh are the Rotate()/RotateFace() method. I’m still working on adding wind and making a better shader. I have noticed that if you push too many tris to the CustomMesh class you can run into some issues where the vertices are misplaced. There’s a SetUseLargeIndices() for large meshes, however sometimes you still end up having REALLY large set of vertices to render (which can mess up the render). In those cases I create multiple CustomMesh objects if that makes sense…
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <aside class="onebox githubgist">
+       <header class="source">
+        <a href="https://gist.github.com/victorholt/5913777922c61549f9d9bce9487a750f" rel="nofollow noopener" target="_blank">
+         gist.github.com
+        </a>
+       </header>
+       <article class="onebox-body">
+        <h4>
+         <a href="https://gist.github.com/victorholt/5913777922c61549f9d9bce9487a750f" rel="nofollow noopener" target="_blank">
+          https://gist.github.com/victorholt/5913777922c61549f9d9bce9487a750f
+         </a>
+        </h4>
+        <p>
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <aside class="onebox githubgist">
+       <header class="source">
+        <a href="https://gist.github.com/victorholt/955ae2f76173d1a5d3b9f65fefcbb47e" rel="nofollow noopener" target="_blank">
+         gist.github.com
+        </a>
+       </header>
+       <article class="onebox-body">
+        <h4>
+         <a href="https://gist.github.com/victorholt/955ae2f76173d1a5d3b9f65fefcbb47e" rel="nofollow noopener" target="_blank">
+          https://gist.github.com/victorholt/955ae2f76173d1a5d3b9f65fefcbb47e
+         </a>
+        </h4>
+        <p>
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       Oh, in terms of hardware…, I don’t think I run an incredibly powerful machine, just one I built a couple of years ago.
+      </p>
+      <p>
+       Windows 10 64bit
+       <br/>
+       i5-4690K (3.5 GHz) no overclock
+       <br/>
+       Nvidia GeForce GTX 760
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <p>
+       Not bad!
+       <br/>
+       How would you go about rendering distant environments with this approach (think maybe a forest from the distance)?
+      </p>
+      <p>
+       Or would you use something else for that?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       I’m not sure to be honest. This is all just experimental heh. Also, this approach makes it harder to do wind animation, which might not even be worth it. Instead, this might be a good approach to render distant foliage with no animation, while close up foliage can use the StaticModelGroup approach to handle wind animation.
+      </p>
+      <p>
+       For very large terrains, I used a multi-threaded approach to load up foliage files when you got close enough to save on resources.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

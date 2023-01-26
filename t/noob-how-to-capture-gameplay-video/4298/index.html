@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   (noob) How to capture gameplay video
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    (noob) How to capture gameplay video
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/515354824b22b4592872ae345ef6d52b4684f1502f697d1a15bf007431e980ab.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hhemken
+     </div>
+     <div class="post_content">
+      <p>
+       I just started making some test scenes in Urho3d for a visualization project.
+      </p>
+      <p>
+       Sorry to ask such a basic question, but I’ve searched this board and googled a variety of terms, but can’t find the answer:
+      </p>
+      <p>
+       How do I capture gameplay audio and video from an Urho3d game to a video file on disk?
+      </p>
+      <p>
+       Thanks for your help and patience!
+      </p>
+      <p>
+       hhemken
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/515354824b22b4592872ae345ef6d52b4684f1502f697d1a15bf007431e980ab.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hhemken
+     </div>
+     <div class="post_content">
+      <p>
+       BTW, I’m on Ubuntu 18.04 Linux
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       As for video: you can capture each frame (snapshot)  similar to
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Samples/Sample.inl#L341-L349" rel="nofollow noopener">
+        https://github.com/urho3d/Urho3D/blob/master/Source/Samples/Sample.inl#L341-L349
+       </a>
+       <br/>
+       and then concatenate the snapshots with a tool like
+       <em>
+        ffmpeg
+       </em>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Google Ubuntu screen recorder and that will give you some options. I use simple screen recorder, personally.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       You will not be able to capture proper fullscreen in urho due to breakage. Use window. You can use standard tools like obs or ffmpeg or ffmpeg wrappers for actual capture.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       I’m on linux and I use OBS for recording my desktop.
+      </p>
+      <p>
+       <a class="onebox" href="https://obsproject.com/download" rel="nofollow noopener" target="_blank">
+        https://obsproject.com/download
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       I agree OBS best and universal solution
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4296bdd736dea4ce2e11b3769690daa0632ce95ee6144375657dc67301fe1966.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      WangKai
+     </div>
+     <div class="post_content">
+      <p>
+       A cheap hardware device should be better
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+       <img alt="capture_device" height="500" src="../../../images/90d4ae43b310ae6075eff30ba5848cb5f48c9b67a02e8d1cbb8d865c2f20cf09.jpg" width="500"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       OBS is great when you want to layer things as you record or broadcast. To just capture footage I prefer
+       <a href="https://en.wikipedia.org/wiki/SimpleScreenRecorder">
+        SimpleScreenRecorder
+       </a>
+       though.
+       <br/>
+       For the best result you’ll probably want to go with
+       <span class="mention">
+        @WangKai
+       </span>
+       ’s solution.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/871c8d7bfea8e10864202834697717c88933640802772bba4f8dd6dacf7fc8d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TrevorCash
+     </div>
+     <div class="post_content">
+      <p>
+       The Xbox app on windows works well for me.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       The industry standard in gamedev is generally accepted to be “bink”, but I also use SimpleScreenRecorder on Linux.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

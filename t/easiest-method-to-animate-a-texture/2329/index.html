@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Easiest method to “animate” a texture?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Easiest method to “animate” a texture?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Say I had a model of a computer and I wanted to texture the screen of the computer with one of these 6 frames:
+      </p>
+      <p>
+       <img alt="" height="256" src="../../../images/09ff69115443baf15e57b35e667d3751485b08fc2e1605fef182cb8c9d66f3ed.gif" width="256"/>
+      </p>
+      <p>
+       What would be the best approach switch textures dynamically? Should the 6 frames be put into an atlass and the UV coordinates be changed, or should the 6 frames be separate textures (or something else)?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       There are several approaches I can think about:
+      </p>
+      <p>
+       a frame for each state.
+      </p>
+      <p>
+       single frame, animate the mesh so it exposes more every stage.
+      </p>
+      <p>
+       UIElement for each bar. Can have a single white bar texture and tint it with the color.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

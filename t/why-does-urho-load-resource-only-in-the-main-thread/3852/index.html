@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Why does Urho load resource only in the main thread?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Why does Urho load resource only in the main thread?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e9ab66cb82c8ed1bfb8c9a324b4e6196d08edaf4a76c7cb82a340f9922bf2f91.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      haolly
+     </div>
+     <div class="post_content">
+      <p>
+       I find the code
+       <code>
+        ResourceCache::GetResource(StringHash type, ...)
+       </code>
+       checks the load happens in the main thread,
+       <br/>
+       but I do not understand why it does this check, why Urho could not load resource in another thread
+      </p>
+      <p>
+       My knowledge tells me that use multiply thread will accelerate the progress when loading multiply resource
+       <br/>
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44fdf50661c1d4ef10e9658b5af46402b4b85aee712cfb91b608b8642fb2800e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      spwork
+     </div>
+     <div class="post_content">
+      <p>
+       see the document,you can use
+       <code>
+        BackgroundLoadResource()
+       </code>
+       load resource in background thread
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       As to why I’m pretty sure it’s just because various graphics resources (like textures) have to be uploaded to the GPU from the main thread, and that is a part of the loading process.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4296bdd736dea4ce2e11b3769690daa0632ce95ee6144375657dc67301fe1966.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      WangKai
+     </div>
+     <div class="post_content">
+      <p>
+       There are two phases for background resource loading:
+      </p>
+      <pre><code>bool Resource::BeginLoad(Deserializer&amp; source)
+{
+    // This always needs to be overridden by subclasses
+    return false;
+}
+
+bool Resource::EndLoad()
+{
+    // If no GPU upload step is necessary, no override is necessary
+    return true;
+}
+</code></pre>
+      <p>
+       BeginLoad is on the background loading thread and EndLoad is executed on the main thread for the GPU resource creatation, since all graphics stuff are on the main thread.
+      </p>
+      <p>
+       We can use a rendering thread for all the GPU stuff, it’s another topic anyway.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="1" data-topic="3852">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a3f41e60612b19cec7b1b6cea5723d396a52db3ffd428afe68601dfa53651e8c.png" width="20"/>
+        haolly:
+       </div>
+       <blockquote>
+        <p>
+         but I do not understand why it does this check, why Urho could not load resource in another thread
+        </p>
+       </blockquote>
+      </aside>
+      <ol>
+       <li>
+        <p>
+         Because there shall be locks to get an existing resource in multiple threads, so it would end up with deadlocks and multiple loadings of single resource. And other MT bullshit that nobody want to care about.
+        </p>
+       </li>
+       <li>
+        <p>
+         Because not every resource could be loaded in worker threads.
+        </p>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e9ab66cb82c8ed1bfb8c9a324b4e6196d08edaf4a76c7cb82a340f9922bf2f91.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      haolly
+     </div>
+     <div class="post_content">
+      <p>
+       This is the document in
+       <a href="https://urho3d.github.io/documentation/1.7/_resources.html" rel="noopener nofollow ugc">
+        resource
+       </a>
+       says,
+      </p>
+      <blockquote>
+       <p>
+        Depending on the resource, only a part of the loading process may be moved to a background thread, for example the finishing GPU upload step always needs to happen in the main thread.
+       </p>
+      </blockquote>
+      <p>
+       It seems that whether or not  a resource could be loaded in background thread depends on the type of the process,
+       <br/>
+       So, could I say that when loading any resource that does not involve GPU stuff, it could be a loading at background thread ?
+       <br/>
+       but
+       <span class="mention">
+        @Eugene
+       </span>
+       's words make me think  that it depends on the type of the resource
+       <img alt=":disappointed_relieved:" class="emoji" src="../../../images/dab3bd053be5972819df0b7a9d9214bfc7bdddac9e8a6e93a42cf115bb154ab2.png" title=":disappointed_relieved:"/>
+      </p>
+      <aside class="quote no-group" data-post="5" data-topic="3852" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        Eugene:
+       </div>
+       <blockquote>
+        <p>
+         Because not every resource could be loaded in worker threads.
+        </p>
+       </blockquote>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="6" data-topic="3852">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a3f41e60612b19cec7b1b6cea5723d396a52db3ffd428afe68601dfa53651e8c.png" width="20"/>
+        haolly:
+       </div>
+       <blockquote>
+        <p>
+         So, could I say that when loading any resource that does not involve GPU stuff, it could be a loading at background thread ?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes. So it depends on the type of the resource.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

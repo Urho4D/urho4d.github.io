@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to create a LineEdit to input passwords?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to create a LineEdit to input passwords?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0c228ce8069728433b1b467b8dffe6cc3cfd884270ca488fadefeea0b9c7a565.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      RockRockWhite
+     </div>
+     <div class="post_content">
+      <p>
+       (Poor English)
+       <img alt=":sob:" class="emoji" src="../../../images/c22c89c24607d04f39094af2216b611d1d033055b31afafbc6a185990982b844.png" title=":sob:"/>
+       I hope you can understand what I said.
+       <br/>
+       I’m a new learner of Urho3D. I’ve learnt the engine for 4 days and got a lot of fun.Today,when I learn to create a window for login, a puzzle come to me.How to create a LineEdit to input passwords like the picture?Please help me
+       <img alt=":confounded:" class="emoji" src="../../../images/5ac54656e15c37f7b91b004ec79985404e36eef103fc5374d82361e9b319f149.png" title=":confounded:"/>
+       <br/>
+       <img alt="O~TOC~%60VRZ%5DP)3F1MMI92QC" height="75" src="../../../images/7a6a960c826055674efced688f822d0dc9d38ecd24a4d328900b1c31fb51e0ba.png" width="274"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       Did you tried this method?
+       <br/>
+       <aside class="onebox githubblob">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/UI/LineEdit.h#L81" rel="nofollow noopener" target="_blank">
+          github.com
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h4>
+          <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/UI/LineEdit.h#L81" rel="nofollow noopener" target="_blank">
+           urho3d/Urho3D/blob/master/Source/Urho3D/UI/LineEdit.h#L81
+          </a>
+         </h4>
+         <pre class="onebox"><code class="lang-h"><ol class="start lines" start="71" style="counter-reset: li-counter 70 ;">
+<li>
+</li>
+<li>/// Set text.
+</li>
+<li>void SetText(const String&amp; text);
+</li>
+<li>/// Set cursor position.
+</li>
+<li>void SetCursorPosition(unsigned position);
+</li>
+<li>/// Set cursor blink rate. 0 disables blinking.
+</li>
+<li>void SetCursorBlinkRate(float rate);
+</li>
+<li>/// Set maximum text length. 0 for unlimited.
+</li>
+<li>void SetMaxLength(unsigned length);
+</li>
+<li>/// Set echo character for password entry and such. 0 (default) shows the actual text.
+</li>
+<li class="selected">void SetEchoCharacter(unsigned c);
+</li>
+<li>/// Set whether can move cursor with arrows or mouse, default true.
+</li>
+<li>void SetCursorMovable(bool enable);
+</li>
+<li>/// Set whether selections are allowed, default true.
+</li>
+<li>void SetTextSelectable(bool enable);
+</li>
+<li>/// Set whether copy-paste operations are allowed, default true.
+</li>
+<li>void SetTextCopyable(bool enable);
+</li>
+<li>
+</li>
+<li>/// Return text.
+</li>
+<li>const String&amp; GetText() const { return line_; }
+</li>
+<li>
+</li>
+</ol></code></pre>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       Like
+       <code>
+        SetEchoCharacter('*');
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0c228ce8069728433b1b467b8dffe6cc3cfd884270ca488fadefeea0b9c7a565.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      RockRockWhite
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah! Solved!Thank you！
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0c228ce8069728433b1b467b8dffe6cc3cfd884270ca488fadefeea0b9c7a565.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      RockRockWhite
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah! Solved!Thank you!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

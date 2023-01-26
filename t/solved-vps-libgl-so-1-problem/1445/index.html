@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED] VPS libGL.so.1 Problem
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED] VPS libGL.so.1 Problem
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, I’ve rented a vps and uploaded my game for testing.  I ran it with -Headless and got the error: “Error while loading shared libraries: libGL.so.1 cannot open shared object file: No such file or directory.”  Any ideas on how to fix this (the vps is running ubuntu)?  Thanks for any help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6f717edbbb6794a81024a65a0b329f4d47f598f032ada0b9ad3e06d3c5e8ecc7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      boberfly
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       You can apt-get libgl1-mesa-glx
+       <br/>
+       <a href="http://packages.ubuntu.com/search?keywords=libgl1-mesa-glx" rel="nofollow noopener">
+        packages.ubuntu.com/search?keywo … 1-mesa-glx
+       </a>
+      </p>
+      <p>
+       Which has libGL, but it’s a bit shit that it brings in X11 for a VPS.
+      </p>
+      <p>
+       Perhaps headless needs some SDL flag to make it build in some kind of dummy mode, maybe wayland mode?
+       <br/>
+       <a href="https://hg.libsdl.org/SDL/file/tip/docs/README-linux.md" rel="nofollow noopener">
+        hg.libsdl.org/SDL/file/tip/docs/README-linux.md
+       </a>
+      </p>
+      <p>
+       Or if Urho3D could work without any SDL for the purposes of headless…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       I installed urho’s dependencies on the vps and the app loaded but now I’m getting an error from the server “Illegal Instruction”.  Gdb backtrace says that it’s at kNet::Network::Init()
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Are you using the latest master branch? If yes then you must ensure you have configured your build to target the CPU on the VPS host correctly. Alternatively, build Urho natively there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       The suggestion to compile on the vps worked, thanks for all the help! Is there any way around this?  It is a great hassle to do so via the command-line.
+      </p>
+      <p>
+       Pic: master server on the top putty terminal, server on the bottom, client on the right:
+       <br/>
+       <img alt="" height="" src="../../../images/f932f0496838bd6ff11f1b968dcadf42108b97500ec8b34141a0004b4259d3b8.png" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       What do you mean by that? I find the CLI to be convenient to use even though my host/build system is not headless
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Use the ‘cat /proc/cpuinfo’ on the target system to get the CPU information. Use that information to pass the right -march compiler flag when configuring a build tree in your local host/build system with URHO3D_DEPLOYMENT_TARGET build option.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Geometry vizualization
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Geometry vizualization
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Hello ,
+      </p>
+      <p>
+       Is it currently possible to visualize vectors as lines, edges as lines and positions as points ?
+       <br/>
+       I know that the Physics Debug Drawer is already doing a similar thing but I would like to do it directly.
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/Dqs8WEn.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/cfcb64011aae906cdee61846ee976b50d2f737f385d95e20e4d3ee3bd79b5f70.jpg" width="647"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           982×758
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       add your points to vb create ib(1,2,3…)
+      </p>
+      <p>
+       add vb and ib to geom
+      </p>
+      <p>
+       set geom - Geometry::SetDrawRange() method to LINE_STRIP or  POINT_LIST
+      </p>
+      <p>
+       enum PrimitiveType
+       <br/>
+       {
+       <br/>
+       TRIANGLE_LIST = 0,
+       <br/>
+       LINE_LIST,
+       <br/>
+       POINT_LIST,
+       <br/>
+       TRIANGLE_STRIP,
+       <br/>
+       LINE_STRIP,
+       <br/>
+       TRIANGLE_FAN
+       <br/>
+       };
+      </p>
+      <p>
+       i suppose it’s must work
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   UIMouseDoubleClick not working
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    UIMouseDoubleClick not working
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/cbbecc05986493cb221f445df1778cdd2a9c3091e6d53c2ba9491b5c6f27c7e2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GIMB4L
+     </div>
+     <div class="post_content">
+      <p>
+       I have some text in the scene that I would like to have a UIMouseDoubleClick event on. I’m following the straightforward event setup structure, but it’s still not working. Can UIMouseDoubleClicks be registered as events on Text elements?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       I think the event is too dumb to care about what you are clicking on.  The procedure uses get element at(x,y) so make sure there is nothing in front of what you are double clicking on.  The event is sent from the element that was clicked on.  The buttons have to be the same as the last click within a period of time.
+      </p>
+      <p>
+       I did notice that I could not get a subscriber to get an event when they were subscribed to the control.
+      </p>
+      <pre><code>SubscribeToEvent(window, "UIMouseDoubleClick", "HandleControlDoubleClicked");  &lt;- doesn't work
+SubscribeToEvent("UIMouseDoubleClick", "HandleControlDoubleClicked"); &lt;- works</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I just check the code quickly, the “UIMouseDoubleClick” event is
+       <em>
+        only
+       </em>
+       being sent by UI subsystem, so that explains why below would never work. The sender of the event is not one of the UI-element derived classes’ instance.
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       I think it would make sense to have the element being clicked on also send the event.  Any opinions?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       IMHO, it may be more intuitive in some cases to have the mouse click/doubleclick events to be sent by the element itself. Perhaps, we need another set of events defined for this, e.g.: E_CLICKED and E_DOUBLECLICKED. It is quite trivial to do this.
+      </p>
+      <p>
+       I think the existing E_UIMOUSECLICK and E_UIMOUSEDOUBLECLICK events should be left as they are because they are still useful for cases when one wants to have only a single handler to handle all the click events.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       Node events which were node specific but rethown by the scene had listeners added to them to replace being able to subscribe to things like E_NODECHANGED on a single node.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       Hallo.
+      </p>
+      <p>
+       I setup 3 events when creating an element of ListView:
+      </p>
+      <pre><code>SubscribeToEvent(childList_.At(index).removeButton_,E_RELEASED, URHO3D_HANDLER(SplineEditor, HandleRemoveItemClicked));
+SubscribeToEvent(childList_.At(index).bodyElement_,E_ITEMCLICKED, URHO3D_HANDLER(SplineEditor, HandleItemMouseClicked));
+SubscribeToEvent(childList_.At(index).bodyElement_,E_ITEMDOUBLECLICKED, URHO3D_HANDLER(SplineEditor, HandleItemDoubleMouseClicked));
+</code></pre>
+      <p>
+       Only removeButton_ with E_RELEASED works, the other two events do not seem to trigger.
+      </p>
+      <p>
+       Code for HandleItemMouseClicked:
+      </p>
+      <pre><code>void SplineEditor::HandleItemMouseClicked(StringHash eventType, VariantMap&amp; eventData)
+{
+    // Get control that was clicked
+   Window* bodyElement = static_cast&lt;Window*&gt;(eventData[ItemClicked::P_ITEM].GetPtr());
+   int index = listView_-&gt;FindItem(bodyElement);
+   if (index!=M_MAX_UNSIGNED)
+   {
+      childList_[index].titleText_-&gt;SetColor(Color::MAGENTA);
+      childList_[index].titleText_-&gt;SetText("SELECTED");
+      childList_[index].bodyElement_-&gt;SetOpacity(0.9);
+    
+    // deselect the previous selection
+      childList_[selectedIndex].titleText_-&gt;SetColor(Color::WHITE);
+      childList_[selectedIndex].bodyElement_-&gt;SetOpacity(0.4);
+    
+      selectedIndex = index;
+  }
+
+// Just for debugging
+  listView_-&gt;RemoveItem(8);
+  childList_.Erase(8);
+  for (int i= 8; i&lt;listView_-&gt;GetNumItems(); i++)
+  {
+      childList_[i].titleText_-&gt;SetText(childList_[i].titleText_-&gt;GetText().Split(' ')[0] + String(' ') + String(i+1));
+  }
+}
+</code></pre>
+      <p>
+       <img alt="listview2" height="333" src="../../../images/c849a9577bcf33e37679aeaa9d474ef9f186103953a3eda7e7f5f5798c92029c.png" width="244"/>
+      </p>
+      <p>
+       Is there anything I misunderstood?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Always re-check event sender before writing code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for your answer, but what do you mean exactly?
+      </p>
+      <p>
+       I just looked at
+       <a href="https://github.com/urho3d/Urho3D/blob/1.7/Source/Urho3D/UI/ListView.cpp#L994" rel="nofollow noopener">
+        https://github.com/urho3d/Urho3D/blob/1.7/Source/Urho3D/UI/ListView.cpp#L994
+       </a>
+       ?
+      </p>
+      <p>
+       Shoudl the ListView be explicitly set to be editable? Just did that, but it did not help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="9" data-topic="175">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/e4222e5e29241ad601aa8fc7b5f32fb54c04378d6f4fa92aa037c70bc8c64370.png" width="20"/>
+        sirop:
+       </div>
+       <blockquote>
+        <p>
+         what do you mean exactly?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I mean that E_ITEMCLICKED is send from ListView
+       <br/>
+       It’s not obvious from your code what’s the list.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6200a44ddf040e4d62c6e3a877d0c0adb38e99c526c4942a3bda77c3e35a14ae.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sirop
+     </div>
+     <div class="post_content">
+      <p>
+       You are right. Now with the sender changed to ListView  everything works.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

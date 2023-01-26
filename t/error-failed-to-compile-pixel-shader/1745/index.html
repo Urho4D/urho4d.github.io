@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   ERROR: Failed to compile pixel shader?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    ERROR: Failed to compile pixel shader?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       Hello
+      </p>
+      <p>
+       What would cause? I’m trying to isolate a weird problem that occurs in the editor. I’m making. Any clue is appreciated?
+      </p>
+      <p>
+       <code>
+        Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT INSTANCED NOUV PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile pixel shader LitSolid(AMBIENT DIRLIGHT PCF_SHADOW PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT INSTANCED NOUV PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile pixel shader LitSolid(AMBIENT DIRLIGHT PCF_SHADOW PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT NOUV PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT NOUV PERPIXEL SHADOW):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT NOUV PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile pixel shader LitSolid(DIRLIGHT PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT NOUV PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile pixel shader LitSolid(DIRLIGHT PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile pixel shader LitSolid(DIFFMAP DIRLIGHT PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016] ERROR: Failed to compile vertex shader LitSolid(DIRLIGHT PERPIXEL):
+Owner shader has expired
+[Wed Feb  3 22:13:48 2016]
+       </code>
+      </p>
+      <p>
+       Vivienne
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       This happens when a ShaderVariation is created for a Shader that doesn’t exist.
+      </p>
+      <p>
+       Not 100% sure how this would happen in practice outside of accidentally passing a null Shader when creating a ShaderVariation in code.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

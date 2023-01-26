@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Ios 8.2 iphone 5 , getting runtime Failed to create OpenGL
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Ios 8.2 iphone 5 , getting runtime Failed to create OpenGL
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       Hello all
+       <br/>
+       i try to compile the hello world example using xcode 7.3 on ios 8.2
+       <br/>
+       every thing is compiled fine but on run time im getting exception
+       <br/>
+       im using real device not simulator .
+       <br/>
+       i had this problem befor  but never seamed to fixed it .
+       <br/>
+       any body got over this ?
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/a9xvErf.png" rel="nofollow noopener" title="">
+         <img alt="" height="397" src="../../../images/9a911b79a37b5a32260e74836a9b26b744536cb66c5b6dc6ae3e52373bea0701.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1656×955
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       this looks like SDL issue. I would check for possible solutions in their mailing list.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       On simulator with 9.3 iOS it is working
+       <br/>
+       What is the minimum ? For the engine?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       The problem is that Urho3d doesn’t support iOS 8
+       <br/>
+       i upgraded my iphone to 9.3 and all is working ( im testing all the examples now ) on device , iphone 5 works fast!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Have you set the “IPHONEOS_DEPLOYMENT_TARGET” build option? If not set explicitly, the build will target latest installed iOS SDK which may or may not be what you want.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       Yes did every thing it’s just don’t work on iOS 8
+       <br/>
+       Never mind this as it has less then 5% market share
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

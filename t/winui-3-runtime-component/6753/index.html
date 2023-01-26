@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   WinUI 3 runtime component
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    WinUI 3 runtime component
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/10ab45fa408d82a3831be1cdd475327655f0f463a5a90d9c0f8b601d849fc323.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sahandt
+     </div>
+     <div class="post_content">
+      <p>
+       With new release of WinUI 3, " it will be possible to creates a Windows Runtime component written in C++/WinRT that can be consumed by any UWP or desktop app with a WinUI-based user interface, regardless of the programming language in which the app is written."
+      </p>
+      <p>
+       I think it can be a good replacement for Urhosharp.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcef716f49982f4e1200d090926926c0d935c6ce1754ffa612f3eef56f7e36b6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JSandusky
+     </div>
+     <div class="post_content">
+      <p>
+       Isn’t the C++/WinRT stuff hard locked onto the desktop targets and not usable with Azure, ASP, Xamarin mobile, etc?
+      </p>
+      <p>
+       C++/CX doesn’t appear to have fixed C++/CLI’s nasty issues with SSE/AVX either, forcing you to prune/
+       <span class="hashtag">
+        #ifdef
+       </span>
+       your headers of any inline code using simd that the C++/CX side may touch in the glue code. Gets old really fast. I use C++/CLI bindings myself and just suck it up and turn off SSE for it.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

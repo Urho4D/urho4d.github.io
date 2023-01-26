@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   rigidBody-&gt;GetCollidingBodies() behavior (possibly bug)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    rigidBody-&gt;GetCollidingBodies() behavior (possibly bug)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi it seems that if i remove some rigid bodies from simulation , they are still cached/referenced on other rigid bodie’s list , which leads to a crash if you try to access them before next physics update
+      </p>
+      <p>
+       [code]rigidBody1-&gt;Remove();
+      </p>
+      <p>
+       // if rigidBody2 was in collision with rigidBody1 previously , the list is invalid because rigidBody’s pointer is still on the list…
+       <br/>
+       rigidBody2-&gt;GetCollidingBodies(list);[/code]
+      </p>
+      <p>
+       Just an idea : maybe storing the colliding bodies as a
+       <span class="bbcode-b">
+        PODVector&lt;SharedPtr &gt;
+       </span>
+       could solve the problem
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       SharedPtr would keep the bodies alive until the next tick, which is not wanted.
+      </p>
+      <p>
+       Will have to test this. It’s already iterating a structure of WeakPtr’s held inside the PhysicsWorld component.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       According to my test it was returning a null pointer on the list if the body taking part in collision was already destroyed. This is now fixed in the master branch. I didn’t observe it returning dangling but non-null pointer to a destroyed body.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

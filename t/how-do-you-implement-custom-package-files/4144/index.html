@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How do you implement custom package files?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How do you implement custom package files?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       I need to read an existing archive/package file and I’m curious as to how do you do it in Urho. I am looking at the
+       <code>
+        PackageFile
+       </code>
+       type from the
+       <code>
+        IO
+       </code>
+       directory but I see that it enforces a custom entry format which I understand and I could get around. But I see that pretty much all other functions that have to deal with retrieving the entries or various information about the package file are not virtual.
+      </p>
+      <p>
+       So how do I use
+       <code>
+        AddPackageFile
+       </code>
+       from
+       <code>
+        ResourceCache
+       </code>
+       with my own implementation without having to modify any engine code?
+      </p>
+      <p>
+       There’s absolutely no documentation about this. And while looking at the code could yield some results. I thought I should ask first.
+      </p>
+      <p>
+       Can anyone guide me into the right direction? Than you.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Make virtual what you need (or any other necessary engine changes), submit PR. The engine has not been planned with that usecase in mind beforehand.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you for the quick reply. One more question. Is the
+       <code>
+        checksum_
+       </code>
+       member critical for entries? I’d like to avoid calculating it each time I load the package file or keeping a separate file since I can’t alter the existing package format.
+      </p>
+      <p>
+       From a quick code search it doesn’t seem critical. So can I set that to 0?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       As far as I remember, it was used only for network sending of packages, so if you don’t use that feature, it can be kept zero.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       I have strong deja vu feeling. This topic was asked, and even PR was submitted. However, it required massive nasty renames or hacks, so it wasn’t merged.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       It should actually be quite simple to add. And with minimal changes I might add. What gets in the way is the scripting part. That’ll get nasty very quickly. Which is why I’ll keep the changes to myself for now because Lua is not something I want to touch right now.
+      </p>
+      <p>
+       You guys really need to get rid of Lua. The language is ugly to work with and even uglier to maintain.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       The PR mentioned is probably mine
+       <a href="https://github.com/urho3d/Urho3D/pull/2210" rel="nofollow noopener">
+        here
+       </a>
+       , if you want a possible starting point for your work. I think I created an example integrating gzipped package files, though I don’t remember if it was in that branch it a separate repo…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve done a basic implementation of of custom package files in my fork but unfortunately I don’t use Lua enough to learn the toLua syntax right now. If anyone knows it already and is willing to perform that task then I’ll gladly make a pull request.
+      </p>
+      <p>
+       Of course, if the implementation I’ve done is considered worthy of a pull-request. I’ve tried to keep engine changes as minimal I could. Scripting components required the use of the factory approach. And to allow future implementation of custom package files over network.
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+        <a href="https://github.com/iSLC/Urho3D/tree/custom-package-files" rel="nofollow noopener" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="400" src="../../../images/573243bff03c2a21f7d7b01b5a6c040e15a17dd5aafc3a62e9a7c9819c8c16f3.png" width="400"/>
+        <h3>
+         <a href="https://github.com/iSLC/Urho3D/tree/custom-package-files" rel="nofollow noopener" target="_blank">
+          iSLC/Urho3D
+         </a>
+        </h3>
+        <p>
+         Cross-platform 2D and 3D game engine. Contribute to iSLC/Urho3D development by creating an account on GitHub.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

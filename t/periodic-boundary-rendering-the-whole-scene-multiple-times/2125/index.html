@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Periodic boundary (rendering the whole scene multiple times)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Periodic boundary (rendering the whole scene multiple times)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b251ba4134f37a8af7f0c6408a9be6c68bed756f89e84673049bad941daf1461.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      feltech
+     </div>
+     <div class="post_content">
+      <p>
+       Hello all.  I’m trying to create a world with a periodic boundary, that is, you go off one side and come back on the other.
+      </p>
+      <p>
+       To do this (in 3D) I need to draw the whole scene 8 times and put them next to each other, to form a larger scene “cube”.  I’m hoping it’s just the rendered portion that needs cloning, not the physics objects.
+      </p>
+      <p>
+       I’ve tried
+       <code>
+        Node::Clone()
+       </code>
+       but I don’t see any cloned node in the scene, and it looks like
+       <code>
+        Clone
+       </code>
+       is just for replicating across a network anyway?
+      </p>
+      <p>
+       Perhaps there is a way to do it with the
+       <code>
+        Renderer
+       </code>
+       or
+       <code>
+        Viewport
+       </code>
+       ?
+      </p>
+      <p>
+       Any hints much appreciated!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The engine doesn’t support rendering the same node in multiple positions, so unless you make engine changes for this, you need to have an actual copy of the “world tile” in your scene, at least with the drawable components.
+      </p>
+      <p>
+       Node::Clone() should work, it’s not intended for net replication. After cloning, call SetPosition() on the clone node and you should see it in a different position.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b251ba4134f37a8af7f0c6408a9be6c68bed756f89e84673049bad941daf1461.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      feltech
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the hint.  I found out why nothing was showing up when I did a
+       <code>
+        Clone
+       </code>
+       .
+      </p>
+      <p>
+       The basic problem is that
+       <code>
+        Clone
+       </code>
+       expects the cloned
+       <code>
+        Component
+       </code>
+       's
+       <code>
+        Model
+       </code>
+       to have come from the
+       <code>
+        ResourceCache
+       </code>
+       (see
+       <code>
+        StaticModel::SetMaterialsAttr
+       </code>
+       ).  However, my
+       <code>
+        Model
+       </code>
+       s are custom and created at run time, so are not in the
+       <code>
+        ResourceCache
+       </code>
+       .  Hence the cloned
+       <code>
+        Component
+       </code>
+       has no
+       <code>
+        Model
+       </code>
+       and doesn’t render (and I get an error  log “Material index out of bounds”, since it’s trying to clone a
+       <code>
+        Material
+       </code>
+       onto a non-existent
+       <code>
+        Model
+       </code>
+       ).
+      </p>
+      <p>
+       Adding my models to the
+       <code>
+        ResourceCache
+       </code>
+       via
+       <code>
+        AddManualResource
+       </code>
+       gets me something on screen to play with.  It doesn’t get me all the way to a periodic environment, but at least I’m making progress
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, the resources are indeed necessary to be named and in cache as the cloning doesn’t operate with pointers, but through the generic attribute serialization. Cool that you figured it out!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

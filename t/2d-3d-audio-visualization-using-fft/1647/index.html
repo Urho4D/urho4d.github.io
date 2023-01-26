@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   2d/3d Audio visualization using FFT
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    2d/3d Audio visualization using FFT
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f27b57d51a8807903d9cb453d43b18605c81165a4ad780f75da1b7ffb7e68ee1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      shlomok
+     </div>
+     <div class="post_content">
+      <p>
+       Dear All,
+       <br/>
+       What is the best way to:
+       <br/>
+       [ul]
+       <br/>
+       Capture the mixed audio played like in the SoundEffects example
+       <br/>
+       Run an FFT on the data (possibly using
+       <a href="http://www.fftw.org/" rel="nofollow noopener">
+        fftw.org/
+       </a>
+       )
+       <br/>
+       Visualize the data either in 3d like so:
+       <a href="https://www.youtube.com/watch?v=IRpm9Qcnp-k" rel="nofollow noopener">
+        youtube.com/watch?v=IRpm9Qcnp-k
+       </a>
+       or like so:
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://gracefulspoon.com/blog/wp-content/uploads/2009/03/processingapp.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="343" src="../../../images/80a265bed528211aa708dcd58f7a95db36eeb7f873c6fe4ddab0b3a1dc0973a4.jpg" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           998×497
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       [/ul]
+      </p>
+      <p>
+       Thanks,
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       This reminds me of another OSS project called projectM. There are two approaches that comes to mind immediately. Feed the FFT data to a custom geometry modeller. Or render a texture using the FFT data and let the shader samples the texture and uses the data there to affect the visualization of the audio.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

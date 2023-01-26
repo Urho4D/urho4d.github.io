@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to tell if a node is a bone?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to tell if a node is a bone?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       here goes your 20 characters
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Doesn’t node have bone ptr not null in that case?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <code>
+        AnimatedModel
+       </code>
+       s have a
+       <code>
+        Skeleton
+       </code>
+       with a list of
+       <code>
+        Bone
+       </code>
+       s. Each
+       <code>
+        Bone
+       </code>
+       has a
+       <code>
+        Node
+       </code>
+       pointer that you could compare to the
+       <code>
+        Node
+       </code>
+       in question.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":joy:" class="emoji" src="../../../images/c252a58367211c11d839155e50dc5e98551826c64b8d2e8d6267124c054ceae0.png" title=":joy:"/>
+       hahaha my bad, never noticed that node_ member in class bone.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

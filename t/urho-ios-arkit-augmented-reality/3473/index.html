@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho + iOS ARKit (Augmented Reality)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho + iOS ARKit (Augmented Reality)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/05a34ea39902a28016d8d9c16fad38ff94bbc543c686ebf24d99f0fda3337406.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Egorbo
+     </div>
+     <div class="post_content">
+      <p>
+       Apple introduced a very powerful AR toolkit in iOS11 called ARKit. So I’d love to share my sample using UrhoSharp and ARKit
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       The code is simple and can be easily “backported” to C++ if you want:
+       <a href="https://github.com/EgorBo/ARKitXamarinDemo" rel="nofollow noopener">
+        https://github.com/EgorBo/ARKitXamarinDemo
+       </a>
+       <br/>
+       <img alt="D2zxJC4" height="202" src="../../../images/c9426e97e3784d1da5f5750b8f6a6e760d05911a44e4f61e15a607e7bff86a7c.jpg" width="300"/>
+       <br/>
+       Videos:
+       <br/>
+       <a href="https://www.youtube.com/watch?v=KSZtvq_iGoE" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=KSZtvq_iGoE
+       </a>
+       <br/>
+       and
+       <br/>
+       <a href="https://www.youtube.com/watch?v=BdEIetc4rHU" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=BdEIetc4rHU
+       </a>
+      </p>
+      <p>
+       ARKit is able to detect movements and planes (I will add “plane (ARPlaneAnchors) visualization” later).
+       <br/>
+       There were some challenges:
+      </p>
+      <ol>
+       <li>
+        NPOT textures on iOS (hey guys, let’s add ES3 support together :slight_smile)
+       </li>
+       <li>
+        YUV to RGB
+       </li>
+       <li>
+        Render video instead of clear color
+       </li>
+       <li>
+        Shadows on a transparent surface
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for this! Do you have any thoughts on how one would go about writing the C++ version? I’m pretty comfortable with the Urho side of things, but how does ARKit fit in? How do I go about linking in ARKit and getting, say, the registered surfaces?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/05a34ea39902a28016d8d9c16fad38ff94bbc543c686ebf24d99f0fda3337406.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Egorbo
+     </div>
+     <div class="post_content">
+      <p>
+       it should be strait forward.
+      </p>
+      <ol>
+       <li>
+        Add ARKit framework (just like other frameworks such as AVFoundation are added somewhere in makefiles)
+       </li>
+       <li>
+        Create an ARSession, run and listen to events (didUpdateFrame, etc…) Here is how it looks like in C#:
+        <a href="https://gist.github.com/EgorBo/71d66993e40fec32987b7f00e2ff734c" rel="nofollow noopener">
+         https://gist.github.com/EgorBo/71d66993e40fec32987b7f00e2ff734c
+        </a>
+        <br/>
+        translate code from C# to C++ in
+        <a href="https://github.com/EgorBo/ARKitXamarinDemo/blob/master/ARKitXamarinDemo/ArkitApp.cs#L125-L204" rel="nofollow noopener">
+         ArkitApp.cs
+        </a>
+        - should not be difficult
+       </li>
+      </ol>
+      <p>
+       And don’t forget you will need:
+      </p>
+      <ol>
+       <li>
+        A9 ios device (iphone 6s or better)
+       </li>
+       <li>
+        iOS 11
+       </li>
+       <li>
+        XCode 9
+        <br/>
+        both iOS11 and XCode 9 are betas.
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED] AI Classes / Framework / Something inside Urho3D?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED] AI Classes / Framework / Something inside Urho3D?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3145f045c6bffb198672c507e3393984af2cd0e6f920a8c105410588021676ac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      urnenfeld
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I almost have the logics/physics skeleton of my game in place:
+      </p>
+      <p>
+       <img alt="Screenshot_20190228_154051" height="250" src="../../../images/32fec4e4e7e0e87dee664de54245028f92ba4457efeda2155d38bf276e27c213.png" width="321"/>
+       <br/>
+       (the absence of any artistic skills are evident)
+      </p>
+      <p>
+       But as it is a 2 players game… To start playing myself, either I start planning how is going to be playing in network or I need to think about an AI for the game.
+      </p>
+      <p>
+       So I have decided going for the second for now.
+      </p>
+      <p>
+       <strong>
+        Something in our engine that I have missed that would help in the design of the AI?
+       </strong>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       What AIs - or maybe rather AP
+       <span class="spoiler">
+        layer
+       </span>
+       s - need to be capable of greatly depends on the game at hand. In short I think it generally (when dealing with opponents) comes down to writing functions that calculate the meaning of winning after which you find places to inject seemingly human-like error to keep your game fun to play.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       In case of a paddle game you could simply calculate a target position and have the AP move his paddle in that direction. If this calculation is accurate it may become unbeatable, so you could add something akin to a visual-spatial disability to the calculation that increases with the speed of the ball. You could maybe even add some virtual eye and have its position and angle relative to the ball effect the errors as based on your own experience playing the game.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       It’s not a lot of work to knock up a basic BehaviourTree or even a simple FSM to deal with AI behaviours - purely functional solutions quickly get out of hand with all the conditional logic.
+       <br/>
+       Whether or not Urho should provide these things is another question - currently I’m still working with functional control logic for my AI, even though there is a FSM for gamestates (intro, menu, gameplay, etc.)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3145f045c6bffb198672c507e3393984af2cd0e6f920a8c105410588021676ac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      urnenfeld
+     </div>
+     <div class="post_content">
+      <p>
+       Yep there is something already in place, I implemented a grid representing the wall where each elements represent the danger on the staying there, yet it is only needed to avoid them.
+      </p>
+      <p>
+       The fact is in some cases, that the simplest AI algorithm could make your game unbeateable, but if you don’t polish your algorithm enough then remains beateable, and you get were you wanted
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Its true - example? when an AI aims a gun at your player and shoots a bullet at you, we add some randomness to the direction vector, so that the AI can “miss”… we tweak the random factor (or range) to determine how accurate the AI will be, and in turn, how difficult the gameplay is.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Note that
+       <a href="https://en.wikipedia.org/wiki/Normal_distribution" rel="nofollow noopener">
+        normal distributions
+       </a>
+       make for more human-like error than ordinary random numbers.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I wrote a white paper on random number distributions, doubt its easily available, but a good random seed always helps
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       An extraordinary claim requires an extraordinary evidence.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       would you like to look at my old super random on asmcommunity, or something more recent? I blended park-miller with mersenne twister B, it works lovely, and is deterministic based on the seed
+       <br/>
+       The combination of these algos gave me a far superior numerical distribution in the keyrange, which I plotted and evaluated
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

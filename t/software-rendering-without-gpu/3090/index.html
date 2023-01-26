@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Software rendering without GPU
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Software rendering without GPU
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/54cc398cfae2a5f267beb7374b774441a8843e8d08450ec4e40c4202c5777687.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ganibc
+     </div>
+     <div class="post_content">
+      <p>
+       I’m building application that render 3D scene offscreen.
+       <br/>
+       I’ve implemented the code by render to texture and it’s working fine on my local machine.
+       <br/>
+       The application will open a window but it will be just a black screen while it’s generating the images in the background.
+       <br/>
+       Now I’m trying to put the application to AWS cloud and run it.
+       <br/>
+       But I’m getting this error:
+      </p>
+      <blockquote>
+       <p>
+        Could not create window, root cause: ‘No available video device’
+       </p>
+      </blockquote>
+      <p>
+       Is there any way I can run urho3D application on cloud without GPU and still render to texture?
+       <br/>
+       It seems the headless mode will disable all the rendering.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="1" data-topic="3090" data-username="ganibc">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a66c0ba88c32e5dcc8027db71b5bfd88a578cbb7a087715efd078e2df520676b.png" width="20"/>
+        ganibc:
+       </div>
+       <blockquote>
+        <p>
+         Is there any way I can run urho3D application on cloud without GPU and still render to texture?
+         <br/>
+         It seems the headless mode will disable all the rendering.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Isn’t the whole point of any headless mode to enable rendering without the need of a window to display to?
+      </p>
+      <p>
+       Anyway, without a GPU, I think you will be pretty much out of luck.
+       <br/>
+       However, Amazon (and others) offer cloud servers that have GPUs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       You didn’t say which OS you are using in your setup. We had encountered exactly this error when we first test running our sample apps on Travis (Linux VM) and later on AppVeyor (Windows Server VM). To keep SDL happy, the VM needs a “virtual display” (we do not run the app in headless mode). As it turns out this is such a common requirement for CI servers that both Travis and AppVeyor provide a handy script to call to enable the “X virtual framebuffer” while on Linux and “desktop” while on Windows. It will be slow for sure without a real GPU but they do run successfully nevertheless after that. Probably if you search using a right keyword, you can find the equivalent script for AWS. HTH.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/54cc398cfae2a5f267beb7374b774441a8843e8d08450ec4e40c4202c5777687.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ganibc
+     </div>
+     <div class="post_content">
+      <p>
+       It seems the headless is there for non-graphics stuffs, probably like game servers.
+       <br/>
+       AWS with GPU is quite expensive, so I want to avoid it if it’s possible.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/54cc398cfae2a5f267beb7374b774441a8843e8d08450ec4e40c4202c5777687.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ganibc
+     </div>
+     <div class="post_content">
+      <p>
+       I’m using Ubuntu VM.
+       <br/>
+       Thanks for your suggestion, I’ll try to find out about virtual display.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/54cc398cfae2a5f267beb7374b774441a8843e8d08450ec4e40c4202c5777687.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ganibc
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="3" data-topic="3090" data-username="weitjong">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         X virtual framebuffer
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Hi again,
+      </p>
+      <p>
+       Thanks for your suggestion. Now my application works.
+       <br/>
+       I followed the instructions in this link:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+         <a href="https://github.com/processing/processing/wiki/Running-without-a-Display" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/cb3f57da5979a5aec92e055906dce516d963f4680a9aa11a3ddd7c249fb93ec3" width="400"/>
+         <h3>
+          <a href="https://github.com/processing/processing/wiki/Running-without-a-Display" rel="nofollow noopener" target="_blank">
+           processing/processing
+          </a>
+         </h3>
+         <p>
+          Source code for the Processing Core and Development Environment (PDE) - processing/processing
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       First I tried the easiest solution (Option 1):
+      </p>
+      <blockquote>
+       <p>
+        xvfb-run /home//processing/processing-java --sketch=/path/to/sketch/folder --run
+       </p>
+      </blockquote>
+      <p>
+       This remove the original error, but I got different error message
+      </p>
+      <blockquote>
+       <p>
+        libGL error: No matching fbConfigs or visuals found
+        <br/>
+        libGL error: failed to load driver: swrast
+        <br/>
+        [Wed May  3 02:08:02 2017] ERROR: Could not create window, root cause: ‘Couldn’t find matching GLX visual’
+       </p>
+      </blockquote>
+      <p>
+       Option 2 fix the second error:
+      </p>
+      <blockquote>
+       <p>
+        sudo Xvfb :1 -screen 0 1024x768x24 &lt;/dev/null &amp;
+        <br/>
+        export DISPLAY=":1"
+       </p>
+      </blockquote>
+      <p>
+       Then, run a sketch as usual from the command line:
+      </p>
+      <blockquote>
+       <p>
+        /home//processing/processing-java --sketch=/path/to/sketch/folder --run
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <p>
+       Very interesting.
+       <br/>
+       What is doing the rendering, then, if there is no GPU? The drivers must be present for sure for OpenGL/DX to work.
+       <br/>
+       As
+       <span class="mention">
+        @weitjong
+       </span>
+       said, it must be very slow if just simulated.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe they are offloading gpu rendering to a different cloud
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/54cc398cfae2a5f267beb7374b774441a8843e8d08450ec4e40c4202c5777687.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ganibc
+     </div>
+     <div class="post_content">
+      <p>
+       I’m guessing without GPU means software rendering. It is slow, but it’s okay for my case, since I’m generating images. Not running real time rendering.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ecd58e1ecfa9c23f52a7001747ac5d5851912007d88f62cad8848af897737f1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheSHEEEP
+     </div>
+     <div class="post_content">
+      <p>
+       You are doing real time rendering if you are rendering a 3D scene. To render it to an image instead of a screen/window doesn’t AFAIK make it much faster or slower. Of course, if you just do it rarely and not at 30fps, it probably really doesn’t matter.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

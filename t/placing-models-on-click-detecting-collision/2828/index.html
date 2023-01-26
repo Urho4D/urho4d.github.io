@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Placing models on click, detecting collision
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Placing models on click, detecting collision
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       One of the challenges i’m facing when migrating away from Unity is re-implementing this system:
+       <a href="https://www.assetstore.unity3d.com/en/#!/content/45147" rel="nofollow noopener">
+        https://www.assetstore.unity3d.com/en/#!/content/45147
+       </a>
+      </p>
+      <p>
+       Basically, it allows me to place models at runtime, based on a grid. I’ve started a small proof of concept, but i’m having a hard time:
+      </p>
+      <ul>
+       <li>
+        Snapping models together
+       </li>
+       <li>
+        Snapping models to the terrain. This is, by far, the hardest. What’s the most effective way of checking how i can place a model on a terrain?
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       To specifically get the height on a terrain, you can use the GetHeight() method:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_terrain.html" rel="nofollow noopener" target="_blank">
+          Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h3>
+          <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_terrain.html" rel="nofollow noopener" target="_blank">
+           Urho3D::Terrain Class Reference
+          </a>
+         </h3>
+         <p>
+          Urho3D is a free lightweight, cross-platform 2D and 3D game engine implemented in C++ and released under the MIT license. Greatly inspired by OGRE and Horde3D.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       If you wanted a more generic way to query different geometry snapping locations, you could use OctreeQuery:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_octree_query.html" rel="nofollow noopener" target="_blank">
+          Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h3>
+          <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_octree_query.html" rel="nofollow noopener" target="_blank">
+           Urho3D::OctreeQuery Class Reference
+          </a>
+         </h3>
+         <p>
+          Urho3D is a free lightweight, cross-platform 2D and 3D game engine implemented in C++ and released under the MIT license. Greatly inspired by OGRE and Horde3D.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_ray_octree_query.html" rel="nofollow noopener" target="_blank">
+          Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h3>
+          <a href="https://urho3d.github.io/documentation/HEAD/class_urho3_d_1_1_ray_octree_query.html" rel="nofollow noopener" target="_blank">
+           Urho3D::RayOctreeQuery Class Reference
+          </a>
+         </h3>
+         <p>
+          Urho3D is a free lightweight, cross-platform 2D and 3D game engine implemented in C++ and released under the MIT license. Greatly inspired by OGRE and Horde3D.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       Usually these kinds of modular setups require some basic model preparation – if you set up the origin of the model to be at the bottom and have the model contained entirely in the positive axis, then placing them is a lot more managable.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you. Also, for snapping on sibiling model edges, any tips?
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       My first attempt would be to use the bounding box to determine the approximate size of the model and space them based on that. I haven’t played with the asset you linked to, so I’m not aware of any advanced behaviours they might have used.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/11660fa5b850b6c45cfc0b243f5f3c9f609bf8f36e00911a3972d4acb1241151.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darkirk
+     </div>
+     <div class="post_content">
+      <p>
+       Is there any further info on this subject? I’m also struggling to create something like this:
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="SIU8LxGu-zI" data-youtube-title="Ultimate Survival 0.1 : Building Teaser">
+      </div>
+      <p>
+       In Urho.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/11660fa5b850b6c45cfc0b243f5f3c9f609bf8f36e00911a3972d4acb1241151.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darkirk
+     </div>
+     <div class="post_content">
+      <p>
+       Anyone, please? I keep having problems with geo. An example would be great.
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       My suggestion would be to not do it based in geometry. Use prefabs instead of just models and include snap-points in them - up to you how to do this, but I would suggest either categorical ones - window here, door here, floor/wall/door here, or size based ones. The snap points can just be other nodes in the prefab, and just copy the world position and rotation from them when adding a new node. Another suggestion is looking into how snapping weapons to hands and such is usually done.
+      </p>
+      <p>
+       Alternatively, it you have only regularly sized components (like Minecraft), you can define a grid system whenever you add a component, unless it meets some criteria to add it to the grid of a previous one.
+      </p>
+      <p>
+       If you’re just looking into how to do it statically (not as part of the game), I would look into how to do it in Blender, etc. and then just import the scene.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Are prefabs possible in Urho3D? Are they just serialized scenes?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

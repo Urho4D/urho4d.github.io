@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How Do You Make a 3D Sprite [Solved]
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How Do You Make a 3D Sprite [Solved]
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       Edit: AnimatedSprite2D works.
+       <br/>
+       <img alt="" height="" src="../../../images/4d01309aadb627034a334d41965796b3428e20fd9c3e6579ac190258e0f5c3f2.png" width=""/>
+      </p>
+      <p>
+       Hello, for my latest project I’m envisioning something along these lines:
+      </p>
+      <div class="spoiler">
+       <p>
+        <img alt="" height="" src="../../../images/4d01309aadb627034a334d41965796b3428e20fd9c3e6579ac190258e0f5c3f2.jpg" width=""/>
+       </p>
+      </div>
+      <p>
+       How would I go about doing the character sprite?  It’s 2d but it transforms in 3D.  On the irc channel it was suggested that I use billboards.  However, I don’t see any methods for setting animations within the api docs.  Any ideas on how to achieve this would be greatly appreciated.  Thanks for your time.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5ca901bbdca7e2c389e390ef3622f34c722edf62d2b8c084b74b25ac3c099387.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ghidra
+     </div>
+     <div class="post_content">
+      <p>
+       The image isnt showing up.
+       <br/>
+       I think i found it with google, but i’m still not sure what the desired effect is.
+      </p>
+      <p>
+       EDIT:
+       <br/>
+       now the image shows up.  My confusion still stands
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       Based on the image, is sounds like you want to be able to position/rotate your sprite in 3D space?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       I think you might be talking about the reflection of the rocks and the person onto the water…
+       <img alt=":neutral_face:" class="emoji" src="../../../images/fa129602e5025a314b309f2dff231dfd8462624b6e398852bc3992a5c2b46585.png" title=":neutral_face:"/>
+       I would find a way to represent objects at different heights (aka layers) and use a shader to combine the textures together keeping in mind how tall and far an object on a particular layer is from the water…  maybe the 3D water demo will shed some light.  IDK I don’t really have any experience with shaders other than knowing what they are used for though.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b9d688c700978c8c8e441e752ef38d3eac946c22f442681087bf5596731c5d07.png" width="20"/>
+        GoogleBot42:
+       </div>
+       <blockquote>
+        <p>
+         I think you might be talking about the reflection of the rocks and the person onto the water…
+         <img alt=":neutral_face:" class="emoji" src="../../../images/fa129602e5025a314b309f2dff231dfd8462624b6e398852bc3992a5c2b46585.png" title=":neutral_face:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       If that is the case, it might almost be better to draw it as part of the background. Completely static backgrounds like that can be baked into a single texture, or into individual tiles. Even using the tiles approach, that kind of rock would be its own tile so as to account for any lighting or other visual differences.
+      </p>
+      <p>
+       The character could be a simple shader that flips the sprite upside down and uses an alpha mask to stop it from appearing over anything but the water.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="thebluefish">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4b1209bc2cff158cac3deb94b06eafe95cc328b5f8c8b58f2a70b4f3a07aa61e.png" width="20"/>
+        thebluefish:
+       </div>
+       <blockquote>
+        <p>
+         [quote=“GoogleBot42”]I think you might be talking about the reflection of the rocks and the person onto the water…
+         <img alt=":neutral_face:" class="emoji" src="../../../images/fa129602e5025a314b309f2dff231dfd8462624b6e398852bc3992a5c2b46585.png" title=":neutral_face:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       If that is the case, it might almost be better to draw it as part of the background. Completely static backgrounds like that can be baked into a single texture, or into individual tiles. Even using the tiles approach, that kind of rock would be its own tile so as to account for any lighting or other visual differences.
+      </p>
+      <p>
+       The character could be a simple shader that flips the sprite upside down and uses an alpha mask to stop it from appearing over anything but the water.[/quote]
+      </p>
+      <p>
+       True, but the player and other things will be moving around so not everything could be baked… I think think it would be less work just to do everything at runtime because some will have to be done at runtime anyway.  If this is a 2D game I think the performance will be good enough that baking is not needed.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       Fixed the link, it must have been removed.
+      </p>
+      <p>
+       No I didn’t mean reflections.  I meant a 2d sprite in a 3d world.  In that game the characters where just that and they were affected by 3d transformations (translation, rotation, scale).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       ohhhhh! That’s actually pretty easy.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       Just create a model that is a flat square (with four vertices), disable backside culling (so that both sides of the sprite are visible and the texture is flipped properly when turned around), and apply your texture.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       May be a short video is better in this case. Could it be actually low poly 3D models rendered in toon shader?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       This game was for the PlayStation 1, so no shaders, vidya:
+      </p>
+      <div class="spoiler">
+       <p>
+        [video]
+        <a href="http://youtu.be/DU5e9J1jCx8?t=16m07s%5B/video%5D" rel="nofollow noopener">
+         http://youtu.be/DU5e9J1jCx8?t=16m07s[/video]
+        </a>
+       </p>
+      </div>
+      <div class="spoiler">
+       <p>
+        [video]
+        <a href="http://youtu.be/DU5e9J1jCx8?t=22m47s%5B/video%5D" rel="nofollow noopener">
+         http://youtu.be/DU5e9J1jCx8?t=22m47s[/video]
+        </a>
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

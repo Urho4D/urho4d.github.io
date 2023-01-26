@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Shadows
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Shadows
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b949b95aa864091bdabda8c7b0e464d73fb841c1ac80581d84a36fdf210921b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Xero
+     </div>
+     <div class="post_content">
+      <p>
+       Is there anyway to increase the shadow detail in the editor? Right now i am using a point light in my scene and all the shadows being cast look like black blobs
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       There are some parameters in the “Editor Settings” for the shadow map size/bit depth.  There are also settings on the lights for getting better results.  It is the CSM splits.  I don’t understand what the CSM splits do so I can’t help you there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b949b95aa864091bdabda8c7b0e464d73fb841c1ac80581d84a36fdf210921b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Xero
+     </div>
+     <div class="post_content">
+      <p>
+       thanks got better results, im sure the csm splits does something but i cant see a difference when using it
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/fa20bf8ebdc15453c4a8231f785e34c7339daab47186c25ce6b343928b865702.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ZachGriffin
+     </div>
+     <div class="post_content">
+      <p>
+       CSM (Cascaded Shadow Mapping) allows you to segment the shadow texture so that more of the texture is given to shadows closer to the screen. i.e There is no point giving away a large amount of the texture to a shadow that only takes up 10 pixels. It allows for higher quality and sharper shadows closer to the camera. Adjusting the split (Any arbitrary amount although there are generally 4) distance sets how far away from the camera the drop in effective shadow resolution happens.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

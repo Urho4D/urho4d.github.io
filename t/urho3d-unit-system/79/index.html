@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3D unit system
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3D unit system
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4e821437bc85e16a85b86bf660777da82ab713b954993068e72cae24344819f9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cin
+     </div>
+     <div class="post_content">
+      <p>
+       Which unit used in Urho3D?
+       <br/>
+       I think what 1 unit = 1 inch.
+       <br/>
+       Bullet use metric system:
+       <a href="http://www.bulletphysics.org/mediawiki-1.5.8/index.php?title=Scaling_The_World" rel="nofollow noopener">
+        bulletphysics.org/mediawiki- … _The_World
+       </a>
+       <br/>
+       I must scale all models to meters?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       Different 3d modeling tools have a weird conversion thing.  I seem to recall that 3ds max/maya may scale everything down 100x.  There might be a fudge in asset import to try to correct this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The recommended unit is meter, so that Bullet gravity works out of the box. Also the default Camera far clip view = 1000 units, which is thought to mean 1 km. However if you adjust things like gravity and far clip, you can use whatever unit convention you want. NinjaSnowWar used to use 1 cm until the models were downscaled.
+      </p>
+      <p>
+       The AssetImporter tool code itself shouldn’t have any fudges, however some loaders in Assimp might have (haven’t checked in detail.)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3bcc1ba865e4f74b2da82859ec42f1838d21a1d47d060fe5d00c992cd74b4d75.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      NemesisFS
+     </div>
+     <div class="post_content">
+      <p>
+       so the engine automatically scales everything, I just need to adjust the gravity?
+       <br/>
+       The bullet wiki claims that one needs to scale a lot more. Can I ignore that?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The engine doesn’t scale anything automatically, it uses the assets exactly like they’re given to it. All camera parameters and vertex positions are just numbers to it, it doesn’t know what real-world units they represent.
+      </p>
+      <p>
+       Most important criteria in use of Bullet is that there are no huge mass ratio differences between objects (ie. not very light and not very heavy objects). The NInjaSnowWar objects use kilograms for mass, so ninja has mass 80, which is quite credible, but the mass of the snowballs has been set to a ridiculously high value (10 kg) so that they seem to have a noticeable effect on the objects they collide with. I’d just tweak the values so that they seem to make sense for the gameplay you’re trying to achieve.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

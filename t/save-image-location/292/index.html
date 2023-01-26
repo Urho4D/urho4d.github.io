@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Save Image Location
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Save Image Location
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0f624c0c48d74abcebac3b8d07fd2ceca42ee483e86de7c69e7e92dc5a1d0980.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ucupumar
+     </div>
+     <div class="post_content">
+      <p>
+       I want to take screenshot (using graphics-&gt;TakeScreenshoot()) and save the Image using image.SaveJPG(), the function returns true but I couldn’t find the saved image file anywhere.
+       <br/>
+       I tried to search using explorer but got nothing. I tried to input simple path ‘E:\imagesaved.jpg’ or ‘imagesaved.jpg’ and still got nothing.
+       <br/>
+       Did I miss something?
+       <img alt=":question:" class="emoji" src="../../../images/ac1daab1db4fbeec9105c359a5d58fb8519b27eb2fc8f6644ef97cf74bc2cdac.png" title=":question:"/>
+       <br/>
+       I’m using Windows 7 x64.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0f624c0c48d74abcebac3b8d07fd2ceca42ee483e86de7c69e7e92dc5a1d0980.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ucupumar
+     </div>
+     <div class="post_content">
+      <p>
+       I found it, but file name is wrong. It saved as something random number like ‘778727527.jpg’. I called the function with:
+       <code>
+        testImage.SaveJPG(String('abcdefg123.jpg'))
+       </code>
+       Is it a bug?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       Does it work if you use " instead of ’
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       You can take Bin/Data/Scripts/Editor/EditorUI.as or Bin/Data/Scripts/Utilities/Sample.as as examples to start from and adapt to your path (both feature taking screenshots).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0f624c0c48d74abcebac3b8d07fd2ceca42ee483e86de7c69e7e92dc5a1d0980.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ucupumar
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the replies. I think I found it, you don’t need to cast String on function. Just use:
+       <code>
+        SaveJPG("testCapture.jpg", 100)
+       </code>
+       It works for me now.
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Actually you can use the String() constructor explicitly or not. It does not really matter, provided you use the correct string literal in C/C++. The string literal is double quoted, as already pointed out by Chris.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

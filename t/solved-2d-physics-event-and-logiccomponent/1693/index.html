@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED] 2d physics event and LogicComponent
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED] 2d physics event and LogicComponent
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/46f9ffc394de3f995ca4d34566325e81bbf6453283f99c76c0bb7943ecd316d1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Botanick
+     </div>
+     <div class="post_content">
+      <p>
+       Hello \0
+      </p>
+      <p>
+       I am trying to sort out the 2d Physics implementation stuff for myself. Right now
+       <span class="bbcode-i">
+        LogicComponent
+       </span>
+       do not have any subscription for 2d physics update events, so we can’t use
+       <span class="bbcode-i">
+        LogicComponent#FixedUpdate
+       </span>
+       and other fixed update related methods in this case because no one will call them
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       . How we are supposed to fixed steps for 2d graphics in this case? subscribe manually? or may be extending
+       <span class="bbcode-i">
+        LogicComponent
+       </span>
+       class?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/46f9ffc394de3f995ca4d34566325e81bbf6453283f99c76c0bb7943ecd316d1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Botanick
+     </div>
+     <div class="post_content">
+      <p>
+       Another question is: do we think that
+       <span class="bbcode-i">
+        PhysicsWorld2D
+       </span>
+       and 3D version of it
+       <span class="bbcode-i">
+        PhysicsWorld
+       </span>
+       can exists simultaneously? if no - then I can just subscribe LogicComponent for the 2D events, if 2D physics world component created
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       In this case the correct way is to add this functionality to LogicComponent, instead of using workarounds. It seems to simply be an overlooked case.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Should now be fixed in master branch for all of LogicComponent, ScriptInstance and LuaScriptInstance.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

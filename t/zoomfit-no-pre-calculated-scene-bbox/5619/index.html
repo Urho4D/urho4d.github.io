@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   ZoomFit ( no pre-calculated scene bbox)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    ZoomFit ( no pre-calculated scene bbox)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6660cf1ccb71e170f4c062cfb71a420a16d38555662afb6ddce371a355b2f4be.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sergeyv
+     </div>
+     <div class="post_content">
+      <p>
+       Simple question  -  to implement usual ZoomFit function need to get bounding box for entire scene.
+       <br/>
+       Is it correct that the only method to do this is
+      </p>
+      <ul>
+       <li>
+        quary octree::GetDrawables()  with maximum bbox
+       </li>
+       <li>
+        parse through all node and calculate result bbox
+       </li>
+      </ul>
+      <p>
+       Thanks !
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       I think you may be looking for
+       <code>
+        Octree::GetWorldBoundingBox()
+       </code>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

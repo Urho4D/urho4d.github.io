@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [solved] XML reading problem: NextResult()
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [solved] XML reading problem: NextResult()
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/99e4aa5a476b65953f034ebdf3fa692cd6be1e6603a546271ff013e9a2c4a55a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      syjgin
+     </div>
+     <div class="post_content">
+      <p>
+       How can I read a XML constructions such as this:
+      </p>
+      <p>
+       <code>
+        &lt;buildings&gt;
+    &lt;building name="building1" count="3"/&gt;
+    &lt;building name="building2" count="3"/&gt;
+    &lt;building name="building3" count="3"/&gt;
+  &lt;/buildings&gt;
+       </code>
+      </p>
+      <p>
+       I’m trying to read it in this way:
+      </p>
+      <pre><code class="lang-auto">XMLElement buildingsElement = rootEl.GetChild("buildings");
+    XMLElement currentBuilding = buildingsElement.GetChild("building");
+    while(currentBuilding)
+    {
+        String buildingKey = currentBuilding.GetAttribute("name");
+        int buildingCount = currentBuilding.GetInt("count");
+        _buildings.insert(std::pair&lt;String,int&gt;(buildingKey, buildingCount));
+        currentBuilding = buildingsElement.GetChild("building").NextResult();
+    }</code></pre>
+      <p>
+       …but only first “building” line was read. What’s may be wrong with NextResult() usage?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       nextresult only works for xmlnodes from an xpath query.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/99e4aa5a476b65953f034ebdf3fa692cd6be1e6603a546271ff013e9a2c4a55a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      syjgin
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Azalrion">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/8963edf4ac461315b1ce8994bf29d883cdebd732984b250ac2e924021d2ef276.png" width="20"/>
+        Azalrion:
+       </div>
+       <blockquote>
+        <p>
+         nextresult only works for xmlnodes from an xpath query.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks, solved by using XPath:
+      </p>
+      <p>
+       <code>
+        XPathQuery query("*/building", "ResultSet");
+    XPathResultSet results = query.Evaluate(rootEl);
+    for(int i=0; i &lt; results.Size(); i++)
+    {
+        String buildingKey = results[i].GetAttribute("name");
+        int buildingCount = results[i].GetInt("count");
+        _buildings.insert(std::pair&lt;String,int&gt;(buildingKey, buildingCount));
+    }
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

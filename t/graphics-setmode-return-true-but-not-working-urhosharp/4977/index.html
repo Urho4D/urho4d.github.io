@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Graphics.SetMode() return true but not working (UrhoSharp)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Graphics.SetMode() return true but not working (UrhoSharp)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65d4ecc012bbee296179dd5df0f3dc877bf983050ef323e3ca10b1b75f0adb6a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      NessEngine
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all,
+       <br/>
+       I’m using Urho3d for C#. I try to set resolution using SetMode but it just return true and doesn’t change anything. here’s the call:
+      </p>
+      <p>
+       <code>
+        var ret = Graphics.SetMode(800, 600, true, true, false, false, true, false, 0, 0, 0);
+       </code>
+      </p>
+      <p>
+       Edit: I call it from first line of ‘Start()’
+      </p>
+      <p>
+       What am I missing?
+       <br/>
+       Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Most likely this needs to be done
+       <em>
+        before
+       </em>
+       the context is created.
+       <br/>
+       I do it in virtual Setup method, which I presume is executed prior to Start method.
+      </p>
+      <pre><code class="lang-auto">    virtual void Setup()
+    {
+        // Called before engine initialization. engineParameters_ member variable can be modified here
+        engineParameters_["FullScreen"]=false;
+        engineParameters_["WindowWidth"]=1280;
+        engineParameters_["WindowHeight"]=720;
+        engineParameters_["WindowResizable"]=true;
+        //engine_-&gt;DumpResources();
+    }</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       UrhoSharp is a
+       <em>
+        separate
+       </em>
+       project with its own forums, documentation and bugs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

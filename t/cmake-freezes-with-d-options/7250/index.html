@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   CMake freezes with -D options
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    CMake freezes with -D options
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/107c3bd0b741a139d4f11ce55eab7df3d54f343ae8d7f15c6b19b27c5ab3a7f9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      feresmu
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+      </p>
+      <p>
+       This is working fine: script\cmake_vs2019.bat URHO3D_VS2019
+      </p>
+      <p>
+       But script\cmake_vs2019.bat URHO3D_VS2019 -DURHO3D_OPENGL=1
+       <br/>
+       freezes
+       <br/>
+       The same happens with script\cmake_vs2019.bat URHO3D_VS2019 -DURHO3D_LUA=0
+      </p>
+      <p>
+       I use CMake 3.19.2 on Windows.
+       <br/>
+       Is correct to do: script\cmake_vs2019.bat URHO3D_VS2019 -DURHO3D_OPENGL=1?
+       <br/>
+       anyone can reproduce it?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       Insert a space in between -D and the rest .
+       <br/>
+       i.e.
+       <strong>
+        -DURHO3D_OPENGL=1
+       </strong>
+       should be
+       <strong>
+        -D URHO3D_OPENGL=1
+       </strong>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/107c3bd0b741a139d4f11ce55eab7df3d54f343ae8d7f15c6b19b27c5ab3a7f9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      feresmu
+     </div>
+     <div class="post_content">
+      <p>
+       Hi.
+       <br/>
+       It works.
+       <br/>
+       But I had to do engineParameters_[EP_OPENGL] = true; in sample.inl
+       <br/>
+       With urho1.7 I didn’t have to did it.
+      </p>
+      <p>
+       Perhaps it must to be in
+       <a class="inline-onebox" href="https://urho3d.io/documentation/HEAD/_building.html" rel="noopener nofollow ugc">
+        Urho3D - Documentation - Building Urho3D library
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

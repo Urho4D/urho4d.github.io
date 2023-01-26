@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How do I use SetTextAlignment?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How do I use SetTextAlignment?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/39e78f756a1db78e4c47b4972ba80b7c62646b36984d25b977ac4de787a6346c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      behindcurtain3
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, I’m trying to align a Text to the right. Whenever I set:
+      </p>
+      <p>
+       text-&gt;SetTextAlignment(HA_RIGHT);
+      </p>
+      <p>
+       or
+      </p>
+      <p>
+       text-&gt;SetTextAlignment(HA_CENTER);
+      </p>
+      <p>
+       It makes the text disappear completely. Is there something simple I’m missing to align the text to the right or center?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       try use text-&gt;SetSize() first
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/39e78f756a1db78e4c47b4972ba80b7c62646b36984d25b977ac4de787a6346c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      behindcurtain3
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks 1vanK, it turns out I needed text-&gt;SetFixedSize() to get it working properly.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

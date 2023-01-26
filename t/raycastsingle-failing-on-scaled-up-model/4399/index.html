@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   RaycastSingle failing on scaled up model
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    RaycastSingle failing on scaled up model
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/342f5c019877290c90b00cb08731be76057bab501bcbcde7210f29f2ac7f0e89.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      davemurphy
+     </div>
+     <div class="post_content">
+      <p>
+       I’m trying to use raycast on models I’ve imported from the Blender mdl exporter. I’ve been having trouble with the Avocado model from the glTF 2.0 sample repository. The model is relatively small and I need to set it’s scale to 30 to make it the size I want. The problem is when I RaycastSingle with RAY_TRIANGLE it won’t hit the back of the avocado model, just the front part and the pit. When the model is scaled to 1 raycasts work fine.
+      </p>
+      <p>
+       Has anyone else had an issue with raycasts not working on their own models when scaled? And Is this a problem with the model or are there limitations to the triangle raycast algorithm that I don’t know about?
+      </p>
+      <p>
+       Here is the source model, you’ll also need a Blender glTF importer.
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/Avocado" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/1098c23354f84aff6d55c14fcb458b660188bf6767e807b178ea09229857ad7a.png" width="400"/>
+         <h3>
+          <a href="https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/Avocado" rel="nofollow noopener" target="_blank">
+           KhronosGroup/glTF-Sample-Models
+          </a>
+         </h3>
+         <p>
+          glTF Sample Models. Contribute to KhronosGroup/glTF-Sample-Models development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/ksons/gltf-blender-importer" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/e0fb2d7dea483d816f253ca6275962b12a5d68cc8319bae397fb8347114f7444.png" width="400"/>
+         <h3>
+          <a href="https://github.com/ksons/gltf-blender-importer" rel="nofollow noopener" target="_blank">
+           ksons/gltf-blender-importer
+          </a>
+         </h3>
+         <p>
+          Blender glTF 2.0 Importer. Contribute to ksons/gltf-blender-importer development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       If you add
+       <code>
+        ret.direction_.Normalize();
+       </code>
+       just before
+       <code>
+        return ret;
+       </code>
+       in function
+       <code>
+        Ray::Transformed
+       </code>
+       in
+       <code>
+        Ray.cpp
+       </code>
+       , would it fix your problem?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/342f5c019877290c90b00cb08731be76057bab501bcbcde7210f29f2ac7f0e89.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      davemurphy
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks!
+      </p>
+      <p>
+       Normalizing the ray direction does fix the problem of the ray not hitting the mesh. However, it changes the position returned by the raycast to be in model space. In my case, I’m using uniform scaling, so the hit distance can be scaled by any component of the model’s world scale.
+      </p>
+      <p>
+       According to the comment by Nathan Reed on
+       <a href="https://gamedev.stackexchange.com/questions/72440/the-correct-way-to-transform-a-ray-with-a-matrix" rel="nofollow noopener">
+        this StackOverflow answer
+       </a>
+       , if you used non-uniform scales, the point returned by the raycast should be transformed back to world space.
+      </p>
+      <p>
+       DMGregory in comment to Nathan’s answer also states that you can store the scale factor used to normalize the direction vector (invLen in Vector3::Normalize). Although I’m not sure the best way to propagate invLen up to StaticModel::ProcessRayQuery.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

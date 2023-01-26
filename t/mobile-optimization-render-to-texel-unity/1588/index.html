@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Mobile optimization - render to texel (unity)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Mobile optimization - render to texel (unity)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/11cc576f958d791b2620f4a680b55531cb61d3d8ab60aa6da94ad4989a24a6b3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kyle00
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve been looking into mobile optimization, specifically how unity does it and was reading this
+       <br/>
+       <a data-bbcode="true" href="http://docs.unity3d.com/Manual/MobileOptimizationPracticalRenderingOptimizations.html" rel="nofollow noopener">
+        http://docs.unity3d.com/Manual/MobileOptimizationPracticalRenderingOptimizations.html
+       </a>
+      </p>
+      <p>
+       That process seems easy enough, but I was curious as to the textures on the image below. The left is diffuse, but what’s the other two images?
+      </p>
+      <p>
+       <img alt="" height="194" src="../../../images/8f2f133abc8cc28680cd86e8661b55b7d590a6e3376f4f333654cc7b64a68381.jpg" width="534"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       Second one is model space normals. Not sure what is the third, looks like local vertex position. No idea how they use it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/11cc576f958d791b2620f4a680b55531cb61d3d8ab60aa6da94ad4989a24a6b3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kyle00
+     </div>
+     <div class="post_content">
+      <p>
+       you’re right about the 2nd one being world space normals, the third one is world space positions. both generated during render to texel routine.
+      </p>
+      <p>
+       I realized this only after implementing it and dumping the two texture maps to png files.
+      </p>
+      <p>
+       example scene: cube obj to bake and render to texture plane
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/3A5gNZe.jpg?1" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/525a907e9e4aac1f3ffdcfcfbc23ef84407b34a9bf6fb6b3c2f93a2194130b25.jpg" width="665"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           800×601
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       generated textures: world space normal texture map and world space position texture map
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/YOLuMVc.jpg?1" rel="nofollow noopener" title="">
+         <img alt="" height="345" src="../../../images/4c897733f5efd8c3d279acc3f4fb989531a8557e1c3692f0152d2692580d64f8.jpg" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           900×450
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       baked image
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/lplb9W9.png?1" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/3788cca15da80486bff0f9ea03459092c7490a135a09fd82eb5c1dbd14a1d66b.png" width="500"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           600×600
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

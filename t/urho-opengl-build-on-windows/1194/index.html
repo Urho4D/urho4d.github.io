@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho OpenGL Build on windows
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho OpenGL Build on windows
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc90909fa941eec767f6b45982b9a74e5f49e3dff7a69fdb93c452fc72cc8b3a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JulyForToday
+     </div>
+     <div class="post_content">
+      <p>
+       So I’ve been making a program the last couple days using the UrhoPlayer and writing the code in angelscript. I wanted to test it on another machine (also a windows PC), and ran
+       <a data-bbcode="true" href="https://github.com/urho3d/Urho3D/issues/738" rel="nofollow noopener">
+        into an issue with d3dcompiler_47.dll
+       </a>
+       . So I figured I would recompile the UrhoPlayer to use OpenGL (using
+       <span class="bbcode-b">
+        -DURHO3D_OPENGL
+       </span>
+       build option). It compiles fine, but when I use the sample scripts with the UrhoPlayer (which all work fine with the DX build) they are completely broken. They start, but the materials are orange/green gradients and the scene is barely constructed, and in odd ways (how depends on the sample, but none of them are created correctly/as expected)
+      </p>
+      <p>
+       Here is the physics sample, DX on the left (normal scene), OpenGL on the right (blank white screen with a gradient on a quad)
+       <br/>
+       <img alt="" height="261" src="../../../images/2eb19b9a170377279459954c149403b63d06af7fcd65685add5f159859c29ab5.png" width="477"/>
+       <img alt="" height="268" src="../../../images/72988f889d9b6fb377c8a9d567c37574b887e4da3b0998efafbf454db1c3b8fc.png" width="479"/>
+      </p>
+      <p>
+       Not sure what’s going on with this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc90909fa941eec767f6b45982b9a74e5f49e3dff7a69fdb93c452fc72cc8b3a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JulyForToday
+     </div>
+     <div class="post_content">
+      <p>
+       Okay… nevermind.
+      </p>
+      <p>
+       I’m still not sure what was going on, but I was building Urho from source I pulled from github back in May (5/27 I think). I decided to start from scratch, and download the latest Urho zip file (1.4) and do an OpenGL build from that, and use the samples/assets included with it. And it works exactly as I’d expect, and works on both machines (my original goal).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       I had the same problem when I used folders Data and CoreData from the old version Urho3D with new sources
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       If you look at the change history or the release notes for 1.4 then this is not surprising.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Direct3D11 and OpenGL 3 rendering. Shader Model 2 support removed.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I remember seeing Lasse making a lot of changes to those shaders in the CoreData directory.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

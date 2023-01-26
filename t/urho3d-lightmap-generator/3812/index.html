@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3D Lightmap generator
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3D Lightmap generator
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Early Merry Christmas, repo:
+       <a href="https://github.com/Lumak/Urho3D-Lightmap">
+        https://github.com/Lumak/Urho3D-Lightmap
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Update the roomScene.xml to make the baked texture seamless.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Looks great ! is there a way to bake some indirect lighting too ? Like AO and GI ? If yes or there’s EVEN a plan to implement it i will switch to this right away !
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Direct lighting only:
+       <br/>
+       <img alt="" src="../../../images/5c54081ae79bce07f82d7954a5d0d15e98e4090b1b4c2128d68791ab832a204c.png"/>
+       <br/>
+       <img alt="" src="../../../images/43d7c20acb8b7ff17f819909d2b198c3cf77aa93b5f693b994d55786792738c0.png"/>
+      </p>
+      <p>
+       press
+       <strong>
+        F5
+       </strong>
+       to start the light process and once complete, technique is changed to xxLightMap and the results should look like this with indirect lighting… unless I forgot to check something in.
+       <br/>
+       <img alt="" src="../../../images/db96ba32367a6853ace8dc535544175497448285f6f50bfc0ce18b26da4a2c98.png"/>
+       <br/>
+       <img alt="" src="../../../images/eb4b96812d626298f0159cf954756aefc355e67798bc6b880189bd5cbe10a77b.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Nice work, thanks for sharing
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I managed to write bake indirect lighting code and capture, but what’s captured is not what I expect. It looks like just a larger version of the lightmap instead of direct+indirect+shadows.  Is that what you expect?
+      </p>
+      <p>
+       It might help you understand if I posted some images.
+      </p>
+      <p>
+       edit: nvm, indirect baked texture = diffuse texture + indirect lighting.  The lightmap is just indirect lighting, no texture. Anyway, indirect process is in the repo.
+      </p>
+      <p>
+       direct bake
+       <br/>
+       <img alt="" src="../../../images/13ee33140379afee879af6659b05902bd59dc0d34cd7a3e9c9c003c9123cc692.png"/>
+      </p>
+      <p>
+       lightmap
+       <br/>
+       <img alt="" src="../../../images/b7de7a4a208537fbae571265f1f31767564dec00f25efb13d5928e53863c84a8.png"/>
+      </p>
+      <p>
+       indirect bake
+       <br/>
+       <img alt="" src="../../../images/60dd0c9d896438ac0da7705d6d2a8a3b47baa28144d481b01b069d674a32696b.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Updated repo w/ bake indirect and misc. cleanup.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I wrote some test code to process solidangle color averaging in the background thread to reduce the overall build time for larger indirect lighting textures sizes, 128x128 and 256x256, and these are the kind of numbers that I’m getting in the
+       <strong>
+        lightmap.log
+       </strong>
+       file.
+      </p>
+      <pre><code class="lang-auto">-------------128x128---------
+[Mon Dec  4 09:13:25 2017] INFO: node7: indirect completion = 20.78 sec.
+[Mon Dec  4 09:13:25 2017] INFO: node9: indirect completion = 20.79 sec.
+[Mon Dec  4 09:13:25 2017] INFO: node10: indirect completion = 20.81 sec.
+[Mon Dec  4 09:13:37 2017] INFO: node5: indirect completion = 33.39 sec.
+[Mon Dec  4 09:14:04 2017] INFO: node8: indirect completion = 60.55 sec.
+[Mon Dec  4 09:14:24 2017] INFO: node6: indirect completion = 80.01 sec.
+
+-------------256x256---------
+[Mon Dec  4 09:17:26 2017] INFO: node7: indirect completion = 81.61 sec.
+[Mon Dec  4 09:17:26 2017] INFO: node9: indirect completion = 81.65 sec.
+[Mon Dec  4 09:17:26 2017] INFO: node10: indirect completion = 81.69 sec.
+[Mon Dec  4 09:18:13 2017] INFO: node5: indirect completion = 128.24 sec.
+[Mon Dec  4 09:20:08 2017] INFO: node8: indirect completion = 243.74 sec.
+[Mon Dec  4 09:21:21 2017] INFO: node6: indirect completion = 316.35 sec.
+</code></pre>
+      <p>
+       You can specify the size at line 258 in LightmapCreator.cpp:
+      </p>
+      <pre><code class="lang-auto">lightmap-&gt;BeginIndirectLighting(outputPath_, 256);</code></pre>
+      <p>
+       Detail images:
+       <br/>
+       lightmap
+       <br/>
+       <img alt="" src="../../../images/d94cb5c50c6199a194063d12da26bb65527124415141e4a9425a92ab3d6d13e9.png"/>
+       <br/>
+       baked indirect
+       <br/>
+       <img alt="" src="../../../images/c860a27034b9214e567e3c25cfc7be90c92674dc1b7f7fd7878a6b05e3f3986e.png"/>
+      </p>
+      <p>
+       And you have to ask, is it worth creating a higher res image for indirect bake. And the answer is no.
+       <br/>
+       There are obvious detail difference in the lightmap images from 64x64 to 256x256, but the diff of baked indirect images aren’t all that different.
+       <br/>
+       diff image online w/ fuzz 1%
+       <br/>
+       <img alt="" src="../../../images/ef25f46f948d576b6f504fc4306e776e6b0f1b470aa475bc4cefae573e5f1240.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Really no difference when comparing the default size at 64x64.
+      </p>
+      <pre><code class="lang-auto">-------------64x64---------
+[Mon Dec  4 11:28:45 2017] INFO: node7: indirect completion = 5.37 sec.
+[Mon Dec  4 11:28:45 2017] INFO: node9: indirect completion = 5.37 sec.
+[Mon Dec  4 11:28:45 2017] INFO: node10: indirect completion = 5.38 sec.
+[Mon Dec  4 11:28:49 2017] INFO: node5: indirect completion = 9.14 sec.
+[Mon Dec  4 11:28:54 2017] INFO: node8: indirect completion = 14.90 sec.
+[Mon Dec  4 11:29:00 2017] INFO: node6: indirect completion = 20.73 sec.
+total time = 20.73 sec.
+--- threaded
+[Mon Dec  4 11:30:11 2017] INFO: node7: indirect completion = 5.38 sec.
+[Mon Dec  4 11:30:11 2017] INFO: node9: indirect completion = 5.39 sec.
+[Mon Dec  4 11:30:11 2017] INFO: node10: indirect completion = 5.40 sec.
+[Mon Dec  4 11:30:14 2017] INFO: node5: indirect completion = 9.07 sec.
+[Mon Dec  4 11:30:20 2017] INFO: node8: indirect completion = 14.76 sec.
+[Mon Dec  4 11:30:26 2017] INFO: node6: indirect completion = 20.49 sec.
+total time = 20.49 sec.
+</code></pre>
+      <p>
+       You can save about a minute when creating 256x256 image threaded, but as mentioned previously, it’s not worth it. And for this reason, I won’t be checking in my threaded test code to the repo.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I was very skeptical about the diff’d images, and looking through my code, I realized I was calling
+       <strong>
+        lightmap-&gt;SetSavefile(false);
+       </strong>
+       early on to skip updating my baked files.
+      </p>
+      <p>
+       <strong>
+        True diff images:
+       </strong>
+      </p>
+      <p>
+       <strong>
+        64v128
+       </strong>
+       <br/>
+       <img alt="" src="../../../images/6af4ad23dd53a1e141bea0121907ee78d81143fc199f5abb3fef8dc805c7cd37.png"/>
+      </p>
+      <p>
+       <strong>
+        128v256
+       </strong>
+       <br/>
+       <img alt="" src="../../../images/5718cc22ce5f17109028265d04f486e9a0dd52edee3761c2394bf0ea8dd2d4a6.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Repo updated w/ solid angle color computation threaded option, and more importantly the indirect render texture is now fixed to 64x64.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Repo updated: runs 4x faster. The default scene setup now completes in
+       <strong>
+        ~5 secs.
+       </strong>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/464d037ed6259a2a48d7eb8fcb68d7f38f7d715b0b6b7828a29b8734a9e6a059.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      coldev
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks 4 share… nice christmas gift
+       <img alt=":grinning:" class="emoji" src="../../../images/f88b3dd8be457c7635b001536c53b98923c1c4de31b14a9aba5910f7f9e98e7c.png" title=":grinning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       You’re welcome
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Repo updated: refactored lightmap.cpp and created texturebake.cpp. This is the last update I’ll make this year.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       I’m curious: any chance this can be used with external tools such as Mitsuba or Eevee?
+      </p>
+      <p>
+       Doing lighting correctly is something extremely difficult and this project could benefit from being a modular way of integrating renderers, instead of trying to render things itself. That’s just my two cents, of course! Amazing effort. Learning a lot from your code, Lumak. You rock.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I’m not aware of Eevee but have studies Mitsuba about a couple of years ago.  Mitsuba does generate
+       <strong>
+        perfect
+       </strong>
+       lighting images but it does this by screen space raycasts, and there are variations of raycast options, does it on the CPU, and is really slow.
+      </p>
+      <p>
+       My implementation is based on
+       <strong>
+        Hugo Elias’s Radiosity.
+       </strong>
+       Except, I haven’t implemented the skipping of pixels, evaluate, and interpolate part, but brute force pixel processing. And I also use hemisphere instead of hemicube that everyone who’s ever implemented Hugo’s method that I’ve seen are so keen to believe that is the best option.
+      </p>
+      <p>
+       Using Urho3D’s tech., indirect light processing is
+       <strong>
+        blazing fast.
+       </strong>
+       And the accuracy only depends on the lightmap/indirect light resolution that you choose.
+      </p>
+      <p>
+       Here’s an example of the lightmap image created at 512x512 resolution:
+       <br/>
+       <img alt="" src="../../../images/3a418bf9a3ba45083a8555c88b77ab2c8c759b484a2a5c9c9576d552027aeca0.png"/>
+      </p>
+      <p>
+       I never realized how accurate
+       <strong>
+        Hugo’s
+       </strong>
+       method was until I observed the cascading light and shadow at the top/left of the image and color bleeding.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       That description above, I will have to use it on my github repo page.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       I see. But isn’t speed that much of a concern when you’re baking lights? Or are you planning of generating lightmaps in realtime, similar to what Sauerbraten does?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Generating lightmaps at runtime to achieve static GI is exactly what’s happening in my demo - just skip baking textures because you really don’t need them, unless you’re wanting to remove lights from the scene and render baked images as unlit.
+      </p>
+      <p>
+       Speed is a concern to me. I don’t know about you but, I can remember a number of times when I’ve tried generating lightmaps in other engine/program and having to wait 40 mins. to see resulting lightmap textures with undesirable blemishes even for scenes strictly with box only type geometries.
+      </p>
+      <p>
+       What makes Mitsuba not work in this case is, it only does screen space processing. If you’re wanting to only do screen space, there are plenty of shaders out there that can do SSGI, of course, w/o BRDF that Mitsuba applies in its process.
+      </p>
+      <p>
+       edit: had to rephrase.
+       <br/>
+       edit2: sry, I don’t know what a Sauerbraten is.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Let me also mention that there is a baked scene sample in Lightmap/bakedScene.xml which demonstrates rendering bakedIndirect as Unlit w/o any lights in the scene.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Now i understand what your goal is! I thought this was intended to be a lightmap baking tool, such as the ones included in UE and Unity.
+      </p>
+      <p>
+       About embree:
+       <a href="https://github.com/prideout/aobaker" rel="nofollow noopener">
+        https://github.com/prideout/aobaker
+       </a>
+       <br/>
+       About sauerbraten:
+       <a href="http://sauerbraten.org/" rel="nofollow noopener">
+        http://sauerbraten.org/
+       </a>
+       <br/>
+       <a href="http://sauerbraten.org/docs/editref.html" rel="nofollow noopener">
+        http://sauerbraten.org/docs/editref.html
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       My original title for this thread was named “baking” something, so yeah, I really didn’t describe what I’ve implemented exactly. And I’m not sure if “generator” describes it properly.
+      </p>
+      <p>
+       I’ve not seen nor tried UE and Unity lightmap baking tool to know if I generate something comparable. I wrote this and the lightprobe to replace a ton of lights that I had in a scene that I couldn’t have in real time for mobile device.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Testing second light bounce in the demo.
+       <br/>
+       edit: i guess it’d help to have a reference of the 1st bounce
+      </p>
+      <p>
+       light bounce=1
+       <br/>
+       <img alt="" src="../../../images/f18f8e41ee44c4cf73a59da034f2536a2cc7d3415dc52f691a9f7750bf9db2f9.png"/>
+       <br/>
+       light bounce=2
+       <br/>
+       <img alt="" src="../../../images/8e7d52da288c9f6ad516bf4d963df66c08031c01bda4e0a90dcc91b917343a77.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Looking at the bounced light results had me look over my solid angle calculation again, and I believe there was an error.
+      </p>
+      <p>
+       edit: nope, it’s mathematically correct.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t know why but the indirect light doesn’t feel and seem right.
+      </p>
+      <p>
+       The red circles show some random artifacts and the whole area between the red cube and the pillars are too bright.Also where the pillars touch the ground doens’t seem right either.There are some bright circle shaped artifacts around them.
+       <br/>
+       <img alt="image" height="388" src="../../../images/90fb26a1cf9ae59d600d71ab5d3f97ac238d993c712f4cb3ab40f32de7339bdf.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah, I’ve noticed some strange artifacts.
+      </p>
+      <p>
+       One that really boggles my mind is this one:
+       <br/>
+       <img alt="" src="../../../images/2092e466898eda630ab1612636c7beccba12b832093fef2a9d316b204679afa8.png"/>
+      </p>
+      <p>
+       I’ve gone through the debug draw process of drawing every point and normal on every object in the scene and they’re correctly positioned and points outward from where they should be.  Yet, how does a star cluster form on a sphere when irradiance of close or next neighbors should be gradient if not the same.
+      </p>
+      <p>
+       Math wise, I don’t massage my irradiance value during computation. What you see is what’s been calculated from what’s returned from render texture.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Is the same artifact happens if you increase the resolution ? It seems like an ultra low resolution lightmap issue
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <ul>
+       <li>
+        fixed the problem with star cluster on the sphere. turns out the camera rotation need to be set using FromLookRotation() fn, otherwise, the rotation gets skewed
+       </li>
+       <li>
+        fixes the partial lighting on the back wall - uv mapping was too close, new model provided. also provided a new uv mapped box model
+       </li>
+       <li>
+        the light ring around the pillars fixed by setting mat cull and shadowcull to “none.”  you can’t set this for the room!
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       That’s good news.Any screen shots ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       images of fixes
+       <br/>
+       <img alt="" src="../../../images/c732c829cea2e89544bf8debdd14ba62ea458dfeea1bc09ed266f35e64ec9d4e.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       Just playing around with this: where can I set the bounces? Or is that feature not in yet?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve not put that in yet. Mathematically, the irradiance calculation is correct, but I it just looks too bright to me. I’ll need to verify it with a second source and compare the results before I can check that in.
+      </p>
+      <p>
+       It’s simple to implement.
+      </p>
+      <ol>
+       <li>
+        reinit state in lightmapCreator to
+        <code>
+         LightMap_IndirectLightBegin;
+        </code>
+       </li>
+       <li>
+        reinit state in
+        <code>
+         Lightmap::BeginIndirectLighting
+        </code>
+        to
+        <code>
+         State_IndirectLightBegin
+        </code>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Maya’s second light bounce room image. I tried to dummy down the GI bake settings in Maya to mimic Hugo’s radiosity: sampling at 4096 (base on 64x64 texture size), no bake shadow, etc., because Maya does have some pretty sophisticated settings you can setup.  And I probably don’t have the shaders set correctly because I’m losing color on no-texture objects.
+      </p>
+      <p>
+       Baked images on 64x64 texture size.
+      </p>
+      <p>
+       Hugo:
+       <br/>
+       <img alt="" src="../../../images/7d6174c4fdb0b4a587aae8ff1c5bccadb30bbee918ee2cbb3618b1a94acfcbec.png"/>
+      </p>
+      <p>
+       Maya:
+       <br/>
+       <img alt="" src="../../../images/bdab03925257d0221f1c392ede0545b7778ab30b4ff3032353bb6bae5af4a85c.jpg"/>
+      </p>
+      <p>
+       Summing the luma of generated second bounce images, Hugo’s method accumulated ~19% more light than Maya.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       If I multiply irradiance by 50% Luma and summed with 20% of the original color, I get:
+       <br/>
+       <img alt="" src="../../../images/e49beff177804629173324bf1cf37205e1550b6f834c8ff4fc3b7c9a6b94c0fe.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Testing alternate approach by turning off all the lights in the scene and sampling light emitted from the lightmap in the first indirect light pass, results in the 2nd pass image below.
+      </p>
+      <p>
+       Total luma captured in the scene is 5% more than Maya. First, sampling was 19% more.  Of course you can always tone down color by replacing the percentage of the color with luma.
+      </p>
+      <p>
+       <img alt="" src="../../../images/1f483e0161d8b525fe56646230be6260ecc52d48f6a633c50839102a85209228.png"/>
+      </p>
+      <p>
+       Posting Maya image again for easy comparison:
+       <br/>
+       <img alt="" src="../../../images/bdab03925257d0221f1c392ede0545b7778ab30b4ff3032353bb6bae5af4a85c.jpg"/>
+      </p>
+      <p>
+       Luma, RGB remove.
+       <br/>
+       <img alt="" src="../../../images/3deb4f4fc7d8eeead681239a78082dd5018fdc5f0aabf1d08219e2920e870cb0.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       This looks a lot better IMO. Nice one!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Quick question: does this auto-unwrap my scene? Or i have to do that myself? That scene is a single object?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       By
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         does this auto-unwrap my scene?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I think you mean, does it uv unwrap. No, it doesn’t do any uv unwrapping. Each model is expected to already have texCoord2.
+      </p>
+      <p>
+       The scene has 6 static models, each with its own texcoord2.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Repo updated: 2ndary light bounce and clean up.
+      </p>
+      <p>
+       Final comparison with Maya: Hugo’s method results in
+       <strong>
+        3.5% less light
+       </strong>
+       .  And the default output is luma, no RGB. Set
+       <strong>
+        lumaOutputColor_=false
+       </strong>
+       in Lightmap.cpp for color.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       What’s the reason of these gradients lines on the columns? Looks like an artifact.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Ya, the pillars look like shit. It’s the way it’s uv mapped. It’d probably come out a lot better if
+       <strong>
+        Thekla
+       </strong>
+       uv mapper is used, but that’s entirely a whole another project and I’m not touching that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       I have one word , beautiful.
+       <br/>
+       Would be useful for low end mobile devices.
+       <br/>
+       Once I will have some spare time will try it on more complex scene’s
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I will have another repo update before Christmas.  Update will include baking direct and indirect to produce a combined Unlit texture, so you can have it in a static environment.
+      </p>
+      <p>
+       Final will include:
+      </p>
+      <ul>
+       <li>
+        for dynamic environment: lightmap.
+       </li>
+       <li>
+        for static environment: unlit.
+       </li>
+       <li>
+        removing direct baked images.
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Looking great Lumak and awesome work
+       <img alt=":+1:" class="emoji" src="../../../images/42b43325b3edacba2a0e72b742bdc6fc5e4bc2ad38adca271fcc6d8353639887.png" title=":+1:"/>
+       Yes, I’m sure this will be great for mobile.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Repo updated with direct and indirect texture bake.  Before you start any lightmap process, check out the resulting baked texture by openging the bakedScene.xml in the editor.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       The baked outcome looks great
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Would this work with terrains?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @smellymumbler
+       </span>
+       , no.
+      </p>
+      <p>
+       Repo updated with HLSL support.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Is there any reason not to merge this?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       I think I can answer this, as a person who implemented lightmapper myself.
+      </p>
+      <p>
+       There’s a huge difference between lightmapping sample and baked lighting support in the engine.
+      </p>
+      <p>
+       It took me 2 weeks to implement lightmap
+       <em>
+        generation
+       </em>
+       from scratch (aka “sample”), and 2.5
+       <em>
+        months
+       </em>
+       to integrate baked lighting into the engine and polish most notable rough corners, so I get actually usable tool suitable for real scenes.
+      </p>
+      <p>
+       This is the reason why most of the samples (and Urho has a lot of the 3rd-party samples) are not merged into master in any form.
+      </p>
+      <p>
+       It’s only 5-10% of work to implement sample. The rest 90-95% of work is to smoothly integrate sample functionality into the engine in actually re-usable and flexible form.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a24b76a41d0a05f4599c64c29a07617c64620087cf4dca2b5ba4b1179b82ec06.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Liichi
+     </div>
+     <div class="post_content">
+      <p>
+       Oh, I thought that implementing lightmap generation was the hard part
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       It probably
+       <em>
+        is
+       </em>
+       the part that requires most close-to-the-metal technical knowledge, but not what requires most lines of code. I think what
+       <span class="mention">
+        @Eugene
+       </span>
+       is saying is that making something work, is not the same as making it widely applicable in a way that is relatively easy to understand for others.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="52" data-topic="3812" data-username="Modanung">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         It probably
+         <em>
+          is
+         </em>
+         the part that requires most close-to-the-metal technical knowledge, but not what requires most lines of code
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       So true.
+      </p>
+      <p>
+       The raytracting kernel of lightmapper requires certain technical knowledge and algorithms, so it may be hard to implement if one is not familiar with the area (like me 5 months ago).
+      </p>
+      <p>
+       On the other hand, this part is relatively simple from architectural point of view. Actual intergarion raises a lot of new questions and issues.
+      </p>
+      <p>
+       How lightmapper shall handle materials and models of the engine? What components are supported and how? What’s performance on real scenes? Does lightmapper converge with increasing quality? How to run it in the background while scene is open in the Editor? How to handle dynamic objects? How to handle model LODs? How to integrate new changes into legacy shaders? How to make it as simple-to-use as possible? In perfect world, with one or two clicks in the Editor.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

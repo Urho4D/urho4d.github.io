@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Box2D full support
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Box2D full support
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/95a252acd05542425946cd69f2dfe21fc6a903121966e1d7da9ab6c8321832cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JoshuaBehrens
+     </div>
+     <div class="post_content">
+      <p>
+       I tried to use the sensors with the 2D physics, but they are not implemented (due to undefined reference: Urho3D::CollisionShape2D::SetSensor(bool) and I didn’t find it in the source). Maybe it is not implemented yet due to the “premature” 1.31 release. I just wanted to mention this.
+      </p>
+      <p>
+       Yours, Josh
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       It was refactored recently to SetTrigger and IsTrigger to match the 3d version.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/95a252acd05542425946cd69f2dfe21fc6a903121966e1d7da9ab6c8321832cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JoshuaBehrens
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for your reply. I thought the “trigger” had a different meaning. But I still think due to the early 1.31-version there are some “errors” still in the implementation of Box2D. When it is fully integrated maybe you should add a page in the documentation for those who try to “convert” a Box2D tutorial on Urho2D.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1bca8162c8fb8bd8bbf1363c8e32df234b5a88bc6b94675ee9e4989fc5bc09c8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      aster2013
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="JoshuaBehrens">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/6a670cfc0d6f2275dfe9fb560213b41bcec372a30b227fa53ad751901f105ba3.png" width="20"/>
+        JoshuaBehrens:
+       </div>
+       <blockquote>
+        <p>
+         But I still think due to the early 1.31-version there are some “errors” still in the implementation of Box2D.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       If you find error(bug) you can report issue on GitHub. Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/95a252acd05542425946cd69f2dfe21fc6a903121966e1d7da9ab6c8321832cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JoshuaBehrens
+     </div>
+     <div class="post_content">
+      <p>
+       Ok, I going to do that.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

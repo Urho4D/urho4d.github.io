@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Unable to go back the launcher scene on Andriod
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Unable to go back the launcher scene on Andriod
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3e02deb7f68dd4f331cb0cf968893330f02e0868e9dedcb3d6bab354dda2ee45.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Vivek
+     </div>
+     <div class="post_content">
+      <p>
+       I have build the android launch app which launches individual 3D sample but the problem is I cannot go back to the launcher unless untill I kill the app.
+       <br/>
+       What is the right way to kill the individual 3D sample on Android(to be used in custom launcher).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       This is a known problem with our Sample Launcher on Android. It is actually not a problem on the launcher app per se, to me, it is more a design issue on Android platform. After user choosing a sample to launch, the launcher loads the corresponding *.so and launch the sample. The problem is, after a *.so is loaded, Android API does not provide an easy way to unload it. The selected sample remains effective until you kill and restart the app. If anyone know how to unload a shared library then you may help to contribute to fix this.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

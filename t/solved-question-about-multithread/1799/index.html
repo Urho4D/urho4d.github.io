@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED]question about multithread
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED]question about multithread
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3c32f992f03407c08a24c9a566244d5830ca8bdca2d84b7e733feda04d4ab4aa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      imxqliu
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, gus
+       <br/>
+       while I run sample NO.1 on a destop(i7-4790, windows7 64bit), I find it create 3 threads in helloworld.log, but on my laptop(Intel i5-3210m, windows10 64bit) only one thread. this problem confused me a lot , will you have  any opinions?
+       <br/>
+       thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       As I understood how the engine works, it only counts physical CPU and use that number minus 1 as one of the core is reserved for main thread. Your desktop CPU has 4 cores, so 3 worker threads looks correct to me. Your mobile CPU has 2 cores, so only 1 worker thread being used is also correct. The main thread is not being mentioned in the log but of course it is there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3c32f992f03407c08a24c9a566244d5830ca8bdca2d84b7e733feda04d4ab4aa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      imxqliu
+     </div>
+     <div class="post_content">
+      <p>
+       weitjong,thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

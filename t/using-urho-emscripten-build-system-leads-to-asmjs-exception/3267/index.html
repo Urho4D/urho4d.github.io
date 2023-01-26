@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Using Urho emscripten build system leads to asmjs exception
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Using Urho emscripten build system leads to asmjs exception
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1daab4ad480bbb954b7a56fcccc6e275f6a771143800828b3a040279655b452a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hcomere
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       I had successfuly compiled and ran my project with emscripten by linking with Urho from my own build system.
+      </p>
+      <p>
+       Now i am trying to use Urho’s build system following below documentation :
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <a href="https://urho3d.github.io/documentation/1.6/_using_library.html" rel="nofollow noopener" target="_blank">
+          Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h3>
+          <a href="https://urho3d.github.io/documentation/1.6/_using_library.html" rel="nofollow noopener" target="_blank">
+           Using Urho3D as external library
+          </a>
+         </h3>
+         <p>
+          Urho3D is a free lightweight, cross-platform 2D and 3D game engine implemented in C++ and released under the MIT license. Greatly inspired by OGRE and Horde3D.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       Got two issues with that :
+      </p>
+      <p>
+       == 1) My project must be compiled for windows, asmjs and android, so i am using cmake_vs2015.bat cmake_emscripten.bat and cmake_android.bat to compile respectively in folders build_vs2015/ build_asmjs/ and build_android/
+      </p>
+      <p>
+       The issue is that i have to define URHO3D_HOME with the correct build_xxx/ according to current platform.
+       <br/>
+       I used to use if(EMSCRIPTEN) condition to detect if i am building for asmjs as it is a variable automaticaly setted by emscripten toolchain.
+      </p>
+      <pre><code class="lang-auto">if(EMSCRIPTEN)
+    set(URHO3D_HOME "C:/Users/hcomere/Perso/Urho3D-1.6/build_asmjs")
+elseif(ANDROID)
+    set(URHO3D_HOME "C:/Users/hcomere/Perso/Urho3D-1.6/build_android")
+elseif(WIN32)
+    set(URHO3D_HOME "C:/Users/hcomere/Perso/Urho3D-1.6/build_vs2015")
+endif()
+</code></pre>
+      <p>
+       But this does not work, EMSCRIPTEN variable seems to be undefined using Urho scripts.
+      </p>
+      <p>
+       I had to add the definitions in cmake_generic.bat
+      </p>
+      <pre><code class="lang-auto">    if "%~1" == "-DWEB" if "%~2" == "1" set "OPTS=-G "MinGW Makefiles" -DCMAKE_TOOLCHAIN_FILE="%TOOLCHAINS%\emscripten.toolchain.cmake" -DEMSCRIPTEN=1"
+</code></pre>
+      <p>
+       What is the usual way to define URHO3D_HOME according to the platform without customizing cmake_generic.bat ?
+      </p>
+      <p>
+       == 2)
+      </p>
+      <p>
+       The second issue is way more strange, the compilation is OK but i am simply not able to run my project due to a javascript error :
+      </p>
+      <pre><code class="lang-auto">Uncaught TypeError: Cannot read property 'viewport' of undefined
+</code></pre>
+      <p>
+       It worked well with my build system and compiled Urho web samples work well …
+       <br/>
+       It is like the webgl context has not be created but i do not have any error about that.
+       <br/>
+       Any guess?
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Harold
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       First of all, if you are happy with your own build system then use it. There is absolutely no need to reuse Urho3D build system for your own project.
+      </p>
+      <p>
+       With that gets out of the way. If you just setting up a new project now, you may want to try the latest codebase from the master branch instead as the new release 1.7 is imminent. The Emscripten toolchain file (as well all the others) has been renamed. Things that you have observed may or may not exist anymore with the latest codebase.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1daab4ad480bbb954b7a56fcccc6e275f6a771143800828b3a040279655b452a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hcomere
+     </div>
+     <div class="post_content">
+      <p>
+       Hi weitjong,
+      </p>
+      <p>
+       Sure i can continue to use my build system and complete it with android support, but Urho3D’s build system is more complete and elegent so if it can fit my needs it should be perfect
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       I just try to understand differences i have between both, mine need SSE disabled where Urho’s one do not, but i have js exception at runtime
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+      <p>
+       As you suggested i have tried Urho’s master but i am not able to compile Urho for emscripten due to the following error :
+      </p>
+      <pre><code class="lang-auto">[ 22%] Built target LZ4
+[ 24%] Building CXX object CMakeFiles/PackageTool.dir/C_/Users/hcomere/Perso/Urho3D/master/Source/Urho3D/Core/ProcessUtils.cpp.obj
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:587:64: warning: '__stdcall__' attribute only applies to function types [-Wattributes]
+ typedef NTSTATUS (WINAPI *RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
+                                                                ^
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:587:64: error: typedef 'Urho3D::RtlGetVersionPtr' is initialized (use decltype instead)
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:587:45: error: 'PRTL_OSVERSIONINFOW' was not declared in this scope
+ typedef NTSTATUS (WINAPI *RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
+                                             ^
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:589:19: error: variable or field 'GetOS' declared void
+ static void GetOS(RTL_OSVERSIONINFOW *r)
+                   ^
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:589:19: error: 'RTL_OSVERSIONINFOW' was not declared in this scope
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:589:39: error: 'r' was not declared in this scope
+ static void GetOS(RTL_OSVERSIONINFOW *r)
+                                       ^
+C:\Users\hcomere\Perso\Urho3D\master\Source\Urho3D\Core\ProcessUtils.cpp:707:1: error: expected '}' at end of input
+ }
+ ^
+make[5]: *** [CMakeFiles/PackageTool.dir/C_/Users/hcomere/Perso/Urho3D/master/Source/Urho3D/Core/ProcessUtils.cpp.obj] Error 1
+make[4]: *** [CMakeFiles/PackageTool.dir/all] Error 2
+make[3]: *** [all] Error 2
+make[2]: *** [Source/Tools/PackageTool-prefix/src/PackageTool-stamp/PackageTool-build] Error 2
+make[1]: *** [Source/Tools/CMakeFiles/PackageTool.dir/all] Error 2
+make: *** [all] Error 2
+</code></pre>
+      <p>
+       Is it caused by anything on my side ?
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Harold
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Most probably. I haven’t seen any errors like that in my build environment for Web platform. For what it’s worth, since you have been retrying, you should probably ensure you retry on new build tree location each time so that past failure does not interfere. Good luck.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1daab4ad480bbb954b7a56fcccc6e275f6a771143800828b3a040279655b452a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hcomere
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       After many tries, i still have the same error but by removing lines causing the problem in ProcessUtils.cpp i am able to compile.
+       <br/>
+       Good news, using master, i have not anymore the js exception described in original post.
+      </p>
+      <p>
+       Regarding the compile error, i have commented following lines :
+      </p>
+      <pre><code class="lang-auto">#if defined(_WIN32)
+/*typedef NTSTATUS (WINAPI *RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
+
+static void GetOS(RTL_OSVERSIONINFOW *r)
+{
+    HMODULE m = GetModuleHandle("ntdll.dll");
+    if (m)
+    {
+        RtlGetVersionPtr fPtr = (RtlGetVersionPtr) GetProcAddress(m, "RtlGetVersion");
+        if (r &amp;&amp; fPtr &amp;&amp; fPtr(r) == 0)
+            r-&gt;dwOSVersionInfoSize = sizeof *r; 
+    }
+}*/
+#endif 
+</code></pre>
+      <p>
+       and
+      </p>
+      <pre><code class="lang-auto">String GetOSVersion() 
+{
+#if defined(__linux__) &amp;&amp; !defined(__ANDROID__)
+    struct utsname u;
+    if (uname(&amp;u) == 0)
+        return String(u.sysname) + " " + u.release; 
+#elif defined(_WIN32)
+    /*RTL_OSVERSIONINFOW r;
+    GetOS(&amp;r); 
+    // https://msdn.microsoft.com/en-us/library/windows/desktop/ms724832(v=vs.85).aspx
+    if (r.dwMajorVersion == 5 &amp;&amp; r.dwMinorVersion == 0) 
+        return "Windows 2000"; 
+    else if (r.dwMajorVersion == 5 &amp;&amp; r.dwMinorVersion == 1) 
+        return "Windows XP"; 
+    else if (r.dwMajorVersion == 5 &amp;&amp; r.dwMinorVersion == 2) 
+        return "Windows XP 64-Bit Edition/Windows Server 2003/Windows Server 2003 R2"; 
+    else if (r.dwMajorVersion == 6 &amp;&amp; r.dwMinorVersion == 0) 
+        return "Windows Vista/Windows Server 2008"; 
+    else if (r.dwMajorVersion == 6 &amp;&amp; r.dwMinorVersion == 1) 
+        return "Windows 7/Windows Server 2008 R2"; 
+    else if (r.dwMajorVersion == 6 &amp;&amp; r.dwMinorVersion == 2) 
+        return "Windows 8/Windows Server 2012";
+    else if (r.dwMajorVersion == 6 &amp;&amp; r.dwMinorVersion == 3) 
+        return "Windows 8.1/Windows Server 2012 R2"; 
+    else if (r.dwMajorVersion == 10 &amp;&amp; r.dwMinorVersion == 0) 
+        return "Windows 10/Windows Server 2016"; 
+    else*/ 
+        return "Windows Unidentified";
+#elif defined(__APPLE__)
+[...]
+</code></pre>
+      <p>
+       The strange thing is that ProcessUtils.cpp does not compile only when building PackageTool.exe, not when building Urho lib itself.
+       <br/>
+       PRTL_OSVERSIONINFOW and RTL_OSVERSIONINFOW are unknown at this stage.
+      </p>
+      <p>
+       It looks like an issue with my MinGW windows headers which are not found.
+       <br/>
+       Btw i am not using MinGW-W64 as suggested in :
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <a href="https://urho3d.github.io/documentation/1.6/_building.html" rel="nofollow noopener" target="_blank">
+          Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h3>
+          <a href="https://urho3d.github.io/documentation/1.6/_building.html" rel="nofollow noopener" target="_blank">
+           Building Urho3D
+          </a>
+         </h3>
+         <p>
+          Urho3D is a free lightweight, cross-platform 2D and 3D game engine implemented in C++ and released under the MIT license. Greatly inspired by OGRE and Horde3D.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       I dont know it can be the cause.
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Harold
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Glad to hear that you gave figured it out. Regarding the commented lines, I recall those are quite recently added code by a contributor. You may want to report this as an issue or even take it as a chance to send in a PR to fix this simple issue.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I have raised this as an issue.
+       <a href="https://github.com/urho3d/Urho3D/issues/1998">
+        https://github.com/urho3d/Urho3D/issues/1998
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       I wonder if there’s some preprocessor macro which can be used there…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I also believe this is a simple issue to fix. You are too welcome to try to fix it, if you have extra time.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       At least the MINI_URHO flag can be used to exclude the OS version functionality in the case of building PackageTool as part of Web build. However this doesn’t solve the case where a native build would fail due to the same error. Possibly, old or incompatible MinGW. A kind of nuclear option for this case would be to disable it altogether on MinGW and derivatives.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       I think MinGW version check is less radical solution.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       But now I think it is best to just disable this function for web build (or provide faked version).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Alternatively, we could detect if the “built in” function is actually exists and route the code path conditionally.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       That sounds like the best option. I could still do the MINI_URHO check as a first measure, since that doesn’t arguably hurt.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, I agree… I agree… (20 chars)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @hcomere
+       </span>
+       , it would be great if you can test out the latest master branch to see whether it solves your remaining build issue.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1daab4ad480bbb954b7a56fcccc6e275f6a771143800828b3a040279655b452a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hcomere
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, with latest master, starting from scratch, emscripten build is OK now, thanks
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcdbfbd7622a54267e5189250c086b7941163de1d8e6bb9dc43a78254fd745b5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JimSEOW
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="5" data-topic="3267" data-username="hcomere">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/6ff62de8a532d3b4241de64fde4279fc53a63dfb74298c91c93930fcbacafc9d.png" width="20"/>
+        hcomere:
+       </div>
+       <blockquote>
+        <p>
+         GetOSVersion
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Regarding String GetOSVersion()
+      </p>
+      <p>
+       Will there be issue to include Windows 10, for x64 and ARM?
+      </p>
+      <p>
+       Still learning from others to figure out what are challenges
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

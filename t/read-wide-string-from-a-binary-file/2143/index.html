@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Read wide string from a binary file?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Read wide string from a binary file?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/fe33dbde48a9906d8dd043b45b2c680374c6757f85f6c97904fdf107b1d54525.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pellucas
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all.
+      </p>
+      <p>
+       Can Urho3D read directly a string of wide characters of
+       <span class="bbcode-b">
+        2 bytes per character
+       </span>
+       from a binary file in a easy way? I want to mention that I want my project to be cross-platform, I’m working with Ubuntu right now and I think wchar_t uses 4 bytes per character on Linux.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       No, there isn’t a direct library function for that, and furthermore the WString class is very limited (just for conversions when it’s needed for passing into the OS) so now your best bet is to read the character yourself using the Deserializer API.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/fe33dbde48a9906d8dd043b45b2c680374c6757f85f6c97904fdf107b1d54525.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pellucas
+     </div>
+     <div class="post_content">
+      <p>
+       ok, thanks anyway.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

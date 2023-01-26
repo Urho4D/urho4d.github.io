@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to set Bullet Collision Shape to not standart mesh
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to set Bullet Collision Shape to not standart mesh
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       Hey , maybe its more bullet kind of question but i want to try to ask it here .
+       <br/>
+       i have simple road modeled in blender , its not Terrain i think , please take alook at the picture .
+       <br/>
+       what is the right way to attach it Collision Shape?
+       <br/>
+       its road that car supposed to be on it ( like the Vehicle example ) .
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/AVlvyXV.png" rel="nofollow noopener" title="">
+         <img alt="" height="400" src="../../../images/5091eae1fb6328cb579a80dd130ebdb7e8aac970f2cd11304b5c8f03e9929689.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1675×973
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The most straightforward way to match the graphical shape is to choose TriangleMesh shape type in the CollisionShape, and select the same model file as in the graphical (StaticModel) component. Note that you could choose also a different model that for example has less polygons than the visual model.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

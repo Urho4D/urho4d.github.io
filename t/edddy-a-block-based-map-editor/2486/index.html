@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   :building_construction: Edddy: a block-based map editor
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    :building_construction: Edddy: a block-based map editor
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/8c774b3428d44ce968cff12eb1f590820d2151bb4cb3519bfe62f774955432c6.png" width="32"/>
+        <a href="https://luckeyproductions.itch.io/edddy" target="_blank">
+         itch.io
+        </a>
+       </header>
+       <article class="onebox-body">
+        <div class="aspect-image" style="--aspect-ratio:315/250;">
+         <img class="thumbnail" height="250" src="../../../images/31fa6bdac7ba01bbd9182b09b89b963fcc9186f83e963cac88769134487cc158.png" width="315"/>
+        </div>
+        <h3>
+         <a href="https://luckeyproductions.itch.io/edddy" target="_blank">
+          Edddy by LucKey Productions
+         </a>
+        </h3>
+        <p>
+         Thee Block-based Map Editor
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       I’ve been working on
+       <a href="https://gitlab.com/LucKeyProductions/Edddy">
+        Edddy
+       </a>
+       , a map editor that allows you to create worlds using pre-made sets of blocks. If you want to give it a try, you can find the controls
+       <a href="https://gitlab.com/luckeyproductions/Edddy/blob/master/Docs/Instructions.md">
+        here
+       </a>
+       .
+       <br/>
+       Its intended use is to build maps for
+       <a href="https://gitlab.com/luckeyproductions/AmazingUrho">
+        A-Mazing Urho
+       </a>
+       ,
+       <a href="https://gitlab.com/LucKeyProductions/KO">
+        KO
+       </a>
+       ,
+       <a href="https://gitlab.com/LucKeyProductions/OGTatt">
+        OGTatt
+       </a>
+       and
+       <a href="https://gitlab.com/LucKeyProductions/BlipNBlup">
+        Blip 'n Blup
+       </a>
+       . Edddy draws inspiration from
+       <a href="https://www.blender.org/">
+        Blender
+       </a>
+       ,
+       <a href="http://www.mapeditor.org/">
+        Tiled
+       </a>
+       and other open creation software.
+      </p>
+      <p>
+       <a class="onebox" href="https://gitlab.com/luckeyproductions/Edddy/raw/master/Screenshots/Screenshot_2018-11-11_00-40-25.png" rel="nofollow ugc noopener" target="_blank">
+        <img height="396" src="../../../images/6642617908d45fcfab65c2c6e42d47fd5723f156b5537f163c9790c804f7447d.png" width="690"/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Looks good, Modanung! Why do you prefer GPL over MIT.  Is it so you can split the license into commercial and free, like Qt lib, in the future?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Nice one Modanung! Keep it up
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Lumak">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/252640214a84be6077df450d5b247e7a6d76f6c970493425153a025bbd0e3fd0.png" width="20"/>
+        Lumak:
+       </div>
+       <blockquote>
+        <p>
+         Looks good, Modanung! Why do you prefer GPL over MIT.  Is it so you can split the license into commercial and free, like Qt lib, in the future?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I must say I’m not very outspoken about either. But if I understand correctly MIT allows changing of the license which allows for proprietary forks without notice. I do not like the idea of that. Also its part copycat behaviour since a lot of software I use and like carries the GPL license. Like Blender, GIMP, Inkscape, SuperCollider, Tiled, etc…
+      </p>
+      <p>
+       Would you rather see it licensed MIT? If so, why?
+      </p>
+      <p>
+       Blip 'n Blup can now load the levels, btw.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/6GSwYenf20w3kfrJxjUSJaacD8k.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/2ee5e78e7883e263bd478ef0511909867d24c4e0.png" rel="noopener nofollow ugc" title="">
+         <img alt="" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/2ee5e78e7883e263bd478ef0511909867d24c4e0_2_10x10.png" height="388" src="../../../images/437df193980812cb0837e37aba74666413df9cdaa82eb82eddee794447675fa4.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/2ee5e78e7883e263bd478ef0511909867d24c4e0_2_690x388.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/2ee5e78e7883e263bd478ef0511909867d24c4e0_2_1035x582.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/2ee5e78e7883e263bd478ef0511909867d24c4e0.png 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1067×600 177 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/55a28ac655e792ddc5641665e82bbc3cd322414b90de6ccf16537644a3e53276.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jmiller
+     </div>
+     <div class="post_content">
+      <p>
+       Nice work! I can see this being useful to people.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Edddy builds as a standard Urho app and runs fine on Arch here.
+      </p>
+      <p>
+       If you consider licenses, there is also the LGPL. You can make your own arguments, I only mention it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Would you rather see it licensed MIT? If so, why?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       It’s your prerogative to license it however you see it fit, doesn’t matter what anyone else wants.
+      </p>
+      <p>
+       Coincidentally, I opened one of your source files and found the answer.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         /* Edddy
+         <br/>
+         // Copyright © 2016 LucKey Productions (
+         <a href="http://luckeyproductions.nl">
+          luckeyproductions.nl
+         </a>
+         )
+         <br/>
+         //
+         <br/>
+         // This program is free software; you can redistribute it and/or modify
+         <br/>
+         // it under the terms of the GNU General Public License as published by
+         <br/>
+         // the Free Software Foundation; either version 2 of the License, or
+         <br/>
+         // (at your option) any later version.
+         <br/>
+         // Commercial licenses are available through
+         <a href="mailto:frode@lindeijer.nl">
+          frode@lindeijer.nl
+         </a>
+        </p>
+       </blockquote>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Lumak">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/252640214a84be6077df450d5b247e7a6d76f6c970493425153a025bbd0e3fd0.png" width="20"/>
+        Lumak:
+       </div>
+       <blockquote>
+        <p>
+         It’s your prerogative to license it however you see it fit, doesn’t matter what anyone else wants.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I think it does matter since picking a certain license might discourage people from contributing. Also I might not be fully informed or have overlooked use cases.
+      </p>
+      <aside class="quote no-group" data-username="Lumak">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/252640214a84be6077df450d5b247e7a6d76f6c970493425153a025bbd0e3fd0.png" width="20"/>
+        Lumak:
+       </div>
+       <blockquote>
+        <p>
+         Coincidentally, I opened one of your source files and found the answer.
+        </p>
+        <aside class="quote no-group">
+         <blockquote>
+          <p>
+           // Commercial licenses are available through
+           <a href="mailto:frode@lindeijer.nl">
+            frode@lindeijer.nl
+           </a>
+          </p>
+         </blockquote>
+        </aside>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks for reminding me I put that there, it is outdated information. LucKey Productions is a non-commercial operation although
+       <a data-bbcode="true" href="https://www.patreon.com/LucKeyProductions" rel="noopener nofollow ugc">
+        donations
+       </a>
+       will help it thrive… to support myself (and fellow LucKey Devels) and to finance LucKey Orifices and LucKey Gatherings. My main drive is to propagate the idea of open source and to brainwash the world for the better.
+       <br/>
+       My services as a puterdoc and pipe maker are of a more commercial nature.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       The changes I made to Edddy reached a point where I decided it’s time to update the binary on itch. It still needs a lot of work, but it is theoretically usable and already arguably more efficient than the default Urho editor when used for certain projects. Although it’s features are still somewhat limited.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/8c774b3428d44ce968cff12eb1f590820d2151bb4cb3519bfe62f774955432c6.png" width="32"/>
+        <a href="https://luckeyproductions.itch.io/edddy" rel="nofollow noopener" target="_blank">
+         itch.io
+        </a>
+       </header>
+       <article class="onebox-body">
+        <div class="aspect-image" style="--aspect-ratio:315/250;">
+         <img class="thumbnail" src="missing_image.png?original=https%3A//img.itch.zone/aW1hZ2UvMjA1OTEzLzk2MzkyOC5wbmc%3D/original/KpTvgT.png"/>
+        </div>
+        <h3>
+         <a href="https://luckeyproductions.itch.io/edddy" rel="nofollow noopener" target="_blank">
+          Edddy by LucKey Productions
+         </a>
+        </h3>
+        <p>
+         A block-based map editor
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/2/26ddfb0937ba793fb3d2b9f6b85a5a62c2e3ceb0.jpeg" rel="nofollow noopener" title="Screenshot_2019-07-02_02-15-10.jpg">
+         <img alt="Screenshot_2019-07-02_02-15-10" data-base62-sha1="5xPJzShktxi0MYI1Dl1sPz3zLLq" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/26ddfb0937ba793fb3d2b9f6b85a5a62c2e3ceb0_2_10x10.png" height="454" src="../../../images/3c2f284a8b90db3926b1dbfeb668909e52a7b12de5142e3820947eed7c75acea.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/26ddfb0937ba793fb3d2b9f6b85a5a62c2e3ceb0_2_689x454.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/26ddfb0937ba793fb3d2b9f6b85a5a62c2e3ceb0_2_1033x681.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/2/26ddfb0937ba793fb3d2b9f6b85a5a62c2e3ceb0.jpeg 2x" width="689"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           Screenshot_2019-07-02_02-15-10.jpg
+          </span>
+          <span class="informations">
+           1194×787 280 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/f/f6c939eb74c0ff2ca2a782fa35b6b257ac243b33.jpeg" rel="nofollow noopener" title="Screenshot_2019-07-02_03-02-56.jpg">
+         <img alt="Screenshot_2019-07-02_03-02-56" data-base62-sha1="zdaA8YCjAo30z5pRgwk1X5GAsM3" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/f6c939eb74c0ff2ca2a782fa35b6b257ac243b33_2_10x10.png" height="388" src="../../../images/3e1fe6cdc27f5bea37aae9873e7e61787a1cf1131d10fc4470e7dede492a1765.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/f6c939eb74c0ff2ca2a782fa35b6b257ac243b33_2_690x388.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/f6c939eb74c0ff2ca2a782fa35b6b257ac243b33_2_1035x582.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/f6c939eb74c0ff2ca2a782fa35b6b257ac243b33_2_1380x776.jpeg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           Screenshot_2019-07-02_03-02-56.jpg
+          </span>
+          <span class="informations">
+           1920×1080 484 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4296bdd736dea4ce2e11b3769690daa0632ce95ee6144375657dc67301fe1966.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      WangKai
+     </div>
+     <div class="post_content">
+      <p>
+       The top view is better if it can be Orthographic
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Actually view orthogonality is only temporarily dysfunctional. The key for toggling it got disconnected - along with all other existing input - during the implementation of the new (Qt) GUI; most of the required methods are already there. But first my forearm needs a rest. So for now all the other (new) functionality should do.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       <br/>
+       Including but not restricted to:
+      </p>
+      <ul>
+       <li>
+        Creation of projects (.edy file, used by Edddy)
+       </li>
+       <li>
+        Creating new maps (.emp) and blocksets (.ebs)
+       </li>
+       <li>
+        Editing maps (only grid-blocks for now) and blocksets
+       </li>
+       <li>
+        Saving, loading and deleting
+       </li>
+       <li>
+        Brush (single block or line)
+       </li>
+       <li>
+        Fill tool (flood plane)
+       </li>
+       <li>
+        Undo/Redo
+       </li>
+      </ul>
+      <p>
+       Blocks are currently limited to having only a single (preexisting) material. All formats are XML-based.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Blocks can now have a different material for each geometry:
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://img.itch.zone/aW1nLzIyNzYzMDIucG5n/original/kjSrqM.png" rel="nofollow noopener" title="kjSrqM.png">
+         <img alt="Grunnstatt" height="388" src="../../../images/fa1e8e13bbcb9734afdde84a55bdfc3ebef4f633fc1f668218f272f548f4c8b0.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           kjSrqM.png
+          </span>
+          <span class="informations">
+           1920×1080
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <p>
+       Hey
+       <span class="mention">
+        @Modanung
+       </span>
+       - Bit a few requests for this tool. I am using this with Unreal Engine. BTW I love this tool. Would it be possible to get the ability to export the scene a .FBX or some other file format that is compatible with UE4?
+      </p>
+      <p>
+       Also custom export profiles for other engines such as UE4, Unity3D, etc. for exporting the scene would be nice. Being able to set scale. Up Axis, etc. depending on the engine.
+      </p>
+      <p>
+       Also some windows binaries would be nice so I do not have to build it from source
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Good to hear you find it useful.
+       <img alt=":slightly_smiling_face:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slightly_smiling_face:"/>
+       <br/>
+       I plan to integrate the AssImp to make Edddy careless about model formats (and I guess other coordinate systems). But there’s many other features - like area selection, copy-paste and clusters - that I consider to be of higher priority.
+      </p>
+      <aside class="quote no-group" data-post="12" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/42160834b18ad5a3be9831ac4c24615f4b45aef30d515518cf33a85a838c9412.png" width="20"/>
+        HeadClot:
+       </div>
+       <blockquote>
+        <p>
+         Also some windows binaries would be nice so I do not have to build it from source
+         <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I’m sorry, LucKey Productions does not condone spyware. Have you considered installing Linux instead?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="13" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         I plan to integrate the AssImp to make Edddy careless about model formats (and I guess other coordinate systems). But there’s many other features - like area selection, copy-paste and clusters - that I consider to be of higher priority.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       How much would it cost to prioritize Assimp support? I could really use support for other file formats.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       Case of beer, donations are also good.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <p>
+       If this is the case I can do it come Monday.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="14" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/42160834b18ad5a3be9831ac4c24615f4b45aef30d515518cf33a85a838c9412.png" width="20"/>
+        HeadClot:
+       </div>
+       <blockquote>
+        <p>
+         How much would it cost to prioritize Assimp support?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       You’re more than welcome to
+       <a href="https://www.luckeyproductions.nl/donate.html" rel="nofollow noopener">
+        donate
+       </a>
+       . But rather than
+       <em>
+        changing
+       </em>
+       my priorities at this point I think it would simply motivate me to work faster, next to being grateful. Whether you donate or not won’t change the fact that I
+       <em>
+        will
+       </em>
+       take your wish into consideration.
+      </p>
+      <aside class="quote no-group" data-post="15" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/cff7da01cceb274cfeb8cbc954da82bf028ef2b95e5092dff7ffd4595e62f4d7.png" width="20"/>
+        Miegamicis:
+       </div>
+       <blockquote>
+        <p>
+         Case of beer
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I do not consider ethanol fit for human consumption.
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+       <br/>
+       Or are you offering to colaborate?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="13" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         I’m sorry, LucKey Productions does not condone spyware. Have you considered installing Linux instead?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I just installed Chrome OS on a laptop which has support for Linux binaries. So I will let you know if it works on there.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <aside class="quote no-group" data-post="17" data-topic="2486">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/aeaea6726faedfa91917f38de6ad6e3f6de3dd85253c80b15cbacaf4e003da29.png" width="20"/>
+        Modanung:
+       </div>
+       <blockquote>
+        <p>
+         You’re more than welcome to
+         <a href="https://www.luckeyproductions.nl/donate.html" rel="nofollow noopener">
+          donate
+         </a>
+         . But rather than
+         <em>
+          changing
+         </em>
+         my priorities at this point I think it would simply motivate me to work faster. Whether you donate or not will not change the fact that I
+         <em>
+          will
+         </em>
+         take your wish into consideration.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       OK, got it.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       What substances you approve of?
+      </p>
+      <p>
+       And sadly I’m not offerring any collaboration at the moment but that might change in the future. Haven’t actually tried your project, but I’m planning to try it out at some point.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

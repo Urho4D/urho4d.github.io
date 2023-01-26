@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [Solved] Problems with building Urho3D to SHARED version from source
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [Solved] Problems with building Urho3D to SHARED version from source
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <p>
+       If
+       <a href="https://discourse.urho3d.io/t/how-to-set-up-urho3d-static-mingw-in-qt-creator-ide/6714">
+        STATIC does not want to work for me
+       </a>
+       then I will try to build to SHARED. I found this option in CMake:
+       <img alt="image" data-base62-sha1="cQ3aZ1P7OFtC21g3DMVchcs1UKD" height="15" src="../../../images/fe682fb54b96eb3ac5ceb8382307c68404794b94807420a4e034d6d1344369b6.png" width="330"/>
+      </p>
+      <p>
+       Now my config file looks like this now:
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="iOD4pwzeA1mnaBlH6fhog3KSPnf" height="323" src="../../../images/8b93bd13c4bea0b3d4fd205fd6e2c5f72eff9060968bf6a55c9854938e07fc82.png" width="319"/>
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="7CSNw4lOC2H2I2I1la0Qn79nkR9" height="272" src="../../../images/ba4b7b4613bfcda5ad0bdc08590e288a5c2ea8fba6605e2fff388dd11408092d.png" width="309"/>
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="6fNKDBjhkPIr6GE3I3C6N6OavpL" height="302" src="../../../images/dc7f4d509cdc9cc015daf188db196ca1271bce2754b1e15a20ff419180665488.png" width="527"/>
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="jDplSsQMOuf5NcNX0RtVnuytCqh" height="303" src="../../../images/0d200df3eedfbc2d2f211d02ef5d6bd984d0f74e819dbeef3022595beb81e32a.png" width="301"/>
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="4Wpeife8MQ8HoehZo3XLKR9o6HA" height="303" src="../../../images/59ce2311091de4c56857f5a7cdfaf69ec101561c1b475abbbfaa2c5a23725bf6.png" width="553"/>
+      </p>
+      <p>
+       <img alt="image" data-base62-sha1="xJz1TjCX3MGTDqibhrs9Ckr6uNO" height="200" src="../../../images/d9b6d8bddfc695ab3e8155e1681bdea2a68f8f23480369ba337dfb2f954b1ff8.png" width="514"/>
+      </p>
+      <p>
+       But I got these errors:
+      </p>
+      <pre><code class="lang-auto">[ 87%] Building CXX object Source/Urho3D/CMakeFiles/Urho3D.dir/Urho2D/TileMap2D.cpp.obj
+[ 88%] Building CXX object Source/Urho3D/CMakeFiles/Urho3D.dir/Urho2D/TileMapDefs2D.cpp.obj
+[ 88%] Building CXX object Source/Urho3D/CMakeFiles/Urho3D.dir/Urho2D/TileMapLayer2D.cpp.obj
+[ 88%] Building CXX object Source/Urho3D/CMakeFiles/Urho3D.dir/Urho2D/TmxFile2D.cpp.obj
+[ 88%] Building CXX object Source/Urho3D/CMakeFiles/Urho3D.dir/Urho2D/Urho2D.cpp.obj
+[ 88%] Linking CXX shared library ..\..\bin\Urho3D.dll
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xcf9): undefined reference to `_imp__send@16'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x159b): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x1a00): undefined reference to `_imp__getnameinfo@28'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x1dcb): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x22af): undefined reference to `_imp__select@20'../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x22ca): undefined reference to `__WSAFDIsSet@8'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x2335): undefined reference to `_imp__select@20'../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x2aed): undefined reference to `_imp__recv@16'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x403f): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x4061): undefined reference to `_imp__shutdown@8'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x408b): undefined reference to `_imp__ioctlsocket@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x40be): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x45c3): undefined reference to `_imp__accept@12'../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x45dc): undefined reference to `_imp__ntohl@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x4638): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x4800): undefined reference to `_imp__getsockname@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x4838): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x87b6): undefined reference to `_imp__ntohl@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0x8ac8): undefined reference to `_imp__ntohs@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xa3dd): undefined reference to `_imp__ntohs@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xa407): undefined reference to `_imp__ntohl@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb1ac): undefined reference to `_imp__getaddrinfo@16'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb20f): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb22e): undefined reference to `_imp__htons@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb253): undefined reference to `_imp__socket@12'../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb2a0): undefined reference to `_imp__connect@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb340): undefined reference to `_imp__getsockname@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb449): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb4b2): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb51a): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb578): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb77c): undefined reference to `_imp__WSACleanup@0'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xb7bc): undefined reference to `_imp__WSAStartup@8'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xbf22): undefined reference to `_imp__socket@12'../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xbf5e): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xbfa3): undefined reference to `_imp__bind@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xbfc6): undefined reference to `_imp__listen@8'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xbff1): undefined reference to `_imp__getsockname@12'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xc10c): undefined reference to `_imp__ntohs@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xc16d): undefined reference to `_imp__htonl@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xc185): undefined reference to `_imp__htons@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xc4c8): undefined reference to `_imp__closesocket@4'
+../ThirdParty/Civetweb/libCivetweb.a(civetweb.c.obj):civetweb.c:(.text+0xc79d): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x1c2): undefined reference to `_imp__WSAGetLastError@0'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x1e5): undefined reference to `_imp__gethostname@8'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x1f6): undefined reference to `_imp__gethostbyname@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x279): undefined reference to `_imp__getaddrinfo@16'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2a7): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2de): undefined reference to `_imp__WSAStartup@8'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x304): undefined reference to `_imp__gethostname@8'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x5f6): undefined reference to `_imp__getaddrinfo@16'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x621): undefined reference to `_imp__socket@12'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x66d): undefined reference to `_imp__bind@12'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x688): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x6b0): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x7c1): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x7dd): undefined reference to `_imp__listen@8'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x801): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x835): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x847): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x867): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0xe7a): undefined reference to `_imp__WSAGetLastError@0'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x10a5): undefined reference to `_imp__WSACleanup@0'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x1fe4): undefined reference to `_imp__getaddrinfo@16'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2027): undefined reference to `_imp__WSASocketA@24'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2072): undefined reference to `_imp__WSAConnect@28'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x208d): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x20ca): undefined reference to `_imp__getsockname@12'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x210f): undefined reference to `_imp__getpeername@12'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x229a): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x22ac): undefined reference to `_imp__freeaddrinfo@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2307): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(Network.cpp.obj):Network.cpp:(.text+0x2346): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(NetworkServer.cpp.obj):NetworkServer.cpp:(.text+0xd6a): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(NetworkServer.cpp.obj):NetworkServer.cpp:(.text+0xed6): undefined reference to `_imp__accept@12'
+../ThirdParty/kNet/libkNet.a(NetworkServer.cpp.obj):NetworkServer.cpp:(.text+0xf05): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(NetworkServer.cpp.obj):NetworkServer.cpp:(.text+0xfe7): undefined reference to `_imp__getsockname@12'
+../ThirdParty/kNet/libkNet.a(NetworkServer.cpp.obj):NetworkServer.cpp:(.text+0x1134): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x42c): undefined reference to `_imp__WSACreateEvent@0'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x483): undefined reference to `_imp__WSACloseEvent@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x4db): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x51b): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x56b): undefined reference to `_imp__getsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x5cb): undefined reference to `_imp__getsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x79e): undefined reference to `_imp__shutdown@8'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x8a9): undefined reference to `_imp__shutdown@8'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x8b8): undefined reference to `_imp__closesocket@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x9bb): undefined reference to `_imp__WSAResetEvent@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xa06): undefined reference to `_imp__WSARecv@28'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xafb): undefined reference to `_imp__WSARecvFrom@36'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xc8c): undefined reference to `_imp__recv@16'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xd1e): undefined reference to `_imp__recvfrom@24'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xd42): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xe28): undefined reference to `_imp__WSAGetOverlappedResult@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0xfce): undefined reference to `_imp__ioctlsocket@12'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x104f): undefined reference to `_imp__select@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x10c7): undefined reference to `_imp__send@16'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x113f): undefined reference to `_imp__sendto@24'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x122a): undefined reference to `_imp__WSAGetOverlappedResult@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x12fb): undefined reference to `_imp__WSAGetOverlappedResult@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1402): undefined reference to `_imp__WSAResetEvent@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x144a): undefined reference to `_imp__WSASend@28'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x14c3): undefined reference to `_imp__WSASendTo@36'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1549): undefined reference to `_imp__WSASetEvent@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x15dc): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1e96): undefined reference to `_imp__setsockopt@20'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1f20): undefined reference to `_imp__htons@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1fbb): undefined reference to `_imp__getpeername@12'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x1fdf): undefined reference to `_imp__ntohs@4'
+../ThirdParty/kNet/libkNet.a(Socket.cpp.obj):Socket.cpp:(.text+0x202e): undefined reference to `_imp__getsockname@12'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x25): undefined reference to `_imp__WSACreateEvent@0'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x4e): undefined reference to `_imp__WSACreateEvent@0'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x6e): undefined reference to `_imp__WSACloseEvent@4'../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0xaf): undefined reference to `_imp__WSAResetEvent@4'../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0xdf): undefined reference to `_imp__WSASetEvent@4'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x132): undefined reference to `_imp__WSAWaitForMultipleEvents@20'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x182): undefined reference to `_imp__WSAWaitForMultipleEvents@20'
+../ThirdParty/kNet/libkNet.a(W32Event.cpp.obj):W32Event.cpp:(.text+0x1d2): undefined reference to `_imp__WSAWaitForMultipleEvents@20'
+../ThirdParty/kNet/libkNet.a(W32EventArray.cpp.obj):W32EventArray.cpp:(.text+0x88): undefined reference to `_imp__WSAWaitForMultipleEvents@20'
+collect2.exe: error: ld returned 1 exit status
+mingw32-make[2]: *** [Source\Urho3D\CMakeFiles\Urho3D.dir\build.make:4009: bin/Urho3D.dll] Error 1
+mingw32-make[1]: *** [CMakeFiles\Makefile2:1322: Source/Urho3D/CMakeFiles/Urho3D.dir/all] Error 2
+mingw32-make: *** [Makefile:170: all] Error 2
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       The best advice I can come up with is to delete MinGW and never use it because
+       <a href="https://github.com/electronicarts/EASTL/pull/413" rel="noopener nofollow ugc">
+        it is officially retarded compiler that fails to build well-formed code
+       </a>
+       .
+      </p>
+      <p>
+       It’s not your first MinGW issue, it’s not your last, and if you keep using MinGW, you will have to deal with them mostly on your own. MinGW has its own good sides (being compact, for example), but it doesn’t justify amount of issues it creates for any
+       <em>
+        real
+       </em>
+       project with multiple dependecies and compilcated code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Ensure that it is trying to link the winsock2 library. To do that you can try
+       <code>
+        make VERBOSE=1
+       </code>
+       as the command instead of just
+       <code>
+        make
+       </code>
+       . See here for a similar error:
+      </p>
+      <aside class="onebox stackexchange">
+       <header class="source">
+        <a href="https://stackoverflow.com/questions/2033608/mingw-linker-error-winsock" rel="noopener" target="_blank">
+         stackoverflow.com
+        </a>
+       </header>
+       <article class="onebox-body">
+        <a href="https://stackoverflow.com/users/114804/gaim" rel="noopener" target="_blank">
+         <img alt="Gaim" class="thumbnail onebox-avatar" height="60" src="../../../images/4390f27a0af8c73e2b9c020230b706716efc6c43bde686970045fd26a7eb97bf" width="60"/>
+        </a>
+        <h4>
+         <a href="https://stackoverflow.com/questions/2033608/mingw-linker-error-winsock" rel="noopener" target="_blank">
+          MinGW linker error: winsock
+         </a>
+        </h4>
+        <div class="tags">
+         <strong>
+          c++, linker, mingw, winsock
+         </strong>
+        </div>
+        <div class="date">
+         asked by
+         <a href="https://stackoverflow.com/users/114804/gaim" rel="noopener" target="_blank">
+          Gaim
+         </a>
+         on
+         <a href="https://stackoverflow.com/questions/2033608/mingw-linker-error-winsock" rel="noopener" target="_blank">
+          02:15PM - 09 Jan 10 UTC
+         </a>
+        </div>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       somehow, somewhere, someone is not linking to
+       <code>
+        wsock32 ws2_32
+       </code>
+       or something like that.
+      </p>
+      <p>
+       <span class="mention">
+        @Eugene
+       </span>
+       while I understand your frustration. You have to understand that if you criticize MinGW you criticize GCC and MSVC together. Because MinGW is torn somewhere between them. GCC being string makes MinGW retain some of that and MSVC being retarded and compiling just about anything that looks like a series of characters makes MinGW loose some of that strictness in order to maintain compatibility. If you’ve written some (non-platform-related) c++ on MSVC and then try to compile it on GCC you’d understand what I mean.
+      </p>
+      <p>
+       At this point, I’m pretty positive his whole environment is a bit messed up. I’m deducing that from previous posts. God knows what MinGW distribution he’s using and god knows what procedure he’s using. A bunch of pictures don’t prove anything.
+      </p>
+      <p>
+       And at this point I blame some of the issues on Urho as well. A cluster fk of third-party dependencies, each using their own style, versions and approach of dealing CMake’s build-system. Each adding their own libraries and and compiler flags and god knows what.
+      </p>
+      <p>
+       And I’m not even sure why
+       <code>
+        ws2_32
+       </code>
+       is not linked against by either SLikeNet or Civetweb.
+      </p>
+      <p>
+       This is more than just a MinGW issue. Let’s not try to blame it on that.
+      </p>
+      <p>
+       EDIT:
+      </p>
+      <p>
+       And if you’re about to reply “
+       <em>
+        oh, but msvc doesn’t compile bad code
+       </em>
+       ”. Try to compile this on MSVC and then GCC/MinGW, and see who succeeds:
+      </p>
+      <pre><code class="lang-cpp">#include &lt;memory&gt;
+
+template &lt; class T, class A = std::allocator&lt; T &gt; &gt; struct Test {
+    bool mB{};
+    bool Foo();
+};
+
+template &lt; class T, class A = std::allocator&lt; T &gt; &gt;
+inline bool Test&lt; T, A &gt;::Foo() { return mB; }
+</code></pre>
+      <p>
+       And then see what’s wrong with it.
+      </p>
+      <p>
+       That was just one example. I can definitely come up with more.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       I suspect your build tree is messed up. In UrhoCommon.cmake there is the following to link that library. I would suggest starting over from a clean build tree and hoping that fixes the issue.
+      </p>
+      <pre><code class="lang-auto">macro (define_dependency_libs TARGET)
+
+...
+
+    # ThirdParty/Civetweb external dependency
+    if (${TARGET} MATCHES Civetweb|Urho3D)
+        if (WIN32)
+            list (APPEND LIBS ws2_32)
+        endif ()
+    endif ()
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="4" data-topic="6718" data-username="S.L.C">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/25567f6d3a19f920d6d026a4a32bf151f4a96be67fee362babfcdb13dbd1e6df.png" width="20"/>
+        S.L.C:
+       </div>
+       <blockquote>
+        <p>
+         You have to understand that if you criticize MinGW you criticize GCC and MSVC together
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       How exactly this derivation is made? I criticize MinGW because it is MinGW who cannot pass
+       <em>
+        argument
+       </em>
+       to
+       <em>
+        function
+       </em>
+       without messing up. Sure, fresh MSVC releases have bugs too. But MinGW has more bugs (or just inconsitencies and weird behaviors), perhaps by the order of magnitude, or two.
+      </p>
+      <p>
+       I may be overly expressive here, but I’m just tired. Tired of
+       <em>
+        countless
+       </em>
+       MinGW fuckups. 9 of 10 times I see weird build error in CI, it’s MinGW.
+      </p>
+      <p>
+       It means something that
+       <a href="https://github.com/embree/embree" rel="noopener nofollow ugc">
+        3rd parties
+       </a>
+       say “we support MSVC, GCC and Clang. MinGW? Nah, we don’t support
+       <em>
+        that
+       </em>
+       ”
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group quote-modified" data-post="6" data-topic="6718" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        Eugene:
+       </div>
+       <blockquote>
+        <p>
+         …Tired of
+         <em>
+          countless
+         </em>
+         MinGW fuckups. 9 of 10 times I see weird build error in CI, it’s MinGW.
+        </p>
+       </blockquote>
+      </aside>
+      <aside class="quote no-group quote-modified" data-post="6" data-topic="6718" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        Eugene:
+       </div>
+       <blockquote>
+        <p>
+         …“we support MSVC, GCC and Clang. MinGW? Nah, we don’t support
+         <em>
+          that
+         </em>
+         ”
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       You just explained your frustration and took the blame away from MinGW at the same time.
+      </p>
+      <p>
+       I’m just done here. This is pointless.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="6" data-topic="6718" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        Eugene:
+       </div>
+       <blockquote>
+        <p>
+         Tired of
+         <em>
+          countless
+         </em>
+         MinGW fuckups. 9 of 10 times I see weird build error in CI, it’s MinGW.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       This is because a small percentage of people use MinGW as the main compiler on their machine. I don’t use MinGW because it compiles incredibly slowly, but it is needed as an alternative to proprietary VS
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="7" data-topic="6718" data-username="S.L.C">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/25567f6d3a19f920d6d026a4a32bf151f4a96be67fee362babfcdb13dbd1e6df.png" width="20"/>
+        S.L.C:
+       </div>
+       <blockquote>
+        <p>
+         You just explained your frustration and took the blame away from MinGW at the same time.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Okay, I can elaborate. 3rd parties often don’t bother supporting MinGW properly because of unacceptable rate of
+       <em>
+        compiler
+       </em>
+       defects (I have encountered
+       <em>
+        three
+       </em>
+       only this year).
+      </p>
+      <p>
+       So yeah, this is kind of vicious cycle. MinGW is bad compiler, therefore it has little users and is not properly supported, and therefore it keeps being bad compiler. Which is sad, but it doesn’t excuse MinGW.
+      </p>
+      <p>
+       Sorry for off topic, this was the last message in my whining
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4296bdd736dea4ce2e11b3769690daa0632ce95ee6144375657dc67301fe1966.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      WangKai
+     </div>
+     <div class="post_content">
+      <p>
+       <s>
+        I wonder which version of Urho are you using?
+       </s>
+       I would recommand to try the
+       <code>
+        master
+       </code>
+       branch from github.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="10" data-topic="6718" data-username="WangKai">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9d66d4aab5240c8f97512588ecb318ab033532bb8e4fbebce3de5a793d4305d2.png" width="20"/>
+        WangKai:
+       </div>
+       <blockquote>
+        <p>
+         I wonder which version of Urho are you using?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Sorry that I did not write it
+      </p>
+      <ul>
+       <li>
+        Urho3D 1.7.1
+       </li>
+       <li>
+        MinGW 8.1.0
+       </li>
+      </ul>
+      <aside class="quote no-group" data-post="10" data-topic="6718" data-username="WangKai">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9d66d4aab5240c8f97512588ecb318ab033532bb8e4fbebce3de5a793d4305d2.png" width="20"/>
+        WangKai:
+       </div>
+       <blockquote>
+        <p>
+         I would recommand to try the
+         <code>
+          master
+         </code>
+         branch from github.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I tried to build to the STATIC version with settings from my first post. I have only one error in the
+       <code>
+        RakNetSocket2.cpp
+       </code>
+       :
+       <img alt="image" data-base62-sha1="ipeiaC6K7ABzlLQ4TFXk72jaS27" height="17" src="../../../images/272b359f06307f4b1740f7a76e9be9a49f8548d269f408c91e0040748faaf01f.png" width="296"/>
+      </p>
+      <p>
+       My .pro file:
+      </p>
+      <pre><code class="lang-auto">CONFIG += c++11
+
+INCLUDEPATH += "C:\Users\8Observer8\Downloads\Urho3D-master\dist\include\Urho3D\ThirdParty"
+
+INCLUDEPATH += "C:\Users\8Observer8\Downloads\Urho3D-master\dist\include"
+LIBS += -L"C:\Users\8Observer8\Downloads\Urho3D-master\dist\lib"
+LIBS += -lUrho3D -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -lSetupapi -ladvapi32 -lwinmm -limm32 -lversion -lws2_32 -ldbghelp -lopengl32
+
+SOURCES += \
+    main.cpp
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="11" data-topic="6718" data-username="8Observer8">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a28e22e2e6e396c585d9cafa015302be91d17b669641f0d7ff5f2e69d303edbd.png" width="20"/>
+        8Observer8:
+       </div>
+       <blockquote>
+        <p>
+         I tried to build to the STATIC version with settings from my first post. I have only one error in the
+         <code>
+          RakNetSocket2.cpp
+         </code>
+         :
+         <img alt="image" data-base62-sha1="ipeiaC6K7ABzlLQ4TFXk72jaS27" height="17" src="../../../images/272b359f06307f4b1740f7a76e9be9a49f8548d269f408c91e0040748faaf01f.png" width="296"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I tried to google this error and I find the solution here:
+       <a class="inline-onebox" href="https://stackoverflow.com/questions/10972794/undefined-reference-to-getadaptersaddresses20-but-i-included-liphlpapi" rel="noopener nofollow ugc">
+        c++ - undefined reference to `_GetAdaptersAddresses@20' - but I included -liphlpapi - Stack Overflow
+       </a>
+      </p>
+      <p>
+       I just added this key:
+       <code>
+        -liphlpapi
+       </code>
+      </p>
+      <pre><code class="lang-auto">CONFIG += c++11
+
+INCLUDEPATH += "C:\Users\8Observer8\Downloads\Urho3D-master\dist\include\Urho3D\ThirdParty"
+
+INCLUDEPATH += "C:\Users\8Observer8\Downloads\Urho3D-master\dist\include"
+LIBS += -L"C:\Users\8Observer8\Downloads\Urho3D-master\dist\lib"
+LIBS += -lUrho3D -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -lSetupapi -ladvapi32 -lwinmm -limm32 -lversion -lws2_32 -ldbghelp -lopengl32 -liphlpapi
+
+SOURCES += \
+    main.cpp
+</code></pre>
+      <p>
+       <span class="mention">
+        @WangKai
+       </span>
+       thank you that recommend to use the
+       <code>
+        mater
+       </code>
+       branch. It is a solution for STATIC build. Maybe I will try to build the SHARED version later.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <p>
+       I tried to build the SHARED version from the
+       <code>
+        master
+       </code>
+       branch. It was build good. Samples was built and they works. But my example was crashed without any messages:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/hygqLhIrBatcbty7LbiaAHNXtb7.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/7/7b04875bd0315869e32f52023065ed624cbfbafd.png" rel="noopener nofollow ugc" title="image">
+         <img alt="image" data-base62-sha1="hygqLhIrBatcbty7LbiaAHNXtb7" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/7/7b04875bd0315869e32f52023065ed624cbfbafd_2_10x10.png" height="90" src="../../../images/b2e84c16419793dc4621bfc7f9d82def35dbf39ef78523273d503b1fcbf26df5.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           image
+          </span>
+          <span class="informations">
+           848×111 6.23 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       The STATIC version from the
+       <code>
+        master
+       </code>
+       branch and the pre-built SHARED 1.7.1 versions work and they enough for me.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Run it with the debugger so it can see where it crashes. My tentative guess is that it can’t find a dll that it needs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, you are right. I copied
+       <code>
+        Urho3D.dll
+       </code>
+       to the
+       <code>
+        debug
+       </code>
+       folder. It works. Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8b2b52c4bbe7ca7959551d5a486fd1cd69711a1ab2c948b5d2422e2796ec0148.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      8Observer8
+     </div>
+     <div class="post_content">
+      <p>
+       Why the pre-build
+       <code>
+        Urho 1.7.1 SHARED
+       </code>
+       version works without copying
+       <code>
+        Urho3D.dll
+       </code>
+       to exe directory?
+      </p>
+      <p>
+       Is it a bad practice to copy the
+       <code>
+        Urho3D.dll
+       </code>
+       library to the
+       <code>
+        C:\Windows\System
+       </code>
+       directory? Because sometime I delete all the Debug/Release directories using this command:
+       <code>
+        for /d /r . %d in (Debug Release) do @if exist "%d" echo "%d" &amp;&amp; rd /s/q "%d"
+       </code>
+       When I make a lot of examples I must copy
+       <code>
+        Urho3D.dll
+       </code>
+       every time.
+       <code>
+        Urho3D.dll
+       </code>
+       requires 18 MB and it is big for my laptop.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="16" data-topic="6718" data-username="8Observer8">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a28e22e2e6e396c585d9cafa015302be91d17b669641f0d7ff5f2e69d303edbd.png" width="20"/>
+        8Observer8:
+       </div>
+       <blockquote>
+        <p>
+         Is it a bad practice to copy the
+         <code>
+          Urho3D.dll
+         </code>
+         library to the
+         <code>
+          C:\Windows\System
+         </code>
+         directory?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes. Very bad practice.
+      </p>
+      <p>
+       You can place the DLL in a common folder then
+       <a href="https://docs.alfresco.com/4.2/tasks/fot-addpath.html">
+        modify
+       </a>
+       the system
+       <code>
+        Path
+       </code>
+       environment variable to include that common path.
+      </p>
+      <p>
+       The executable should be able to find the required dependencies based on the search paths.
+      </p>
+      <p>
+       When that’s a bit intrusive (
+       <em>
+        and it is
+       </em>
+       ) most of the times people just create a command line file that adjusts the working directory or search paths only for the duration of the launch of a program. Not affecting other applications on the same machine.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

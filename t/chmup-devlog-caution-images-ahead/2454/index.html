@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Chmup devlog [caution: images ahead]
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Chmup devlog [caution: images ahead]
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5ca901bbdca7e2c389e390ef3622f34c722edf62d2b8c084b74b25ac3c099387.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ghidra
+     </div>
+     <div class="post_content">
+      <p>
+       I’m starting to get somewhere with my small “simple” project, and thought I could document some of the progress.
+       <br/>
+       Chmup, is a top down shooter, a shmup. It’s more or less a playground to test some silly thing. But maybe eventually it will be at least one complete level.
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://i.imgur.com/TbJJde8.gifv">
+        <video controls="" height="500" preload="none" width="666">
+         <source src="../../../images/64c0874271f2f0b05ddb10948c2bf8366bc1baeee6029cdfe6a99be648df6d1a.mp4" type="video/mp4"/>
+         Your browser does not support the video tag.
+        </video>
+       </a>
+      </p>
+      <p>
+       And older gif with really bad color depth caused by the glow effect:
+       <br/>
+       <a data-bbcode="true" href="http://i.imgur.com/ZpLPrIQ.gifv">
+        <video controls="" height="388" preload="none" width="690">
+         <source src="../../../images/99802153e129bc5f1b30578f42a4455d774532af4d0e9e87558592a11fe07d5d.mp4" type="video/mp4"/>
+         Your browser does not support the video tag.
+        </video>
+       </a>
+      </p>
+      <p>
+       An even older image that show the glow a bit better:
+       <br/>
+       <a data-bbcode="true" href="http://i.imgur.com/0n6Dx0Q.png">
+        <img alt="" height="500" src="../../../images/93feca749d548a73bdb29c5bb0722b929101c5b7073806745694792f09c03f97.png" width="666"/>
+       </a>
+      </p>
+      <p>
+       Progress shot of outline (edge detection) shader and some shader based running lights… On an old model that is no longer part of the project…
+       <br/>
+       <a data-bbcode="true" href="http://imgur.com/0Yy8VYR">
+        <img alt="" height="500" src="../../../images/5acfa8a8a68e6987ba2700bb6d49f8b9df3b2e74ed90f7c9523b54e555308c7a.gif" width="523"/>
+       </a>
+      </p>
+      <p>
+       Progress shot of the glow effect. using a method similar to unreal. In that it uses 4 buffers of diminishing resolution added together.
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/AukJG3sPnxTTFTZPTCpnPQWIANp.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/ffbc1723344e6d14fa5fbd71f7ae01c83fa12a87.png" title="">
+         <img alt="" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/ffbc1723344e6d14fa5fbd71f7ae01c83fa12a87_2_10x10.png" height="499" src="../../../images/f9f913c6d3e9052a43f163dff22ab2ebdc09f583ce92eb8129375ddef583e044.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/ffbc1723344e6d14fa5fbd71f7ae01c83fa12a87_2_646x499.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/ffbc1723344e6d14fa5fbd71f7ae01c83fa12a87_2_969x748.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/ffbc1723344e6d14fa5fbd71f7ae01c83fa12a87.png 2x" width="646"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×792 191 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       There are a few other cool effects that I dont really have progress shots on…
+       <br/>
+       There is a LBM 2d fluid simulation that I am using to get the fluidy look on stuff in the top gif.
+       <br/>
+       The edge shader, I could probably do to break down a bit better. And go over in a little more depth.
+       <br/>
+       I will do that in the next post.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Impressive looking images. I like the fluid sym effect and your glow looks great as well. The glow seems more radiant than Urho3D’s glow.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Looks great! What is the glow shader based on?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Nice work there ghidra! The first image kinda reminds me of Ghost In the Shell effect. keep it up!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Nice
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

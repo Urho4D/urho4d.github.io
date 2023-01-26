@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Constant Freeze Hiccups
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Constant Freeze Hiccups
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Some of my FPS game users get “freeze hiccups” - game freezes for a short moment once in a short while.
+       <br/>
+       For some users the freezes can last few seconds.
+       <br/>
+       Some users reported it can be caused just by rotating the camera.
+      </p>
+      <p>
+       I can’t reproduce the problem on my machine, thus can’t debug it.
+      </p>
+      <p>
+       Anyone knows what could possible cause such problem?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       Many times I noticed this when a new object showed on the screen, never shown before (I think resources is sending to GPU in this moment)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       It happens constantly, not just on first appearance of things.
+      </p>
+      <p>
+       You’re right that first loading an object’s resources can cause a freeze, but that’s not the case.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe it is environment issue?
+       <br/>
+       Does lag appear if Urho is single-threaded?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       I got a tester to run the game with -nothreads and it seems to solve the problem.
+       <br/>
+       So there’s a problem with Urho’s threading?
+      </p>
+      <p>
+       I got a tester to run a performance profiler and here are some functions that came up:
+       <br/>
+       <img src="../../../images/85ddc37c71d43bd93de0d473167b820e9072a896540044f09ecf9982b110ab10.png"/>
+      </p>
+      <p>
+       <img src="../../../images/864f756281d3470813b1398aec61edae94b2614d6b8f534f090e470980f871fa.png"/>
+      </p>
+      <p>
+       I don’t know if these functions are relevant since it depends on how much time the tester’s app spent being frozen while he profiled.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="5" data-topic="3063">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2f7de3bf772e9fa884f9013ea64c3ac4142baa3efa8c274f19892d379dc40915.png" width="20"/>
+        Enhex:
+       </div>
+       <blockquote>
+        <p>
+         So there’s a problem with Urho’s threading?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I don’t think that Urho itself has some code or design problem with threading.
+       <br/>
+       I’d blame tester’s environment: OS, CPU, background tasks that consume CPU.
+       <br/>
+       I don’t trust occlusion very much, also. Try to disable it instead of threads.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Blaming the user’s hardware while any other game runs fine on it is quite biased.
+      </p>
+      <p>
+       I tried setting the occlusion triangle count to 0, but it didn’t solve it.
+       <br/>
+       Occlusion culling is very important for performance in my game.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       This may not be related to the issue, but out of curiosity, what compiler are you using to distribute your builds? Also, in the CMake settings, I’ve noticed that I’ve had to set the option below to generic for it to run on other PCs. I compile using MingGW for my builds.
+      </p>
+      <p>
+       // Specify the minimum CPU type on which the target binaries are
+       <br/>
+       // to be deployed (Linux, MinGW, and non-Xcode OSX native build
+       <br/>
+       // only), see GCC/Clang’s -march option for possible values; Use
+       <br/>
+       // ‘generic’ for targeting a wide range of generic processors
+       <br/>
+       URHO3D_DEPLOYMENT_TARGET:STRING=generic
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t see URHO3D_DEPLOYMENT_TARGET option available,
+       <a href="https://urho3d.github.io/documentation/HEAD/_building.html" rel="nofollow noopener">
+        documentation
+       </a>
+       says it isn’t for Windows.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       Ah, you’re right. I compile on Windows, but I use CLion + MingW, so it was available to me.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Made some progress. It isn’t related to threading, had two testers had different issues.
+      </p>
+      <p>
+       The big freezes are related to this:
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused occlusion buffer
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 33190
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Removed unused screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Set occlusion buffer size 256x160 with 5 mip levels and 1 thread buffers
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 33190
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:08 2017] DEBUG: Allocated new screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused occlusion buffer
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 1680x1050 format 33190
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Removed unused screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Set occlusion buffer size 256x160 with 5 mip levels and 1 thread buffers
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 6408
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 1680x1050 format 33190
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 105x66 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 840x525 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 420x263 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 210x131 format 34842
+         <br/>
+         [Sat Apr 29 22:19:09 2017] DEBUG: Allocated new screen buffer size 105x66 format 34842
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I haven’t looked into it yet, but I asked one of the testers and he said it didn’t happen before. Could it be regression bug with the recent monitor number/refresh rate features?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Running sample 04 with -deferred also allocates and removes the same screen buffers several times:
+       <br/>
+       <a class="onebox" href="https://pastebin.com/URHmY90Q" rel="nofollow noopener" target="_blank">
+        https://pastebin.com/URHmY90Q
+       </a>
+      </p>
+      <p>
+       I think there’s also a bug that the new graphics::monitor_ never initialized or assigned by Urho. You can see its value in the log is -842150451.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       This is disconcerting. I’d like this verified as a bug or not before 1.7 release.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       The screen allocation seems to be an effect, not a cause. Screen buffers have a time limit before they’re removed.
+      </p>
+      <p>
+       I got a user with severe freezes (up to few seconds, previous one had few 100’s of ms) to send me a Very Sleepy report:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/78f31552544922d7131fb218dd480a324e6ea9e9fa5e3134f446850b3238b103.ico" width="32"/>
+         <a href="https://www.dropbox.com/s/lji2dexxt2chpvx/hell.sleepy?dl=0" rel="nofollow noopener" target="_blank">
+          Dropbox
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="160" src="../../../images/ec36079fc1b4a3b4b56d60da8801e84dd7aa7bed2ac4fc96dba059a7b1b10677.png" width="160"/>
+         <h3>
+          <a href="https://www.dropbox.com/s/lji2dexxt2chpvx/hell.sleepy?dl=0" rel="nofollow noopener" target="_blank">
+           hell.sleepy
+          </a>
+         </h3>
+         <p>
+          Shared with Dropbox
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       Got a WPA record from a user that has long pauses (this one is a second long).
+       <br/>
+       services.exe? Thread starting?
+       <br/>
+       <img src="../../../images/e827c7e544dbc3ac689884212b0bb6ade18250a4b74a43d62d064302a58f8eb2.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       In the end it turns out users were running out of GPU RAM.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Is there a way to see the GPU ram usage in Urho3D?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       If you view Urho3D’s built-in profiler you have Resource type usage.
+       <br/>
+       It doesn’t explicitly say how much GPU ram is being used, AFAIK memory usage in it is a mix of both GPU and CPU, but you’ll get a general idea.
+       <br/>
+       Perhaps external tools can be used to check GPU ram usage.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       Process Explorer is a general purpose tool that I use that also comes with some per-process or global GPU monitoring features.
+       <img height="500" src="../../../images/fedf0d981edd42e2fe714e28abe75e13387c5c486ed2ff1641faa88be098d978.png" width="645"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   PhysicsWorld shim for LogicComponent
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    PhysicsWorld shim for LogicComponent
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       I recently ran into a problem. I have a couple dozen components that do the bulk of their logic in LogicComponent::FixedUpdate. However I recently decided to forego the current Physics implementation in favour of a non-physics solution. My components do not rely on the physics, but suddenly the FixedUpdate function stopped working when I took out PhysicsWorld. So I wrote this little shim that continues to fire off fixed pre-step and post-step events allowing LogicComponent::FixedUpdate to continue to function properly without actually using Bullet physics.
+      </p>
+      <p>
+       PhysicsWorld.h
+      </p>
+      <pre><code class="lang-auto">#ifndef _BLU_PHYSICSWORLD_H
+#define _BLU_PHYSICSWORLD_H
+
+#pragma once
+
+#include &lt;Urho3D/Urho3D.h&gt;
+#include &lt;Urho3D/Scene/Component.h&gt;
+
+namespace blu
+{
+    class PhysicsWorld : public Urho3D::Component
+    {
+        URHO3D_OBJECT(PhysicsWorld, Urho3D::Component);
+        
+    public:
+        PhysicsWorld(Urho3D::Context* context);
+        ~PhysicsWorld();
+
+        static void RegisterObject(Urho3D::Context* context);
+        
+        /// Set simulation substeps per second.
+        void SetFps(unsigned fps);
+        
+    protected:
+        /// Handle scene being assigned.
+        virtual void OnSceneSet(Urho3D::Scene* scene);
+
+    protected:
+        /// Handle the scene subsystem update event, step simulation here.
+        void HandleSceneSubsystemUpdate(Urho3D::StringHash eventType, Urho3D::VariantMap&amp; eventData);
+        /// Trigger update before each physics simulation step.
+        void PreStep(float timeStep);
+        /// Trigger update after each physics simulation step.
+        void PostStep(float timeStep);
+        
+    private:
+    
+        /// Simulation substeps per second.
+        unsigned fps_;
+        
+        /// Internal timestep tracking
+        float accumulator_;
+    };
+}
+
+#endif // _BLU_PHYSICSWORLD_H</code></pre>
+      <p>
+       PhysicsWorld.cpp
+      </p>
+      <pre><code class="lang-auto">#include "PhysicsWorld.h"
+
+#include &lt;Urho3D/Core/Context.h&gt;
+#include &lt;Urho3D/Core/Profiler.h&gt;
+#include &lt;Urho3D/Physics/PhysicsEvents.h&gt;
+#include &lt;Urho3D/Scene/SceneEvents.h&gt;
+
+namespace blu
+{
+    static const int DEFAULT_FPS = 60;
+    
+    PhysicsWorld::PhysicsWorld(Urho3D::Context* context)
+    : Urho3D::Component(context)
+    , fps_(DEFAULT_FPS)
+    , accumulator_(0.f)
+    {
+        accumulator_ = 0.f;
+    }
+    
+    PhysicsWorld::~PhysicsWorld()
+    {
+        
+    }
+
+    void PhysicsWorld::RegisterObject(Urho3D::Context* context)
+    {
+        context-&gt;RegisterFactory&lt;PhysicsWorld&gt;();
+    }
+    
+    /// Set simulation substeps per second.
+    void PhysicsWorld::SetFps(unsigned fps)
+    {
+        fps_ = (unsigned)Urho3D::Clamp(fps, 1, 1000);
+
+        MarkNetworkUpdate();
+    }
+    
+    void PhysicsWorld::OnSceneSet(Urho3D::Scene* scene)
+    {
+        // Subscribe to the scene subsystem update, which will trigger the physics simulation step
+        if (scene)
+        {
+            SubscribeToEvent((Urho3D::Object*)GetScene(), Urho3D::E_SCENESUBSYSTEMUPDATE, URHO3D_HANDLER(PhysicsWorld, HandleSceneSubsystemUpdate));
+        }
+        else
+            UnsubscribeFromEvent(Urho3D::E_SCENESUBSYSTEMUPDATE);
+    }
+
+    void PhysicsWorld::HandleSceneSubsystemUpdate(Urho3D::StringHash eventType, Urho3D::VariantMap&amp; eventData)
+    {
+        using namespace Urho3D::SceneSubsystemUpdate;
+        
+        float timeStep = eventData[P_TIMESTEP].GetFloat();
+        
+        accumulator_ += timeStep;
+        
+        float internalTimeStep = 1.0f / fps_;
+
+        // Step
+        int iterations = floorf(accumulator_ / internalTimeStep);
+        for (int i = 0; i &lt; iterations; i++)
+        {
+            PreStep(internalTimeStep);
+            PostStep(internalTimeStep);
+            
+            accumulator_ -= internalTimeStep;
+        }
+    }
+
+    void PhysicsWorld::PreStep(float timeStep)
+    {
+        // Send pre-step event
+        using namespace Urho3D::PhysicsPreStep;
+
+        Urho3D::VariantMap&amp; eventData = GetEventDataMap();
+        eventData[P_WORLD] = this;
+        eventData[P_TIMESTEP] = timeStep;
+        SendEvent(Urho3D::E_PHYSICSPRESTEP, eventData);
+    }
+
+    void PhysicsWorld::PostStep(float timeStep)
+    {
+        // Send post-step event
+        using namespace Urho3D::PhysicsPostStep;
+
+        Urho3D::VariantMap&amp; eventData = GetEventDataMap();
+        eventData[P_WORLD] = this;
+        eventData[P_TIMESTEP] = timeStep;
+        SendEvent(Urho3D::E_PHYSICSPOSTSTEP, eventData);
+    }
+}</code></pre>
+      <p>
+       Licensed under the existing Urho3D MIT license.
+      </p>
+      <p>
+       Due to a check in LogicComponent::UpdateEventSubscription(), I can’t roll my own class name. Instead I provide it under the same class name but under a different namespace. This StringHash collision works well for this purpose.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       A possible hack is to just have an empty physics world. Since there’re no bodies there’s no work to be done and shouldn’t affect performance.
+       <br/>
+       It’s simpler since it doesn’t require any customization.
+      </p>
+      <p>
+       An elegant solution would be to use a dedicated events with fixed framerate, instead of re-purposing the physics ones. If you’re not using physics, why are you using physics events? That’s just misleading.
+       <br/>
+       This can be done simply by adding time to a variable every Update, and once the time is above frame duration, subtract the duration from the time and fire an event.
+       <br/>
+       It also avoids breaking everything if you’ll ever need to enable physics again.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2f7de3bf772e9fa884f9013ea64c3ac4142baa3efa8c274f19892d379dc40915.png" width="20"/>
+        Enhex:
+       </div>
+       <blockquote>
+        <p>
+         If you’re not using physics, why are you using physics events? That’s just misleading.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I 100% agree. However the alternative is fixing LogicComponent to use some other counter. While it would be a great idea to fix the issue at its root, this is just a quick n dirty little way of keeping LogicComponent happy while removing Bullet as a dependency for my project.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

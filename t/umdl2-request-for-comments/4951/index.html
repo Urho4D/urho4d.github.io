@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   UMDL2 Request for comments
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    UMDL2 Request for comments
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       UMDL2 Proposal
+      </p>
+      <p>
+       These are my notes (portions are complete but still), please rip them to pieces.
+      </p>
+      <hr/>
+      <ul>
+       <li>
+        Addition of
+        <code>
+         ResponseCurve
+        </code>
+        type
+        <ul>
+         <li>
+          Functional curves defined by standard MKCB, shape, inverse-X, and inverse-Y
+         </li>
+         <li>
+          Will be part of variant
+         </li>
+         <li>
+          Aside from animation they’re useful for AI weight functions
+         </li>
+        </ul>
+       </li>
+       <li>
+        Addition of key -&gt; key interpolation parameters
+        <ul>
+         <li>
+          Defined by response curves
+         </li>
+        </ul>
+       </li>
+       <li>
+        Addition of track blend parameters
+        <ul>
+         <li>
+          Defined by response curves
+         </li>
+        </ul>
+       </li>
+       <li>
+        Addition of MorphTracks
+        <ul>
+         <li>
+          Recorded morph-target weights in animation
+         </li>
+        </ul>
+       </li>
+       <li>
+        Addition of
+        <code>
+         Phases
+        </code>
+        <ul>
+         <li>
+          Similar to triggers but windows of time
+         </li>
+         <li>
+          Each phase has a name, start, end, and arbitrary Variants associated with start/end
+         </li>
+         <li>
+          Blends can specify phases to synchronize against
+          <ul>
+           <li>
+            see
+            <strong>
+             DOOM
+            </strong>
+            talk for retargeting
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Root-motion as a first class citizen
+        <ul>
+         <li>
+          Tied as well into phases
+         </li>
+        </ul>
+       </li>
+       <li>
+        Weighted push model for animation
+        <ul>
+         <li>
+          Existing animation works as is superficially
+          <ul>
+           <li>
+            new work can push over it
+           </li>
+          </ul>
+         </li>
+         <li>
+          Facilitates pushing keys on demand rather than relying on existing animation
+          <ul>
+           <li>
+            Futures are pushed, final blend reads the resulting futures for the given time
+           </li>
+          </ul>
+         </li>
+         <li>
+          Provides correction that doesn’t require sorting post-update bone correcting components
+         </li>
+        </ul>
+       </li>
+       <li>
+        Additional stock components for
+        <ul>
+         <li>
+          Terrestrial navigation selection
+         </li>
+         <li>
+          Saccades and blink
+         </li>
+         <li>
+          IK assistance for strings of Look-at (see
+          <strong>
+           DOOM
+          </strong>
+          talk)
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <hr/>
+      <p>
+       The biggest missing thing is selection-sets IMO, but those are not trivially reconcilable IMO.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <ul>
+       <li>
+        Morph-tracks
+        <ul>
+         <li>
+          Basically finished
+         </li>
+         <li>
+          Supported in the binary UMDL2 format and in the XML files already used for triggers, allowing their presence in the XML files
+          <ul>
+           <li>
+            Assimp pretty is morph-idiotic, sxs XML support there provides a supplementary tool path lighter export from DCC tool
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Phases
+        <ul>
+         <li>
+          Down to testing stage and verifying that the matching functions work as intended
+          <ul>
+           <li>
+            for
+            <em>
+             naive
+            </em>
+            match to normalized position, not going to bother trying to do weighted sync in Urho3D’s animation, it’s all way off in the wrong direction for that - a silly amount of work
+           </li>
+          </ul>
+         </li>
+         <li>
+          Phases can function as
+          <em>
+           loop portions
+          </em>
+          for looping animations, only exiting the phase when the animation is fading out
+         </li>
+         <li>
+          Also supported in either binary UMDL2 output or the sxs XML
+         </li>
+        </ul>
+       </li>
+       <li>
+        Root-motion
+        <ul>
+         <li>
+          Not actually that serious, there’s just no existing reasonable utility means to query the necessary information one actually wants to do root-motion from Animation resources
+          <ul>
+           <li>
+            ie. grab the animation root transforms for the start and end of airborne phase, then retarget the root-motion on the fly to an arbitrary traversal
+           </li>
+          </ul>
+         </li>
+         <li>
+          Dealing with the above is better than going for one-fix-for-all
+         </li>
+        </ul>
+       </li>
+       <li>
+        Weighted-push model
+        <ul>
+         <li>
+          Not necessary
+         </li>
+         <li>
+          Just need to be able to push arbitrary
+          <code>
+           AnimationState
+          </code>
+          instances into an
+          <code>
+           AnimationController
+          </code>
+          and replicate those over network
+          <ul>
+           <li>
+            ie. target-by-name transforms
+           </li>
+          </ul>
+         </li>
+         <li>
+          <code>
+           Animation
+          </code>
+          resource is also a bit
+          <em>
+           too
+          </em>
+          fixed, it’s a jerk to work with and should be refined to be easier to work with and even use perpetually appended one-off
+          <em>
+           managed
+          </em>
+          resources
+          <ul>
+           <li>
+            hence, focus on
+            <code>
+             AnimationState
+            </code>
+            instead - resources are network dumb
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <hr/>
+      <p>
+       Fairly sure it doesn’t actually belong in master, but just dropped elsewhere for utility.
+       <strong>
+        DOOM
+       </strong>
+       navigation wheel is largely functional now, only some dead-zone tuning to go and determining whether it should be controlling animation directly or signaling-events (right now it directly controls, which gets wonky with the dead-zone counter-rotation).
+      </p>
+      <p>
+       <img alt="motionwheel" height="300" src="../../../images/5a1e42efb6ed45e79a21b18f863a59825fa6b59d01db2d6f1b9e076cd8e1f247.png" width="400"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Did you end up finishing this? I don’t really have any comments as I don’t have enough experience with animation to provide feedback, but I’m about to start the work of animating models for my game and some of these features seem very useful.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Editor questions
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Editor questions
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <p>
+       Hello everyone!
+      </p>
+      <p>
+       Editor eat 100% CPU, is it ok? How to avoid that?
+      </p>
+      <p>
+       PS Ubuntu 14.04, Blender 2.71
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/732ed303c05090fb6ed9f58be013eafc731834879aa103ce545e34b26b04307a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jorbuedo
+     </div>
+     <div class="post_content">
+      <p>
+       I think it’s normal.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="jorbuedo">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/d67134060dd96cf23b93992652b1f902f4f6b71835355350f6f086aba67481e0.png" width="20"/>
+        jorbuedo:
+       </div>
+       <blockquote>
+        <p>
+         I think it’s normal.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Disagree… Blender working with 3d model too and does not use CPU on 100%. It should be option something like maxCpu or something.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/732ed303c05090fb6ed9f58be013eafc731834879aa103ce545e34b26b04307a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jorbuedo
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t think it’s ok, because it could use less. But I think it’s normal, because not only happens to you.
+      </p>
+      <p>
+       I was just clarifying that it’s not just you. Try to modify the code and limit it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“jorbuedo”]I don’t think it’s ok, because it could use less. But I think it’s normal, because not only happens to you.
+      </p>
+      <p>
+       I was just clarifying that it’s not just you. Try to modify the code and limit it.[/quote]
+      </p>
+      <p>
+       Thank you for your answer. Will know that I’m not along
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       About modifying code - I’m noobie in C++ but will try.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/732ed303c05090fb6ed9f58be013eafc731834879aa103ce545e34b26b04307a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jorbuedo
+     </div>
+     <div class="post_content">
+      <p>
+       The code is in AngelScript, it’s a bit easier.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you for answer, can you give me advice how to do it? And why not to make it default?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00c457a18cebaed5bfc2d08f4f1fc3562ae6dcc83b81fd849273232eccce930.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lexx
+     </div>
+     <div class="post_content">
+      <p>
+       As it uses Urho3DPlayer, check its parameters how it works.
+       <br/>
+       Ie, enable vsync is  -v (add it in
+       <a href="http://Editor.sh" rel="nofollow noopener">
+        Editor.sh
+       </a>
+       ), maybe it helps?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“lexx”]As it uses Urho3DPlayer, check its parameters how it works.
+       <br/>
+       Ie, enable vsync is  -v (add it in
+       <a href="http://Editor.sh" rel="nofollow noopener">
+        Editor.sh
+       </a>
+       ), maybe it helps?[/quote]
+      </p>
+      <p>
+       Just tried - no effect
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       100% CPU used.
+       <br/>
+       In Engine.cpp, in constructor, I set  SetMaxInactiveFps(10) and SetMaxFps(60), recompile library and now  Urho3DPlayer eat 95% CPU. Not much. If engine will be so hungry it will eat battery on IOS and Android and users will not play in my game
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       What else I can do? Any ideas?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       Urho has a hierarchtical cpu profiler.  See what is eating the cpu.  The samples bind it to F2
+      </p>
+      <p>
+       GetSubsystem()-&gt;ToggleAll();
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/be591996d6d09107862e1108619c881a569e2dc5f7834ce3c505acad7b8177fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Serge
+     </div>
+     <div class="post_content">
+      <p>
+       Please open this image in new tab.
+      </p>
+      <div class="spoiler">
+       <p>
+        <img alt="" height="" src="../../../images/a3991dd2b95c7ae33c9eff1ddba6f061d617196c59b0eb7aea70aaa0ef6cf478.png" width=""/>
+       </p>
+      </div>
+      <pre><code class="lang-auto">Engine::Engine(Context* context) :
+    Object(context),
+    timeStep_(0.0f),
+    timeStepSmoothing_(2),
+    minFps_(10),
+    #if defined(ANDROID) || defined(IOS) || defined(RASPI)
+    maxFps_(60),
+    maxInactiveFps_(10),
+    pauseMinimized_(true),
+    #else
+    maxFps_(30),
+    maxInactiveFps_(10),
+    pauseMinimized_(false),
+    #endif
+#ifdef URHO3D_TESTING
+    timeOut_(0),
+#endif
+    autoExit_(true),
+    initialized_(false),
+    exiting_(false),
+    headless_(false),
+    audioPaused_(false)</code></pre>
+      <p>
+       maxFps_(30) but as you can see it completely ignored by the Urho library
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Check the following line in the editor script (
+       <a href="http://Editor.as">
+        Editor.as
+       </a>
+       line 193); it will override the maxFps setting set earlier during Engine’s construction.
+      </p>
+      <pre><code class="lang-auto">if (renderingElem.HasAttribute("framelimiter")) engine.maxFps = renderingElem.GetBool("framelimiter") ? 200 : 0;</code></pre>
+      <p>
+       You can naturally change those values if you want.
+      </p>
+      <p>
+       Regarding mobiles, if you don’t need 60fps screen update, you should be able to set lower maxFps for lower power consumption. Depending on the graphics drivers &amp; API used, using vsync may not reduce CPU usage, as it may be busy-polling for the vertical sync.
+      </p>
+      <p>
+       Also, the reason why something like Blender and Urho’s editor can’t be compared CPU usage-wise is that the Urho editor is running a constant screen redraw (just like a game), while GUI applications that use the native OS windowing (like Blender) typically redraw only when the user does something.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [PIP] 10_RenderToTexture with only one scene?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [PIP] 10_RenderToTexture with only one scene?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       I was wondering if we can achieve PIP in Urho3D and so I added camera control for rttCameraNode_ in sample 10_RenderToTexture.
+       <br/>
+       It worked just find if rttCamerNode_ is in a different scene from the cameraNode_, but if i used it in the same scene, any camera rotation or movement can easily lead to application crash.
+       <br/>
+       <img alt="Sketch" height="412" src="../../../images/885faac16e480ad11e26498f70618e6d31b8fa5937997ba78efba348795b3a18.png" width="690"/>
+       <br/>
+       Anyone got a solution for this?
+      </p>
+      <p>
+       using:
+       <br/>
+       Windows 10 Home 1803
+       <br/>
+       Qt creator as ide (not using any Qt library)
+       <br/>
+       visual studio 2017 as compiler
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <ol>
+       <li>
+        What’s the PIP?
+       </li>
+       <li>
+        What GAPI is used?
+       </li>
+       <li>
+        If you have a crash, please show callstack.
+       </li>
+       <li>
+        I moved everything into main scene in this sample, works fine.
+       </li>
+      </ol>
+      <p>
+       <img alt="10_RenderToTexture_d%202018-05-25%2021-23-10-233" height="500" src="../../../images/5f9c030c18385d20ffe0ae98b8511621a15bed8bd916b7c5a2a0ac24953cab4c.jpg" width="666"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       1  PIP is “Picture in Picture”.
+       <br/>
+       Trying to understand terms in 2 and 3, maybe update this reply later.
+       <br/>
+       4  Did you try to rotate or move the rttCameraNode_?
+      </p>
+      <p>
+       I’m a middle school drop-out doing programming for hobbies, kinda uneducated, sry for my ignorance. xD
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       Build in Debug mode encountered tons of LNK2038 mistmatch errors
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="Sketch" height="426" src="../../../images/81cb831fb753e8c136e17bdaf0b63b717cdbf30d53b07484e6de956bc81fd200.jpg" width="690"/>
+       <br/>
+       Sry for the late reply! i finally found a way to compile in debug mode. not sure if this is the so called callstack?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="3" data-topic="4263">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9ad57b0737cb5c9ff09279654564b97d3b5ccf96d19e351b65a2baf72eb3abcf.png" width="20"/>
+        Virgo:
+       </div>
+       <blockquote>
+        <p>
+         4 Did you try to rotate or move the rttCameraNode_?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Still works fine.
+       <br/>
+       <aside class="onebox githubgist">
+        <header class="source">
+         <a href="https://gist.github.com/eugeneko/e6b2752b07d863a96fc6bee7546befd4" rel="nofollow noopener" target="_blank">
+          gist.github.com
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h4>
+          <a href="https://gist.github.com/eugeneko/e6b2752b07d863a96fc6bee7546befd4" rel="nofollow noopener" target="_blank">
+           https://gist.github.com/eugeneko/e6b2752b07d863a96fc6bee7546befd4
+          </a>
+         </h4>
+         <h5>
+          RenderToTexture.cpp
+         </h5>
+         <pre><code class="C++">//
+// Copyright (c) 2008-2018 the Urho3D project.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//</code></pre>
+         This file has been truncated.
+         <a href="https://gist.github.com/eugeneko/e6b2752b07d863a96fc6bee7546befd4" rel="nofollow noopener" target="_blank">
+          show original
+         </a>
+         <p>
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       strange, i just replaced my RenderToTexture.cpp with your code, and the application just crashed on startup!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="7" data-topic="4263">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9ad57b0737cb5c9ff09279654564b97d3b5ccf96d19e351b65a2baf72eb3abcf.png" width="20"/>
+        Virgo:
+       </div>
+       <blockquote>
+        <p>
+         strange, i just replaced my RenderToTexture.cpp with your code, and the application just crashed on startup!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I tested things on DX9. What API do you use?
+       <br/>
+       Anyway, I recommend to build Urho from source in Debug configuration.
+       <br/>
+       It’s quite hard to guess where and why it crashed.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="Sketch" height="427" src="../../../images/c4f6317998412fe67abbbc64516a9104d70998f4d052278cac6c4de027ef00f0.jpg" width="690"/>
+       <br/>
+       Im using Dx11, and this is the debug build, finally.
+      </p>
+      <p>
+       edit:
+       <br/>
+       okay stupid me dont know how to track the one called this function
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Fixed.
+       <br/>
+       <aside class="onebox githubcommit">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/commit/b78992ba433f2c20b3db2b8fa1cbd200b13cc78f" rel="nofollow noopener" target="_blank">
+          github.com/urho3d/Urho3D
+         </a>
+        </header>
+        <article class="onebox-body">
+         <a href="https://github.com/eugeneko" rel="nofollow noopener" target="_blank">
+          <img alt="eugeneko" class="thumbnail onebox-avatar" height="90" src="../../../images/a5dc19796dddecf2f5d12f41a9f0c79d147ebcfc67b4710102cd621720fda39c.png" width="90"/>
+         </a>
+         <h4>
+          <a href="https://github.com/urho3d/Urho3D/commit/b78992ba433f2c20b3db2b8fa1cbd200b13cc78f" rel="nofollow noopener" target="_blank">
+           Fix crash in DX11 when current render target is passed into Graphics::SetTexture.
+          </a>
+         </h4>
+         <div class="date">
+          by
+          <a href="https://github.com/eugeneko" rel="nofollow noopener" target="_blank">
+           eugeneko
+          </a>
+          on
+          <a href="https://github.com/urho3d/Urho3D/commit/b78992ba433f2c20b3db2b8fa1cbd200b13cc78f" rel="nofollow noopener" target="_blank">
+           04:15PM - 26 May 18 UTC
+          </a>
+         </div>
+         <div class="github-commit-stats">
+          changed
+          <strong>
+           1 files
+          </strong>
+          with
+          <strong>
+           1 additions
+          </strong>
+          and
+          <strong>
+           1 deletions
+          </strong>
+          .
+         </div>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       Just add a pointer validation check huh?
+       <img alt=":joy:" class="emoji" src="../../../images/c252a58367211c11d839155e50dc5e98551826c64b8d2e8d6267124c054ceae0.png" title=":joy:"/>
+       never imagine the solution to my problem could be simple like this
+      </p>
+      <p>
+       Thanks &lt;3
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

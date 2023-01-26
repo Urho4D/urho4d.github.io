@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Assertion failure when adding a StaticSprite2D on a extension of Node class
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Assertion failure when adding a StaticSprite2D on a extension of Node class
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6c9c5f2502b6950078165f05c51e962dd57c27654f9e59afc44eca7f3fe2f05d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pihozamo
+     </div>
+     <div class="post_content">
+      <p>
+       [Edit] Solution: Use a custom LogicComponent instead.
+      </p>
+      <blockquote>
+       <p>
+        weitjong:
+       </p>
+      </blockquote>
+      <blockquote>
+       <p>
+        The Node class is not designed to be subclass by user. See also the discussion in
+        <a class="inline-onebox-loading" href="http://discourse.urho3d.io/t/alternatives-to-node-subclassing/230612">
+         http://discourse.urho3d.io/t/alternatives-to-node-subclassing/230612
+        </a>
+        .
+       </p>
+      </blockquote>
+      <p>
+       Hello folks,
+      </p>
+      <p>
+       I have this problem when I add a Sprite2D to a StaticSprite2D component created from a custom class that extends Urho3D::Node. I’m using VS 2015 with Urho 1.6. This is my custom class:
+      </p>
+      <p>
+       NodeExt.h :
+      </p>
+      <pre><code>#pragma once
+#include "stdafx.h"
+
+using namespace Urho3D;
+
+class NodeExt : public Node
+{
+	URHO3D_OBJECT(NodeExt, Node);
+
+public:
+	NodeExt(Context* context);
+	virtual ~NodeExt();
+};
+</code></pre>
+      <p>
+       NodeExt.cpp
+      </p>
+      <pre><code>#include "NodeExt.h"
+
+
+NodeExt::NodeExt(Context* context) : Node(context)
+{
+	RigidBody2D* body = CreateComponent&lt;RigidBody2D&gt;();
+	body-&gt;SetBodyType(BT_DYNAMIC);
+	body-&gt;SetGravityScale(0);
+
+	CollisionBox2D* box = CreateComponent&lt;CollisionBox2D&gt;();
+	box-&gt;SetSize(Vector2(0.32f, 0.32f));
+	box-&gt;SetDensity(1.0f);
+	box-&gt;SetFriction(0.5f);
+	box-&gt;SetRestitution(0.1f);
+
+	ResourceCache* cache = GetSubsystem&lt;ResourceCache&gt;();
+	StaticSprite2D* staticSprite = CreateComponent&lt;StaticSprite2D&gt;();
+	staticSprite-&gt;SetSprite(cache-&gt;GetResource&lt;Sprite2D&gt;("Images/ship.png")); // This is where the error happens
+}
+
+
+NodeExt::~NodeExt()
+{
+}
+</code></pre>
+      <p>
+       And the error:
+      </p>
+      <p>
+       <img src="../../../images/9ddfc065dd4d0d47dd4f3c48b9ff10a74cceaf7d7ee29934e622e456759ffb15.png"/>
+      </p>
+      <p>
+       Now, if I comment the line where the SetSprite happens, everything proceeds as usual. And if I use a Urho3D::Node instead my custom class, using the same code, no error happens.
+      </p>
+      <p>
+       Is there something missing that I should include in my custom class to successfully extend Urho3D::Node?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       The Node class is not designed to be subclass by user. See also the discussion in
+       <a href="http://discourse.urho3d.io/t/alternatives-to-node-subclassing/2306">
+        Alternatives to node subclassing?
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6c9c5f2502b6950078165f05c51e962dd57c27654f9e59afc44eca7f3fe2f05d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pihozamo
+     </div>
+     <div class="post_content">
+      <p>
+       Oh I see, thanks for your answer.
+      </p>
+      <p>
+       Should I mark this as solved? I know it technically didn’t get solved but it seems like it’s not possible.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [SOLVED]I cannot seem to create my own custom mesh manually
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [SOLVED]I cannot seem to create my own custom mesh manually
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       I used the pretty much used the theoretically working code from here exactly:
+       <a class="inline-onebox-loading" href="http://discourse.urho3d.io/t/solved-how-to-create-mesh/35">
+        http://discourse.urho3d.io/t/solved-how-to-create-mesh/35
+       </a>
+       This post is a bit old so maybe things have changed a bit?
+      </p>
+      <p>
+       It simply doesn’t render correctly depending on the direction and position of the camera.  It seems to fail whenever the camera is close or when the object almost falls off of the camera.
+      </p>
+      <p>
+       Here is it messing up
+      </p>
+      <p>
+       <img height="500" src="../../../images/ae469bb5035409754c0de770b03d34f84ec9ffd1ea1e1b9899f590ca117a3554.png" width="642"/>
+      </p>
+      <p>
+       But when I back up a bit it works
+      </p>
+      <p>
+       <img height="500" src="../../../images/96cca48142e4054c1b23c20fed066826e277094421fe3bc9146c8d9a3fb84792.png" width="642"/>
+      </p>
+      <pre><code class="lang-auto">    float dirLightVertexData[] =
+    {
+        -1, 1, 0,
+        1, 1, 0,
+        1, -1, 0,
+        -1, -1, 0,
+    };
+
+    unsigned short dirLightIndexData[] =
+    {
+        0, 1, 2,
+        2, 3, 0,
+    };
+
+    SharedPtr&lt;VertexBuffer&gt; dlvb(new VertexBuffer(context_));
+    dlvb-&gt;SetShadowed(true);
+    dlvb-&gt;SetSize(4, MASK_POSITION);
+    dlvb-&gt;SetData(dirLightVertexData);
+
+    SharedPtr&lt;IndexBuffer&gt; dlib(new IndexBuffer(context_));
+    dlib-&gt;SetShadowed(true);
+    dlib-&gt;SetSize(6, false);
+    dlib-&gt;SetData(dirLightIndexData);
+
+    Geometry *dirLightGeometry_ = new Geometry(context_);
+    dirLightGeometry_-&gt;SetVertexBuffer(0, dlvb);
+    dirLightGeometry_-&gt;SetIndexBuffer(dlib);
+    dirLightGeometry_-&gt;SetDrawRange(TRIANGLE_LIST, 0, dlib-&gt;GetIndexCount());
+
+    SharedPtr&lt;Model&gt; testModel(new Model(context_));
+    Vector&lt;SharedPtr&lt;VertexBuffer&gt; &gt; dlvbVector;
+    Vector&lt;SharedPtr&lt;IndexBuffer&gt; &gt; dlibVector;
+    dlvbVector.Push(dlvb);
+    dlibVector.Push(dlib);
+    testModel-&gt;SetNumGeometries(1);
+    testModel-&gt;SetNumGeometryLodLevels(0, 1);
+    testModel-&gt;SetGeometry(0, 0, dirLightGeometry_);
+
+    // Define the model buffers and bounding box
+    PODVector&lt;unsigned&gt; emptyMorphRange;
+    testModel-&gt;SetVertexBuffers(dlvbVector, emptyMorphRange, emptyMorphRange);
+    testModel-&gt;SetIndexBuffers(dlibVector);
+    testModel-&gt;SetBoundingBox(BoundingBox(Vector3(-1.0f, -1.0f, 0.0f), Vector3(1.0f, 1.0f, 0.0f)));
+
+    Node* testnodea = scene_-&gt;CreateChild("testasdasd");
+    testnodea-&gt;SetScale(Vector3(1.0f, 1.0f, 1.0f));
+    StaticModel* testObjecta = testnodea-&gt;CreateComponent&lt;StaticModel&gt;();
+    testObjecta-&gt;SetModel(testModel);
+    testObjecta-&gt;SetMaterial(cache-&gt;GetResource&lt;Material&gt;("Materials/BlueUnlit.xml"));
+    testnodea-&gt;SetPosition(Vector3(-1.0f, 5.0f, 2.0f));</code></pre>
+      <p>
+       Any help is nice!  Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       “Materials/BlueUnlit.xml” uses VColor?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Turns out that material doesn’t exist.  Whoops.  I should have checked before I copied the code.  But it is not the problem.
+       <img alt=":unamused:" class="emoji" src="../../../images/064b384525610c8a83e33eaac8172dc9de44c67917e5447657127dd75134c5cc.png" title=":unamused:"/>
+      </p>
+      <p>
+       You can see this bellow.  Now both of the quads you can see are both the same material.  The other quad is using “Models/Plane.mdl” included in the standard urho3d assets.  The two should be identical just scaled differently.
+      </p>
+      <p>
+       <img height="500" src="../../../images/3c704070a089c85111c7f61c593efb81b46ce6830248b5fcbf189bcd978cc602.png" width="642"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       If you want the model to be lit and texture mapped, it needs normals and UVs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks!  I was just being dumb. That should have been obvious to me.
+       <img alt=":joy:" class="emoji" src="../../../images/c252a58367211c11d839155e50dc5e98551826c64b8d2e8d6267124c054ceae0.png" title=":joy:"/>
+       So that problem I was having has been solved.
+      </p>
+      <p>
+       <span class="bbcode-b">
+        EDIT: Never mind I figured it out.  See here:
+        <a data-bbcode="true" href="https://urho3d.github.io/documentation/1.6/class_urho3_d_1_1_index_buffer.html#acad3ececff56c39f52703e514b730364" rel="nofollow noopener">
+         https://urho3d.github.io/documentation/1.6/class_urho3_d_1_1_index_buffer.html#acad3ececff56c39f52703e514b730364
+        </a>
+       </span>
+      </p>
+      <p>
+       Alright, now I am running into an issue in that I need more greater than a unsigned short for my indices.  Granted I am not being entirely efficient but I want to do some testing to see how much I can render in one draw call.
+      </p>
+      <p>
+       <span class="bbcode-b">
+        Is there a way I can set 32bit indices?
+       </span>
+      </p>
+      <p>
+       Here I am trying to make a 14x14x14 big cube of cubes.  As you can see, it falls a bit short because I go over the index of 65,535.
+      </p>
+      <p>
+       <img height="500" src="../../../images/dc840c69a3a3fb7429038e316036c4167d3277ef80c0615a2a48ee1e33205ef5.png" width="642"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="5" data-topic="2688">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b9d688c700978c8c8e441e752ef38d3eac946c22f442681087bf5596731c5d07.png" width="20"/>
+        GoogleBot42:
+       </div>
+       <blockquote>
+        <p>
+         Is there a way I can set 32bit indices?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       SetSize (unsigned indexCount,
+       <strong>
+        bool largeIndices
+       </strong>
+       , bool dynamic=false)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah I figured it out.  Thanks though
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Here is a working screenshot if anyone is a bit curious.  Much bigger.
+      </p>
+      <p>
+       <img height="500" src="../../../images/45f4969d1feec4706cfa4f58d0b394011d2f048ad7b7e37981982ae312e01142.png" width="642"/>
+      </p>
+      <p>
+       Also I got the basics of polyvox running (soon to be textured too
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       ).
+      </p>
+      <p>
+       <img height="500" src="../../../images/366ae8273f9939f706891e83bdd14a8468273c0fd042fcd61f39b102e6c023f6.png" width="642"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/523acc0ecc0897814c8d8e1f0cd74cf6ff51386164f67d59c03aef0fdbd7f7af.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      bloop
+     </div>
+     <div class="post_content">
+      <p>
+       That is looking great! I am starting to look at PolyVox and Urho as well. Did you implement a bespoke shaders?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

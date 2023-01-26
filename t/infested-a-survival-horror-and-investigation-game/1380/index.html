@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Infested : a survival horror and investigation game
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Infested : a survival horror and investigation game
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi everyone . i’m working on a game for a long time now (5-6 months in my spare time) , and i thought maybe i should post it’s current state. First of all few words about the game :
+      </p>
+      <p>
+       Infested is a survival horror and investigation game where you have to solve some cool puzzles, and collect clues.Actually if you liked the OLD Resident Evil games (RE2 , RE3 , Code Veronica) then you’ll probably like this one too.
+      </p>
+      <p>
+       The story in nuthshell : Scientists made a great leap in quantum physics , they discovered a way to open portals to paralell universes , but the experiment went horribly wrong… the rules of space and time became all scrambled and some evil creatures invaded our side. Your mission is to close the portal and save the world…
+      </p>
+      <p>
+       EDIT 06.11.2016
+       <br/>
+       New video !
+      </p>
+      <div class="onebox lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="JUlNMutzoFk" data-youtube-title="Infested (some new features)">
+       <a href="https://www.youtube.com/watch?v=JUlNMutzoFk" rel="nofollow noopener" target="_blank">
+        <img class="ytp-thumbnail-image" height="270" src="../../../images/04f130d6dac51908b3f8bfcadf17415da445f333679433203d738526f13830db.jpg" title="Infested (some new features)" width="480"/>
+       </a>
+      </div>
+      <p>
+       Here are some screenshots :
+       <br/>
+       <a data-bbcode="true" href="https://postimg.org/image/k10m56a3t/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/k10m56a3t/mansion03.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/mys2idui1/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/mys2idui1/mansion06.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/r6wi1zrmx/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/r6wi1zrmx/mansion01.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/tpq5clquh/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/tpq5clquh/hallway01.jpg" width=""/>
+       </a>
+      </p>
+      <p>
+       EDIT 13.04.2016
+       <br/>
+       Weapon test
+      </p>
+      <div class="onebox lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="vLGcXRMFWso" data-youtube-title="Infested weapon test 1">
+       <a href="https://www.youtube.com/watch?v=vLGcXRMFWso" rel="nofollow noopener" target="_blank">
+        <img class="ytp-thumbnail-image" height="270" src="../../../images/4e17e8f3e9946117d1beb73073bb7b9fa2a959dc965eca7982c8b4d3a23180c4.jpg" title="Infested weapon test 1" width="480"/>
+       </a>
+      </div>
+      <p>
+       Some differences between Resident evil and Infested :
+       <br/>
+       -TPS camera view instead of fixed cam angle.
+      </p>
+      <ul>
+       <li>
+        Puzzles are dynamic.While in RE they are just 2d sprites in infested they are interactive 3d objects (Rotate valve handles by dragging them or pressing switches etc)
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/093b3f4d84ad145d3264d8fb8f320a1af14d40a48fc58e8f95153f0018c57938.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TikariSakari
+     </div>
+     <div class="post_content">
+      <p>
+       The video looked really cool, and you’ve managed to build quite a big world in half a year. Something that caught my eye on the video was when you picked up an item, you had to move the mouse to the confirm button. I think a lot of new games use some activate button like E or F for confirming their action to make it a bit easier for the player. You might have something like that already implemented, but just thought bringing it up. I also liked how the cross hair changed to hand on things that you could pick up or use like doors.
+       <br/>
+       Good luck with the project in the future.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       It is very impressive
+       <br/>
+       And how did you create this transition between two scenes? when doors opened… black screen… and we see new room (scene)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       Looks great
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Looks amazing
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       Would you reveal some of the techniques that you used ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       Looking good so far and great job on the gameplay elements. Your demo scene and mentioning ‘evil creatures’ reminds me of the game Alan Wake though.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+      <p>
+       As for improving the video quality, try the ff:
+      </p>
+      <p>
+       -MPEG4 (DivX, Xvid, H.264) format
+       <br/>
+       -1280x720 resolution or 1080p
+       <br/>
+       -128k Mono or 320k Stereo MP3/AAC audio
+       <br/>
+       -24,25 or 30 frames per second
+      </p>
+      <p>
+       If you have NVidia card then just use ShadowPlay.
+      </p>
+      <p>
+       Keep it up!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       Hot damn, looking good so far!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":astonished:" class="emoji" src="../../../images/aaa767d0e90cb25b6cbc690ffd291372e692a1e733952af7906a5319b00e0893.png" title=":astonished:"/>
+       Very impressive! :mrgreen:
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Amazing. After watching the video to the end at full screen, it did not give me a slightest motion sickness. i.e. you have done a great job at adjusting the FOV or something. Are you also the one who create those game assets? They look believable.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for everyone
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <aside class="quote no-group" data-username="TikariSakari">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9eccff91f8b3b80bb7b73a7d8b9c274e98ee4e92961bb965102d2079d759f4c2.png" width="20"/>
+        TikariSakari:
+       </div>
+       <blockquote>
+        <p>
+         Something that caught my eye on the video was when you picked up an item, you had to move the mouse to the confirm button. I think a lot of new games use some activate button like E or F for confirming their action to make it a bit easier for the player. You might have something like that already implemented, but just thought bringing it up.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well i’ve just thought the same thing and yes you are right i will change that…
+      </p>
+      <aside class="quote no-group" data-username="sabotage3d">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/3cdea62ad0216f21e73a6da462369f1460ff7ce292c657c1f27905a800b56144.png" width="20"/>
+        sabotage3d:
+       </div>
+       <blockquote>
+        <p>
+         Would you reveal some of the techniques that you used ?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Ofcourse !
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       [quote=“codingmonkey”]It is very impressive
+       <br/>
+       And how did you create this transition between two scenes? when doors opened… black screen… and we see new room (scene)[/quote]
+      </p>
+      <p>
+       It’s very simple.At segment change i just release all the resources in the current segment and load the new one.It is extremely fast and ensures you can have literally unlimited levels. Most of the entities are derived from Urho3D::Node
+       <br/>
+       So this way i can do recursive things in the scene (destroying resources recursively or load them)
+       <br/>
+       I have a base class called INFNode which is derived from Urho3D::Node and has few virtual methods like :
+      </p>
+      <p>
+       // Loads this node’s static data from a file
+       <br/>
+       virtual void onInitialize(Urho3D::File &amp;fie);
+      </p>
+      <p>
+       // Builds this node (called when player enters in the segment)
+       <br/>
+       virtual void onBuild();
+      </p>
+      <p>
+       // Destroys everything associated with this node but keeps the node “alive”
+       <br/>
+       virtual void onDestroy();
+      </p>
+      <p>
+       // called by projectiles in the scene returns true if the projectile should be stopped (destroyed)
+       <br/>
+       virtual bool onBulletHit(float damage, Urho3D::Vector3 &amp;dir, Urho3D::PODVector
+       <a>
+        Urho3D::RayQueryResult
+       </a>
+       &amp;allResults);
+      </p>
+      <p>
+       So from this INFNode i have various other node types like :
+       <br/>
+       INFDynamicMesh - holds a StaticModel component which is loaded at onBuild() and destroyed at onDestroy()
+       <br/>
+       INFItem - holds a StaticModel and quatity
+       <br/>
+       etc
+      </p>
+      <p>
+       and finally i have a INFSegment which simply calls onBuild() onDestroy() onInitialize() on it’s children recursively
+       <br/>
+       Thanks to this technique i have an extremely clean and easy to read code , and its really fast (loading a segment with 37000-38000 poly’s is literally a blink of an eye)
+      </p>
+      <aside class="quote no-group" data-username="weitjong">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         Amazing. After watching the video to the end at full screen, it did not give me a slightest motion sickness. i.e. you have done a great job at adjusting the FOV or something. Are you also the one who create those game assets? They look believable.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks ! Well it’s the fov and the player’s move speed and i set the character controller’s friction and mass at very low value. Actually setting the friction to 0 and the mass to 0.5 gives by far the best result unfortunately it has some issues that come from physics simulation (very thin objects on the floor like a sheet of a paper can block the player like theres a wall)
+      </p>
+      <p>
+       Regarding to level design and modelling , yes i did everything myself (except that revolver which is only placeholder for now , but i have already a bunch of weapons ready just need to create animations for them)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Dave82">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2d732a74ad6d9d5982c0e344fad30bccc9c0302ddbf1c23455bdc0315b23286b.png" width="20"/>
+        Dave82:
+       </div>
+       <blockquote>
+        <p>
+         Regarding to level design and modelling , yes i did everything myself (except that revolver which is only placeholder for now , but i have already a bunch of weapons ready just need to create animations for them)
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Great! In that case I suppose there is no issue to republish those screenshots and video clips to our main website then.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Regarding to level design and modelling , yes i did everything myself
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I was about to ask you about assets origin. Really impressive work.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         very thin objects on the floor like a sheet of a paper can block the player
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I hope, that you don’t make collision mesh for every sheet of paper on the floor.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       What is your lighting solution?
+      </p>
+      <p>
+       Now, add some spooky ambient sounds. And keep on the great work!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         Great! In that case I suppose there is no issue to republish those screenshots and video clips to our main website then.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Actually that would be really cool
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       (all assets are made by me including the models and textures and sound effects so there’s no problem at all)
+      </p>
+      <p>
+       [quote=“Bananaft”]
+      </p>
+      <p>
+       I hope, that you don’t make collision mesh for every sheet of paper on the floor.
+       <br/>
+       What is your lighting solution?
+       <br/>
+       Now, add some spooky ambient sounds. And keep on the great work![/quote]
+      </p>
+      <p>
+       Some meshes have collision , some not… like tree leafs , grass , has no collision bodies but other things have. I render the whole scene in bigest chunks thats possible. I presort everything by material before export. So i don’t want to create separate StaticModels for decals on the floor because that icreases the draw calls and material changes.
+      </p>
+      <p>
+       Currently the game runs constantly on 190-200 fps (thats the max fps as i get the same with empty scene) so the performance is really really great.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         What is your lighting solution?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I use combination of baked AO + GI and dynamic lighting. The static scene use Baked lightmaps the dynamic meshes use Dynamic lighting.
+      </p>
+      <p>
+       Actually i would give my left ball if someone could come up with an idea how to implement subtractive shadows… I have some ideas but i didn’t get into Urho source that much yet…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Looking very professional, great work!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       Amazing work ,
+       <br/>
+       Can you tell us how do you model, that is what is your tricks to make such good textures and human models and animations of the hero? which 3d app you are using ?
+       <br/>
+       How about time management ?how do you handle that ?  (you said its in your spare time ).
+       <br/>
+       also you can build small demo and we can test it if you like .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I agree with everyone here, this looks amazing.  Damn, I should learn how to create art assets… my current skills are limited to only being able to create gui buttons, and bad ones at that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi everyone , just few screenshots and some news :
+      </p>
+      <ul>
+       <li>
+        added water and particles
+       </li>
+       <li>
+        Have different footstep effects on different materials ,
+       </li>
+       <li>
+        walking in water will spawn some splash particles at each step… looks really cool
+        <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+        .
+       </li>
+       <li>
+        Started to write the first puzzle (i already have few for testing but this will be implemented in the game)
+       </li>
+      </ul>
+      <p>
+       Before i release the first demo i want to improve the character controller… the current controller is a bit bugy in certain situations but i have a way beter idea that i just need to implement (to determine the isOnGround and canJump states i will use raycasting instead of collision check… should work better)
+      </p>
+      <p>
+       The sewers :
+      </p>
+      <p>
+       what a cool place to fight monsters… don’t you think ?
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s28.postimg.org/bqs8zifvx/inf_sewer04.jpg" width=""/>
+      </p>
+      <p>
+       Sewer…
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/clbiubk6l/inf_sewer02.jpg" width=""/>
+      </p>
+      <p>
+       Fire :
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/r72jikgz1/inf_particles01.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        what a cool place to fight monsters…
+        <br/>
+        i don’t know exactly but i guess you need to work with some of common scary place or “fear factors”:
+        <br/>
+        dark, silent, wet, cold, big place - wind sound, noise sounds( old wood sound, regular single metal sound from far ) …
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Dave82”]The sewers :
+       <br/>
+       what a cool place to fight monsters… don’t you think ?[/quote]
+       <br/>
+       Yes, Yes I do think it’s scary!
+      </p>
+      <p>
+       And next are selfies!
+       <br/>
+       <a href="https://www.youtube.com/watch?v=EhAFyaObY6U" rel="nofollow noopener">
+        youtube.com/watch?v=EhAFyaObY6U
+       </a>
+       <img alt=":astonished:" class="emoji" src="../../../images/aaa767d0e90cb25b6cbc690ffd291372e692a1e733952af7906a5319b00e0893.png" title=":astonished:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       [quote]i don’t know exactly but i guess you need to work with some of common scary place or “fear factors”:
+       <br/>
+       dark, silent, wet, cold, big place - wind sound, noise sounds( old wood sound, regular single metal sound from far ) …[/quote]
+      </p>
+      <p>
+       There will be a lot of dark places.This is only 0.01% of the whole game world.Your first objective is to start the locomotive on the train station and go to the city.
+       <br/>
+       There will be 3 levels.
+       <br/>
+       1 the train station. (starts with an animation of the hero calling his wiife and waiting for the train.After he fells asleep and wakes up that people are disappeared , and some strange disturbing unexpected things happening , like giant planets appears disappears on the sky radnomly , creepy quantum events , houses cut in half , etc)
+       <br/>
+       2 The city.(when you arrive the night will fall so you can expect dark areas after the train station part)  Classic scenes like the hospital , mall , airport
+       <br/>
+       3 The labs (typical experiment rooms and stuff)
+      </p>
+      <p>
+       Hovewer there will be a lot of enemies i still want to focus on puzzle solving and story.I don’t want to make an action TPS.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         And next are selfies!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I don’t get that part…
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Dave82”]
+       <br/>
+       I don’t get that part…
+       <img alt=":confused:" class="emoji" src="../../../images/5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33.png" title=":confused:"/>
+       [/quote]
+       <br/>
+       Watch the video, it’s scary!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Some test. Now the scripting works as i expected , so what i need now is adding enemies more models and levels and animations and lots of puzzles and investigation stuff.(Well it’s not piece of cake thats for sure
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       )
+       <br/>
+       This demos shows the 3d sound effects , particles , and puzzle solving.
+      </p>
+      <p>
+       [video]
+       <a href="https://www.youtube.com/watch?v=h8S7GtCYpns%5B/video%5D" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=h8S7GtCYpns[/video]
+       </a>
+      </p>
+      <p>
+       And i (hopefully “we” as a friend of mine will also work on the game mostly on story writing and possibly scripting (he’s a H.P Lovecraft fan so… i expect a really great story
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       ) ) setup a facebook page
+      </p>
+      <p>
+       <a href="https://www.facebook.com/infestedgame" rel="nofollow noopener">
+        facebook.com/infestedgame
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Looking good! The background music sounds great and it creeps me out, and I mean that as a complement.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Testing basic Ai behavior (attack of the twenty zombified twins
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       ).
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/xqithj52l/ai03.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Quick PathFinding test. There’s no AI yet , for that i need some additional animations , but the Crowd agents works pretty nice so far :
+      </p>
+      <p>
+       [video]
+       <a href="https://youtu.be/hEdLLpPE4bs%5B/video%5D" rel="nofollow noopener">
+        https://youtu.be/hEdLLpPE4bs[/video]
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       cool test, mate) keep it up!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       Well, that’s looks like a gameplay already. Only needs some blood splatters.
+      </p>
+      <p>
+       Very cool. Keep up the good work.
+      </p>
+      <p>
+       Also, never seen a revolver that extracts empty casings with each shot.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/a89076df65ea3c4a8998fe6e4fd36df0cc20799e7d703b4871c0a7143e4d7b9b.png" width="20"/>
+        codingmonkey:
+       </div>
+       <blockquote>
+        <p>
+         cool test, mate) keep it up!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks man ! I hope i can release a demo next month
+      </p>
+      <p>
+       [quote=“Bananaft”]Well, that’s looks like a gameplay already. Only needs some blood splatters.
+      </p>
+      <p>
+       Very cool. Keep up the good work.
+       <br/>
+       [/quote]
+       <br/>
+       Thanks ! Few animations more and it is ready for testing
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Also, never seen a revolver that extracts empty casings with each shot.
+         <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Haha sorry about that
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       The sound effect is for another gun… i will fix that
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        Sinoid:
+       </div>
+       <blockquote>
+        <p>
+         I have one that let’s casings drop out the bottom (WW2 era British optional) using an open cylinder and sleeve.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Can you show/name it? Sounds super wierd. Just couple days ago I’ve learned about Dardick open chamber design. So yeah, there are some.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Well after a small break (busy with life…) i made a video that sums up the gameplay and the design style.
+      </p>
+      <p>
+       [video]
+       <a href="https://www.youtube.com/watch?v=4835XJZY9EM%5B/video%5D" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=4835XJZY9EM[/video]
+       </a>
+      </p>
+      <p>
+       And also a small change in the story.We will switch to a “zombie virus outbreak” instead of the “paralell universe” storyline. Simply because there are more potential in it and way more ideas and enemies to work with.
+       <br/>
+       The gameplay and character however remain the same.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       cool!) do you planning add some sort of idle animation for character? I see what he absolutely freezes when he it stay on place and when you open “quest” things.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi everyone ! I added FPS mode and it works quite nice ! It adds more to game experience and the gameplay is more fluent.I like it more than the TPS mode.
+      </p>
+      <p>
+       EDIT : Modified the weapon and the hands a bit :
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/eiiyn0u0d/fpsmode_08.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/l9u7yj019/fpsmode_04.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/sbnk6ze99/fpsmode_06.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/cc4wnfi7h/fpsmode_07.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       ALMOST READY FOR A DEMO !!!
+      </p>
+      <ul>
+       <li>
+        Added more convenient inventory system
+       </li>
+       <li>
+        Worked on weapon and hand animations
+       </li>
+      </ul>
+      <p>
+       Unfortunately i’m still busy with life so the development still goes slow… Working on levels… added some dark areas
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/8q03olyp9/fpsmode_09.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/by4l1nkz1/fpsmode_10.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/d86zug44t/fpsmode_11.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       It’s great that your game is really coming along. Looks great.
+      </p>
+      <p>
+       I haven’t read all the posts in this thread and it might have been asked already, but your sky - do you use some type of cloud system?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Lumak”]It’s great that your game is really coming along. Looks great.
+      </p>
+      <p>
+       I haven’t read all the posts in this thread and it might have been asked already, but your sky - do you use some type of cloud system?[/quote]
+      </p>
+      <p>
+       Hi thanks Lumak ! And nope no cloud system is used , it is a simple skybox.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Dave82">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2d732a74ad6d9d5982c0e344fad30bccc9c0302ddbf1c23455bdc0315b23286b.png" width="20"/>
+        Dave82:
+       </div>
+       <blockquote>
+        <p>
+         Hi thanks Lumak ! And nope no cloud system is used , it is a simple skybox.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Nice, it looks like 3D clouds.  Is it hand painted or generated with some type of tool?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Lumak”][quote=“Dave82”]
+       <br/>
+       Hi thanks Lumak ! And nope no cloud system is used , it is a simple skybox.
+       <br/>
+       [/quote]
+      </p>
+      <p>
+       Nice, it looks like 3D clouds.  Is it hand painted or generated with some type of tool?[/quote]
+      </p>
+      <p>
+       Sorry for the late post… I found this skybox on some free site somewhere by searching for “free skybox textures”
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Ok, cool, found some nice images doing the search.  Thank you.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Creepy zombified doll attacks the player
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/u7s805f8t/doll01.jpg" width=""/>
+      </p>
+      <p>
+       I wish i could have more spare time…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Finished the main character.Looks way better and the color of the clothes fits better in the environment color. it works nice with darker and brighter segments too.It doesn’t pop put like the old character.The character was created with Makehuman (an awesome open source character generator).You still need lots of work to reduce , optimize and modify the character to make it usable in a game but still it’s a great tool.
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/o5yf2f7fx/nm_01.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/jlc8nhnql/nm_02.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       As others have said, very impressive ! Hard to believe it was done solo in such a short time
+       <img alt=":astonished:" class="emoji" src="../../../images/aaa767d0e90cb25b6cbc690ffd291372e692a1e733952af7906a5319b00e0893.png" title=":astonished:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="hd_">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        hd_:
+       </div>
+       <blockquote>
+        <p>
+         As others have said, very impressive ! Hard to believe it was done solo in such a short time
+         <img alt=":astonished:" class="emoji" src="../../../images/aaa767d0e90cb25b6cbc690ffd291372e692a1e733952af7906a5319b00e0893.png" title=":astonished:"/>
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks ! Unfortunatelly polishing and designing takes a lot of time.I finished the complete “pseudo design” of the whole level and now i need to make extreme amount of models and details… But i love it
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+      <p>
+       16:9 resolution test. The gui adapts itself to all resolutions.
+       <br/>
+       Also the hud is now fully functional (health and infection bar both decreases if player takes hit and lerps to red color)
+      </p>
+      <p>
+       <a data-bbcode="true" href="http://postimg.org/image/ne6tnqq95/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/ne6tnqq95/whall02.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="http://postimg.org/image/3jptyqhd5/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/3jptyqhd5/whall04.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="http://postimg.org/image/yt8cph8x5/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/yt8cph8x5/whall03.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="http://postimg.org/image/6m6sx0nzd/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/6m6sx0nzd/wronglights.jpg" width=""/>
+       </a>
+       <a data-bbcode="true" href="http://postimg.org/image/4d2frcne1/" rel="nofollow noopener">
+        <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/4d2frcne1/whall06.jpg" width=""/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Changed the animations , now looks way better.(the scene here uses ultra low lightmaps so sorry for the lightmapping artifacts)
+      </p>
+      <p>
+       [video]
+       <a href="https://www.youtube.com/watch?v=vLGcXRMFWso%5B/video%5D" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=vLGcXRMFWso[/video]
+       </a>
+      </p>
+      <p>
+       finished the “MoviePlayer” class , which plays skinned and transform animations together for cutscenes.Tested it with some mocap animations and looks cool.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Just a small test of cutscene player.The doll’s animation is a bit jerky but that’s what i have right now
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       [video]
+       <a href="https://youtu.be/zJfnpEIcNek%5B/video%5D" rel="nofollow noopener">
+        https://youtu.be/zJfnpEIcNek[/video]
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       I like alpha mask way better than transparent meshes ! So much opportunity and its out of box solution. Even combined it with lightmaps and works great.
+       <br/>
+       I made textures and lighting darker and desaturated everything a bit.Designing Resident evil style puzzle solving levels is way more harder than i thought… I worked mostly on FPS and tps levels which are lot easier to design.
+      </p>
+      <p>
+       vegetation (constant ambient / no lightmaps)
+       <br/>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/k3gus1v1p/nts_01.jpg" width=""/>
+      </p>
+      <p>
+       Girders (Alpha mask + lightmap)
+       <br/>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/8fmsxi5wt/nst03.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":cry:" class="emoji" src="../../../images/4a28359990e3a84f9a9157887dd2f484a548987fbb71e3eb485674b0acc4cd7c.png" title=":cry:"/>
+       I’ve been seriously hunting for how to use alpha mask
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/675808002203461b36baf076ce5f9b517983eb8c601fefc1edb8d35e09df104a.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      abcjjy
+     </div>
+     <div class="post_content">
+      <p>
+       I am an indie developer too. It is incredible to make such a demo in 6 months by just one developer. That’s mazing!
+      </p>
+      <p>
+       I’m quite curious about how you make this. How much effort is spent on the art? And how much is spent on coding? Do you use Urho3d exclusively? AFAIK urho3d’s editor is not strong enough, did you invent something specialized editor for your game? What 3d modeling and animation software do you use? Human animation is quite difficult, did you use motion capture solution? It’s not usual to see a developer with strong coding, modeling and animation skills. Awesome!
+      </p>
+      <p>
+       By the way, I think you can put your demo to kickstarter for more support.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="abcjjy">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5e2419dd2f3cc466f51d73e193f587cc968900116435cd7ca55f5690f257cf9c.png" width="20"/>
+        abcjjy:
+       </div>
+       <blockquote>
+        <p>
+         I am an indie developer too. It is incredible to make such a demo in 6 months by just one developer. That’s mazing!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks !
+      </p>
+      <aside class="quote no-group">
+       <blockquote>
+        <p>
+         I’m quite curious about how you make this. How much effort is spent on the art? And how much is spent on coding? Do you use Urho3d exclusively? AFAIK urho3d’s editor is not strong enough, did you invent something specialized editor for your game? What 3d modeling and animation software do you use? Human animation is quite difficult, did you use motion capture solution? It’s not usual to see a developer with strong coding, modeling and animation skills. Awesome!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well i started the project in 2014 october. My first choice was Irrlicht (i didn’t heard about Urho3D back then).Unfortunately after a short period of time i realized i will have trouble with it… I had to write everything from scratch.In few months i had sucessfully implemented the :
+      </p>
+      <ul>
+       <li>
+        Sound (DirectSound or Audiere)
+       </li>
+       <li>
+        Particle Engine (SPARK2)
+       </li>
+       <li>
+        Navigation Mesh (My own code from scratch using stdlib only)
+       </li>
+       <li>
+        Scripting (My own code using stdlib only)
+       </li>
+       <li>
+        Gui (My own code using Irrlicht’s 2d drawing functions and a INFElement2d base class.Similar to Urho’s UI except the quad vertex/index buffers were allocated dynamically so there was no batching.Actually it was quite primitive but it worked pretty well.I had checkboxes , buttons , tabs)
+        <br/>
+        After everything was in alpha state i threw together the fundamentals of the game engine itself to test it.
+        <br/>
+        Well it was very dissapointing… Without offending anyone , Irrlicht was a nice library in 2003… but the lack of modern Hardware support literrally killed the whole project.The worst part was the Skinning which ran on CPU.It was extremely slow… With 5 enemies and with ultra low resolution shadow mapping i had around 30 fps… It was dreadful. Also the built in stencil shadow was ultra slow and useless XEffects was a bit faster but had some issues with the OGL driver.In paralell i started to write a scene exporter for 3ds max which worked perfectly (and still does… i’m using it for Urho) .
+       </li>
+      </ul>
+      <p>
+       So after a lot of struggling : Finding out audiere is linux and window only , SPARK2 was abandoned , NavMesh needed extra features (Offmesh connections , Extra optimisations for dinamic objects , etc) , lack of proper shadow mapping , lack of hardwareSkinning , hardware instancing , No xml support for gui (it was PITA designing GUI from c++)  i just abandoned the whole project because it was too much for one developer… Not to mention the code i wrote was huge , and was really hard to have all that giant chunk of code under control…in the meantime various depressing posts have showed up in the irrlicht forums with titles such as “Is irrlicht Dead?” “Is irrlicht outdated?”… So i just put the project on the shelf and wait until i find some other engine. And i did !! In 2015 i found Urho3D.After i tested it i fell in love with it immediately ! It was a fast modern GAME engine with all feateures i need , it was open source and it was extremely easy to setup and use.
+      </p>
+      <p>
+       So i had to code everything from scratch but this time i could work on the game itself rather than writing a whole game engine from scratch which is a bad idea if you work alone
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       … At this point i had 0 models/levels/textures/sounds ready so i had to start to design levels and make textures.
+       <br/>
+       Most of the time i use 3ds max.I’m using it at least 10 years now , so i feel really home in it’s interface. For textures  i use Photoshop , GIMP , and in some rare cases CorelDRAW.
+       <br/>
+       For the animations i use 3ds max and most of the animations are made by hand (once i worked on a small fighting game so i have some experience with hand made animations) But for cutscenes i use Motion Capture (There are tons of them for free.Unfortunately most of them are dirty so you have to clean them first to eliminate twitching but after that they look quite nice)
+      </p>
+      <p>
+       So thats the story of the game in nuthshell
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       i had to code it twice but this time i will finish it , thanks to the wonderful Urho3D !
+      </p>
+      <aside class="quote no-group">
+       <blockquote>
+        <p>
+         By the way, I think you can put your demo to kickstarter for more support.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well i thought about that , and maybe once i reach some of the important milestones i will ! Actually this supposed to be a fangame so i think it fits more in crowd funding area rather than selling it on steam.
+      </p>
+      <aside class="quote no-group" data-username="Bluemoon">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7af929017df4a2d47983c99fd268398a1752c37e656a86deabff58f69fcb17f0.png" width="20"/>
+        Bluemoon:
+       </div>
+       <blockquote>
+        <p>
+         <img alt=":cry:" class="emoji" src="../../../images/4a28359990e3a84f9a9157887dd2f484a548987fbb71e3eb485674b0acc4cd7c.png" title=":cry:"/>
+         I’ve been seriously hunting for how to use alpha mask
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Hi ! Well it is just a standard material with a *AlphaMask technique.Since it is a fake transparency and can be rendered as a normal material , all your sorting/overlapping headaches will disappear once you start using it
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       Define LIGHTMAP in the technique and put lightmap in emissive unit and voila you have lightmapped alpha mask
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Finally tested the dynamic light + static lightmaps combinations.AND WORKS BEAUTIFULLY !
+       <br/>
+       The issue mentioned here :
+       <a href="http://discourse.urho3d.io/t/problems-with-lightmaps-dynamic-lights/1073/1">
+        topic1105.html
+       </a>
+       <br/>
+       The problem is that lights are additive so baked lighting will become extremely bright if one more additive pass is applied (dynamic lights).The solution is to bake the indirect lighting only and use dynamic lights for direct lighting.The result is awesome :
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/eefvg48vh/sewer06.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s20.postimg.org/k3w40ff1p/sewer07.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Awesome job blending dynamic and static lighting - these new images look great!  Personally, I thought the previous posted images looked a bit dark, and now, wow the difference is night and day.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/67709b783eb27b06c746f3e8d1a378101b708641a574271416371fa9ad51f031.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Cpl.Bator
+     </div>
+     <div class="post_content">
+      <p>
+       Awesome ! did you plan to release a single demo ? and can you speak about your workflow ?
+       <br/>
+       Thanks !
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Cpl.Bator”]Awesome ! did you plan to release a single demo ? and can you speak about your workflow ?
+       <br/>
+       Thanks ![/quote]
+      </p>
+      <p>
+       Hi ! Thanks ! Yes i plan to release a demo as soon as possible.Unfortunately i’m busy with life but If you have a question don’t hesitate to ask.I will answer ASAP.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Just some shots to show you i’m still working on it
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/gwj3tb3ql/newts01.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/3tnha1dil/newts02.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/60rpxyist/newts04.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       **The imgaes were too big so i removed them ***
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Nice! Your game looks so polished, are you near Beta release anytime soon?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks ! I hope so ! The problem is i have only few hours of spare time in a week.I have a small company (not programming related) where i have some trouble right now so i’m just runnig place to place to fix things , and when i get home i’m just too tired to do anything else than start watching 10 minutes of some 80’s slasher movie and fall asleep…
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+      <p>
+       Everything is 90 % ready , for an alpha release just need few animations and models to be done.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="Dave82">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2d732a74ad6d9d5982c0e344fad30bccc9c0302ddbf1c23455bdc0315b23286b.png" width="20"/>
+        Dave82:
+       </div>
+       <blockquote>
+        <p>
+         Everything is 90 % ready , for an alpha release just need few animations and models to be done.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Nice. I’m looking forward to the release. Completing the last 10% has always been more stressful than the first 90%
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi everyone ! I just made an update to the game.Adding new features and making everything more smooth.Here are the new features :
+      </p>
+      <ul>
+       <li>
+        Female character with cool textures (found it on the internet it was really hard to rig it as it comes with very awkward pose
+        <img alt=":neutral_face:" class="emoji" src="../../../images/fa129602e5025a314b309f2dff231dfd8462624b6e398852bc3992a5c2b46585.png" title=":neutral_face:"/>
+        )
+       </li>
+       <li>
+        New better item pick up and inventory dialog (it uses only the keyboard to select/pick up items.The mouse interaction was removed , now is way more convenient)
+       </li>
+       <li>
+        New animations.More smooth and better transitions.(Zombies are still choppy but thatt next thing i will working on)
+       </li>
+       <li>
+        12 New zombie models from an old TGC model pack.(They look tolerable).Whats cool there are 2 texture variations for each model and the models are only 6000 polys each
+       </li>
+       <li>
+        Some internal changes that makes the further development a lot easier (cleanup , simplifying some code  ,etc)
+       </li>
+       <li>
+        Added billboards for simulating fog , dust and other cool effects.
+       </li>
+       <li>
+        Started rebuild lightmaps for segments (Instead of baked complete lightmaps i render only indirect lighting and AO and use dynamic lights for direct lighting and dynamic shadows).You can see this feature in the demo video BTW
+       </li>
+      </ul>
+      <p>
+       The only problem that i didn’t checked my fraps settings and i recorded half size screen again… The videoended up in a terrible 380p quality but i just don’t have patience/time right now to record another one so sorry about this
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       but i promise next time i will upload a proper 720p hq video.
+      </p>
+      <p>
+       EDIT : Sorry for the spelling errors in the video…
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+      <p>
+       [video]
+       <a href="https://www.youtube.com/watch?v=JUlNMutzoFk%5B/video%5D" rel="nofollow noopener">
+        https://www.youtube.com/watch?v=JUlNMutzoFk[/video]
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       Damn, I thought it was iron-man with that light coming from her chest
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       Looks nice so far.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Few shots of the classic Resident evil “fixed security camera” camera style.This gives some real retro survival horror feeling
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       Since this is just a modified version of the TPS character controller , it will be a selectable mode in the main menu
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/j5l6g23ot/fixed01.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/yi4xa32ul/fixed04.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/mdpnt3pyl/fixed02.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/5egpduer1/fixed03.jpg" width=""/>
+      </p>
+      <p>
+       And finally a flashlight idea (the beam is currently photoshopped…)
+       <br/>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/y4cs1yxil/fixed05.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all ! I didn’t post a comment in the new forum yet so it’s about time to do it
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       .Anyway… i have some spare time so i continue to expand the sewer and train station levels of the game. Here are few shots &gt;
+      </p>
+      <h2>
+       <img src="../../../images/7474af4299077b5d18f9976824b83e275502855cee2644905312153b5350db3f.jpg"/>
+      </h2>
+      <h2>
+       <img src="../../../images/8f6742a6abe735aafb10e39233ced1069911ef6c1eec12dea145401f53b8d455.jpg"/>
+      </h2>
+      <h2>
+       <img src="../../../images/fd4ee395169ac089307b2292474d921c7dca4fc74a2f21785b883d06ac78de74.jpg"/>
+      </h2>
+      <p>
+       <img src="../../../images/615634f33b91600eec3bb104d2addeaa55a48f14cc5572986943b34b1ea6d12d.jpg"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       It’s always very cool to see this project progressing ! Great work on keeping up the level of quality over time
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi ! After my HDD , GPU and Power supply wrecked , i’m back with a youthful enthusiasm and a new PC
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       <br/>
+       With new compilers and operating system i found out there is a bug in the game (Some bad resource handling somewhere) which causes random crashes.On XP it was very rare so i couldn’t track it down but on win7 is more frequent so i already isolated the bug i just need to find the exact piece of code which causes the crash
+      </p>
+      <p>
+       My other problem i mentioned somewhere above is also solved.–&gt;The textures &lt;–Finding specific textures on the net , and  editing them to match to each other (contrast , colorkey , saturation ,etc) is a really , really slow procedure.I waste a vast amount of time on this and it gets me nowhere really. So i wrote a small desturation shader which desaturates the screen by 60%.This makes all the textures match to each other automatically and gives the levels more creepy horroristic look.Here are some screen shots (compare them to my the older images to see the difference)
+      </p>
+      <p>
+       Exterior scene .It looks great even wothout GI lightmap ! (Simple dynamic directional light is used)
+       <br/>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/re5q5m3ot/image.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/4s0esvpyl/image.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/fhe3l51rh/image.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/h1jfjja5p/image.jpg" width=""/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/xix8ixvsd/image.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6fbaa802df07aa0ddfefd532e1b448044f55faadc87345328b22519732cf0e66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Victor
+     </div>
+     <div class="post_content">
+      <p>
+       Wow, that’s looking good!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Yay!!! Cool!!!
+      </p>
+      <p>
+       Do you use custom shaders for human skin?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Victor
+       </span>
+       : Thanks
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       <span class="mention">
+        @Slapin
+       </span>
+       : Nope , it’s just a simple diffuse material but i plan to add some cool shiny specular map for the clothes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Looking forward to it!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Just removed the eyelashes and other unnecessary “details” that were rather pesky than visually appealing and guess what.She turnet out to be a real hottie
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/ai4gjfo31/image.jpg" width=""/>
+       <br/>
+       <img alt="" height="" src="missing_image.png?original=https%3A//s20.postimg.org/od2r1wii5/image.jpg" width=""/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Finally ! The game works and looks as i expected.just need more level design , textures and models and animations
+       <br/>
+       I also created a desaturation/contrast/brigtness combo sahder which acts as a cheap color grading effect. (Note the greenish effect in the video).Also logic , triggers , animations (mocap ,and simple frame based graph transforms) , pathfinding is done.Modified the main hero’s animations (without weapon and flashlight the runing and walking is a cleaned mocap , with weapon and flashlight is generated) The Inventory and other UI based thingies are also work.Here’s a short video of all this put together.
+      </p>
+      <p>
+       (NOTE : Before you ask , No , the monster in the video is not a l4d tank.Its a very similar monster from a model pack)
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="EX0ipnybIrA" data-youtube-title="Infested various tests">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Looking really good!
+       <br/>
+       Careful with those high heels on that grate.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Playing with lightmaps.Tried a different method and it worked really nice ! Photometric lights can produce extremely beautiful results.Also testing the old Resident Evil style character controller (fixed camera angle and position while the character moves freely in the scene) Works and feels better than the default TPS controller.Watch the blob shadow under the character’s feet
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       <br/>
+       <a data-bbcode="true" href="https://postimg.org/image/tfg8fz6ll/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/a3d9a81d713361ddc5713f8e15b9235f4ccf6f8c3425b96998a46169d82d7a09.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/9ku6tw1op/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/ceb4c969b56022dcac2c75f2036cda963ae06fc11e7459f4e9de1cf771ec7cbc.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/e808v4mbd/" rel="nofollow noopener">
+        <img alt="" height="107" src="../../../images/b00010a638ad89b59a019471494437d5b05cf708591bfb2e6ac282ecd182bd9c.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/n3135n3e1/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/724c21a43f285c38976cc46ad8b64e0d963ff5b40182873ee0fc4c59425a6016.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/t2ou9v17d/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/4268030face780ec6cdc56e760af09a00093e7c92a78265a1ff81d612180fe18.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/u68yl9o95/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/d52c885b6bd550b803679835866a4e8518fbaaf440b7aa5b217bb5ff431ae155.jpg" width="180"/>
+       </a>
+       <a data-bbcode="true" href="https://postimg.org/image/hdkulucsp/" rel="nofollow noopener">
+        <img alt="" height="108" src="../../../images/0c32cb6a3d53d04815886fc2f6ecdd329d56582aa7cfc693e5a0f8599b5d9fe0.jpg" width="180"/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Resident evil style gameplay. Pre rendered backgrounds. It really looks like a resident evil clone but i can say that this camera style and gameplay is MIND BLOWINGLY awesome. It’s the best controller type so far. The slow gameplay and the smaller areas give a REAL survival horror experience and makes you want to play more ! With the tps and fps controllers i used before never had this kind of experience. They demanded action.Lot of shooting , large levels , fast runing and made you forget that you actually playing a survival horror game.They just didn’t fit…
+      </p>
+      <p>
+       A small demo of a simple corridor thrown together for testing.
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="YpHpC0adJRE" data-youtube-title="Infested Pre Rendered background test">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Added AO map to the character diffuse and use a cheap light effect to make the character fit in the scene regardless of light intensity.So far if the area was too dark the character would be completely black or really stand out due to incorrect ambient lighting.I use a constant directional light which always has the same direction as the camera so the character is always lit from a direction even if there is no light source nearby.
+      </p>
+      <p>
+       <img alt="image" height="410" src="../../../images/d77d82cde7af0665a3b51a2ca47bca4b856f5354f1fb823f929c5d8fabf83f35.jpeg" width="690"/>
+      </p>
+      <p>
+       No light source (only constant directional) + ambient and the character still looks cool. Oh, and the AO is doing a great job too.
+       <br/>
+       <img alt="image" height="414" src="../../../images/731717743b1a972005bc71f0e5f44cd7884dd00418a6785ef8c65daead646277.jpeg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       After a hell of a work i was able to convert mixamo animations to max bipeds and tested on a model which is not anatomically correct but is a real game character so it looks and feels better than the makehuman version. Yet another lesson learned : if you want quality you’ll need to involve commercial software (IClone or Fuse) to have the job done. (unless you’re not a pro character modeller and unwrapper which i’m not)
+       <br/>
+       So here is a test of it :
+       <br/>
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="GKx45Adpdxw" data-youtube-title="Animations test">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Love your work! Also, nice model!
+      </p>
+      <p>
+       I see you’re using a dynamic character controller with no foot slipping solver… There’s a bit of foot slipping happening during locomotion.
+      </p>
+      <p>
+       That’s an issue I spent a lot of time solving, both for dynamic and kinematic controllers. If you want to pick my brain any time, feel free.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Today i added a new inventory to the game but the real improvement is that i can now mix 3d scenes with 2d UI elements without RTT ! Now any material type is allowed to be displayed in the inventory. And finally i am starting to understand how the render path works (not there yet but a lot closer) so i was able to figure out a solution for a custom depth map in the render procedure… Theoretically it will be very easy to do
+       <br/>
+       So here are a demo of the inventory :
+       <br/>
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="R8rxSwQG6jk" data-youtube-title="Infested inventory demo">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Hi ! I was finally able to put all the achievements together. All features are included in this video. Dynamic shadows , custom z depth pass , scripted ai (unfortunatelly attack animations are missing so no matter how hungry those zombies are they can’t do much )
+      </p>
+      <p>
+       The new level design is also cool. I think at some point it even looks better than overcomplicated materials and light calculations. Puzzles are working. No need for c++ coding anymore all puzzles and enemy AIs can be scripted in AS with no extra hassle.
+      </p>
+      <p>
+       Watch the video in fullscreen. For maximum resolution and clearness
+       <br/>
+       Never been so close to release the first demo !
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="qHLQ2q_rJNk" data-youtube-title="Infested tech demo">
+      </div>
+      <p>
+       Regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       This need to be on the WIP front screen of the website.
+      </p>
+      <p>
+       For water splash, maybe reduce the intensity of the splash based on speed.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Looking good!
+       <br/>
+       I noticed the blood is
+       <em>
+        very
+       </em>
+       dark, you could try making it slightly emissive. This worked for me in heXon.
+      </p>
+      <p>
+       …or even better, make it some awesomely translucent custom shader.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       Reminds me of a cross between Resident Evil and Silent Hill.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Finished the main menu and the combat system. The combat system needs a bit tweaking (turning should be smoother) but otherwise it works like i imagined. The same logic should be used for all enemies in the game. (it is very similar how it was done in Resident evil games). Also the point light shadow caster is looks way better than the previous directional shadow caster. You can see the long distorted shadows which adds more to the horror atmosphere.
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="hsKUskvQiq8" data-youtube-title="Infested combat mechanism and gameplay test">
+       <a href="https://www.youtube.com/watch?v=hsKUskvQiq8" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/4ad548e3c565afeb12f6f77dcab91b4f3ea84531b253cb4c703635fcf7920f00.jpg" title="Infested combat mechanism and gameplay test" width="480"/>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Looking great.  Your gun fire/spark comes out a bit late, should be just before the smoke.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcef716f49982f4e1200d090926926c0d935c6ce1754ffa612f3eef56f7e36b6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JSandusky
+     </div>
+     <div class="post_content">
+      <p>
+       Looks pretty amazing.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       That’s great. It reminds me of goo’ol alone in the dark, the original one (ninety something); fixed cameras, nifty atmosphere…
+       <br/>
+       Graphically very good. Looks gorgeous.
+       <br/>
+       “Their” animations feels ok, but I’d polish them some more.
+       <br/>
+       And twist those candles a little.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00374e028c0b9437b331166f048a4764f1ca43c738c5f96011c9a6451ca494c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      evolgames
+     </div>
+     <div class="post_content">
+      <p>
+       How long have you been working on this? Looks great, and nice to see it coming along.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="84" data-topic="1380" data-username="johnnycable">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/bd9c0b80f345bb4b6426f2be8825c479a2ceae3cfe9b7f97108844690af3a640.png" width="20"/>
+        johnnycable:
+       </div>
+       <blockquote>
+        <p>
+         Their” animations feels ok, but I’d polish them some more.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Hehe. These are the best mocap animations you get for free
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       99% of free mocaps are useless garbage. These took me about 3 weeks to clean and remove the feet and head jiggling as much as possible . I found some cool free (creative Commons) models (include ornate candlesticks) sketchfab so i will probably replace some of them in the future.
+      </p>
+      <aside class="quote no-group" data-full="true" data-post="85" data-topic="1380" data-username="evolgames">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5546cd4204e2880f0abfb38719d5ce0bf72e5a0a3125b3b3b75289ae8ff2888a.png" width="20"/>
+        evolgames:
+       </div>
+       <blockquote>
+        <p>
+         How long have you been working on this? Looks great, and nice to see it coming along.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Well i started it long time ago. 3-4 years or more. In the beginning i had more time to work on it , but now i’m busy with all kind of crap so i work on it when i find some spare time. But i absolutely love working on it even if it goes extremely slow
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="86" data-topic="1380" data-username="Dave82">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2d732a74ad6d9d5982c0e344fad30bccc9c0302ddbf1c23455bdc0315b23286b.png" width="20"/>
+        Dave82:
+       </div>
+       <blockquote>
+        <p>
+         Hehe. These are the best mocap animations you get for free
+         <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+         99% of free mocaps are useless garbage. These took me about 3 weeks to clean and remove the feet and head jiggling as much as possible . I found some cool free (creative Commons) models (include ornate candlesticks) sketchfab so i will probably replace some of them in the future.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Not sure… hasn’t Mixamo some zombie-ish anims…?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       There are few walking and falling but they’re not that great either.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       I see… then it’s gore-time again
+       <img alt=":woman_zombie:" class="emoji" src="../../../images/0fb001bc50177e9f01ea247f796be9e95de319d4aab564cec122dcb24b370413.png" title=":woman_zombie:"/>
+       <img alt=":zombie:" class="emoji" src="../../../images/e75a743cffa85c676e4e701eae6666493fcb791ad11ede25b43d2df226fa6720.png" title=":zombie:"/>
+       <img alt=":woman_zombie:" class="emoji" src="../../../images/0fb001bc50177e9f01ea247f796be9e95de319d4aab564cec122dcb24b370413.png" title=":woman_zombie:"/>
+       <img alt=":zombie:" class="emoji" src="../../../images/e75a743cffa85c676e4e701eae6666493fcb791ad11ede25b43d2df226fa6720.png" title=":zombie:"/>
+       <img alt=":open_mouth:" class="emoji" src="../../../images/53b4e8485067f1290a047a4a938e79e03a18cc18046c0d7d65912487b13f8b91.png" title=":open_mouth:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Just a small update and feature demonstration !  Screen acrolling
+       <br/>
+       So testing on different PCs i was facing a huge problem. Since the aspect ratio of the pre rendered backgrounds are fixed we can only display them on monitors with the sam aspect ratio , otherwise the background will be squashed and not that it won’t look good but screen positions on this squashed image are no longer compatible with the 3d perspective view. Eg every 3d element on this bacground will be rendered off. So i implemented a solution the sam way as capcom did it. Render the game to a same virtual resolution as the backgrounds and then scroll this final 2d image on the screen depending where the player is standing. Here is a cool example of it
+       <br/>
+       Notice the scrolling screen every time the player approches the top or the bottom of the screen
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="YS5jrr4uIiA" data-youtube-title="Infested Screen scroll test">
+       <a href="https://www.youtube.com/watch?v=YS5jrr4uIiA" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/78fe278b6115fa2f072b772966c21e66524f9075858fc4c08ddd975182b11e45.jpg" title="Infested Screen scroll test" width="480"/>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d6f16bb77f117ebf72214ce8d214a620b17dea32a311cd6a88ec4b0caafaea44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GodMan
+     </div>
+     <div class="post_content">
+      <p>
+       Great job
+       <span class="mention">
+        @Dave82
+       </span>
+      </p>
+      <p>
+       Looks great
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       Forgot to post here the PBR version of the game. I was able to do exactly the same as in the classic renderpath (prerendered backgrounds + invisible meshes rendered in depth only for receiving shadows)
+       <br/>
+       So now looks so cool ! Too bad i have really no time to work on this right now but i would really like to
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="mpmWxGn42Ms" data-youtube-title="Infested PBR Materials">
+       <a href="https://www.youtube.com/watch?v=mpmWxGn42Ms" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/60e34a8f37106f4bdee7695ecc7b15ccf6426f81cb7d59974a027d528f5c33c2.jpg" title="Infested PBR Materials" width="480"/>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

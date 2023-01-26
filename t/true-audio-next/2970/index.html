@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   True Audio Next
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    True Audio Next
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       I was just at (yet) another talk about VR. This one was from AMD, and they are developing a new immersive audio platform, called True Audio Next. The thing I found interesting is that it does to audio what PBR did to pixels… Also it is open source and MIT:
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+        <a href="https://github.com/GPUOpen-LibrariesAndSDKs/TAN" rel="nofollow noopener" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="400" src="../../../images/7c8c25e54c2263eb1683524d51f0a80902fc727c0e0117a8dc0d890316e8a714" width="400"/>
+        <h3>
+         <a href="https://github.com/GPUOpen-LibrariesAndSDKs/TAN" rel="nofollow noopener" target="_blank">
+          GPUOpen-LibrariesAndSDKs/TAN
+         </a>
+        </h3>
+        <p>
+         AMD TrueAudio Next is a software development kit for GPU accelerated audio signal processing - GPUOpen-LibrariesAndSDKs/TAN
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       So, on VR where the GPU is getting hit harder than usual we should give up GPU resources to audio that isn’t an application of modal analysis?
+      </p>
+      <p>
+       My beef would be that this doesn’t actually deal with the problems. Solving wave propogation for VR would be worthwhile to do on the GPU, but this is just a bunch of DSP helpers, and SSE2+ is more than sufficient for accelerating that. This is a much better job for an OpenCL CPU profile IMO.
+      </p>
+      <p>
+       Am I missing something?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, after my initial excitement, I was also a bit let down by how they actually deal with the audio from a theoretical point of view.There is no wave propagation, no ambient medium, etc… And what about music tracks that already have reverb, compression, high pass,etc already baked in? Doesn’t seem like this will fit in to the production pipeline very well.
+      </p>
+      <p>
+       However, I think a cool application of this would be letting designers change room/level geometry “by ear”, based on how the audio responds.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah, it’s definitely cool. Bonus points for being readable compared to most DSP code which is often arcane pure C witchcraft.
+      </p>
+      <p>
+       Knowing ATI/AMD it’ll get better over time. TressFX started sketchy, but is pretty awesome now.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho Light (how to use) - Keep Scene Lighted up from all angles , distances
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho Light (how to use) - Keep Scene Lighted up from all angles , distances
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcdbfbd7622a54267e5189250c086b7941163de1d8e6bb9dc43a78254fd745b5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Jimmy781
+     </div>
+     <div class="post_content">
+      <p>
+       Hey Guys ,
+      </p>
+      <p>
+       I’m fairly new to urho and i’m not really sure how the light works .
+      </p>
+      <p>
+       I’m using this :
+      </p>
+      <pre><code>            LightNode = scene.CreateChild("DirectionalLight");
+            LightNode.SetDirection(new Vector3(0.6f, -1.0f, 0.8f));
+            light = LightNode.CreateComponent&lt;Light&gt;();
+            light.LightType = LightType.Directional;
+</code></pre>
+      <p>
+       I have a plane -
+      </p>
+      <p>
+       <code>
+        PlaneNode.Scale = new Vector3(100.0f, 0.0f, 100.0f);
+       </code>
+      </p>
+      <p>
+       Which i populate with items
+      </p>
+      <p>
+       My camera is either at the center of the plane (0,0,0) moving right-left or viewing the plane from a top view (0,50,0) rotated downwards.
+      </p>
+      <hr/>
+      <p>
+       There are too many shadows and items far away appear black . I would like to keep everything lighted up all the time regardless of my camera position.
+      </p>
+      <p>
+       i tried playing with the light.intensity but it was making things white completely.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e06bdaa9b192f1c9d4940fdd01e33b947cc0445d7b50f3766849acf8c3db6d9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      1vanK
+     </div>
+     <div class="post_content">
+      <p>
+       use Zone for ambient lighting
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcdbfbd7622a54267e5189250c086b7941163de1d8e6bb9dc43a78254fd745b5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Jimmy781
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @1vanK
+       </span>
+       - do you have an example ?
+      </p>
+      <p>
+       I’m not really sure how to add more light
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       // Create a Zone component for ambient lighting &amp; fog control
+       <br/>
+       Node* zoneNode = scene_-&gt;CreateChild(“Zone”);
+       <br/>
+       Zone* zone = zoneNode-&gt;CreateComponent();
+       <br/>
+       zone-&gt;SetBoundingBox(BoundingBox(-10000.0f, 10000.0f));
+       <br/>
+       zone-&gt;SetAmbientColor(Color(0.5f, 0.5f, 0.5f));
+      </p>
+      <pre><code>zone-&gt;SetFogColor(Color(0.4f, 0.5f, 0.8f));
+zone-&gt;SetFogStart(5000.0f);
+zone-&gt;SetFogEnd(30000.0f);
+</code></pre>
+      <p>
+       //Put large distance for bounding box and the fog thing.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

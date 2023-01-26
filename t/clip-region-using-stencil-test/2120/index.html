@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Clip Region Using Stencil Test
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Clip Region Using Stencil Test
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/006e33a59fc070cb67cbdcc000a7ce93e8b1dcaf1c9ad7a855de6c4583e59d91.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      unique_jack
+     </div>
+     <div class="post_content">
+      <p>
+       Rather than using the scissor test for clipping a region I’d like to use the stencil test since I’d like to transform it.
+       <br/>
+       This is the code I’ve been writing so far:
+      </p>
+      <p>
+       [code]            graphics-&gt;SetStencilTest(true);
+       <br/>
+       graphics-&gt;SetColorWrite(false);
+      </p>
+      <pre><code>        Urho3D::VertexBuffer vertices(context_);
+        vertices.SetSize(4, Urho3D::MASK_POSITION, true);
+
+        float* vBuf = (float*) vertices.Lock(0, 4, true);
+        // Vertex 1
+        vBuf[0] = scissors_.left_;
+        vBuf[1] = scissors_.top_;
+        vBuf[2] = 0.f;
+        // Vertex 2
+        vBuf[3] = scissors_.left_;
+        vBuf[4] = scissors_.bottom_;
+        vBuf[5] = 0.f;
+        // Vertex 3
+        vBuf[6] = scissors_.right_;
+        vBuf[7] = scissors_.bottom_;
+        vBuf[8] = 0.f;
+        // Vertex 4
+        vBuf[9] = scissors_.right_;
+        vBuf[10] = scissors_.top_;
+        vBuf[11] = 0.f;
+
+        vertices.Unlock();
+
+        Urho3D::IndexBuffer indices(context_);
+        indices.SetSize(4, true);
+
+        int* iBuf = (int*)indices.Lock(0, 4, true);
+        iBuf[0] = 1;
+        iBuf[1] = 2;
+        iBuf[2] = 0;
+        iBuf[3] = 3;
+        indices.Unlock();
+        
+        graphics-&gt;SetVertexBuffer(&amp;vertices);
+        graphics-&gt;SetIndexBuffer(&amp;indices);
+
+        // Render using Stencil Shader
+        graphics-&gt;SetShaders(vs, ps);
+
+        if (graphics-&gt;NeedParameterUpdate(Urho3D::SP_OBJECT, this))
+            graphics-&gt;SetShaderParameter(Urho3D::VSP_MODEL, Urho3D::Matrix3x4(stack_.Back()));
+        if (graphics-&gt;NeedParameterUpdate(Urho3D::SP_CAMERA, this))
+            graphics-&gt;SetShaderParameter(Urho3D::VSP_VIEWPROJ, projection);
+
+        graphics-&gt;Draw(Urho3D::TRIANGLE_STRIP, 0, 4, 0, 4);
+
+        graphics-&gt;SetColorWrite(true);
+        
+        // Render textures using 2D shader...
+</code></pre>
+      <p>
+       [/code]
+       <br/>
+       However it doesn’t seem to work, the texture is always visible, maybe I forgot to set some other stuff?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       You need more parameters for the stencil test, ie. what ref value you are writing to the stencil in the write phase, and how you’re testing in the compare phase.
+      </p>
+      <p>
+       See Renderer::OptimizeLightByStencil for an example.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

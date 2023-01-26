@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Cap on Networking? Efficient GetDrawables()?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Cap on Networking? Efficient GetDrawables()?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       I was working on a Server-Client application with a large amount of nodes. Occasionally, the client would connect but would just have a black screen with no explanation.
+      </p>
+      <p>
+       I investigated further and noticed that with more than 10K nodes, the server stops transferring any more nodes past 20K or so. This then led to the error. Any idea why this would be happening?
+      </p>
+      <p>
+       The other issue one encounters when using lots of nodes is a very high octree culling time per frame (Usually upwards of 5 ms). Since 90% of the nodes in my scene are not rendered at the same time, is there any way to make this function more efficient?
+      </p>
+      <p>
+       Thanks for the help.
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Don
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="1" data-topic="3444">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/666b71f0b3d44e5be1c643b06ad6c58957d34948b674ef3ac792dd08fbb5fb73.png" width="20"/>
+        Don:
+       </div>
+       <blockquote>
+        <p>
+         I investigated further and noticed that with more than 10K nodes, the server stops transferring any more nodes past 20K or so. This then led to the error. Any idea why this would be happening?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Have you tried to debug it?
+       <br/>
+       If you have minimal sample, I can investigate it.
+      </p>
+      <aside class="quote" data-post="1" data-topic="3444">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/666b71f0b3d44e5be1c643b06ad6c58957d34948b674ef3ac792dd08fbb5fb73.png" width="20"/>
+        Don:
+       </div>
+       <blockquote>
+        <p>
+         The other issue one encounters when using lots of nodes is a very high octree culling time per frame (Usually upwards of 5 ms)
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       <code>
+        20_HugeObjectCount
+       </code>
+       has 62500 objects. Do you have the same performance problem here?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       I finally got the chance to look into this a bit and I think I found what is causing the issue. As the client connects to a scene with a large number of replicated nodes, the server quickly processes all the nodes and generates update messages. These messages are then given to kNet, which has a cap on it’s internal message buffer. If the buffer is already full, then kNet simply drops the message. Therefore, the client never receives the last X nodes.
+      </p>
+      <p>
+       The problem that leads to is; what is the best approach to fixing it? Any help is appreciated.
+      </p>
+      <p>
+       About the culling optimization, the performance is just as bad on HugeObjectCount. I just found out about StaticModelGroups, and that is exactly what I was looking for.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Please explain what scene do you have and why do you need so much replicated nodes.
+       <br/>
+       Then, if you really need it, try to somehow load scene part-by-part, I don’t know… Where does kNet drop messages?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       Well right now I am simply testing with 17_SceneReplication sample with extra floor tiles as replicated nodes. (I wanted to make sure it wasn’t my code causing some issue).
+      </p>
+      <blockquote>
+       <p>
+        Then, if you really need it, try to somehow load scene part-by-part
+       </p>
+      </blockquote>
+      <p>
+       I’ll look into possibilities for this.
+      </p>
+      <blockquote>
+       <p>
+        Where does kNet drop messages?
+       </p>
+      </blockquote>
+      <p>
+       In MessageConnection::EndAndQueueMessages()
+      </p>
+      <pre><code>if (!outboundAcceptQueue.Insert(msg))
+{
+	if (msg-&gt;reliable) // For nonreliable messages it is not critical if we can't enqueue the message. Just discard it.
+	{
+		///\todo Is it possible to check beforehand if this criteria is avoided, or if we are doomed?
+		KNET_LOG(LogVerbose, "Critical: Failed to add new reliable message to outboundAcceptQueue! Queue was full. Discarding the message!");
+		assert(false);
+	}
+	FreeMessage(msg);
+	return;
+}</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Then…
+      </p>
+      <ol>
+       <li>
+        You always can tweak the limit to ensure that all your nodes are passed;
+       </li>
+       <li>
+        Urho is balancing between performance and flexibility, it’s impossible to get both. If you stuck in performance, you should re-design the scene and lower the capacities.
+       </li>
+       <li>
+        If Urho moves to RakNet, the issue may disappear.
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, certainly the out-of-the-box networking is not going to work with 20K objects without some kind of culling / interest management added. Which is likely to be application-specific. Typical approach would be to load the static scene from file or generate it procedurally on both server and client, and ensure the actual amount of network replicated objects is manageable (eg. a typical multiplayer game with some player cap, like 64)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       That makes sense, as this is definitely an unusual case. I noticed that the network system has a resource package support. Would it be reasonable to procedurally generate the scene server-side, write it to file, add as a package requirement for the (mostly empty) replicated scene, then load it as local on the client?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98e16f5aa18a8278da16931cc513caf6df5e18cef318b34790a9618613ef083e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheComet
+     </div>
+     <div class="post_content">
+      <p>
+       In the game I’m currently developing I also have a situation where I need to send large 2D tile maps (100x100). They way I’m doing it is I have created a separate class called “MapState” which can serialise the tile data to binary. I then have a custom protocol where I dump the entire map and send it to the client, and from that point only send delta updates.
+      </p>
+      <p>
+       MapState itself does not create any scene nodes, it merely stores tile data. There is a second class called “Map” which clients can create in there scene. It has a method “CreateFromState()”, which will take the MapState object and generate local nodes in the scene for each tile.
+      </p>
+      <p>
+       You may want to also try a similar method. I’ve found the map is synchronised much, much faster if you send it all in one large chunk rather than sending individual nodes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The package transfer system, especially for dynamically created files, has not been tested much, so your success may vary. Another option could be just stuffing the scene into a custom message or few. If I remember right kNet could tolerate even rather large individual messages.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the info! I think I’ll at least look into using the package download system, and if that doesn’t work out, I’ll move to custom messages as you and
+       <span class="mention">
+        @TheComet
+       </span>
+       have suggested.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       Just an update here after testing. For anyone else who’s looking into using a system like this, the aforementioned method does work.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

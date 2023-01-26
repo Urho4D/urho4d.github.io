@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to determine SDL version
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to determine SDL version
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ff7bb1fcc128560fe1c8d31059108a00761b971ec92b05311e415c978bb27a5c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      djmig
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       I am new to Urho3D. I have just compiled Urho3d on my OS X. The compilation of libUrho3D.a and demo through cmake went smoothly. I am wondering which SDL version was linked to the resulting library since I have both SDL and SDL2 in /usr/local?
+      </p>
+      <p>
+       Regards,
+       <br/>
+       Don
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Neither of them. Urho3D has its own fork of 3rd-party libraries in the Urho3D project source tree. A few of them are now being managed using git subtree and SDL is one of them. See
+       <a href="https://github.com/urho3d/SDL-mirror/tree/release-2.0.4-modified-for-urho3d">
+        github.com/urho3d/SDL-mirror/tr … for-urho3d
+       </a>
+       . Note the last commit in this branch may or may not be equal to the last commit we made for SDL library in Urho3D project source tree. So the answer to your question, we are using a modified version of SDL 2.0.4 at the moment.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ff7bb1fcc128560fe1c8d31059108a00761b971ec92b05311e415c978bb27a5c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      djmig
+     </div>
+     <div class="post_content">
+      <p>
+       I understand; as others under ThirdParty.
+       <br/>
+       Thank you
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

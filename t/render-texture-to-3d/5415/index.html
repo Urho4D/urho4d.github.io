@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Render Texture to 3D
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Render Texture to 3D
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f2955835a55a6409fd22d56fb56cbd3dfece84bc3309ec7d196d4eb0102c2a5f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codexhound
+     </div>
+     <div class="post_content">
+      <p>
+       I am attempting to model a star and want to render the flare png to the 3D renderer. How would I go about doing this? Awhile back I used the particle system in Ogre3D to do pretty much the same thing and it worked fairly well. I created a particle system added a particle the size of the star and gave it the flare material.  Made it so it had an infinite lifespan and turned it on and off when needed. I tried doing a similar thing in Urho3D but can’t make it work. Any suggestions? Right now it renders but it is just a flat rectangle, white and no blend. If I give it a lifespan it can only be seen from one angle.
+      </p>
+      <p>
+       Below is what I want to be able to do
+       <br/>
+       <img alt="star" data-base62-sha1="zGQIP7rUSLgovbJUNT14q6swn4Q" height="451" src="../../../images/371afd80d3dbf80af1bac391d8924c9607e8564bebbbcbbc60dc317dd4c7b258.png" width="603"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       You probably want to use a
+       <code>
+        BillboardSet
+       </code>
+       component with a material that uses the
+       <code>
+        DiffUnlitParticleAdd.xml
+       </code>
+       technique.
+      </p>
+      <p>
+       See the
+       <code>
+        07_Billboards
+       </code>
+       examples for your language of concern.
+      </p>
+      <p>
+       Particle systems are derived from BillboardSets, most of the rendering work is in the BillboardSet itself, the particle system just deals with the dynamics.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f2955835a55a6409fd22d56fb56cbd3dfece84bc3309ec7d196d4eb0102c2a5f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codexhound
+     </div>
+     <div class="post_content">
+      <p>
+       Perfect, thanks. Didn’t realize billboards are effectively less dynamic particles. Got it working.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f2955835a55a6409fd22d56fb56cbd3dfece84bc3309ec7d196d4eb0102c2a5f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codexhound
+     </div>
+     <div class="post_content">
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/plBY08k7qFpNcZDHSZPLjvS3Eix.jpeg?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b1a7c64ec68f4a301ec8a0a38e77060500f4b7c5.jpeg" rel="nofollow noopener" title="star.jpg">
+         <img alt="star" data-base62-sha1="plBY08k7qFpNcZDHSZPLjvS3Eix" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b1a7c64ec68f4a301ec8a0a38e77060500f4b7c5_2_10x10.png" height="410" src="../../../images/8ef694ff57daf05980345376c38cc86c37231a5deb4f54b7e1eaa54e32aa7685.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b1a7c64ec68f4a301ec8a0a38e77060500f4b7c5_2_690x410.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b1a7c64ec68f4a301ec8a0a38e77060500f4b7c5_2_1035x615.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b1a7c64ec68f4a301ec8a0a38e77060500f4b7c5.jpeg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           star.jpg
+          </span>
+          <span class="informations">
+           1257×747 140 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

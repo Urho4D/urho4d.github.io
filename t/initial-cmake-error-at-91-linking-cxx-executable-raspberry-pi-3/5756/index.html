@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Initial CMake Error at 91% linking CXX executable [Raspberry Pi 3]
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Initial CMake Error at 91% linking CXX executable [Raspberry Pi 3]
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c96f68f42981283c70498e3703d95d92c4a1bf4dc4f6cc4a57d09dff92acbe6c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kelmen
+     </div>
+     <div class="post_content">
+      <p>
+       Hi all.
+      </p>
+      <p>
+       I’m trying to make a 3D racing game for a fourth year project on the rpi 3.
+       <br/>
+       I’m after running into a problem when doing the initial cmake to make the build for the engine.
+      </p>
+      <p>
+       [ 91%] Linking CXX executable …/…/…/bin/tool/AssetImporter
+       <br/>
+       /usr/bin/ld: …/…/ThirdParty/Assimp/code/libAssimp.a(IFCLoader.cpp.o): in function
+       <code>
+        Assimp::IFCImporter::InternReadFile(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, aiScene*, Assimp::IOSystem*)': IFCLoader.cpp:(.text+0x7068): undefined reference to
+       </code>
+       Assimp::IFC::GetSchema(Assimp::STEP::EXPRESS::ConversionSchema&amp;)’
+       <br/>
+       collect2: error: ld returned 1 exit status
+       <br/>
+       make[2]: *** [Source/Tools/AssetImporter/CMakeFiles/AssetImporter.dir/build.make:88: bin/tool/AssetImporter] Error 1
+       <br/>
+       make[1]: *** [CMakeFiles/Makefile2:1639: Source/Tools/AssetImporter/CMakeFiles/AssetImporter.dir/all] Error 2
+       <br/>
+       make: *** [Makefile:152: all] Error 2
+      </p>
+      <p>
+       I’m not sure if its a missing dependency or if its because I’m a total noob when it comes to linux and rpi’s or both.
+      </p>
+      <p>
+       Any help is greatly appreciated
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       If You are trying to develop it on the RPI as well then you’ll need ASSIMP. Otherwise, you might as well disable the asset importer and just keep engine itself.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c96f68f42981283c70498e3703d95d92c4a1bf4dc4f6cc4a57d09dff92acbe6c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kelmen
+     </div>
+     <div class="post_content">
+      <p>
+       Hi S.L.C thanks for the reply
+      </p>
+      <p>
+       is there an apt-get install command call for it or do i need to download and make the library itself?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3bf38a87160df4459ceb07fc287f84cc8b070e749f585ad56622993dc24e7d82.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JimMarlowe
+     </div>
+     <div class="post_content">
+      <p>
+       This error happens to me too, on my RPI2,  I “fixed” it by disabling just the IFC Importer.  You can modify this file : Urho3dBaseDir/Source/ThirdParty/Assimp/CMakeLists.txt
+       <br/>
+       At about line 56ish, add the code
+      </p>
+      <p>
+       if (RPI)
+       <br/>
+       ADD_DEFINITIONS( -DASSIMP_BUILD_NO_IFC_IMPORTER )
+       <br/>
+       endif()
+      </p>
+      <p>
+       Then rerun the ‘cmake_rpi.sh …’ command again to push out new makefiles, then run the ‘make’ command, and it should be able to complete. Or start a new build, simpler, but slower.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Are you guys using Raspbian or other distro? What is the version of your GCC? I would be interested to know why it failed for your case too, especially if it is reproducible. Our CI uses the cross-compiler GCC version  4.8.3 from
+       <a href="https://github.com/raspberrypi/tools/tree/master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64">
+        here
+       </a>
+       , rather old but it still gets the job done[?] with the default build options including assimp. I know I am not solving your issue by stating this. Perhaps we should upgrade our CI compiler toolchain. And, perhaps it will then see the same issue[?] Anyone know where a new cross-compiling toolchain for RPI can be found?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

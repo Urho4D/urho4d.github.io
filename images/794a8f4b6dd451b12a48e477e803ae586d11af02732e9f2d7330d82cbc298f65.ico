@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.6
+    Copyright 2016-2021 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = true;
+        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('theme'))
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro:wght@400;600&family=JetBrains+Mono:wght@600;700&family=Raleway:wght@900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css?v=0.2.1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="SuperCollider" href="https://supercollider.github.io/feed.xml"/>
+
+    
+    <!-- Bootstrap-4.1.3 isolation CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/bootstrap-iso.min.css">
+    <!-- JQuery 3.3.1 -->
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootstrap 4.1.3 compiled and minified JavaScript -->
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Popper, a dependency of Bootstrap-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-https://supercollider.github.io';
+      const isCookieConsent = '';
+      const analyticsName = '';
+    </script>
+
+    
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="https://supercollider.github.io/">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Page Not Found | SuperCollider</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Page Not Found" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A platform for audio synthesis and algorithmic composition, used by musicians, artists and researchers working with sound." />
+<meta property="og:description" content="A platform for audio synthesis and algorithmic composition, used by musicians, artists and researchers working with sound." />
+<link rel="canonical" href="https://supercollider.github.io/404.html" />
+<meta property="og:url" content="https://supercollider.github.io/404.html" />
+<meta property="og:site_name" content="SuperCollider" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Page Not Found" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A platform for audio synthesis and algorithmic composition, used by musicians, artists and researchers working with sound.","headline":"Page Not Found","url":"https://supercollider.github.io/404.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="Page Not Found">
+    <meta name="twitter:description" content="            #### OoopsSorry this page does not exist =(">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://supercollider.github.io/">
+    <meta name="twitter:image:alt" content="Page Not Found">
+</head>
+
+  <body class=page not found>
+    <div id="main">
+      <header class="site-header">
+
+  <!-- Toggle menu -->
+  <nav>
+    <!-- Logo and title -->
+    <div class="branding">
+      <a class="logo" href="/">
+        <img alt="logo img" src="/assets/img/logo.svg" />
+      </a>
+      
+      <a class="site-title" aria-label="SuperCollider" href="/">
+        SuperCollider
+      </a>
+      
+    </div>
+
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+      <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+      
+      <li>
+        <a
+          aria-label="news"
+          href="/news"
+          
+        >
+          
+            News
+          
+        </a>
+      </li>
+      
+      <li>
+        <a
+          aria-label="downloads"
+          href="/downloads"
+          
+        >
+          
+            Downloads
+          
+        </a>
+      </li>
+      
+      <li>
+        <a
+          aria-label="examples"
+          href="/examples"
+          
+        >
+          
+            Examples
+          
+        </a>
+      </li>
+      
+      <li>
+        <a
+          aria-label="projects"
+          href="/projects"
+          
+        >
+          
+            Projects
+          
+        </a>
+      </li>
+      
+      <li>
+        <a
+          aria-label="links"
+          href="/links"
+          
+        >
+          
+            Links
+          
+        </a>
+      </li>
+      
+      <li class="icon">
+        <a
+          aria-label="github"
+          href="https://github.com/supercollider/supercollider" class="icon"
+           target="_blank"
+        >
+          
+          <i class="fab fa-github"></i>
+          
+        </a>
+      </li>
+      
+      <li class="icon">
+        <a
+          aria-label="rss"
+          href="/feed.xml" class="icon"
+          
+        >
+          
+          <i class="fa fa-rss"></i>
+          
+        </a>
+      </li>
+      
+      <li>
+        <a id="theme-toggle" aria-label="Theme Toggle" onclick="themeToggle()" title="Toggle between Light and Dark theme"></a>
+      </li>
+    </ul>
+
+  </nav>
+</header>
+
+      
+      
+        <article>
+
+  <header>
+    <div class="title-padder">
+      
+        <h1 id="Page+Not+Found" class="title"> Page Not Found</h1>
+        
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+  <div class="wave">
+  <svg xmlns="http://www.w3.org/2000/svg" width="90px" height="60px">
+    <path id="long-wave" fill="none" stroke="#262626" stroke-width="4">
+    </path>
+  </svg>
+</div>
+
+<h4 id="ooops">Ooops</h4>
+
+<p>Sorry this page does not exist =(</p>
+
+  
+  </section>
+
+</article>
+
+      
+      <footer class="site-footer">
+  <p>Made with <i class="fa fa-heart"></i> with <a href="https://jekyllrb.com" target="_blank">Jekyll</a></p>
+  <p>Edit this website on <a href="https://github.com/supercollider/supercollider.github.io">GitHub</a></p>
+</footer>
+
+    </div>
+    
+    <script defer src="/assets/js/wave.js"></script>
+    
+  </body>
+</html>
+

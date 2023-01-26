@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Debuging project with gDEBugger
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Debuging project with gDEBugger
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       hi folks
+       <br/>
+       I try figure out with debugging though gDEBugger.
+       <br/>
+       I find strange biggest texture in my project 2048x3072 (12mb)
+       <br/>
+       Actually i do not create this texture.
+       <br/>
+       What’s is this?
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6541290.htm">
+        <img alt="" height="" src="../../../images/b3373ac789d114e6b0a17e3953e3d6d103796bcf4a6adc0e2e0b035af79458b3.png" width=""/>
+       </a>
+      </p>
+      <p>
+       and others expected textures
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6543338.htm">
+        <img alt="" height="" src="../../../images/df32c5c4225fa0905fc75a12fb22059344b4f7ceac66b70809fa1dc41fd709e3.png" width=""/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       That’s a point light shadow map with 6 sides unrolled. Probably you could lower the shadow quality for any point lights you use.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <p>
+       Now i understood, thanks
+       <br/>
+       I guessing this value set ratio for this kind maps
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6521600.htm">
+        <img alt="" height="" src="../../../images/00c5d76b15b37f68138c1b07f16aa7b6d137346ad9a00ba6d7c57e4ca243100e.png" width=""/>
+       </a>
+       <br/>
+       after changing this from 1 to 0.5 it become twice smaller
+      </p>
+      <p>
+       And other question:
+       <br/>
+       Am I right? What application in most time spent in calling this two function again and again ?
+       <br/>
+       <a data-bbcode="true" href="http://savepic.su/6494976.htm">
+        <img alt="" height="" src="../../../images/60c387e098fac1d095f3ce8b8c203968e4882d32ed0bc4f1747a1b82814ceced.png" width=""/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

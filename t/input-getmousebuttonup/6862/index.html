@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   input-&gt;GetMouseButtonUp()
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    input-&gt;GetMouseButtonUp()
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0f5cf1ecfeda3a13cb74a4cbcf33c5f3af8c6db4d6f31752c3e52ed3c1669d9b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      grokko
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       I’d like to detect a Mouse button up event and the sdk has little for this. I’ve looked for the source code in the URHO branch for events like E_MOUSEBUTTONUP but its not button specific…
+      </p>
+      <p>
+       Grokko
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0f5cf1ecfeda3a13cb74a4cbcf33c5f3af8c6db4d6f31752c3e52ed3c1669d9b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      grokko
+     </div>
+     <div class="post_content">
+      <p>
+       SOLVED…
+      </p>
+      <p>
+       You add a event handler to your code SubscribeToEvent(E_MOUSEBUTTONUP…myEvent()).
+      </p>
+      <p>
+       Then the  proper Event data sent to myEvent is…
+       <br/>
+       int button = eventData[UIMouseClick::P_BUTTON].GetInt();
+      </p>
+      <p>
+       all the mouse up buttons are there!
+      </p>
+      <p>
+       grokko
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

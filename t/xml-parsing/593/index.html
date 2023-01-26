@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Xml parsing
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Xml parsing
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Another basic question. I have been looking through the editor scripts, but cant find anything similar to what I want to do. I need to parse some xml files containing game configuration, from simple stuff like entity definition to more complex ones like dialogs (still not designed).
+       <br/>
+       So, my typical xml looks like this:
+      </p>
+      <pre><code class="lang-auto">&lt;entities&gt;
+ &lt;entity id="one" name="wahatever" description="WTF"/&gt;
+ &lt;entity id="another" name="wahatever 2" description="No idea"/&gt;
+ *
+ *
+&lt;/entities&gt;</code></pre>
+      <p>
+       A more complex one could be:
+      </p>
+      <p>
+       <code>
+        &lt;item id="hunt-knife"  name="Knife" &gt; 
+  &lt;property name="speed" value="1.0" type="speed"&gt;&lt;/property&gt;
+  &lt;property name="range" value="1" type="range"&gt;&lt;/property&gt;
+ &lt;/item&gt;
+       </code>
+      </p>
+      <p>
+       Can somebody give me a brief guide to iterate through several childs and parse nested xml?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/51c42213925d43f7d3684cbdfc7ef12224b1ffc9e2eb7f246a1560fb19ccd2a8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      OvermindDL1
+     </div>
+     <div class="post_content">
+      <p>
+       UIElement and its base classes in the LoadXML function should be a good example.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e2a35a1efb118feca41150a0672eae9a7ef5d075d939b9eb29971089a158064.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rogerdv
+     </div>
+     <div class="post_content">
+      <p>
+       Yep, but the code is C++, Im using AS and some things are different, for example, you cant do while (childElem) {}, because AS while requires a boolean.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       You can check how the Editor itself saves and load its configuration file. It is written in AngelScript.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9561c2f35c7d05d2fc01c7e87465cc5532fe39aac56b61bf1f8d622f27b4cdfa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Azalrion
+     </div>
+     <div class="post_content">
+      <p>
+       Look at
+       <a href="http://editorimport.as" rel="nofollow noopener">
+        editorimport.as
+       </a>
+       as well.
+      </p>
+      <pre><code class="lang-auto">        XMLElement compElem = entityElem.GetChild("component");
+        while (!compElem.isNull)
+        {
+            ...
+
+            compElem = compElem.GetNext("component");
+        }</code></pre>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

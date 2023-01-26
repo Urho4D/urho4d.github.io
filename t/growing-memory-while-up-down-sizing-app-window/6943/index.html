@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Growing memory while up/down-sizing app window
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Growing memory while up/down-sizing app window
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f84d2680cbff1e80b941c9083fdf118788faf67e2988d863f75d6c05a37b3610.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      keepclear
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I see a difference between the memory use shown by “F2” in-game versus the one in task manager. Although a gap is normal and expected, the behavior is a bit surprising.
+       <br/>
+       I took the Hello World sample (VS2019, master), made it resizable with:
+      </p>
+      <blockquote>
+       <p>
+        engineParameters_[EP_WINDOW_RESIZABLE] = true;
+       </p>
+      </blockquote>
+      <p>
+       and then I resize the window by up/downsizing it a couple dozen times and I see memory growing significantly in windows task manager whereas in-game memory stats are stable.
+       <br/>
+       In task manager, when I stop resizing the window, memory seems to be slowly “shrinking back” over time but remain bigger from what it is when freshly started.
+       <br/>
+       I should mention that memory grows even when the up/downsizing cycle is kept smaller than the window size when the app starts.
+      </p>
+      <p>
+       Any idea what could cause this behavior?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

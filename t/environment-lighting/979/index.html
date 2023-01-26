@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Environment lighting?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Environment lighting?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eff032e89ec93f81cbb0a8b2e416c52be6a27abce27c4ed36911a61ed12cecf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      vivienneanthony
+     </div>
+     <div class="post_content">
+      <p>
+       Has anyone setup environment lighting from a skybox?
+      </p>
+      <p>
+       The reason I asked  because I want to delete the added lights to a generated scene and use the skybox. It will allow me to add more lights without conflicting lighting. I’m not sure how I want to override generated lights.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1e0a99538f39dc80899aa462bf01fe5512740ad644d09d7f5b176cb87543a642.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gabdab
+     </div>
+     <div class="post_content">
+      <p>
+       Did you solve it ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/999065d0609f591a82c8a3f4f534d814fd1605f4d7ed98ff3bc0d9aed9d27d87.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      codingmonkey
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        Has anyone setup environment lighting from a skybox?
+        <br/>
+        I’m do not trying this but I guess that you can put skybox texture into envMap TU-slot and do some fixes in LitSolid shader
+        <br/>
+        look where in shader doing lookup cubemap and make similar fetch from your envmap and add/multiple this value to LightColor.
+        <br/>
+        but I suppose this method of lighting is little strange )
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

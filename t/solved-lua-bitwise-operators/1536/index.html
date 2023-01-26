@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [Solved] Lua Bitwise Operators
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [Solved] Lua Bitwise Operators
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ba4f698dc8dd0a1115f7d59772b06ed77bfee475424a7e497fb80a3572a3ff69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      practicing01
+     </div>
+     <div class="post_content">
+      <p>
+       Hello, I noticed that in the angelscript ninja demo, bitwise operators are used
+       <code>
+        if (joystick.hatPosition[0] &amp; HAT_LEFT != 0)
+       </code>
+       . How can I use bitwise operators with lua since urho used 5.1 but only 5.2 has the bit32 library?  Thanks for any help.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       LuaJIT provides several LUA extensions out-of-the-box. This includes Lua BitOp.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

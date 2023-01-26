@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to use the Materials text list file that
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to use the Materials text list file that
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/08e40aa3745a820d418c8562a768cf6e406b05e97da70a8aec12b6c9333223ce.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dada0526
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="1" data-base62-sha1="ftLJJwcIH1IPjkUUbcZ1cWLsSCY" height="421" src="../../../images/1683bd8e89990c8534df1d9af1b0c1bf46847142a495b97b9fa2f33173dad257.png" width="442"/>
+      </p>
+      <p>
+       As You can see I got a material text list file from Blender(Props.txt),but How I Can use it? Which folder should I put it in? I tried to use staticmodel-&gt;ApplyMaterialList(),and put the file name as the first parameter,but it doesn’t work.Can anyone help me to solve this problem?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       I can help you!
+       <br/>
+       Show me props.txt
+       <br/>
+       We need to make it proper XML formatting, then we can use the api you suggested to load it!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Welcome to the forums!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+       <img alt=":slightly_smiling_face:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slightly_smiling_face:"/>
+      </p>
+      <p>
+       When using
+       <code>
+        ApplyMaterialList
+       </code>
+       without any arguments the material list txt should be located in the same folder as the model file and carry the same name before the extension.
+       <br/>
+       Also, are there any errors being logged about resources not found maybe?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Photorealistic Rendering in Urho3D
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Photorealistic Rendering in Urho3D
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       I’m a completely new developer to Urho3d, and our team saw this project and it seemed to fit the bill. We are looking at making a real-time terrain renderer with a focus on graphical quality. Has anyone worked on something like this in Urho that can help us get started with what shaders/techniques we should use? Based on what I have seen on the forums and features list, I assume we will have to manually implement the following:
+      </p>
+      <p>
+       -SSAO
+       <br/>
+       -Improved water shader with vertex displacement
+       <br/>
+       -LOD with vegetation (such as automatic bill-boarding)
+      </p>
+      <p>
+       I apologize for being a bit unspecific or technical, since I don’t have too much experience with OpenGL/graphics. Anyways, if someone could help us understand roughly the process for getting where we want, it would be much appreciated. Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       There’s some SSAO stuff here:
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+        <a href="https://github.com/sabotage3d/UrhoSSAO" rel="nofollow noopener" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="420" src="../../../images/65979d1594ade5b0f3212ab437fe26642ae03eb0eda1ba6c4cdee539e241dd6d" width="420"/>
+        <h3>
+         <a href="https://github.com/sabotage3d/UrhoSSAO" rel="nofollow noopener" target="_blank">
+          sabotage3d/UrhoSSAO
+         </a>
+        </h3>
+        <p>
+         ssao for ios using Urho3d. Contribute to sabotage3d/UrhoSSAO development by creating an account on GitHub.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       And some GI here:
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+        <a href="https://github.com/reattiva/Urho3D/commits/GI_work" rel="nofollow noopener" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="420" src="../../../images/8f55e49d14badadab62e73feb204bf323db4cd6a9d3d3ce592af8cea78ffc80a" width="420"/>
+        <h3>
+         <a href="https://github.com/reattiva/Urho3D/commits/GI_work" rel="nofollow noopener" target="_blank">
+          reattiva/Urho3D
+         </a>
+        </h3>
+        <p>
+         Cross-platform rendering and game engine. Contribute to reattiva/Urho3D development by creating an account on GitHub.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       But if you want an open-source engine with photorealistic rendering capabilities, i suggest Panda:
+       <a href="https://github.com/tobspr/RenderPipeline" rel="nofollow noopener">
+        https://github.com/tobspr/RenderPipeline
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/35cda981c3403e28c7f80229c59e72f5521005561acb2586edf2bd1909df9578.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dragonCASTjosh
+     </div>
+     <div class="post_content">
+      <p>
+       Depends what you are looking for within the engine is self there is PBR (no terrain support but should be easy to add), area lights(PBR only), physical light values such as lumens and Kelvin. There is also HDR, Bloom, Auto Exposure and a tonemapper that would help. Look at the PBR sample for a base.
+      </p>
+      <p>
+       In the community there is loads, IV seen realtime GI, 2016 Doom’s motion blur, SSAO, Parallax occlusion mapping, Atmospheric scattering and much more. Anything you can’t find you can suggest and most of the time someone is willing to lend a hand.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/92028b5b94650c5db30122b34a44946b7fc1cfc731bd7f99650f6e64feafdcc1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      artgolf1000
+     </div>
+     <div class="post_content">
+      <p>
+       Urho3D has no Global illumination now, I am afraid that only Unreal 4 can give you what you want.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/59e5933a0a6705e7f9d0e13c94ebe4d04a3ea3c40962c7c3bdb2ba995be349d3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Don
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the many suggestions. While I wish UE4 was an option, their cross platform support isn’t as extensive as Urho’s. It sounds like Urho can be modified (and has). Since features like SSAO have at least been started on, our team will modify that work for our own project. Thanks again !
+      </p>
+      <p>
+       One last thing, is there any good documentation on the intersection of materials/techniques/render paths? I am unfamiliar with any of these terms from OpenGL.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

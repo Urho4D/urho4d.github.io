@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Yet another Minecraft wannabe
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Yet another Minecraft wannabe
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       I know it’s sow last season to be copying minecraft, but I found this to be a great exercise as this kind of voxel block world has a lot of interesting stuff where I can cut my teeth on 3D programming. I’ve been fooling around with Unity and jMonkeyEngine before, but only recently found out about Urho3D.
+       <br/>
+       As I said, I’m pretty new to 3D programming and it’s been nearly 20 years since I last wrote a line of C++ code, so this is pretty much a learning process for me all around.
+      </p>
+      <p>
+       Here’s a screenshot of what I have currently:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/Cb5I5Xc.png" rel="nofollow noopener" title="">
+         <img alt="" height="397" src="../../../images/437ddc9810f118fe3e46faa830ae406678799cc522390957becec36ee8200027.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1280×737
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       It looks good so far.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       Do you use a single combined mesh for each “chunk” or are you using a mesh group for this?  If you use a combined mesh you will get a lot better performance.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks. It’s a single mesh per chunk. With only the outside facing faces of the cubes drawn.
+       <br/>
+       I just got the lighting working. I just need to get the chunk borders to work properly, haven’t bothered to do anything about that yet. I’m currently in the middle of refactoring the code to make it a bit easier to move to a mutithreaded terrain generation/light calculation/mesh generation method.
+      </p>
+      <p>
+       Here’s some pics with the lighting. Using DiffUnlitVCol techinque (which is basically just DiffUnlit with vertexcolor defines added. Started to get those white cracks between cubes after starting to use texture atlases. Probably some artifacts caused by floating point imprecisions. Not sure what to do about those yet.
+       <br/>
+       But next I think I’m going to start thinking about multithreading once I get the refactorings out of the way. And after that proper terrain generation.
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/iHtrCRO.png" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/acbaec9a444b5cdaf275958c7ba1f078c93097cac7f1ecb1ff733727be61f686.png" width="510"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1390×1362
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/KE8W5K6.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/b55c5e0630c384c55f6581ac7db61c8d9190278caa070b61e162363028ed91bc.jpg" width="593"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×862
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       Just finished the first round of restructuring. Most of the stuff (lighting, dynamic chunk loading etc) now stopped working as they don’t support the new structure yet, but it looks like the new data structure is much, much better than my old one. First of all, it solved my problem with the chunk boundaries. They are no longer rendered and I don’t really have to worry about taking them into account anymore.
+       <br/>
+       And of course the simplified mesh improved the rendering speed and memory consumption quite a lot.
+       <br/>
+       Here’s wireframe rendering shots before and after the restructuring.
+      </p>
+      <p>
+       Before:
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/ogfNfJV.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="477" src="../../../images/c4ce815bdf4d8fe61c9bace75b1797d7d15f71b41eee60317a1265f264c68006.jpg" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×709
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       After:
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/x88HrQB.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="479" src="../../../images/1a0251a67e97b7e6f73b30ced8343999749d4f67be164df9971e91163b444aaa.jpg" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           1024×711
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/94b2b6bbabdc96d93453ea1c73b7904f8a0a8b9c1974f418863ac13507ab5b2e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Hevedy
+     </div>
+     <div class="post_content">
+      <p>
+       Nice work.
+       <br/>
+       You will release something of the code or the project ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       Oh I’m most likely going to make this open source if it actually gets somewhere. I’m still just learning as I go and I don’t have too much time to use on this project, so I’m not quite there yet.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b627038f3f0744721d231f6b4993bbc55e6bbbd4584064080fa11da2b21a17e5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      umen
+     </div>
+     <div class="post_content">
+      <p>
+       Great work ,can you share from where you started , that is what are your references or example source code for you demo?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       @
+       <a href="https://discourse.urho3d.io/t/yet-another-minecraft-wannabe/1056/3">
+        Tinimini
+       </a>
+       wrote
+      </p>
+      <blockquote>
+       <p>
+        Using DiffUnlitVCol techinque (which is basically just DiffUnlit with vertexcolor defines added.
+       </p>
+      </blockquote>
+      <p>
+       How would one implement a DiffUnlitVCol Technique?  Can I do it with a custom Technique or to I have to create a custom shader?  Could I please see your code for this?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       Oh wow. Talk about a blast from the past
+       <img alt=":smile:" class="emoji" src="../../../images/ae89e05450587e8f1f4786c0d266cf94ef2b306782fb6f9c30e43c0023ed148b.png" title=":smile:"/>
+       I haven’t touched this project in years, but I did still manage to find the source code. It’s available here
+       <a href="https://bitbucket.org/syvanpera/cubid/" rel="nofollow noopener">
+        https://bitbucket.org/syvanpera/cubid/
+       </a>
+       <br/>
+       I have no idea whether it even compiles anymore, but for what it’s worth, it’s all there.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       Awesome!  Thank you!
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       I just wanted to say think you again.  The Urho3D technique you wrote for vertex colors saved me so much (frustration?).
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8103f33f8286ae31c244db8b0c9e7f2df430133020eb89a86cc79d1e0cccaa5b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Tinimini
+     </div>
+     <div class="post_content">
+      <p>
+       Nice! I’m glad this is of some use even if I never had the time to continue it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/156fcbf54afd16bd07b54e836bb3fbbff9c8dc03628d1b34c9c9b928dad84bd1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      TheBruhDude
+     </div>
+     <div class="post_content">
+      <p>
+       Looks Good. I found this today and wondering if your going to make a pre-release soon for this copy of Minecraft. And what would it be called if you made a game out of it?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @TheBruhDude
+       </span>
+       at me or
+       <span class="mention">
+        @Tinimini
+       </span>
+       ?
+      </p>
+      <p>
+       What I’m working on is showcased at
+       <a href="https://discourse.urho3d.io/t/urho3d-cubic-voxel-surfaces">
+        https://discourse.urho3d.io/t/urho3d-cubic-voxel-surfaces
+       </a>
+       .
+      </p>
+      <p>
+       I still have a ton of work to do before a pre-release.  It’s still not even an actual game yet – right now it’s just a cubic voxel engine built on top of Urh3D.  I haven’t decided on a name yet.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Teknologicus
+       </span>
+       Have you considered what license to use?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Modanung
+       </span>
+       I do plan on open-sourcing (MIT license) it at some point after trying to sell a game made with it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dd0f9242256f27e661c2943331a3b94828714e1676ad82abe3296e0ee7c99ffe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Teknologicus
+     </div>
+     <div class="post_content">
+      <p>
+       PS: I’ve also considered licensing the code to developers when it’s fully functional.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

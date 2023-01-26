@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3D/IK/IKConverters.h:28:10: fatal error: ‘ik/quat.h’ file not found
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3D/IK/IKConverters.h:28:10: fatal error: ‘ik/quat.h’ file not found
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6bf59a88aa92b9df77056e6b0fe051d5e932ef508a3dfd9e0aa395c7fe766525.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CrazySnail-LLLL
+     </div>
+     <div class="post_content">
+      <p>
+       I use Urho3D-1.7.1-macOS-64bit-STATIC.tar.gz. But there are a lot of header files missing. How can I solve it? Do I need to copy in the source directory?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       I think you need to add the
+       <code>
+        ThirdParty
+       </code>
+       folder into your include paths. Not just the
+       <code>
+        include
+       </code>
+       directory. Because the headers are included relative to that.
+      </p>
+      <p>
+       Also, as many will end up suggesting is to use the code straight from repository as it is (
+       <em>
+        likely
+       </em>
+       ) more stable. Unless you need to maintain some kind of compatibility. Maybe even disable some of the features you don’t need (
+       <em>
+        like one or both scripting components for example or databases
+       </em>
+       ).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

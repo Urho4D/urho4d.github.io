@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   [Solved] Vector::Remove() can’t compile
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    [Solved] Vector::Remove() can’t compile
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0a373726f1e8c153d07fd15f7376499dec0fb039d4ca35dc857d901afd7b2375.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       I have an error using the Vector::Remove(object)
+      </p>
+      <p>
+       All other functions (add erase) works accept this. I’m using version on GIT download 15 or 16 days ago.
+      </p>
+      <p>
+       <code>
+        void EventList::Remove(const VEvent &amp;event)
+{
+	lstEvents.Remove(event);
+}
+       </code>
+      </p>
+      <p>
+       <span class="bbcode-b">
+        Error code in visual studio 2015:
+       </span>
+      </p>
+      <p>
+       Severity	Code	Description	Project	File	Line
+       <br/>
+       Error	C2676	binary ‘!=’: ‘VEvent’ does not define this operator or a conversion to a type acceptable to the predefined operator	NVuDu	e:\projectcodes\urho3d-master\buildvs2015\include\urho3d\container\vector.h	350
+      </p>
+      <p>
+       <code>
+        Iterator Find(const T&amp; value)
+    {
+        Iterator it = Begin();
+        while (it != End() &amp;&amp; *it != value)    //Error at this line
+            ++it;
+        return it;
+    }
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Remove() does a value search, so your type needs equality/inequality operators.
+      </p>
+      <p>
+       Note that this is not good for performance, so if you already know where in your vector the value is found then using Erase() with an iterator or index is faster.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0a373726f1e8c153d07fd15f7376499dec0fb039d4ca35dc857d901afd7b2375.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George
+     </div>
+     <div class="post_content">
+      <h2>
+       Thanks that works fine.
+      </h2>
+      <p>
+       Can you check the below uniform random function. It seems to also generate -ve value.
+      </p>
+      <p>
+       Random(0, 100000);
+      </p>
+      <p>
+       Regards
+       <br/>
+       George
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, there were integer overflows with large ranges. Should be fixed in master.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

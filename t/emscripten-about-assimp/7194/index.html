@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Emscripten about Assimp
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Emscripten about Assimp
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8ebe67eed3d8cf8e79507f2100419d07669ae0e14c629756271f84c563262bef.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      huminzheng
+     </div>
+     <div class="post_content">
+      <p>
+       Hi guys!
+       <br/>
+       Is there a sample about calling C++ Assimp function from javascrip?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="1" data-topic="7194" data-username="huminzheng">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" loading="lazy" src="../../../images/f718cc693ac26f7b2b35f4b9e96315b1d0808de811b3d0c6dc83403b5533aae5.png" width="20"/>
+        huminzheng:
+       </div>
+       <blockquote>
+        <p>
+         Is there a sample about calling C++ Assimp function from javascrip?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Assimp is not even linked to Emscripten binary by default. You cannot call it from C++, not just from javascript.
+      </p>
+      <p>
+       If you link Assimp to your binary, you should be able to expose its functions in JS like here:
+       <br/>
+       <a class="onebox" href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Graphics/OpenGL/OGLGraphics.cpp#L138" rel="noopener nofollow ugc" target="_blank">
+        https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Graphics/OpenGL/OGLGraphics.cpp#L138
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/8ebe67eed3d8cf8e79507f2100419d07669ae0e14c629756271f84c563262bef.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      huminzheng
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks  for your reply. I have already build the Urho3D success with emscripten on windows. How could i link assimp to the Urho3D Emscripten binary ?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

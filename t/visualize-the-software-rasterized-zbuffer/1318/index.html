@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Visualize the Software Rasterized zBuffer
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Visualize the Software Rasterized zBuffer
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6cb14f8bd2d643c84678a0f4bae3f1554abf88f44c39a3aeef6c35044af6ad49.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      theak472009
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+       <br/>
+       Is there any way to visualize / debug draw the software rasterized zbuffer?
+      </p>
+      <p>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Currently no. I used to have an internal hack for it. Probably would be best if it could copy the contents to a texture for debug rendering e.g. in the UI.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve made some minor modifications to the master branch that allow public access to the occlusion. Rendering it can be done for example with a UI element (note that script bindings are unfortunately out of question due to the needed access to internal classes and raw arrays):
+      </p>
+      <pre><code class="lang-auto">    /// Depth debug texture
+    SharedPtr&lt;Texture2D&gt; occlusionTex_;
+    /// Depth debug borderimage
+    SharedPtr&lt;BorderImage&gt; occlusionElement_;
+
+    // Setup:
+    occlusionTex_ = new Texture2D(context_);
+    occlusionElement_ = GetSubsystem&lt;UI&gt;()-&gt;GetRoot()-&gt;CreateChild&lt;BorderImage&gt;();
+    occlusionElement_-&gt;SetTexture(occlusionTex_);
+
+    // Per-frame update:
+    OcclusionBuffer* buffer = GetSubsystem&lt;Renderer&gt;()-&gt;GetViewport(0)-&gt;GetView()-&gt;GetOcclusionBuffer();
+    if (buffer)
+    {
+        unsigned w = buffer-&gt;GetWidth();
+        unsigned h = buffer-&gt;GetHeight();
+        if (w != occlusionTex_-&gt;GetWidth() || h != occlusionTex_-&gt;GetHeight())
+        {
+            occlusionTex_-&gt;SetNumLevels(1); // No mipmaps
+            occlusionTex_-&gt;SetSize(w, h, Graphics::GetFloat32Format(), TEXTURE_DYNAMIC);
+            occlusionElement_-&gt;SetSize(w, h);
+        }
+        int* depthInts = buffer-&gt;GetBuffer();
+        float* depthFloats = new float[w * h];
+        for (unsigned i = 0; i &lt; w * h; ++i)
+        {
+            // Depth data is 24bit ints. Convert to float
+            depthFloats[i] = depthInts[i] / (float)OCCLUSION_Z_SCALE;
+        }
+        occlusionTex_-&gt;SetData(0, 0, 0, w, h, depthFloats);
+        delete[] depthFloats;
+    }</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6cb14f8bd2d643c84678a0f4bae3f1554abf88f44c39a3aeef6c35044af6ad49.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      theak472009
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the very quick response
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

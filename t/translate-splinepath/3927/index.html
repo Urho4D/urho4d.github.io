@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Translate SplinePath
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Translate SplinePath
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Hi there! Is there an efficient way to translate SplinePath?
+      </p>
+      <p>
+       At the moment I have to create a new function inside SplinePath for this.
+      </p>
+      <p>
+       void SplinePath::TranslatePath(const Vector3 &amp;v)
+       <br/>
+       {
+       <br/>
+       for (unsigned i = 0; i &lt; controlPoints_.Size(); ++i)
+       <br/>
+       {
+       <br/>
+       Vector3 pos = controlPoints_[i]-&gt;GetWorldPosition() + v;
+       <br/>
+       controlPoints_[i]-&gt;SetWorldPosition(pos);
+       <br/>
+       }
+       <br/>
+       }
+      </p>
+      <p>
+       Why don’t we make controlpoints the child of the node where this component is added to.
+       <br/>
+       This way we just need to move the parent node and everything moves with it.
+      </p>
+      <p>
+       Also, I have tested translate 50 ControlPoints of the SplinePath and I found that it is very slow to update. In my test I can translate 5000 none spline controlpoint nodes faster than that of 50 ControlPoints in the SplinePath.
+      </p>
+      <p>
+       regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       As confirmatory nitpicking, I’d rewrite your function as such:
+      </p>
+      <pre><code class="lang-auto">void SplinePath::TranslatePath(const Vector3&amp; delta, TransformSpace space = TS_WORLD)
+{
+     for (WeakPtr&lt;Node&gt; node: controlPoints_) {
+
+          node-&gt;Translate(delta, space);
+     }
+}
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks Modanung,
+       <br/>
+       I rarely use foreach. But that’s pretty compact. Do you think there is a performance reduction in that translate function?
+      </p>
+      <p>
+       I have tested for CATMULL_ROM_FULL_CURVE.
+      </p>
+      <p>
+       Also, the debug line seems to be edgy if we have lots of nodes. See pic.
+      </p>
+      <p>
+       <img alt="image" height="500" src="../../../images/6435e7c8f721a919b37daec1966bb220a4f9b91e937e7743f7003d2d3ded4ec2.png" width="547"/>
+      </p>
+      <p>
+       <img alt="image" height="500" src="../../../images/1bef53f5d2537d58e196a42f1071ace658a94470864d87bf8898263136c2dea8.png" width="402"/>
+      </p>
+      <p>
+       Best regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       How do you create the spheres? Could
+       <em>
+        they
+       </em>
+       by any chance be offset?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Sphere is created by adding control point to SplinePath directly.
+       <br/>
+       After more than 20 nodes. The debug line reduce accuracy. Maybe there is a limited in the number of line segments used in the debug code.
+      </p>
+      <p>
+       regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Instead of adding a TranslatePath function. I recommend to expose the control points. Through GetControlPoints()
+      </p>
+      <p>
+       This way we could translate or do what ever with it without touch core.
+      </p>
+      <p>
+       Best regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       The translation of SplinePath node for non linear spline is quite slow.
+       <br/>
+       See small comparision pictures.
+      </p>
+      <p>
+       <img alt="test" height="327" src="../../../images/b26cdd1440c289dd71982c8485b713f0fed4f4bf1557d94860eba25b80a84fbf.gif" width="421"/>
+      </p>
+      <p>
+       <img alt="test2" height="327" src="../../../images/130ed2c6037a12de7c1ab71b184084383c878f32b6104b8481f6e0bcad14e8ce.gif" width="421"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Does this hold true when not drawing debug geometry?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, it also slow without debug lines.
+       <br/>
+       I think there maybe some sort internal code that do a deep update every frame when we move the path.
+       <br/>
+       I’m not too sure, as I linked the lib. so I can’t debug into it.
+      </p>
+      <p>
+       Best regards
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Probably
+       <code>
+        SplinePath::OnMarkedDirty
+       </code>
+       cause lags because
+       <code>
+        CalculateLength
+       </code>
+       is quite heavy.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks Eugene!
+       <br/>
+       Is it possible to temporary disable mark dirty and re-enable (call) when we need it?
+      </p>
+      <p>
+       We could e.g have a flag in that OnMarkedDirty function.
+      </p>
+      <p>
+       Or is there an existing global flag that I can used?
+      </p>
+      <p>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90c37cf62485b050a630164fc2236ee64c63407f82efabaceb8c13fef5f2012d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      George1
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks,
+       <br/>
+       I’ve comment out CalculateLength in OnMarkedDirty.
+       <br/>
+       Make CalculateLength() public and calls it when I translate the SplinePath
+      </p>
+      <pre><code class="lang-auto">void SplinePath::OnMarkedDirty(Node* point)
+{
+
+    if (!point)
+        return;
+
+    WeakPtr&lt;Node&gt; controlPoint(point);
+
+    for (unsigned i = 0; i &lt; controlPoints_.Size(); ++i)
+    {
+        if (controlPoints_[i] == controlPoint)
+        {
+            spline_.SetKnot(point-&gt;GetWorldPosition(), i);
+            break;
+        }
+    }
+
+   // CalculateLength();
+}
+</code></pre>
+      <p>
+       <img alt="test2" height="294" src="../../../images/9b0c2f256f2f03fe835f018df55e7547a98c38c01ac872fa80c969d3e7f0c9b8.gif" width="523"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

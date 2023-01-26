@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Shadow glitches
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Shadow glitches
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       I’m getting those weird shadow glitches which include 2 main things:
+      </p>
+      <ol>
+       <li>
+        Shadows deforming when changing camera angle.
+       </li>
+       <li>
+        light slipping through geometry.
+       </li>
+      </ol>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/1r9P7ga.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/dd776fc32698bdd5612e7d4fcbd45ed8d8cae00de16110d30fea29c2973d36f2.jpg" width="639"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           816×638
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/bGw7iNL.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/60d4c7d54f07f0b3cc9a4e28384dd300d89f81da50f8948d500e858006b7c140.jpg" width="639"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           816×638
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/oLBMZW5.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/672a2b44fdaf72045ffc054368fe3dca4d14de203fd306f8b9e77b8e5ebaa45c.jpg" width="639"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           816×638
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/sS5IWM6.jpg" rel="nofollow noopener" title="">
+         <img alt="" height="500" src="../../../images/f808b81e8dadf5b60e498cd358711f53006bd5f641ab32a203c9f0f1ca2e7b92.jpg" width="639"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           816×638
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       I assume that it happens because of a naive implementation of my level editor’s file format.
+       <br/>
+       I’m using custom geometry to create the level.
+       <br/>
+       My level format defines shapes that have faces, and each face can have a different material.
+       <br/>
+       My naive implementation creates each face as a submesh so it can have different material.
+      </p>
+      <p>
+       The shadow gaps can be explained by the shadow bias, but what causes the deformation?
+       <br/>
+       Does the deformation have something to do with using custom geometry?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

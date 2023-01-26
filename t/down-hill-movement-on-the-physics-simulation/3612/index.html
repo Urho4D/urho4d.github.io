@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Down hill movement on the physics simulation
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Down hill movement on the physics simulation
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/87e48c61e99fbb36dd8c800f77b445dcf5f51691a1ab6908cd8fe1fae3008c45.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ext1
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I’m trying to understand why the physics simulation reacts in a certain way.
+       <br/>
+       I’ve made this diagram trying to illustrate it:
+       <br/>
+       <img alt="o8a9Sf7" height="300" src="../../../images/b7bb8b1022e81cb529f6704b965e4203df6ec4d8c6f3f2c8f12bf7f46b6cf942.png" width="400"/>
+       <br/>
+       When I apply a permanent constant forward impulse to a rigid body on the top of a slope, it “jumps” forward until it fall on the slope (point A) and then continues down.
+      </p>
+      <p>
+       Does anyone know why there are no other jumps after point A?
+       <br/>
+       Considering I’m still applying the constant forward impulse.
+      </p>
+      <p>
+       Best regards.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bc40148f161b8ef0f1ac53243cc7c85a7aabd7378e2bc7063dc29b570fba4030.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      godan
+     </div>
+     <div class="post_content">
+      <p>
+       If you shot a gun at the top of a hill, would you expect it to roll down like a ball?
+      </p>
+      <p>
+       Just set up gravity and a collider for the hill, and let it happen.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Just physics.
+      </p>
+      <p>
+       At the start, you have zero vertical velocity. When you push the body, it moves horizontally and starts to fall.
+       <br/>
+       When the body hits the slope, it has non-zero vertical velocity. When you push the body, it moves diagonally.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/87e48c61e99fbb36dd8c800f77b445dcf5f51691a1ab6908cd8fe1fae3008c45.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ext1
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you very much!
+       <br/>
+       Vertical velocity was exactly what I was missing.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Bounciness of a physics object is affected by
+       <span class="bbcode-b">
+        restitution
+       </span>
+       as demonstrated in this video:
+       <br/>
+       <a href="https://www.youtube.com/watch?v=fn_xanuLJiE">
+        https://www.youtube.com/watch?v=fn_xanuLJiE
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/87e48c61e99fbb36dd8c800f77b445dcf5f51691a1ab6908cd8fe1fae3008c45.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      ext1
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the video, that helps a lot.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

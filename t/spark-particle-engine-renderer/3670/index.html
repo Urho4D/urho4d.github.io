@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   SPARK Particle engine Renderer
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    SPARK Particle engine Renderer
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+      </p>
+      <p>
+       I’m building an urho3D renderer for the SPARK particle engine, I love its modularity.
+       <br/>
+       Maybe I will build an editor too.
+      </p>
+      <p>
+       <img src="../../../images/edabf6657a569e6fdff15f23d4cd1e589f39219e7c9384218e52e723ec54ebab.jpg"/>
+      </p>
+      <p>
+       <a class="onebox" href="https://github.com/fredakilla/uspark" rel="nofollow noopener" target="_blank">
+        https://github.com/fredakilla/uspark
+       </a>
+      </p>
+      <p>
+       Editor (Prototype in dev) (Windows x64 version)
+       <br/>
+       <a class="onebox" href="http://ge.tt/6zXXuNn2" rel="nofollow noopener" target="_blank">
+        http://ge.tt/6zXXuNn2
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       You mean this
+       <a href="https://github.com/Synxis/SPARK" rel="nofollow noopener">
+        SPARK
+       </a>
+       here?
+       <br/>
+       Woah, didn’t know about that! I searched for st similar a lot!
+       <br/>
+       Thank u man!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       That’s nice. What are the advantages compared to Urho’s built-in particles?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       It is fast and modular and easy to build complex effects. Its code is also quite flexible and scalable with its design to create your own extensions.
+      </p>
+      <p>
+       Personally I use it because it also works independently of the 3D engine (I’m using Urho and another engine for my stuffs and I need and independent library to get same effects works in both engine) but without this constraint, it is also a nice alternative to urho built-in particles to consider if you like to render cool effects, and by default it offers some additional nice features :
+      </p>
+      <ul>
+       <li>
+        Independent Renderers per group (Quad and Point for now - what I added for urho - But I’d also like add a Marching Cube renderer to render fluid like, and also a mesh renderer to draw meshes instead of sprites)
+       </li>
+       <li>
+        Cool Modifiers :(Basic,Collider,Destroyer,EmitterAttacher,LinearForce,Obstacle,PointMass,RandomForce,Rotator,Vortex)
+       </li>
+       <li>
+        Particles collisions (particles vs environment and particles vs particles)
+       </li>
+       <li>
+        Differents built-in spatial Zones used by emitter and modifiers : Box, Cylinder, Plane, Point, Ring, Sphere.
+       </li>
+       <li>
+        Emitters : from Normals zone, Random, Spheric, static, Sraight
+       </li>
+       <li>
+        Different interpolators (basic, random, graph)
+       </li>
+       <li>
+        Particles can triggers actions.
+        <br/>
+        …
+       </li>
+      </ul>
+      <p>
+       The actual QuadRenderer (like urho billboard) for urho support differents options to orientate particles sprites :
+       <br/>
+       CAMERA_PLANE_ALIGNED, CAMERA_POINT_ALIGNED, DIRECTION_ALIGNED, AROUND_AXIS, TOWARDS_POINT, FIXED_ORIENTATION
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Cannot compile on OsX. I get
+      </p>
+      <blockquote>
+       <p>
+        SPARK-spark2/external/pugixml/src/pugixml.cpp:3165:82: No type named ‘basic_istream’ in namespace ‘std’
+       </p>
+      </blockquote>
+      <p>
+       default project generated with cmake for xcode. It looks like a library problem.
+       <br/>
+       If I change that to gnu libstdc++ I get:
+      </p>
+      <blockquote>
+       <p>
+        /SPARK-spark2/include/Core/SPK_Group.h:373:4: Non-type template argument of type ‘size_t (SPK::Group::
+        <em>
+         )() const’ cannot be converted to a value of type ‘type’ (aka 'returnType (SPK::Group::
+        </em>
+        )() const’)
+       </p>
+      </blockquote>
+      <p>
+       so now way. What to do?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       disable xml at compile with this define : SPK_NO_XML
+       <br/>
+       I know there is some errors with xml io, I will fix that later
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Gave a try with Xcode9 and I get various errors, last one:
+      </p>
+      <blockquote>
+       <p>
+        Rendering/Urho3D/SPK_Urho3D_QuadRenderer.cpp:140:32: Call to pointer to member function of type ‘void (const SPK::Particle &amp;, SPK::URHO::IUrho3DBuffer &amp;)’ drops ‘const’ qualifier
+       </p>
+      </blockquote>
+      <p>
+       given up on Os X, seems XCode is not very forgiving.
+       <br/>
+       Gonna try on Ubuntu…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Sorry I don’t have any OS X. Actually, I only tested it on linux, but thanks for report I’ll check this error.
+      </p>
+      <p>
+       Did you get the last commit ? I think this problem should be resolved in last updates I made many changes.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Some progress…
+      </p>
+      <p>
+       The Urho3D renderer for sprites works as expected (same render as internal opengl renderer).
+      </p>
+      <p>
+       I used my old procedural editor for urho (inacheved) to quickly integrate the spark engine. The modular design of spark works fine with this kind of editor. All the spark modules are not yet integrated, but basics are here.
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="fU-2uTLqZwo" data-youtube-title="Urho3D and Spark particles editor">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       BTW, what UI do you use?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       It’s a personnal fork of this tool (written in Qt) :
+       <a href="https://github.com/enigmastudio/Enigma-Studio-4" rel="nofollow noopener">
+        https://github.com/enigmastudio/Enigma-Studio-4
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Today I tried building on my Ubuntu, but no luck. Seems QT Creator doesn’t want to find Urho includes. Must be some trick to it. I googled for, but found no solution…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/dbe11551b4e31243c01a23f11ae133866c35e3c2874f50f95c7566ffe79b11aa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      stark7
+     </div>
+     <div class="post_content">
+      <p>
+       It will be a good day if SPARK will be part of the Urho3D 1.8
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       I released a prototype of the procedural editor I’m working on, for urho and spark. (windows version)
+       <br/>
+       I would like your opinion on it, any suggestions are welcomes.
+      </p>
+      <p>
+       I made a little tuto on how to use the editor: open “tuto.e4prj”
+      </p>
+      <p>
+       <strong>
+        EDIT
+       </strong>
+       : I updated package with missing dll and I updated tuto :
+       <br/>
+       <a href="http://ge.tt/6zXXuNn2" rel="nofollow noopener">
+        http://ge.tt/6zXXuNn2
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       I now integrated SPARK inside Urho3D as thirdparty with cmake scripts.
+       <br/>
+       repo:
+       <a class="inline-onebox-loading" href="https://github.com/fredakilla/uspark" rel="nofollow noopener">
+        https://github.com/fredakilla/uspark
+       </a>
+      </p>
+      <p>
+       It can now be used like others Urho3D resources or manually to create effects from scratch.
+       <br/>
+       See sample : 60_SparkParticles in repo.
+      </p>
+      <p>
+       <img src="../../../images/d86e3fe8fa53d1f280f87f7c3c81616f4d6d8f86526d6b6ec2ceb25c678ee8f5.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/12761b48f7c74e1f35004f6b42bea858da4c45124b2adef6d76991338323098d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      yushli1
+     </div>
+     <div class="post_content">
+      <p>
+       That looks really nice. Thanks for sharing it.
+       <br/>
+       How is the performance when running it on mobile device?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       This is awesome! Do particles react to scene geometry?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-full="true" data-post="17" data-topic="3670">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9048643316588db76818203daf343ef37a71015bc67340ebe3618cfd9620c7a7.png" width="20"/>
+        rku:
+       </div>
+       <blockquote>
+        <p>
+         This is awesome! Do particles react to scene geometry?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I’m 99% sure that no. It sounds like incredibly hard task.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-full="true" data-post="17" data-topic="3670">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9048643316588db76818203daf343ef37a71015bc67340ebe3618cfd9620c7a7.png" width="20"/>
+        rku:
+       </div>
+       <blockquote>
+        <p>
+         This is awesome! Do particles react to scene geometry?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Do you mean for collisions ?
+       <br/>
+       If it is, actually not. SPARK handle collisions but in internal with its own colliders shapes (box, sphere, plane, cylinder…) so it is possible to fake some scene collision using spark shapes over urho scene geometry (for basics shapes).
+      </p>
+      <p>
+       But I think it should not be too difficult to extended it using bullet physics shapes and get real world collisions.
+      </p>
+      <aside class="quote" data-full="true" data-post="16" data-topic="3670">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4063e6c2f19347575cb88dab3ee0762dec6e870971302b5aadc2410738f0d59d.png" width="20"/>
+        yushli1:
+       </div>
+       <blockquote>
+        <p>
+         That looks really nice. Thanks for sharing it.
+        </p>
+        <p>
+         How is the performance when running it on mobile device?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I can’t test on mobile for now, I need to config a dev platform for that, but soon…
+       <br/>
+       However, on desktop performances are really good.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       It works!
+       <br/>
+       I had to comment out SPK_WITH_XML on Os X otherwise I get errors, but It’s working!
+      </p>
+      <p>
+       <img alt="spark" height="500" src="../../../images/f66c8fbca2dbb8e9fd385cefd27d688adc4a01d23cfe40bb9a0a3466d4a98bcf.jpg" width="662"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="20" data-topic="3670">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/bd9c0b80f345bb4b6426f2be8825c479a2ceae3cfe9b7f97108844690af3a640.png" width="20"/>
+        johnnycable:
+       </div>
+       <blockquote>
+        <p>
+         I had to comment out SPK_WITH_XML on Os X otherwise I get errors, but It’s working!
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Thanks for OsX report… But if this flag is not present you can’t load spark effect files.
+       <br/>
+       I just fixed the cmake build and a xml error, it’s ok now for Linux and Windows, maybe this also fix OsX errors…
+       <br/>
+       Can you give me the compiler errors if there are still some ?
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt="spark" height="315" src="../../../images/4ba68860911c7a6770e0d340ce3294da2b9bc164bbfb16e622c80d37edead486.jpg" width="690"/>
+      </p>
+      <p>
+       No more errors on Os X.
+       <br/>
+       Whoa looks good!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/62a71395d4c17ae6d13ba5dd2ab14fd64e5b7af1784f42b10524e596f6c9a9f6.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      SirNate0
+     </div>
+     <div class="post_content">
+      <p>
+       Looks nice! What’s the performance like compared to Urho’s own particles?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="23" data-topic="3670" data-username="SirNate0">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/5021ab2d29f1ca3165735d4e238e3682b8c5b9f1b0f2604a5f14530fd0ab975f.png" width="20"/>
+        SirNate0:
+       </div>
+       <blockquote>
+        <p>
+         Looks nice! What’s the performance like compared to Urho’s own particles?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Good question.
+       <br/>
+       It need some advanced test to really compare both. But I made some quick test and spark is really more faster…
+      </p>
+      <p>
+       I build a similar effect for both system and tunes both side to render nearly same particles count.
+      </p>
+      <p>
+       Some images with stats:
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/p04wCcMjwxFd4r23PvG4pPKqgEY.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/a/af38763530dac84c9428cc45a45ce89c8064c41c.png" rel="noopener nofollow ugc" title="spark1">
+         <img alt="spark1" data-base62-sha1="p04wCcMjwxFd4r23PvG4pPKqgEY" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/af38763530dac84c9428cc45a45ce89c8064c41c_2_10x10.png" height="500" src="../../../images/b77c6947430e89fc1bb1bddaf193d8389946c2b5f5837b3a55ae486acdd8e9ff.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/af38763530dac84c9428cc45a45ce89c8064c41c_2_643x500.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/af38763530dac84c9428cc45a45ce89c8064c41c_2_964x750.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/a/af38763530dac84c9428cc45a45ce89c8064c41c.png 2x" width="643"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           spark1
+          </span>
+          <span class="informations">
+           1026×797 180 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/7q6V7B9e78doT1z6UG0BLu9kyKT.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/3/3402d804f5650f4768ab230ec39f94a28a9c5753.png" rel="noopener nofollow ugc" title="urho1">
+         <img alt="urho1" data-base62-sha1="7q6V7B9e78doT1z6UG0BLu9kyKT" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/3/3402d804f5650f4768ab230ec39f94a28a9c5753_2_10x10.png" height="500" src="../../../images/4a99303b1d65707a97ab246adcac09695e227d39295b6129d5a799ee02e2b97b.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/3/3402d804f5650f4768ab230ec39f94a28a9c5753_2_643x500.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/3/3402d804f5650f4768ab230ec39f94a28a9c5753_2_964x750.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/3/3402d804f5650f4768ab230ec39f94a28a9c5753.png 2x" width="643"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           urho1
+          </span>
+          <span class="informations">
+           1026×797 176 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/wsu5w9mS0Xw9LwvsWFgb5eiaosz.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/e/e37de2105f918019853287305becf1c26711661b.png" rel="noopener nofollow ugc" title="spark2">
+         <img alt="spark2" data-base62-sha1="wsu5w9mS0Xw9LwvsWFgb5eiaosz" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/e/e37de2105f918019853287305becf1c26711661b_2_10x10.png" height="500" src="../../../images/a0bf772b6ec9876491e0e6ec0f063c3218c20c7a4ed642dad3fe2c7a4dc43c39.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/e/e37de2105f918019853287305becf1c26711661b_2_643x500.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/e/e37de2105f918019853287305becf1c26711661b_2_964x750.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/e/e37de2105f918019853287305becf1c26711661b.png 2x" width="643"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           spark2
+          </span>
+          <span class="informations">
+           1026×797 185 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/nBMG1q0um9g3iHQaeyAObIfvcja.png?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/a/a577702de984f81ad14505f1dc5392c2aab6ca0c.png" rel="noopener nofollow ugc" title="urho2">
+         <img alt="urho2" data-base62-sha1="nBMG1q0um9g3iHQaeyAObIfvcja" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/a577702de984f81ad14505f1dc5392c2aab6ca0c_2_10x10.png" height="500" src="../../../images/934cd379eba86064753f17b57ef690ac6686a52e9a413f08ee5977b3d082bfbf.png" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/a577702de984f81ad14505f1dc5392c2aab6ca0c_2_643x500.png, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/a/a577702de984f81ad14505f1dc5392c2aab6ca0c_2_964x750.png 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/a/a577702de984f81ad14505f1dc5392c2aab6ca0c.png 2x" width="643"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           urho2
+          </span>
+          <span class="informations">
+           1026×797 164 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       conclusions :
+      </p>
+      <ul>
+       <li>
+        <p>
+         currently spark is faster and can render many more particles before dropping the fps.
+        </p>
+       </li>
+       <li>
+        <p>
+         The rendering method is faster for spark  :  we can see in statistics that the urho particle emitter does not dynamically update the vertex buffer count (always at max count), only the index buffer count is updated - spark update both.
+        </p>
+       </li>
+       <li>
+        <p>
+         A test without rendering (only particles update will be usefull too, but not tested yet)…
+        </p>
+       </li>
+       <li>
+        <p>
+         I see in stats that UpdateDrawables and ReinsertToOctree methods are less expensive on spark side.
+        </p>
+       </li>
+       <li>
+        <p>
+         spark is modular, when a feature is not needed (rotation, texture index, gravity, color interpolation,…) it is not computed in final effect, so a simple effect is really more efficient than a complex one. I think it’s not the case in urho particles, that always compute all features…
+        </p>
+       </li>
+      </ul>
+      <p>
+       <strong>
+        EDIT:
+       </strong>
+       <br/>
+       I made a little mistake when printing the “visible particle count” values on screenshots.
+       <br/>
+       good values are :
+      </p>
+      <p>
+       (SPARK) 93787 =&gt; 62525
+       <br/>
+       (URHO) 60000 =&gt; 40000
+      </p>
+      <p>
+       (SPARK) 357077 =&gt; 239056
+       <br/>
+       (URHO) 145350 =&gt; 96900
+      </p>
+      <p>
+       This value is the geometry indexCount / 6. I divided by 4…
+       <br/>
+       However it doesn’t affect other stats.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Hello.
+      </p>
+      <p>
+       I’d like to know if the core team would like to integrate this library into Urho3D as an official internal ThirdParty or if I continue to my dev on it as a standalone addon ? I’m facing some code design that will change considering this answer.
+       <br/>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I have no issue to have it added as 3rd-party libs, as long as it is optional. I do have a concern though that the last commit in that library was made like 3 years ago.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       I use the URHO_SPARK flag so compile can be optional.
+       <br/>
+       Yes the last commit was made 3 years ago. I talk with the spark dev and officially the lib is suspended now.
+      </p>
+      <p>
+       However its state is full and stable and to my knowledge there is no other such particles library so evolved and with an open source license.
+      </p>
+      <p>
+       Morehover I use my own fork of SPARK. As official one is suspended, I think it’s more flexible to integrate new changes. This fork remove the latest commits of the official lib that broke the gcc compilation, I also fixed some bugs, removed the unused renderers (irrlicht, dx9, ogl) and created the urho one. I also plan to add new features to the core lib and continue the dev on this fork.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Ok…that sounds good to me.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       Nice library porting .
+       <br/>
+       Quick check on Android , it doesn’t work well on Android (at least the demo )
+       <br/>
+       To my understanding the only working/displayed  effect is “Spark/Effects/Spark1.xml” .
+      </p>
+      <p>
+       I didn’t have time to debug it yet .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b8f5dad81b656072038634f7e88edcb9a54ec3432d6d48dbaba8878d623899bd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Dave82
+     </div>
+     <div class="post_content">
+      <p>
+       It’s interesting that SPARK is a CPU engine and runs so much faster than Urho3d’s GPU transformed particles.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="29" data-topic="3670" data-username="elix22">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2922f9798fc15b820e37abad714a8dc501142586e748ff016f51743d19c01ebf.png" width="20"/>
+        elix22:
+       </div>
+       <blockquote>
+        <p>
+         Quick check on Android , it doesn’t work well on Android (at least the demo )
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       I see this bug on emscripten too, manually build effects works, but loaded effects (from files) are not rendered. I’m investigating…
+      </p>
+      <aside class="quote no-group" data-full="true" data-post="30" data-topic="3670" data-username="Dave82">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/2d732a74ad6d9d5982c0e344fad30bccc9c0302ddbf1c23455bdc0315b23286b.png" width="20"/>
+        Dave82:
+       </div>
+       <blockquote>
+        <p>
+         It’s interesting that SPARK is a CPU engine and runs so much faster than Urho3d’s GPU transformed particles.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       During my tests I found that BillboardSet (used by urho’s particles) push on the vertex buffer the max particle count (set at particle creation) but doesn’t update it according the real alive particles count during effect lifetime. so it’s often bigger than necessary and need too much memory, I think it makes it actually not optimized for rendering dynamic particles. imho Fixing this first issue should render urho’s particles a bit faster, after it will need others benchmark.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Tested on Ipad with Ios 10.3, looks ok.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <ul>
+       <li>
+        Fixed bad loading effect files on some platforms (emscripten and android).
+       </li>
+       <li>
+        Clean code and fix warnings compilations.
+       </li>
+      </ul>
+      <p>
+       Use this branch for now :
+       <a href="https://github.com/fredakilla/Urho3D/tree/sparkdev" rel="nofollow noopener">
+        https://github.com/fredakilla/Urho3D/tree/sparkdev
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       I verified it on Android devices with versions 4.4.4 and 7.0
+       <br/>
+       Works well.
+       <br/>
+       Thanks for your work.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+       <span class="mention">
+        @dakilla
+       </span>
+       ! Are you still using this in Urho?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       I’m still using spark, but not with urho.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Have you abandoned the integration? Could you share with the us the most up-to-date repo/branch? I would like to keep it up.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Yes this integration is frozen since I use spark with others engines.
+      </p>
+      <p>
+       The most up to date urho3d integration is on my urho fork :
+       <a href="https://github.com/fredakilla/Urho3D/tree/sparkdev" rel="nofollow noopener">
+        https://github.com/fredakilla/Urho3D/tree/sparkdev
+       </a>
+      </p>
+      <p>
+       It use this SPARK modified version :
+       <a href="https://github.com/fredakilla/SPARK" rel="nofollow noopener">
+        https://github.com/fredakilla/SPARK
+       </a>
+       (I made some  few modifications to get it compile on linux and emscripten, fix some warnings, clean, add qt project and cmake …)
+      </p>
+      <p>
+       I’m also working on a node editor for spark :
+       <a href="https://github.com/fredakilla/spkgen" rel="nofollow noopener">
+        https://github.com/fredakilla/spkgen
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       I’m come back to Urho
+       <img alt=":stuck_out_tongue:" class="emoji" src="../../../images/3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f.png" title=":stuck_out_tongue:"/>
+       <br/>
+       I just created a new repo for the urho spark integration using an external library to maintain it independently and outside of the urho engine:
+       <a href="https://github.com/fredakilla/Urhox" rel="nofollow noopener">
+        https://github.com/fredakilla/Urhox
+       </a>
+      </p>
+      <p>
+       @
+       <a href="https://discourse.urho3d.io/u/rku">
+        rku
+       </a>
+       I also added your imgui implementation (thanks)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98194e3451919cca03b24988293ba807ca555e6cd37a1ff0f3a62d1a0291cf7d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoldenThumbs
+     </div>
+     <div class="post_content">
+      <p>
+       This still active? If yes, is this going to be in a future update of Urho?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e823a89d08539b4e5b390a5f01f3c5e460eab7696dd53d2293d4db0de04d490f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dev4fun
+     </div>
+     <div class="post_content">
+      <p>
+       I really liked this particle engine:
+       <a href="http://effekseer.github.io/" rel="nofollow noopener">
+        http://effekseer.github.io/
+       </a>
+      </p>
+      <p>
+       Is japanese, unfortunately they don’t use c++ 11 and I dont know about the code quality… the best thing on this is the editor and samples. I guess its the best that we can find with particle editor (open source obviously).
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e2c678c8277e6ca97df6fc88b8ad3494f7d15c9f66160c9bf76cf98efd95c633.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      suppagam
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @dakilla
+       </span>
+       do you still plan to make a PR for this?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

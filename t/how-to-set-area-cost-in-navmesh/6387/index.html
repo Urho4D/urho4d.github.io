@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to set Area Cost in NavMesh?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to set Area Cost in NavMesh?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7a39a9ea08db68bb853a3480795a9ab93a4cee6defc49ff8e82cf45d24fcceb2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CE184
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       I have a map with different speed areas. I want the agent to reach the destination with shortest time instead of shortest distance. I found there is a SetAreaCost() api for NavMesh. I played with it but could not figure out how to use it. The
+       <span class="hashtag">
+        #15
+       </span>
+       sample is too simple to cover this.
+      </p>
+      <p>
+       I tried
+      </p>
+      <pre><code class="lang-auto">  Node* area_node = scene_-&gt;CreateChild("AreaNode");
+  auto* nav_area = area_node-&gt;CreateComponent&lt;NavArea&gt;();
+  nav_area-&gt;SetAreaID(1);
+  nav_area-&gt;SetBoundingBox(BoundingBox(Vector3(40, 0, 40), Vector3(60, 0, 60)));
+  navMesh-&gt;SetAreaCost(1, 10);
+  // ...
+  navMesh-&gt;Build();
+  // ...
+  navMesh-&gt;SetDrawNavAreas(true);
+  navMesh-&gt;SetDrawOffMeshConnections(true);
+</code></pre>
+      <p>
+       But the agent is ignoring the cost value for the area, just find the shortest path as usual.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

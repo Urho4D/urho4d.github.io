@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   In-game static lightmap baking with automatic UV generation
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    In-game static lightmap baking with automatic UV generation
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/50fa08a00c3000c8ee8e804e757a4ad7cc77b1c87d6258529ae0ef173cdb844e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rico.decho
+     </div>
+     <div class="post_content">
+      <p>
+       I need to implement this feature for my game, for its integrated level editor.
+      </p>
+      <p>
+       I’m planning to use Thekla’s Atlas Generation Tool and  Ands’ Lightmapper C++ libraries, which are exactly what I need.
+      </p>
+      <p>
+       1st question : is this feature already implemented in Urho3d, and I’ve missed it ?
+      </p>
+      <p>
+       2nd question : if not, is this already planned, or has somebody already started to do it ?
+      </p>
+      <p>
+       3nd question : if not, can somebody give me clues on how to use these two libraries within Urho3D, as I’m new to Urho3D and I’m a not a graphics programmer, so I would need some advices…
+      </p>
+      <p>
+       Links:
+      </p>
+      <p>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+         <a href="https://github.com/ands/lightmapper" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="141" src="../../../images/3822e09bda70f74b51a95418737c166d8e77c4b6c5fba8b7c1495139a4b95145" width="141"/>
+         <h3>
+          <a href="https://github.com/ands/lightmapper" rel="nofollow noopener" target="_blank">
+           ands/lightmapper
+          </a>
+         </h3>
+         <p>
+          A C/C++ single-file library for drop-in lightmap baking. Just use your existing OpenGL renderer to bounce light! - ands/lightmapper
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+         <a href="https://github.com/Thekla/thekla_atlas" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/186513ced35f6f40c4829764d8b4813e72652e5bfb2423a0abf396e1327c5c3c" width="420"/>
+         <h3>
+          <a href="https://github.com/Thekla/thekla_atlas" rel="nofollow noopener" target="_blank">
+           Thekla/thekla_atlas
+          </a>
+         </h3>
+         <p>
+          Atlas Generation Tool. Contribute to Thekla/thekla_atlas development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <ol>
+       <li>
+        <p>
+         It isn’t implemented in Urho, tho there’s support for doing it.
+        </p>
+       </li>
+       <li>
+        <p>
+         Few people did lightmapping using different approaches.
+        </p>
+       </li>
+       <li>
+        <p>
+         The simplest approach is to bake lightmaps inside Blender, tho it requires you to have fairly small scene since blender doesn’t handle multiple texture files. Blender also doesn’t handle “lumels” - maintaining consistent lightmap world pixel size.
+         <br/>
+         If you’re going to use the lightmapper lib you could try to find and use some offline renderer that can do light bouncing (global illumination) to get good results. I wouldn’t recommend using Urho’s renderer for this task.
+        </p>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9e484e760615ae1055c98a33975f0abfde7a99cbe48f85a088138e5ac5daabc8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Mike
+     </div>
+     <div class="post_content">
+      <p>
+       You can have a look at
+       <a href="http://discourse.urho3d.io/t/atomic-game-engine-mit-urho3d-fork/643/105">
+        Atomic
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/50fa08a00c3000c8ee8e804e757a4ad7cc77b1c87d6258529ae0ef173cdb844e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rico.decho
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks, that’s exactly what I need !!
+      </p>
+      <p>
+       This is for a rudimentary in-game level editor, so the Blender solution is not possible, but Embree + Thekla Atlas should be fine.
+      </p>
+      <p>
+       At least now I have some sample code to learn from, so thanks again
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9fc508e06f0aa7743685487d988394bcee89488af04d7acb6a1bb44b49334f88.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      oschakravarthi
+     </div>
+     <div class="post_content">
+      <p>
+       Hi
+       <span class="mention">
+        @rico.decho
+       </span>
+       ,
+      </p>
+      <p>
+       Could you find out any solution for baking lightmaps offline programatically?
+      </p>
+      <p>
+       Thanks in advance.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/0bafc88c2693ea0538f7a1880cb7f747801eb072a4ee01df3b186f1bd9d24a8b.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      green-zone
+     </div>
+     <div class="post_content">
+      <p>
+       <a href="https://discourse.urho3d.io/search?q=lightmap">
+        https://discourse.urho3d.io/search?q=lightmap
+       </a>
+      </p>
+      <p>
+       Atomic-Glow lightmapper port for Urho3D
+       <br/>
+       Only direct lighting is ported:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/eugeneko/Urho3D/tree/atomic-glow" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/a5dc19796dddecf2f5d12f41a9f0c79d147ebcfc67b4710102cd621720fda39c.png" width="420"/>
+         <h3>
+          <a href="https://github.com/eugeneko/Urho3D/tree/atomic-glow" rel="nofollow noopener" target="_blank">
+           eugeneko/Urho3D
+          </a>
+         </h3>
+         <p>
+          Cross-platform 2D and 3D game engine. Contribute to eugeneko/Urho3D development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       Other:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/Lumak/Urho3D-Lightmap" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/081462c49d523415f1d2066c063f5d3bc47a90fbe2139b77b5568e4fd1ffe848.jpg" width="400"/>
+         <h3>
+          <a href="https://github.com/Lumak/Urho3D-Lightmap" rel="nofollow noopener" target="_blank">
+           Lumak/Urho3D-Lightmap
+          </a>
+         </h3>
+         <p>
+          Lightmap generator for Urho3D based on Hugo Elias's Radiosity. - Lumak/Urho3D-Lightmap
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       Or:
+       <br/>
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="3rZB1otdQqI" data-youtube-title="remoteLightmapBaker4Urho3D_WIP">
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

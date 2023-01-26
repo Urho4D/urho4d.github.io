@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Node based material editor
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Node based material editor
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="ObS4sd8vdvQ" data-youtube-title="Disappearing material">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="otdD5K_d_GY" data-youtube-title="Urho3d Material Editor">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="OrTJ4VtUTmQ" data-youtube-title="Urho3D. Simple shading.">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       Looks impressive ! You obviously put in a lot of work there. Plan to release it ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Yes. One day it will be opensource. Currently it only works with opengl 2. We plan to release it when we finish support for glsl and hlsl. I can provide access to early build for a feedback.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       What did you use for UI?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       WPF + UrhoSharp for preview. There are plans to make it crossplatform with AvaloniaUI.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Can I ask you what is the node editor you used in WPF?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       How did you achieve runtime material modification?
+       <br/>
+       just change the values of an existing material object (sometimes i get confused doing so)
+       <br/>
+       or discard the existing object and instantiate a new one?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       The editor generates material.xml, technique.xml and shaders in background. Then it calls
+       <a href="https://developer.xamarin.com/api/member/Urho.Resources.ResourceCache.ReloadResourceWithDependencies/p/System.String/" rel="nofollow noopener">
+        https://developer.xamarin.com/api/member/Urho.Resources.ResourceCache.ReloadResourceWithDependencies/p/System.String/
+       </a>
+       to update the runtime.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Custom one. I’ll release it as a nuget package later. It is also suitable for scripting if you are interested in it
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       I using
+       <a href="https://github.com/Wouterdek/NodeNetwork" rel="nofollow noopener">
+        https://github.com/Wouterdek/NodeNetwork
+       </a>
+       and it’s have lot of problem and also it’s have memory bug from reactiveui . so modified that lot and i removed reactive ui but still that you did it’s really nice it’s have grouping it’s really nice.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       An early version is avaliable via
+       <a href="http://itch.io" rel="nofollow noopener">
+        itch.io
+       </a>
+       by invite. Drop me a message if you want a key.
+       <br/>
+       Some limitations of the current version:
+      </p>
+      <ul>
+       <li>
+        desktop OpenGL only
+       </li>
+       <li>
+        forward render only, per pixel lighting only
+       </li>
+       <li>
+        bugs are expected
+       </li>
+       <li>
+        there are no guarantees that the graph you make will be compatible with the final version. Although I made some safe checks so you can always “upgrade” it manually.
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Perfect. It’s working really nice. GOOD JOB
+       <img alt=":+1:" class="emoji" src="../../../images/42b43325b3edacba2a0e72b742bdc6fc5e4bc2ad38adca271fcc6d8353639887.png" title=":+1:"/>
+       <br/>
+       DirectX working much much better with WPF. because WPF is running over directx.
+       <br/>
+       There is a bug in ReactiveUI it’s leaking memory and i saw it’s effecting your project little.
+       <br/>
+       You need to open menu and submenu lot of times and watch the memory or add lot of nodes and remove them you can see memory will not release after that. Dump memory with visual studio i’m sure you will see lot o IDisposable and ReactiveUI classes.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+      <aside class="onebox githubissue">
+       <header class="source">
+        <a href="https://github.com/Wouterdek/NodeNetwork/issues/6" rel="nofollow noopener" target="_blank">
+         github.com/Wouterdek/NodeNetwork
+        </a>
+       </header>
+       <article class="onebox-body">
+        <a href="https://github.com/OmidID" rel="nofollow noopener">
+         <img class="thumbnail onebox-avatar" height="96" src="../../../images/9f65f96d566b67eeac23c77d1dd44c30bcdf690822e82ad34d1580d3c469fc32.jpeg" width="96"/>
+        </a>
+        <h4>
+         <a href="https://github.com/Wouterdek/NodeNetwork/issues/6" rel="nofollow noopener" target="_blank">
+          Issue: Memory usage bug
+         </a>
+        </h4>
+        <div class="date" style="margin-top:10px;">
+         <div class="user" style="margin-top:10px;">
+          opened by
+          <a href="https://github.com/OmidID" rel="nofollow noopener" target="_blank">
+           OmidID
+          </a>
+          on
+          <a href="https://github.com/Wouterdek/NodeNetwork/issues/6" rel="nofollow noopener" target="_blank">
+           2018-05-30
+          </a>
+         </div>
+         <div class="user">
+          closed by
+          <a href="https://github.com/Wouterdek" rel="nofollow noopener" target="_blank">
+           Wouterdek
+          </a>
+          on
+          <a href="https://github.com/Wouterdek/NodeNetwork/issues/6" rel="nofollow noopener" target="_blank">
+           2018-07-09
+          </a>
+         </div>
+        </div>
+        <pre class="content" style="white-space: pre-wrap;">I have a problem in my project. If you create a tab control and switching between tabs you will see memory...</pre>
+        <div class="labels">
+         <span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">
+          bug
+         </span>
+        </div>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       Actually I removed ReactiveUI finally and it’s much faster and no more memory leak. Our application should be run on embedded devices so we are limited on memory that why I found it’s good to don’t use ReactiveUI.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I only use ReactiveUI to throttle user input. Shouldn’t be that bad. Otherwise there is a custom commands and the base node graph implementation doesn’t have any fancy dependencies.
+      </p>
+      <p>
+       Anyway I’ll run it under profiler later when the architecture gets stable.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Nice. then it’s easy to move from that. really nice. i going to test the new one on my scenes
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @glebedev
+       </span>
+       I didn’t success to load my scenes because i have 2 folders.
+      </p>
+      <pre><code class="lang-cs">    DesktopUrhoInitializer.AssetsDirectory = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../Assets");
+    var options = new ApplicationOptions("Data;Machines")
+</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I didn’t know it’s possible!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       Ok, I need to do something about it…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/23393aae72e471e32ea1c7e1f35dd88566c673bcafc0bf1b20cdc2abb8221f1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Zamir
+     </div>
+     <div class="post_content">
+      <p>
+       If programn not run, you must manually C: \ Users \ ____ \ AppData \ Roaming \ Urho3DMaterialEditor change settings or delete folder
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @glebedev
+       </span>
+       Is there a Linux version available?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       No, because I had to use WPF to speedup development. There are plans to utilize AvaloniaUI for cross platform but not at the moment.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Yeh it’s possible
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       <br/>
+       I think it’s more easy to use Xamarin.Forms + GTK+ and WPF.
+       <br/>
+       As you know it’s supporting now and i think you can run UrhoSharp on that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       New version allows you to pick multiple folders. Unfortunately I had to change file format to make naming consistent. I hope it’s the last breaking change for a long time.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Perfect/ I’ll try it at Monday
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       <br/>
+       thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks! By that time I hope to finish deferred pass generation and simplified material creation so you won’t need manually wire shadow map to light if all you need is a default diffuse lighting model.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       After i added folders i again i cannot open my scene
+       <br/>
+       <img alt="image" height="464" src="../../../images/3c550f5fa1a152854c3f7604a6e55d621e240c1723ba77398ef8f0cafa5e0c10.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       My I ask you to send me a screenshot of your folder settings?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @glebedev
+       </span>
+       do you mean asset directory?
+      </p>
+      <p>
+       <img alt="image" height="262" src="../../../images/45cd29922ba62935f95f1dbfba2185dd46a6a1bdc934bf3b66c9986f15772d9f.png" width="569"/>
+       <br/>
+       <img alt="image" height="310" src="../../../images/8c0787a7910752b68530e3cb718f936af601d4e8a8bf46e5c0a25a35dedacd60.png" width="596"/>
+       <br/>
+       <img alt="image" height="395" src="../../../images/f8ca2c81b7893062bf4cba59588c3835398e943a386bd353ffd81f87eab183b1.png" width="577"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       No, I mean the dialog window that appear when you click on “set resources dir” in the main menu.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       this one?
+      </p>
+      <p>
+       <img alt="image" height="388" src="../../../images/2cef8ad46de20ed89c872f50cd9445e1ced84ba71d6913bdc037492e2e025793.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Hmm… Maybe there is a bug due to space in a folder name. I’ll check it tonight.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Btw did you restart the editor after setting the path?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Yes. I did. It’s same.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Sorry for the big. We’ll fix it asap
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       It’s ok
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       <br/>
+       thanks for responding
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I can not reproduce the issue
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       <br/>
+       <img alt="image" height="170" src="../../../images/6497e15f176fe06d770817b15e8a9510b4e331d1cee044fbecabe5ec15a9d5a9.png" width="478"/>
+      </p>
+      <p>
+       And then I use
+       <br/>
+       <img alt="image" height="218" src="../../../images/ae86a4cf7fab90ef01b78961a8928ee013645bd9bbf1fd95ca7c123f74164595.png" width="462"/>
+      </p>
+      <p>
+       To load scene
+       <br/>
+       <img alt="image" height="148" src="../../../images/7758693ce8e3b2609ceb78605e9a32f31227f7d9266ca05942c305bdd23adc42.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Can you spot the difference?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve made a workaround. Now the app offers you to copy file in the right folder. Let’s see what happens now.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t know why. but this time worked well.
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       <br/>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Good to know
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       Btw here is what guys made yesterday with the editor:
+       <br/>
+       <img src="../../../images/81e91057039de77135bdf1dbe9065e5acaf432601f6a5db7cc20d98ee3d5cee3.jpg"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       A live stream of making an effect:
+       <br/>
+       <a class="onebox" href="https://www.youtube.com/watch?v=RjrDxjzzKGE" rel="nofollow noopener" target="_blank">
+        https://www.youtube.com/watch?v=RjrDxjzzKGE
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Really looks perfect. NICE
+       <br/>
+       Do you have plan for DirectX ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Yes, we do. I am not profound in DirectX personally so it depends on my teammates
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Zamir
+       </span>
+       added a model preview:
+       <br/>
+       <img src="../../../images/1ce6d1c3cd20ab629f11d99a3d0f85f901bb0517bd950b4683c13ed19f7a55b8.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I’ll be streaming another example tomorrow. You can subscribe to the channel to ask questions and comment live
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       <br/>
+       <a href="https://www.youtube.com/channel/UCWxM_7z4Ab0g5wjN36e2Zqg" rel="nofollow noopener">
+        https://www.youtube.com/channel/UCWxM_7z4Ab0g5wjN36e2Zqg
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       <a class="onebox" href="https://youtu.be/2-IO5BLi6n8" rel="nofollow noopener" target="_blank">
+        https://youtu.be/2-IO5BLi6n8
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @glebedev
+       </span>
+       What is the license ?
+       <br/>
+       I generate something and i want to use it and i need to add license to project.
+       <br/>
+       Also it’s good to generate license header in output file.
+      </p>
+      <p>
+       I Hope you can finish DirectX as soon as possible.
+      </p>
+      <p>
+       THANKS FOR THIS GREAT TOOLS
+       <img alt=":pray:" class="emoji" src="../../../images/697cae8fe5f354b203da580b96c35e11316f327d8beeeb7ee5fdc5322e67f9f4.png" title=":pray:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       The source code will be released under MIT when it’s stable. I don’t think license applies for the files produced by the app. It’s like a Photoshop - you don’t need to include Photoshop license file anywhere if you made textures with it, am I right?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Ok. so simply i’ll copy generated file. thanks again
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Hlsl support and “ifdef” nodes are in progress. Stay tuned
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Upcoming feature teaser:
+      </p>
+      <p>
+       <img alt="image" height="455" src="../../../images/f44088cf8001d28a0f4d42fd67669b13e85cbb49ab210c4e7b07fed2a5fbdd94.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Just in case you are wondering what’s the state of the project. Here is a video to demonstrate new features:
+      </p>
+      <p>
+       <a class="onebox" href="https://youtu.be/AMypkra9Wyo" rel="nofollow noopener" target="_blank">
+        https://youtu.be/AMypkra9Wyo
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Nice. Do you have plan to release it soon?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       It should go to open source and open beta soon. We improved UI responsiveness, first experience (start material template), some features added. The only thing that bugs me is matrix multiplication. The 4x3 matrix called that after D3D but order of multiplication is following OpenGL pattern. I think I’ll keep OpenGL order but should I rename matrix then?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       And compatibility with previous release is broken
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        And compatibility with previous release is broken
+       </p>
+      </blockquote>
+      <p>
+       I think this is not a problem from my point of view. i can reproduce what i have.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Presets are coming to the editor:
+       <br/>
+       <img alt="image" height="300" src="../../../images/38dc77fd2952f282d8a328f57a825510c993319c51b7649de2de5a0349cd2a7e.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Default material:
+      </p>
+      <p>
+       <img alt="image" height="291" src="../../../images/70d0351a536ea99e0a9ccfed9b445f9e6b75552ae4f8d66baa4164fd5575708f.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       itch version is updated now.
+      </p>
+      <p>
+       <img alt="image" height="349" src="../../../images/1ebc8a9c862b1e2a7d930631700cd6ddb79fae037dd8597e7700c43c46824426.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       This is really cool. Congratulations on your amazing work!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       This is really great. PERFECT.
+       <img alt=":clap:" class="emoji" src="../../../images/17593d5b0202769a3408c33b36f839e3a268f44a6b19db8b21d2c5ecce30d8d5.png" title=":clap:"/>
+       <br/>
+       I can see you already start directx
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       I really need that.
+      </p>
+      <p>
+       This perfect project should be include into the urho by default.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/23393aae72e471e32ea1c7e1f35dd88566c673bcafc0bf1b20cdc2abb8221f1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Zamir
+     </div>
+     <div class="post_content">
+      <p>
+       Omid, could you help with the translation to directX?
+       <img alt=":thinking:" class="emoji" src="../../../images/eeb2678188b872361d37efb4df3e7ad71f2db34939269368594dc1e4ece2e3b1.png" title=":thinking:"/>
+       <img alt=":slightly_smiling_face:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slightly_smiling_face:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       what do you mean ? !!!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/23393aae72e471e32ea1c7e1f35dd88566c673bcafc0bf1b20cdc2abb8221f1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Zamir
+     </div>
+     <div class="post_content">
+      <p>
+       translation from GLSL to HLSL
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       Ah. Yes. sure. why not.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Cool! It goes open source and open beta today. I’ll send you a message.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4a1ce2d7074b325651f4e2ea803a7f6d4fcb528f0de5b03b3a9353f00c74a0b2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Omid
+     </div>
+     <div class="post_content">
+      <p>
+       GOOD NEWS!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       It is done.
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/7abdfa1393bd9f4a9bb8338b6667125f8579e877c59e23d6c200c1941ff748d0.png" width="32"/>
+        <a href="https://glprojects.itch.io/urho3d-material-graph-editor/devlog/42708/public-beta" rel="nofollow noopener" target="_blank">
+         itch.io
+        </a>
+       </header>
+       <article class="onebox-body">
+        <div class="aspect-image" style="--aspect-ratio:377/296;">
+         <img class="thumbnail" src="../../../images/db513d04f8b2e0a55b988c5cc2f947997679c200e21c172ac5d2cb74e426f986.png"/>
+        </div>
+        <h3>
+         <a href="https://glprojects.itch.io/urho3d-material-graph-editor/devlog/42708/public-beta" rel="nofollow noopener" target="_blank">
+          Public Beta - Urho3D Material Graph Editor by glprojects
+         </a>
+        </h3>
+        <p>
+         We are going to public beta stage! Here is the source code if you want to dive in  and fix few bugs:  https://github.com/gleblebedev/Urho3DMaterialGraphEditor Good luck! Have fun :)
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       When I try to watch the video on the page it says:
+      </p>
+      <blockquote>
+       <p>
+        “Playback on other websites has been disabled by the video owner.”
+       </p>
+      </blockquote>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Ok. This is strange.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/23393aae72e471e32ea1c7e1f35dd88566c673bcafc0bf1b20cdc2abb8221f1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Zamir
+     </div>
+     <div class="post_content">
+      <p>
+       yes, it is, but you can continue viewing in the youtube directly
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Of course, but this is clearly unintended behaviour. Providing workarounds doesn’t equal fixing bugs.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       <br/>
+       <img alt="image" height="88" src="../../../images/25c9b725c82fdb272676506f8af0f348b2a18a26af49554d207db14d432dd667.png" width="308"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @glebedev
+       </span>
+       Might
+       <a href="https://vimeo.com/channels/luckeyproductions">
+        Vimeo
+       </a>
+       meet your needs?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I can’t stream to Vimeo, only YouTube and Facebook
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+       And recording and uploading isn’t an options as I don’t have much time to do it. It is way easier for me to do it live.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="BtwjStJKa_E" data-youtube-title="Urho3D Material Editor Live Stream">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/66ff6338088fce6724d69045cebf5416f0eae4f98d6bedf7d7c352e40c0ea3e0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      megapunchself
+     </div>
+     <div class="post_content">
+      <p>
+       u’ll make in the future possible to export to a script like a .glsl/.hlsl/shader/technique too?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       It already creates a material, technique and glsl shader. Enjoy
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Here is an example of material made with an editor:
+       <br/>
+       <video controls="" height="496" preload="none" width="598">
+        <source src="../../../images/430ac338c03cbc132733fa4ccee965fdbd5587cac2023aa8fcd680ae3a73bb2a.mp4" type="video/mp4"/>
+        Your browser does not support the video tag.
+       </video>
+      </p>
+      <p>
+       Each butterfly is a quad with animated “wings”. Everything is animated on GPU.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

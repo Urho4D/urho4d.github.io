@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Why is my object look’s like this?(Using UrhoSharp)
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Why is my object look’s like this?(Using UrhoSharp)
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/eec6f31824f153532466d9dbb64b5e91b5fd34386db9a7e5625e1d2cf0768598.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      matalink
+     </div>
+     <div class="post_content">
+      <p>
+       Why is my object looking like this? It’s ok on blender but when import to my game it looks like it have this weird line stretching from its holster. I am newbie by the way.
+      </p>
+      <p>
+       <img alt="43%20PM" data-base62-sha1="1Tw45e0gGvVRAd4kI5eXc19PJTQ" height="487" src="../../../images/e47c1025f6e924e863911ef37380cb1b9808ff32d8bccc890e4dffe0362b1f10.png" width="276"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Hey man, I see more stretching at the feet.
+       <br/>
+       This looks like a skin weight problem, which implies there are bones in your model, but for some reason not all the vertices have proper bone weights. Could be an exporter bug.
+      </p>
+      <p>
+       How did you export your blender object?
+       <br/>
+       Personally, I export from blender to fbx, then use urho’s AssetImporter tool to convert the fbx to urho files. I never had a problem like this yet.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/3ea7a1555aff4c5b3dd0274b8e7ae351c7e22708a771f0a92691672b7da6e609.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      S.L.C
+     </div>
+     <div class="post_content">
+      <p>
+       Which compiler are you using (probably gcc 8) and which engine version are you using (probably 1.7). What process have you used. And a bit more detail in general is required. Not just
+       <code>
+        WHY?
+       </code>
+       .
+      </p>
+      <p>
+       NVM: I just noticed it says C#
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":innocent:" class="emoji" src="../../../images/611da599aefa272c08f00d5ba34e3c35f88e1048ab4cf81bfad902ead7a84863.png" title=":innocent:"/>
+       did you export your models using
+       <a href="https://github.com/reattiva/Urho3D-Blender" rel="nofollow noopener">
+        Urho3D-Blender
+       </a>
+       ? that thing seems to be with a lota serious problems.
+       <br/>
+       I suggest for now export modesl as FBX format and then import using Urho3D’s AssetImporter.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Virgo
+       </span>
+       There’s now also:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/dertom95/Urho3D-Blender" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/03cdc89379d4514a6104d8f23531eb72f00f70933ca4a5bca0bc5e9478cba750" width="400"/>
+         <h3>
+          <a href="https://github.com/dertom95/Urho3D-Blender" rel="nofollow noopener" target="_blank">
+           dertom95/Urho3D-Blender
+          </a>
+         </h3>
+         <p>
+          Contribute to dertom95/Urho3D-Blender development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       And
+       <span class="mention">
+        @reattiva
+       </span>
+       ’s branch still works fine with Blender 2.79.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Looks like either UVs are upside-down or materials are mismatched if it’s a multi-part model. Betting on UVs being upside down.
+      </p>
+      <p>
+       Blender uses GL-nonsense
+       <em>
+        load textures from bottom-left and upwards in rows
+       </em>
+       for texture data, if he did something like
+       <code>
+        Blender -&gt; Collada -&gt; AssimpConverter
+       </code>
+       it could easily come out like this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       Not sure what stretched geometry has to do with bad UVs… imho uv coords should only affect appearance of geometry, not contribute to shape deformation. Bad skin weights on the other hand, could certainly do this.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Leith
+       </span>
+       I’m just reffering to the texture issues, no clue what the geometry issues are and I don’t care, nor should anyone really. The texture issues have to be sorted out first.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

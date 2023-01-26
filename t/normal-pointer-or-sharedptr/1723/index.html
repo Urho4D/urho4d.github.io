@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Normal pointer or SharedPtr?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Normal pointer or SharedPtr?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f26d23bd1cdd6634cc8c5a37903d2dedf3bf81034d88f020b9c259cb01d5f3b0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kanfor
+     </div>
+     <div class="post_content">
+      <p>
+       Is strictly necessary to use SharedPtr?
+       <br/>
+       Is It wrong to use normal pointers?
+      </p>
+      <p>
+       Thanks
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a9aa60fc39b46d07cb2562f0b11ec4762a64197339da1365b1faaafe4f4b3be8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      thebluefish
+     </div>
+     <div class="post_content">
+      <p>
+       Yes/No and no.
+      </p>
+      <p>
+       Shared pointers are great because you will know if an object is deleted before the pointer, and it prevents some relatively bad issues as a result. However it is fine to use normal pointers as long as you pay attention.
+      </p>
+      <p>
+       Do note that you will want to keep a SharedPtr to an object as long as you want that object to stay alive. Otherwise you run into the possibility of the object getting deleted when the last SharedPtr pointing to it gets deleted. However beyond that, you can freely use normal points as much as you want.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f26d23bd1cdd6634cc8c5a37903d2dedf3bf81034d88f020b9c259cb01d5f3b0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Kanfor
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you very much!
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4257fea9ef0da180bf1ea799bb0eb4ed1c10ea2ac6e14229f2a040039b7541ab.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      atai
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“thebluefish”]Yes/No and no.
+      </p>
+      <p>
+       Shared pointers are great because you will know if an object is deleted before the pointe
+      </p>
+      <p>
+       Do note that you will want to keep a SharedPtr to an object as long as you want that object to stay alive. Otherwise you run into the possibility of the object getting deleted when the last SharedPtr pointing to it gets deleted. However beyond that, you can freely use normal points as much as you want.[/quote]
+      </p>
+      <p>
+       A related question is that, is there a reason not to use the C++ std::shared_ptr&lt;&gt; but a custom implementation in Urho3D?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-username="thebluefish">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/4b1209bc2cff158cac3deb94b06eafe95cc328b5f8c8b58f2a70b4f3a07aa61e.png" width="20"/>
+        thebluefish:
+       </div>
+       <blockquote>
+        <p>
+         A related question is that, is there a reason not to use the C++ std::shared_ptr&lt;&gt; but a custom implementation in Urho3D?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       The SharedPtr questions have been asked a few times already in the forum. The most recent one is this.
+       <a href="http://discourse.urho3d.io/t/solved-sharedptr-in-samples/1658/1">
+        topic1723.html
+       </a>
+       . Urho3D SharedPtr uses intrusive refcounting.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/fc04c040763b7e89f8851b7b43db8f06dfccbce319892dd9ca2e10f61d380503.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      valera_rozuvan
+     </div>
+     <div class="post_content">
+      <p>
+       From Urho3D documentation
+       <a href="http://urho3d.github.io/documentation/HEAD/_conventions.html" rel="nofollow noopener">
+        urho3d.github.io/documentation/H … tions.html
+       </a>
+       :
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Raw pointers are used whenever possible in the classes’ public API. This simplifies exposing functions &amp; classes to script, and is relatively safe, because SharedPtr &amp; WeakPtr use intrusive reference counting.
+        </p>
+       </blockquote>
+      </aside>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

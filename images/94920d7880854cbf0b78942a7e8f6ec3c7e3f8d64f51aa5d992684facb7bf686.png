@@ -1,0 +1,52 @@
+
+
+			<!DOCTYPE html>
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title>你所访问的页面不存在 (404)</title>
+			<link href="/storage/9615/images/20190513/20190513055329_44105.png" rel="shortcut icon">
+			<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+			<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+</head>
+			<body><style type="text/css">
+body {
+ background-color:#f8f8f8;
+ font-family:"Helvetica Neue",Helvetica,"PingFang SC","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,sans-serif;
+ font-weight:bold;
+}
+a {color:#fff;text-decoration:none;background-color:#356;padding:5px 9px;margin-top:15px;display:inline-block;}
+.error {
+ width:200px;height:200px;
+ background-color:#357;
+ position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;border-right:300px solid #357;
+}
+
+
+.error:after {
+ content:" ";
+ position:absolute;
+ left:0;right:0;top:50%;bottom:-50%;
+ background-color:#357;
+ transform:skewX(40deg);
+}
+.error:before {
+ content:" ";
+ position:absolute;
+ left:0;right:0;top:-50%;bottom:50%;
+ background-color:#357;
+ transform:skewX(-40deg);
+}
+
+.content {
+ position:absolute;left:35px;top:40px;z-index:2;width:500px;font-size:25px;color:#fff;
+}
+@media screen and (max-width:599px){
+
+}
+</style>
+<script src="https://cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+<div id="error404">
+ <div class="error"><div class="content"><p><a href="/">页面回火星啦，点此返回首页</a></p></div></div>
+</div></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3D C#: CustomGeometry сolor
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3D C#: CustomGeometry сolor
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7d9a1eb5715a3594ca45d986837473a113d9c7765b119516fe62fb6f8f9410d7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Artemprodigy
+     </div>
+     <div class="post_content">
+      <p>
+       It’s necessary to draw semitransparent triangles that would be visible where they intersect. I tried different CoreAssets.Techniques but unseccessfully. And how to choose special color for imposing triangles, not default mixed color?
+      </p>
+      <p>
+       CustomGeometry geom = geomNode.CreateComponent();
+       <br/>
+       Material geomMaterial = new Material();
+       <br/>
+       geomMaterial.SetTechnique(0, CoreAssets.Techniques.NoTextureUnlitVCol, 50, 0.5f);
+       <br/>
+       geom.SetMaterial(0, geomMaterial);
+       <br/>
+       geom.BeginGeometry(0, PrimitiveType.TriangleList);
+      </p>
+      <p>
+       Urho.Color color = new Urho.Color(0.85f, 0.8f, 0.2f, 0.35f);
+       <br/>
+       geom.DefineVertex(list[0]);
+       <br/>
+       geom.DefineColor(color);
+       <br/>
+       geom.DefineVertex(list[i]);
+       <br/>
+       geom.DefineColor(color);
+       <br/>
+       geom.DefineVertex(list[i+1]);
+       <br/>
+       geom.DefineColor(color);
+      </p>
+      <p>
+       geom.Commit();
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

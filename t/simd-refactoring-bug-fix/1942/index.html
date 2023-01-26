@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   SIMD refactoring/bug fix
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    SIMD refactoring/bug fix
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks to cosmy1 who brought to our attention that we have a problem with one of the Urho3D-specific compiler define being used in Bullet code base. Due to a series of unfortunate events
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+       , we have basically disabled SSE code path in Bullet library for OSX, Linux, and Windows (with MinGW) platforms for the past few months in the master branch. The problem started to happen after we/I (use the latter when you want someone to blame) have baked some of our compiler defines and auto-discovered them later to avoid potential miss-configuration in downstream projects. Unfortunately we have overlooked the “URHO3D_SSE” compiler define was used in our modified version of Bullet source files. As Bullet source files do not include Urho3D export header, the SSE was disabled since then. However, the full story is not that simple. I am not a Bullet expert but it appears that after that Bullet library ended up in a conflicting state and some of you notice it (see
+       <a href="https://github.com/urho3d/Urho3D/issues/1193">
+        github.com/urho3d/Urho3D/issues/1193
+       </a>
+       ). I think the BT_USE_SSE_IN_API was turned off to solve the conflicting state.
+      </p>
+      <p>
+       The “refactor-simd” branch attempts to address all these. It should bring back SSE code path to those affected platforms. I have already tested as much as possible. So far it appears that vehicle demo tested to run fine on OSX and Linux. The serialization/deserialization of gravity attribute value seems to be working fine on Linux. But we will need your help to test out the branch before it gets merge.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Excellent! Yeah, naturally if Bullet can’t use the SIMD operations in its vector / matrix class outward-facing API, it cannot use them internally either, which can be a (large) performance loss.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

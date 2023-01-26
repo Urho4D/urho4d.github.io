@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Issue linking lGL when compiling player
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Issue linking lGL when compiling player
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/01a9d3b65037c79c33180dc372f0c02c6386c3a89b861634c476fe445b7cfb28.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CrackedP0t
+     </div>
+     <div class="post_content">
+      <p>
+       I’m trying to build Urho3d on Ubuntu 14.04, but I can’t build the player.
+       <br/>
+       It’s weird, because I definately have libGL in my library search path thingy.
+      </p>
+      <p>
+       The error:
+      </p>
+      <pre><code class="lang-auto">Linking CXX executable /home/toby/Urho3D-1.31/Bin/Urho3DPlayer
+/usr/bin/ld: cannot find -lGL
+collect2: error: ld returned 1 exit status
+make[2]: *** [/home/user/Urho3D-1.31/Bin/Urho3DPlayer] Error 1
+make[1]: *** [Tools/Urho3DPlayer/CMakeFiles/Urho3DPlayer.dir/all] Error 2
+make: *** [all] Error 2</code></pre>
+      <p>
+       ldconfig -p | grep
+       <a href="http://libGL.so" rel="nofollow noopener">
+        libGL.so
+       </a>
+      </p>
+      <pre><code class="lang-auto">libGL.so.1 (libc6,x86-64) =&gt; /usr/lib/x86_64-linux-gnu/mesa/libGL.so.1
+libGL.so.1 (libc6) =&gt; /usr/lib/i386-linux-gnu/mesa/libGL.so.1
+libGL.so (libc6,x86-64) =&gt; /usr/lib/x86_64-linux-gnu/libGL.so
+libGL.so (libc6,x86-64) =&gt; /usr/lib/x86_64-linux-gnu/mesa/libGL.so</code></pre>
+      <p>
+       EDIT:
+       <br/>
+       I fixed it by running:
+       <br/>
+       sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       It sounds like you need mesa:
+      </p>
+      <p>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Readme.txt#L141" rel="nofollow noopener">
+        github.com/urho3d/Urho3D/blob/m … e.txt#L141
+       </a>
+      </p>
+      <p>
+       For debian based use sudo apt-get install libgl1-mesa-dev
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Welcome to our forum.
+      </p>
+      <p>
+       The Mesa driver should only be used as a fallback because it does not have great performance.
+      </p>
+      <p>
+       To me, your problem looks like a common 32bit vs 64bit mistake. From your output, I assume you have a 64bit host system but you were mistakenly building 32bit Urho because you didn’t supply URHO3D_64BIT build option.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“weitjong”]Welcome to our forum.
+      </p>
+      <p>
+       The Mesa driver should only be used as a fallback because it does not have great performance.
+      </p>
+      <p>
+       To me, your problem looks like a common 32bit vs 64bit mistake. From your output, I assume you have a 64bit host system but you were mistakenly building 32bit Urho because you didn’t supply URHO3D_64BIT build option.[/quote]
+      </p>
+      <p>
+       I wonder if the default settings for the arch should be the host system for linux with 32/64 overrides.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Yes. I have thought about that as well when replying the earlier post. With more and more peoples embracing 64-bit OS, the default setting to build Urho3D as 32-bit seems to going out of favor. It should be relatively easy to let the build script detects the native arch of the host system and use that information to set which version of Urho3D library to be built by default. Then the existing URHO3D_64BIT build option can be used just as a way to override the default. So those 64-bit hosts that have 32-bit toolchain installed can still build 32-bit Urho3D as before.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/0cf59ce0315b40e419c5880c4cc7ce42bfee4362fec2d6c44d96ea426f303658.png" width="20"/>
+        weitjong:
+       </div>
+       <blockquote>
+        <p>
+         Yes. I have thought about that as well when replying the earlier post. With more and more peoples embracing 64-bit OS, the default setting to build Urho3D as 32-bit seems to going out of favor. It should be relatively easy to let the build script detects the native arch of the host system and use that information to set which version of Urho3D library to be built by default. Then the existing URHO3D_64BIT build option can be used just as a way to override the default. So those 64-bit hosts that have 32-bit toolchain installed can still build 32-bit Urho3D as before.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       This will probably lead to fewer problems for people just picking up urho and is probably a sensible default for linux users.   In my experience most win games are still 32bit and still seems to be the default.  Someone else may know better.  If a user manages to stick with urho long enough to finish a game hopefully its architecture and build are apparent.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Instead of checking the native architecture of the host system, I have just submitted changes that set the default based on the compiler toolchain used by a particular build. So, a 64-bit host system trying to cross-compile for Android or Raspberry-Pi, should still get the correct default setting set to 32-bit (or so I hope).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

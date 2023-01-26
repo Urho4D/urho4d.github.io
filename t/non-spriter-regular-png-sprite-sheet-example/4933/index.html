@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Non spriter regular png sprite sheet example
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Non spriter regular png sprite sheet example
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/34c20d704bde07e2f25cce7dcda783bc3d87acf92686403f00ab2db1adb2967e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Triangle345
+     </div>
+     <div class="post_content">
+      <p>
+       I cannot seem to find any examples of animating a sprite using a regular png / jpeg style sprite sheet. It seems that its extremely easy to use a spriter style animation but no information on regular png sprite sheet animation. Can anyone point me to or give an example of using a regular sprite sheet in Urho3D?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe this
+       <a href="https://gitlab.com/luckeyproductions/OGTatt/blob/master/animatedbillboardset.cpp" rel="nofollow noopener">
+        AnimatedBillboardSet
+       </a>
+       could help you in the right direction.
+      </p>
+      <p>
+       Also, welcome to the forums!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/34c20d704bde07e2f25cce7dcda783bc3d87acf92686403f00ab2db1adb2967e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Triangle345
+     </div>
+     <div class="post_content">
+      <p>
+       This seems like its implementing the rendering of the sprite sheet manually? Is that the only way to do it in Urho3D?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Have you seen
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Samples/24_Urho2DSprite" rel="nofollow noopener">
+        sample 24
+       </a>
+       ? Though I guess that’s what you mean by Spriter animation.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/34c20d704bde07e2f25cce7dcda783bc3d87acf92686403f00ab2db1adb2967e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Triangle345
+     </div>
+     <div class="post_content">
+      <p>
+       yep they are using a spriter file in that one. I’m looking for just loading one big packed png or jpeg and having Urho3D take sections of that as the animation.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Then I think animated particles are the closest to what you are looking for, that comes with the engine. The animated billboard set was inspired by it.
+      </p>
+      <p>
+       It’s quite trivial to map frame numbers to a list of UV-coordinates, or pixels for that matter. Having your own approach can also save you unneeded extras
+       <em>
+        and
+       </em>
+       allows for personal and project-specific logic.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Have you guys checked out
+       <code>
+        SpriteSheet2D
+       </code>
+       class? But I don’t think there is any example code.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       No, to be honest.
+      </p>
+      <p>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Urho2D/SpriteSheet2D.h" rel="nofollow noopener">
+        SpriteSheet2D.h
+       </a>
+       <br/>
+       <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Urho2D/SpriteSheet2D.cpp" rel="nofollow noopener">
+        SpriteSheet2D.cpp
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/34c20d704bde07e2f25cce7dcda783bc3d87acf92686403f00ab2db1adb2967e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Triangle345
+     </div>
+     <div class="post_content">
+      <p>
+       There is a function called DefineSprite in SpriteSheet2D which seems like it maps a region to an id. However; it is hard to determine how this would work to create a sprite sheet animation
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       What seems unclear about its workings?
+       <br/>
+       <aside class="onebox githubblob">
+        <header class="source">
+         <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Urho2D/SpriteSheet2D.cpp#L97-L114" rel="nofollow noopener" target="_blank">
+          github.com
+         </a>
+        </header>
+        <article class="onebox-body">
+         <h4>
+          <a href="https://github.com/urho3d/Urho3D/blob/master/Source/Urho3D/Urho2D/SpriteSheet2D.cpp#L97-L114" rel="nofollow noopener" target="_blank">
+           urho3d/Urho3D/blob/master/Source/Urho3D/Urho2D/SpriteSheet2D.cpp#L97-L114
+          </a>
+         </h4>
+         <pre class="onebox"><code class="lang-cpp"><ol class="start lines" start="97" style="counter-reset: li-counter 96 ;">
+<li>void SpriteSheet2D::DefineSprite(const String&amp; name, const IntRect&amp; rectangle, const Vector2&amp; hotSpot, const IntVector2&amp; offset)
+</li>
+<li>{
+</li>
+<li>if (!texture_)
+</li>
+<li>    return;
+</li>
+<li>
+</li>
+<li>if (GetSprite(name))
+</li>
+<li>    return;
+</li>
+<li>
+</li>
+<li>SharedPtr&lt;Sprite2D&gt; sprite(new Sprite2D(context_));
+</li>
+<li>sprite-&gt;SetName(name);
+</li>
+<li>sprite-&gt;SetTexture(texture_);
+</li>
+<li>sprite-&gt;SetRectangle(rectangle);
+</li>
+<li>sprite-&gt;SetHotSpot(hotSpot);
+</li>
+<li>sprite-&gt;SetOffset(offset);
+</li>
+<li>sprite-&gt;SetSpriteSheet(this);
+</li>
+<li>
+</li>
+<li>spriteMapping_[name] = sprite;
+</li>
+<li>}
+</li>
+</ol></code></pre>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/34c20d704bde07e2f25cce7dcda783bc3d87acf92686403f00ab2db1adb2967e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Triangle345
+     </div>
+     <div class="post_content">
+      <p>
+       well for instance you can name a section of the sprite sheet but how do you use that to cycle through images. All i’m saying is that it would be helpful to have an example for something as common as using a plain sprite sheet.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f8c56838151bae9112a91eeb86f55cc4ef2fdee5ef2d25afc934b4d508949063.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Leith
+     </div>
+     <div class="post_content">
+      <p>
+       OK, what’s happening, is we are declaring a unique name for each spriteframe we define - each frame of sprite animation will have a unique name, and will be stored in the array called spriteMapping_ inside the spritesheet2d container object.
+       <br/>
+       At runtime, we will call GetSprite(name) at some frequency we decide, in order to update some Sprite ui element. It’s not an ideal system in my opinion but I can see what’s going on - SpriteSheet2D is merely a container, you’re meant to use it inside your own sprite controller class. Why it does not expose a method to look up a sprite frame by index? I don’t know, I can only guess its using a Map container, ie, keys are names, values are sprite frame info - I can’t see why we went this way.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

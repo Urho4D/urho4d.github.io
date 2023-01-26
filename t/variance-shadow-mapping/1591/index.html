@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Variance shadow mapping
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Variance shadow mapping
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a7bba9189020ce38793e9115223556fce5aafa7e59d9154f666e8c544bcc7942.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darwikey
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+       <br/>
+       I have implemented Variance Shadow Mapping (VSM). It works with OpenGl, dx9 and dx11.
+       <br/>
+       In order to add softness to shadows, this method allows to post-process the shadow map.
+       <br/>
+       At the moment, it’s a 7x7 gaussian blur, but the user can use his own filter with the function Renderer::SetShadowMapFilter(Object* instance, ShadowMapFilter functionPtr).
+      </p>
+      <p>
+       Another notable change is the ShadowQuality, now it’s an enum :
+       <br/>
+       enum ShadowQuality
+       <br/>
+       {
+       <br/>
+       SHADOWQUALITY_SIMPLE_16BIT = 0,
+       <br/>
+       SHADOWQUALITY_SIMPLE_24BIT,
+       <br/>
+       SHADOWQUALITY_PCF_16BIT,
+       <br/>
+       SHADOWQUALITY_PCF_24BIT,
+       <br/>
+       SHADOWQUALITY_VSM,
+       <br/>
+       SHADOWQUALITY_BLUR_VSM
+       <br/>
+       };
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//s13.postimg.org/4sicfz1qv/shadows.jpg" width=""/>
+      </p>
+      <p>
+       The drawback of this technique is the light bleeding, but in the lighting shader, there is a trick to reduce it.
+      </p>
+      <p>
+       The link to my fork :
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+         <a href="https://github.com/darwikey/Urho3D" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/e2eb69642020fa642488cd08b91bb66274dd22834a5bfd7e59b403c7b177eaca" width="400"/>
+         <h3>
+          <a href="https://github.com/darwikey/Urho3D" rel="nofollow noopener" target="_blank">
+           darwikey/Urho3D
+          </a>
+         </h3>
+         <p>
+          Cross-platform 2D and 3D game engine. Contribute to darwikey/Urho3D development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       I just need to add function in Renderer to set the shadow softness and the light bleeding reduction.
+      </p>
+      <p>
+       If it’s ok, I can propose a PR.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       On cursory look, changes to engine look solid. Certainly make a PR.
+      </p>
+      <p>
+       The SHADOWCMP shader define for D3D may be handled incorrectly. It should be used only when Graphics::GetHardwareShadowSupport() returns false, which will only happen on fairly old ATI GPU’s.
+      </p>
+      <p>
+       Also, a stylistic minor thing: when making if statements with only one statement within the block, we usually omit the curly braces:
+      </p>
+      <pre><code class="lang-auto">if (condition)
+    DoSomething();</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a7bba9189020ce38793e9115223556fce5aafa7e59d9154f666e8c544bcc7942.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darwikey
+     </div>
+     <div class="post_content">
+      <p>
+       I solved the problem and i had functions to set shadow softness and light bleeding reduction.
+      </p>
+      <p>
+       Here is my PR :
+       <br/>
+       <a href="https://github.com/urho3d/Urho3D/pull/1098" rel="nofollow noopener">
+        github.com/urho3d/Urho3D/pull/1098
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d3180d2f991360826f695afdd741fd9b4e1e0eff509aa6d8380efdafe0e70a66.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rikorin
+     </div>
+     <div class="post_content">
+      <p>
+       I just thought it would be great to have variance shadows, and here they are. Awesome.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Nice work! Is VSM faster than PCF for mobile?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a7bba9189020ce38793e9115223556fce5aafa7e59d9154f666e8c544bcc7942.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      darwikey
+     </div>
+     <div class="post_content">
+      <p>
+       I haven’t tested for mobile. But it will be great if you do some benchmarks
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       My wish comes true. Can’t wait to play with it.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Passing Runtime Generated texture to shader
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Passing Runtime Generated texture to shader
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Hello I cannot seem to figure out how to pass a texture I generate at runtime to a shader.  I am trying to pass it with the “TU_CUSTOM1” texture unit.  But the program crashes every time I try to add it with
+      </p>
+      <pre><code class="lang-auto"></code></pre>
+      <p>
+       Looking at how SetTexture is implemented, the internal texture array for storing the material’s textures needs to be increased but I don’t see any function for increasing the number of textures.  There must be something that I am missing here.
+      </p>
+      <p>
+       Thanks in advance!
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Available texture units are from 0 to 15, there is no need to tell Material how many you want to use, but you can’t use more than 16. Depending on the rendering you’re doing some of the units are engine reserved (e.g. shadow map, light ramps etc.) In GLSL use matching numbers in the samplers, eg. sMySampler15 to access unit 15, unless you use the predefined names.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks!  That really helps.  The crash was because I was creating a SharePtr&lt; Texture&gt; and then returning a Texture* from a function.  So the Texture deletes itself upon returning from the function because the ref count is 0.  Whoops.  LOL
+       <img alt=":blush:" class="emoji" src="../../../images/5dc76062acc5a80d95fdd823db908640d52dac05ad1a4899ab9e723bfa0bbbfb.png" title=":blush:"/>
+      </p>
+      <p>
+       Anyway your answer I definitely still needed.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

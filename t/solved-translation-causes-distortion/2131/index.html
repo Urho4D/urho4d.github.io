@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   (Solved)Translation causes distortion
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    (Solved)Translation causes distortion
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/db6207ad7ecbbab7fd04b2d17a3ecbb39a1fca46d471cec433b3d66af2f42080.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Andre_B
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, im drawing a pyramid 3d object on the middle of the screen at world position 0,0,0.
+      </p>
+      <p>
+       Note: Underneath there is a 3D sphere with the earths map texture applied to it.
+       <br/>
+       And the top pyramid vertex is placed towards the viewer, negative Z.
+      </p>
+      <p>
+       Here is how it looks.
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/2q0Gupv.png" rel="nofollow noopener" title="">
+         <img alt="" height="391" src="../../../images/53f126729c95b17e3342b24cdbbc8c29afa776ead0d7c81466e33a929af28dc1.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           720×408
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       Then everytime i set the parent node position or the vertices of the pyramid, the object distorts itself from the center (0,0,0).
+      </p>
+      <p>
+       Here is how it looks with just a 0.2 translation on X.
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="http://i.imgur.com/08pqJ49.png" rel="nofollow noopener" title="">
+         <img alt="" height="391" src="../../../images/a9ca53f65ced7dc2c627bf87c54a01037751b5dbbf534368d963898edf6f023b.png" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+          </span>
+          <span class="informations">
+           720×408
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       I have checked every parent node, there is no rotation, scale or other transforms being done.
+       <br/>
+       Any ideas? on why this might be happening?
+      </p>
+      <p>
+       I might add that it might be the same problem as in
+       <a href="http://discourse.urho3d.io/t/solved-model-gets-distorted-when-using-set-position/847/1">
+        topic867.html
+       </a>
+       <br/>
+       Since im creating this mesh from code alone.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aaf32fbdeb46ab0d4eb31cb4511f76d22e8951d615e8eb69f2fe76d7eee5cca4.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sir_Nate
+     </div>
+     <div class="post_content">
+      <p>
+       Could it be that you’re using a projected view and not an orthographic one?
+      </p>
+      <p>
+       <code>
+        Camera@ cam = cameraNode.GetComponent("Camera");
+cam.orthographic = true;
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/db6207ad7ecbbab7fd04b2d17a3ecbb39a1fca46d471cec433b3d66af2f42080.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Andre_B
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah that was it, i cant believe i didn’t notice that was the issue.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

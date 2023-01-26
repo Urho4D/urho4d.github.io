@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   .NET to HTML5?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    .NET to HTML5?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1c367aa8c9b942b9677bfe1fdabca51b26cc006760cf4aa89cfff3463ae3192e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      DragonSpark
+     </div>
+     <div class="post_content">
+      <p>
+       Hello,
+      </p>
+      <p>
+       I see that you support HTML5 via Enscripten:
+       <br/>
+       <a href="http://urho3d.github.io/HTML5-samples.html" rel="nofollow noopener">
+        urho3d.github.io/HTML5-samples.html
+       </a>
+      </p>
+      <p>
+       And I see that you now support .NET.  Is there any way to combine these two?  That is, develop a Urho3D application in .NET, and then have it output to HTML5?
+      </p>
+      <p>
+       Thank you,
+       <br/>
+       Michael
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The .NET support is provided by a third party (Xamarin) and is not a part of the Urho core repository, we make no claims to what it supports or doesn’t. You should ask them. Though my guess is that if it’s based on the Mono runtime, Emscripten is out of the question.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1c367aa8c9b942b9677bfe1fdabca51b26cc006760cf4aa89cfff3463ae3192e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      DragonSpark
+     </div>
+     <div class="post_content">
+      <p>
+       Bummer,
+       <a data-bbcode="true" href="http://blog.developers.win/2015/10/existing-net-client-application-models/#urho3d" rel="nofollow noopener">
+        the search continues
+       </a>
+       .  Thank you for taking the time to explain that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/05a34ea39902a28016d8d9c16fad38ff94bbc543c686ebf24d99f0fda3337406.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Egorbo
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/ca279ebb6e6913836d33ed2ab6856e015c310c0ee4589ca403b0e7e5a2b3f50f.png" width="20"/>
+        cadaver:
+       </div>
+       <blockquote>
+        <p>
+         The .NET support is provided by a third party (Xamarin) and is not a part of the Urho core repository, we make no claims to what it supports or doesn’t. You should ask them. Though my guess is that if it’s based on the Mono runtime, Emscripten is out of the question.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       In theory it compiles to LLVM, but you are right - no Emscripten so far.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

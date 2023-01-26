@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   First Person
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    First Person
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/2c18087f134d050f9c49d6546a4cb9fbcdd0326357beb728a57c2e089d447e88.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sovereign313
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       What is the concept behind a first person shooter (I mean, in the code wise).  For example, how do you keep the gun in the camera?  Do you create the gun on the camera node, or is there an anchor like method to anchor the gun the there?  I’m just trying to figure out how you would keep the object there.  Perhaps 2 cameras?  One to view the terrain, and one to see the arm/gun?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/668470d56163353e1e4d4d67dadbcf02db3f7389e58e6e01b1650a16815e3949.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Enhex
+     </div>
+     <div class="post_content">
+      <p>
+       You can attach it to the camera node.
+       <br/>
+       You’d also want to render as overlay (after the main scene is rendered) to avoid intersections.
+      </p>
+      <p>
+       There are other approaches like ArmA, where the weapon is actually part of the world model and animations are used to position it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/2c18087f134d050f9c49d6546a4cb9fbcdd0326357beb728a57c2e089d447e88.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sovereign313
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you very much for the response
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

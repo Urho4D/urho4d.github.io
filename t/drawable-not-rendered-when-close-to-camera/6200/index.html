@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Drawable not rendered when close to camera
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Drawable not rendered when close to camera
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       I have custom geometry (RichText3D) which uses multiple Drawable objects to create text and images. Everything works fine on DirectX/OpenGL, however, on GLES2 (RockPro64 board with ARM soc), the Drawable is not rendered. When I move the camera backwards a bit, it renders fine. My near/far clip planes are 0.1 / 100 and it doesn’t seem related.
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="YlMu7-1eodY" data-youtube-title="Drawable visibility problem">
+       <a href="https://www.youtube.com/watch?v=YlMu7-1eodY" rel="nofollow noopener" target="_blank">
+        <img class="ytp-thumbnail-image" height="270" src="../../../images/079874b05173b74e6444d5e6c09e18c8be6f3a57d5884c96d9a42f9110a88417.jpg" title="Drawable visibility problem" width="480"/>
+       </a>
+      </div>
+      <p>
+       Notice that if I move the camera to look just a bit up or down away from the text, it disappears. I cannot reproduce this problem on PC and debugging is hard since the project is cross-compiled on GitLab CI/CD.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <pre><code class="lang-auto">void FrustumOctreeQuery::TestDrawables(Drawable** start, Drawable** end, bool inside)
+{
+    while (start != end)
+    {
+        Drawable* drawable = *start++;
+
+        if ((drawable-&gt;GetDrawableFlags() &amp; drawableFlags_) &amp;&amp; (drawable-&gt;GetViewMask() &amp; viewMask_))
+        {
+            if (inside || frustum_.IsInsideFast(drawable-&gt;GetWorldBoundingBox()))
+                result_.Push(drawable);
+        }
+    }
+}</code></pre>
+      <p>
+       It looks like this code is completely ignoring my drawable, but its world bouding box is valid.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="2" data-topic="6210" data-username="Eugene">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/24fa83084e3038ecfe05fcf829c18165b173329393339fb0353d8e8b8f7914c3.png" width="20"/>
+        <a href="https://discourse.urho3d.io/t/how-to-force-drawable-to-be-visible/6210/2">
+         How to force drawable to be visible
+        </a>
+       </div>
+       <blockquote>
+        <p>
+         Set an infinite bouning box for this drawable.
+         <br/>
+         I mean, it’s literally what
+         <code>
+          Skybox
+         </code>
+         does, just check its code.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       That actually fixes my problem, thanks
+       <span class="mention">
+        @Eugene
+       </span>
+       :
+      </p>
+      <pre><code class="lang-auto">worldBoundingBox_.Define(-M_LARGE_VALUE, M_LARGE_VALUE);</code></pre>
+      <p>
+       But I still am trying to understand why is it happening, the world bounding box seems perfectly fine when I draw it using the DebugRenderer.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

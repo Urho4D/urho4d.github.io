@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>503 error</title>
+  </head>
+  <body>
+    <p>Error serving your request, please wait a moment then retry.</p>
+    <hr>
+    <h3>Details:</h3>
+    <p>Time: Tue, 17 Jan 2023 16:43:07 GMT</p>
+    <p style='display: none;'>No healthy backends available</p>
+
+  </body>
+</html>

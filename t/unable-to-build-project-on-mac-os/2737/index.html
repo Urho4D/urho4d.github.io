@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Unable to build Project on Mac OS
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Unable to build Project on Mac OS
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a5ee522c081e9272ad299b735c774d64c8bfb70eee68e496636dcc30381ced09.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      INait1
+     </div>
+     <div class="post_content">
+      <p>
+       It all compiles fine, but linker got errors
+      </p>
+      <p>
+       Undefined symbols for architecture x86_64:
+       <br/>
+       "_AudioQueueAllocateBuffer", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueDispose", referenced from:
+       <br/>
+       _COREAUDIO_CloseDevice in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueEnqueueBuffer", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       _inputCallback in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       _outputCallback in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueFreeBuffer", referenced from:
+       <br/>
+       _COREAUDIO_CloseDevice in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueNewInput", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueNewOutput", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueSetProperty", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueStart", referenced from:
+       <br/>
+       _prepare_audioqueue in libUrho3D.a(SDL_coreaudio.m.o)
+       <br/>
+       "_AudioQueueStop", referenced from:
+       <br/>
+       _audioqueue_thread in libUrho3D.a(SDL_coreaudio.m.o)
+      </p>
+      <p>
+       What can be wrong with coreaudio? Linker text has -framework coreaudio enabled.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/80bde861c77550d90483f49160c7430615be130b45f85f9e97f624fa530c4d32.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Virgo
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":sweat_smile:" class="emoji" src="../../../images/723bceeff120314bc0b84d09adc1fa250a25361d04ff700964fdee58819b20cd.png" title=":sweat_smile:"/>
+       not a Mac user, just a guess: link framework AudioToolBox
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

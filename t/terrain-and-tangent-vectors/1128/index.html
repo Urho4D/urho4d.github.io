@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Terrain and tangent vectors
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Terrain and tangent vectors
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       So, terrain generates tangent vectors, and stores it in vertexData, so it can then be used for normal mapping. But since terrain is pretty simple shape (a plane topologically), it’s tangent vectors can easily be calculated in vertex shader.
+      </p>
+      <p>
+       Question is: is it worth anything to disable storing tangent vectors in vertexData and calculating 'em on gpu?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       You can only know reliably by profiling on a variety of hardware. For Urho3D basic operation and the example assets included in the repo, I like the materials and shaders to be generic so that you could use a basic normalmapping shader on the terrain and it would just work, because the terrain vertices do include tangents. In your own projects you naturally can specialize everything.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       It would decrease the amount of memory needed to store the mesh on the gpu.  Because of that it would also decrease the amount of data that needs to be sent to the gpu.  That is an interesting question.  Like cadaver said I think it would be best to try it and see on multiple gpu’s…
+      </p>
+      <p>
+       This is very interesting to me because in a minecraft clone if one calculates the normals on the gpu vertices could be reused in different “cubes” in the world.  Thus, a lot of memory could be saved because this would at least cut in half the number of vertices and decrease the size of each vertex.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/b9d688c700978c8c8e441e752ef38d3eac946c22f442681087bf5596731c5d07.png" width="20"/>
+        GoogleBot42:
+       </div>
+       <blockquote>
+        <p>
+         Because of that it would also decrease the amount of data that needs to be sent to the gpu.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Does it always sends all vertex data to GPU, or only those utilized in shader?
+      </p>
+      <aside class="quote">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/ca279ebb6e6913836d33ed2ab6856e015c310c0ee4589ca403b0e7e5a2b3f50f.png" width="20"/>
+        cadaver:
+       </div>
+       <blockquote>
+        <p>
+         I like the materials and shaders to be generic so that you could use a basic normalmapping shader on the terrain and it would just work
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       That’s reasonable, but It seems to me, that in real projects, terrain always need special treatment. And if you want a normal map on your terrain, DiffNormal technique is not a suitable option.
+      </p>
+      <p>
+       For my current project I’m messing with terrain shaders anyway, so this question popped up.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       The shaders linking phase finds all the vertex attributes in the shader and binds them.  So only things used in the shader.  The same goes for uniforms.  I was debugging some shaders in RenderDoc and learned this
+       <img alt=":smiley:" class="emoji" src="../../../images/771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e.png" title=":smiley:"/>
+       .  I was very confused for a bit but that is normal.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Since it’s an interleaved stream of vertices, it likely still pays the memory bus transfer penalty for the unused vertex attributes. But the input assembler has less work to do per vertex.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       That’s actually pretty cool.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Wow that is a really awesome feature!  I find myself constantly surprised about just how much Urho3D can do.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

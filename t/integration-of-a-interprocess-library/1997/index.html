@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Integration of a interprocess library
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Integration of a interprocess library
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c0425a19e18e7ad6d9f07880c84ec36c12f859c87aa45963dba354857dc0658e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      christianclavet
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, It would be really nice to have applications or games running on multiple windows/screens. Since URHO can only support one context per application, the only solution that I would see fit would be to integrate ways to have a main application launch client application and interact between these process.
+      </p>
+      <p>
+       We could use the network as a start, but I would prefer to have a direct communication between apps.
+      </p>
+      <p>
+       I’ve seen there are some interprocess libraries that could facilitate the work a lot (cppremote, boost, d-bus). I know barely nothing on this, I will look how its done and will try to seek for a tutorial about this, but it would be nice that URHO would have this ability and a little example (could be similar as the network example). This would also help the EDITOR have sub-editor modules to expand its capability. (Model Editor, Particle/FX editor in separate windows that communicate with the main window)
+      </p>
+      <p>
+       Thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Probably the easiest would be to add a cross-platform (separate Windows and Unix implementations) named pipe class, that could be read and written to like a file. Adding a new library could be overkill.
+      </p>
+      <p>
+       However note that in case of a “sub-editor” you would be loading the resources multiple times, resulting in heavy memory use, so in an ideal case I wouldn’t recommend that approach.
+      </p>
+      <p>
+       Moving a graphics context between windows might not be impossible, however Urho’s frame loop is not well-fitting to multiple window rendering, since it does first a separate render update, then a render later. Unifying the render-update and render operations would be preferable for this (also to prevent situations like scene destruction between update &amp; render resulting to a crash), however it could lead to performance loss or subtly break applications which rely on the current behavior.
+      </p>
+      <p>
+       Also, if we had actual multiple windows support, then we’d also have to consider multiple window input, which could cause larger scale API changes, so the IPC approach (though wasteful) is still the easiest to get running.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c0425a19e18e7ad6d9f07880c84ec36c12f859c87aa45963dba354857dc0658e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      christianclavet
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks for the inputs about this. I’ll do a check on how I could create and use a
+       <span class="bbcode-b">
+        <span class="bbcode-i">
+         pipe class
+        </span>
+       </span>
+       myself. One of my friend mentioned also using
+       <span class="bbcode-b">
+        <span class="bbcode-i">
+         signals
+        </span>
+       </span>
+       is there advantage using one from the other or they are completely different things?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Signal means just “something happened”, so using a pipe gives more possibilities to implement an arbitrary communication protocol.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Simple nonblocking birectional named pipe class has been added to master branch.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

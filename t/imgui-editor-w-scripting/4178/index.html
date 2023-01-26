@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   ImGui editor w/ scripting
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    ImGui editor w/ scripting
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Fairly close to complete ImGui based editor with several points of extension via Angelscript.
+      </p>
+      <p>
+       Windows x64 binaries only, just drop into your
+       <code>
+        bin
+       </code>
+       directory. Tabbed scene/prefab editor, material editor, particle effect editor, and model viewer + tweaker.
+      </p>
+      <p>
+       Major things:
+      </p>
+      <ul>
+       <li>
+        Most important editor functionality is there
+       </li>
+       <li>
+        OS thumbnails and embeds thumbnails into Scene and Node prefab files (based on active viewport)
+       </li>
+       <li>
+        <em>
+         Favorites
+        </em>
+        and
+        <em>
+         Recent
+        </em>
+        folder groups in asset browser
+        <ul>
+         <li>
+          Asset browser is generally a first-class citizen
+          <ul>
+           <li>
+            play sounds, run scripts as one-offs, run scripts as editor actions on the current scene, drag-drop, etc
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Configurable
+        <em>
+         rig
+        </em>
+        scenes for Material/Particle/Model scenes
+       </li>
+       <li>
+        Scripts can:
+        <ul>
+         <li>
+          Add additional docking windows
+         </li>
+         <li>
+          Add menu items, commands, windows, etc
+          <ul>
+           <li>
+            Example for Bulk Renaming nodes
+           </li>
+          </ul>
+         </li>
+         <li>
+          Extend or overwrite the property page’s handling of any Urho3D::Object derived type
+          <ul>
+           <li>
+            Example for attaching “Build NavMesh” button to the property page of NavigationMesh and DynamicNavigationMesh
+           </li>
+          </ul>
+         </li>
+         <li>
+          See readme for a full list of all of the events available for scripts to subscribe to and the API for registering things … slap a crapload of buttons on top of the 3d viewport if you want
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <p>
+       Only major stuff missing is the renderpath setup, spawner, picking modes, and terrain tools - mostly trivial stuff. Multiple viewports are actually already there but hidden away ATM.
+      </p>
+      <p>
+       Unfortunately there’s no shortcuts / accelerators ATM, still working out what to do there that won’t suck.
+      </p>
+      <p>
+       <a class="onebox" href="https://github.com/JSandusky/Blocks" rel="nofollow noopener" target="_blank">
+        https://github.com/JSandusky/Blocks
+       </a>
+      </p>
+      <p>
+       <img alt="image" height="373" src="../../../images/5514958fcc47a3e0ad838ed1609170667f1a323f1cfc655b06975e6054163db7.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       Nice! This looks like something that I would like to test out.
+       <br/>
+       Is there a functionality to support node switching between local and replicated? I know someone from the forums already did that for the old editor.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="2" data-topic="4178">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/cff7da01cceb274cfeb8cbc954da82bf028ef2b95e5092dff7ffd4595e62f4d7.png" width="20"/>
+        Miegamicis:
+       </div>
+       <blockquote>
+        <p>
+         Is there a functionality to support node switching between local and replicated? I know someone from the forums already did that for the old editor.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Added that (as well as temporary/permanent conversion), only available through the context menu n the scene tree.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       Is this closed-source?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="4" data-topic="4178">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9048643316588db76818203daf343ef37a71015bc67340ebe3618cfd9620c7a7.png" width="20"/>
+        rku:
+       </div>
+       <blockquote>
+        <p>
+         Is this closed-source?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Uses the ImGuiElement and bindings I posted before:
+       <a href="https://discourse.urho3d.io/t/dear-imgui-w-o-steamrolling/3960">
+        Dear ImGui w/o steamrolling
+       </a>
+       .
+      </p>
+      <p>
+       But as a whole, for the time being yeah. That’s a debate I haven’t had with myself yet, a
+       <em>
+        locked repo
+       </em>
+       or
+       <em>
+        tarball
+       </em>
+       I’ll probably do for the "
+       <em>
+        can’t use with my engine customizations"
+       </em>
+       case, as there’s a lot of stuff that I’m outright not even remotely open to comment on or what not.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       I am curious, what is the reasoning behind keeping it closed but sharing binaries for free?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-full="true" data-post="6" data-topic="4178">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9048643316588db76818203daf343ef37a71015bc67340ebe3618cfd9620c7a7.png" width="20"/>
+        rku:
+       </div>
+       <blockquote>
+        <p>
+         I am curious, what is the reasoning behind keeping it closed but sharing binaries for free?
+        </p>
+       </blockquote>
+      </aside>
+      <ol>
+       <li>
+        Doubt the community is large enough for any incentivized development
+       </li>
+       <li>
+        OSS’ing would have no actual benefit on it itself (just end-users with customized engine code)
+        <ul>
+         <li>
+          Any PR’s for anything other than script extensions would almost certainly be useless and out of touch (unless someone’s psychic and can divine my direction)
+         </li>
+        </ul>
+       </li>
+       <li>
+        Closes off a lot of stuff I’d like to port over or do
+        <ul>
+         <li>
+          Engine stuff that would realistically never get into master, like multiple windows
+         </li>
+         <li>
+          Inevitably the other operating systems pop up and have to be put down
+         </li>
+         <li>
+          There’s some stuff that I would never ever OSS
+         </li>
+         <li>
+          Added hassle of now adding a DLL based extension point, but yes, most things can be worked around
+          <ul>
+           <li>
+            Or a hassle in code management, having to
+            <em>
+             cook
+            </em>
+            to deploy the OSS version and juggle it
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Lots of work to strip out or make sane before I could even do such
+        <ul>
+         <li>
+          Have to rip out a bunch of
+          <span class="hashtag">
+           #def
+          </span>
+          ’d out CoreCLR stuff, etc
+         </li>
+        </ul>
+       </li>
+       <li>
+        Incomplete codebase, it’s a waste of time for anyone to be looking at it at the current pace.
+        <ul>
+         <li>
+          More than half of that WIP/TODO list will be finished by the end of the week
+         </li>
+        </ul>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       Well that is unfortunate. I maintain my soft fork for very same reasons you outlined. I always advocate sharing code if there is no serious reason not to. In your case there really isnt. If you want this to be your personal project and you do not want to deal with accepting contributions and what not - you can still work on a public repository while clearly stating that contributions will not be accepted. At least someone would be able to learn from your work and that is moving a world to a positive direction a tiny bit. We both are working on very similar things. At least i would find it useful. The way it is now this is more a show-off project saying “look what i have”, not “look what you could use”. ¯\_(ツ)_/¯
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       Just my 2 cents.
+       <br/>
+       I am playing with game engines for the last  20 years as an hobby , probably to compensate for the accumulated frustration created due to my daytime job (writing some code for mobile devices internals).
+       <br/>
+       I was always fascinated of the inner-workings of game engines ,even ported some of them to various platforms as P.O.C. at my spare time.
+       <br/>
+       Never made money out of it and didn’t plan to make any (however made large amounts of money at my day job
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       ).
+      </p>
+      <p>
+       I noticed of numerous (not so successful) attempts of individuals trying to create an Game Editor for Urho3D in the past.
+       <br/>
+       The question I asked myself was what is the end goal ?
+       <br/>
+       If the answer was to learn about the internals of the game engine , than it make sense , I can relate to that.
+       <br/>
+       However if the end goal was to make a fully featured functional Game Editor , I believe it can’t be done by a single individual in a reasonable amount of time .
+       <br/>
+       The things I saw you all do in the past just amazes me every time .
+       <br/>
+       If you will all share knowledge , join forces and will combine your amazing talent you will accomplish a lot more and maybe you will stand a chance in creating a fully functional developer friendly Game Editor.
+       <br/>
+       Sorry for the long comment
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        The question I asked myself was what is the end goal ?
+       </p>
+      </blockquote>
+      <p>
+       Phasing out my usage of WPF is my main goal. Urho3D editing is just a sideshow because it’s a complete cake-walk to do and provides enough proof-testing scenarios that I can be sure of robustness in the code generation from XAML step.
+      </p>
+      <blockquote>
+       <p>
+        If you will all share knowledge , join forces
+       </p>
+      </blockquote>
+      <p>
+       Already tried to get people to help years ago on an ATF based editor. I ended up just finishing it on my own and it’s been my main editor for my STL / no-nonsense fork. Kept the last early public version up sitting:
+       <a href="https://github.com/JSandusky/UrShell" rel="nofollow noopener">
+        https://github.com/JSandusky/UrShell
+       </a>
+      </p>
+      <p>
+       My QT stuff was never meant for Urho3D, editing of Urho3D files was also just a side-show since it was a tool using Urho3D for the rendering, which was then moved to MonoGame and WPF then sold off.
+      </p>
+      <p>
+       Also, no. Not happening. There’s at best 2-weeks of work on my entire to-do list, help is pointless.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       Last comment , and will stop nagging you
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+      <p>
+       ATF is supported only on Windows (I don’t understand the Sony guys).
+       <br/>
+       Would not be my first choice  of framework developing tools for cross-platform game engine.
+       <br/>
+       Might be the reason that others didn’t help you .
+      </p>
+      <p>
+       QT (and wxWidgets ) will not play well with SDL on Mac OS  , so it won’t work for Urho3d on Mac OS.
+       <br/>
+       QT and wxWidgets are using  NSView  as their main objects as opposed to SDL which is using NSWindow .
+      </p>
+      <p>
+       I found some branch that tries to fix this issue , not sure it will work for Urho3D.
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/flowercodec/sdl2" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/5bd4ec2a7cdca6e408a088c86ee5b0b816ca127e13b2f2d13a0d5c24624ec6ef.png" width="420"/>
+         <h3>
+          <a href="https://github.com/flowercodec/sdl2" rel="nofollow noopener" target="_blank">
+           flowercodec/sdl2
+          </a>
+         </h3>
+         <p>
+          SDL_CreateWindowFrom pass NSView under mac osx. Contribute to flowercodec/sdl2 development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+      <p>
+       Anyway those of you that plan to try integrate Urho3D with Qt/wxWidgets   on Mac (might be also Linux), prepare for sleepless nights.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/38ba090e68e80d996997d1577a6db4973e3333bddb338b81b65f9e835ac64a44.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rku
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @Sinoid
+       </span>
+       it seems to me like you are looking for excuses to not share your work. This is perfectly fine but maybe this thread should be in showcase section then.
+      </p>
+      <p>
+       Also are your reasons are mute. It is very easy to work on own thing and share it all:
+       <a href="https://discourse.urho3d.io/t/net-bindings-for-urho3d/4119">
+        .net bindings for Urho3D
+       </a>
+       . Lets be honest with ourselves - neither you nor me will get rich from this stuff, so why not at least score in some bonus karma points
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+      <p>
+       Aaaand now i stop nagging you as well
+       <img alt=":white_flag:" class="emoji" src="../../../images/4645651353a5e96e40932eea9954f7fcf93922a8e65c88867def8f641b74e4e9.png" title=":white_flag:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        it seems to me like you are looking for excuses to not share your work … Also are your reasons are mute.
+       </p>
+      </blockquote>
+      <p>
+       They’re not mute. The XAML pipeline is sublicensed. I don’t have authority to redistribute the code that does all of the code generation. There’s fewer than 2k lines of hand-written code and another 4k of XAML, an additional 22k entirely generated as a result of cooking down the XAML.
+      </p>
+      <p>
+       Thus I’d have to cook all of that and rewrite to OSS - unless you like reading
+       <code>
+        a_-&gt;NotifyPropertyChanged(hashes_InternalCtrlID[432], hashes_InternalSrcID[SRC_HASH(a_-&gt;GetID())]);
+       </code>
+       for several thousand lines.
+      </p>
+      <p>
+       For instance on the
+       <em>
+        There’s some stuff that I would never ever OSS
+       </em>
+       :
+      </p>
+      <ul>
+       <li>
+        Radial-edge mesh editor
+        <ul>
+         <li>
+          Sublicensed, I have authority to use, not to relicense - I sold that right
+         </li>
+        </ul>
+       </li>
+       <li>
+        XAML (full databinding implementation, with all of the expression refolding wildness)
+        <ul>
+         <li>
+          that’s sublicensed again
+         </li>
+        </ul>
+       </li>
+       <li>
+        UV recharter
+        <ul>
+         <li>
+          Thekla and DX-UVAtlas are both awful, I’m not OSS’ing a not-awful mapper that copes with non-manifolds
+         </li>
+        </ul>
+       </li>
+       <li>
+        OpenCL rasterizer
+        <ul>
+         <li>
+          So not worth the work of trying to port over DX12’s raytracing to replace
+         </li>
+        </ul>
+       </li>
+       <li>
+        Lightmapper
+        <ul>
+         <li>
+          Not OSS’ing, done it before - it was far more hassle than it was worth
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <p>
+       You’re also going to make me say it. I don’t want it appearing in any external forks or seeing Linux/Mac support, period. It would
+       <strong>
+        never ever
+       </strong>
+       be OSS, if source is ever made available it’ll be under a license that puts it squarely under my thumb.
+      </p>
+      <blockquote>
+       <p>
+        It is very easy to work on own thing and share it all
+       </p>
+      </blockquote>
+      <p>
+       <a href="https://discourse.urho3d.io/t/geom-shader-branch/4012">
+        That’s
+       </a>
+       my contribution for the semester, take it or leave it.
+      </p>
+      <p>
+       Edit: But like I’ve reiterated over and over and over and over, I’ll consider it but now is not the time. All of the points above, I can address - but I cannot wave a wand and dump it on github. That’s a few additional weeks of work and hunting for a license that gives me distribution control authority without denying modification for internal non-distributed use (aside from just a tacit
+       <em>
+        “I say it’s okay so long as you don’t distribute”
+       </em>
+       ).
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

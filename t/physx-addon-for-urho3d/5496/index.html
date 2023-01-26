@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   PhysX addon for Urho3D
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    PhysX addon for Urho3D
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c24c93e794e8d919ef829acfad2b3f83cbd23485bcd826225def4391e2fb0cb0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      lezak
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve started working on PhysX implementation some time ago, but due to lack of time progress is much slower then I would like it to be and because this situation propably won’t change in the next few months, I’ve decided to release this addon in it’s current unfinished state:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/lezak/Urho3DPhysX" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/2ae73e12cb1e9989929920c4e9da0b02b6f6f8f0bd1944ac9ebfbf6b4dca746b" width="420"/>
+         <h3>
+          <a href="https://github.com/lezak/Urho3DPhysX" rel="nofollow noopener" target="_blank">
+           lezak/Urho3DPhysX
+          </a>
+         </h3>
+         <p>
+          PhysX addon for Urho3D . Contribute to lezak/Urho3DPhysX development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+       <br/>
+       Basic functionality is already there, and I will be adding more features (articualtions, terrain colliders etc.) in the future. I’m also planning to provide AngelScript bindings.
+       <br/>
+       Besides the PhysX wrapper, there’s also modified Urho3DPlayer that allows to use this addon in the editor (use modified script files from PhysXData folder!) and some simple samples.
+       <br/>
+       I need to point out that there’s no debug rendering for the editor so that’s a big inconvenience. There’s possibility to use PhysX build-in debug rendering (joints sample demonstrate how to enable it) or to use PhysX Visual Debugger by uncommenting all ‘pvd’ stuff in Physics.h and Physics.cpp files.
+      </p>
+      <p>
+       Since the addon recreates physx inheritance hierarchy, for now use
+       <a href="https://gameworksdocs.nvidia.com/PhysX/4.1/documentation/physxguide/Index.html" rel="nofollow noopener">
+        PhysX documentation
+       </a>
+       and
+       <a href="https://gameworksdocs.nvidia.com/PhysX/4.1/documentation/physxapi/files/index.html" rel="nofollow noopener">
+        API documentation
+       </a>
+       for details, later on I will try to provide proper comments in the code.
+      </p>
+      <p>
+       There are some issues that I’m aware of:
+       <br/>
+       <del>
+        1. building debug executable will make previously created release executable unusable and vice-versa, so it’s not possible to have both release and debug exes working - it’s necessary to build in proper mode when switching between release/debug.
+       </del>
+       <br/>
+       2. sometimes there is an assertion failure when scene is released.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

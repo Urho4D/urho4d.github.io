@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3dEditor import model does not work
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3dEditor import model does not work
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/2f6dd4199c6f98e15290b29baa239f642b16a3914c4e9f693b86568b1f1438e3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      eyyildiz
+     </div>
+     <div class="post_content">
+      <p>
+       Greetings, i have recently started learning Urho3D via UrhoSharp for Xamarin.
+       <br/>
+       I’m new to game development, but i have the programming experience in c#.
+      </p>
+      <p>
+       Everything was looking good until i wanted to bring my own 3D models into Urho world.
+       <br/>
+       I have downloaded some models for blend from internet, they all seem to work well in blend.
+      </p>
+      <p>
+       However, i could not import them into Urho’s .mdl format.
+      </p>
+      <p>
+       I have tried different assimport applications as well, but none of them did work, as well as Urho3D editor’s import button.
+      </p>
+      <p>
+       <img alt="error_image" height="500" src="../../../images/7e659d51a5734fbd84e99704c1be2592047efa2dd415a52eafce056462c23c0a.jpg" width="272"/>
+      </p>
+      <p>
+       I really liked the idea behind Urho3D, however, if i can not import models from popular 3DEditors like Blender etc, its of no use to me.
+      </p>
+      <p>
+       Any idea about what i am doing wrong or how can i solve this ?
+       <br/>
+       Is this an assimport problem?
+      </p>
+      <p>
+       You can find the blend file i have tried to import here:
+       <br/>
+       <a class="onebox" href="https://free3d.com/3d-model/audi-r8-14024.html" rel="nofollow noopener" target="_blank">
+        https://free3d.com/3d-model/audi-r8-14024.html
+       </a>
+      </p>
+      <p>
+       Thanks in advance!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       AFAIK Blender Urho3D export addon is the most stable way of importing.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       I also use the Blender Urho3D  addon to export models and so far haven’t got any issues related to that. On more thing to try is to use AssetImporter tool which comes with the engine, tho it requires more manual work.
+      </p>
+      <aside class="onebox whitelistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+        <a href="https://github.com/reattiva/Urho3D-Blender" rel="nofollow noopener" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="420" src="../../../images/86b824f3a3527ab2770f2b8f8ced60d07b4b2493ac7a8fc44b06a7e9133e4195.png" width="420"/>
+        <h3>
+         <a href="https://github.com/reattiva/Urho3D-Blender" rel="nofollow noopener" target="_blank">
+          reattiva/Urho3D-Blender
+         </a>
+        </h3>
+        <p>
+         Blender to Urho3D mesh exporter. Contribute to reattiva/Urho3D-Blender development by creating an account on GitHub.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

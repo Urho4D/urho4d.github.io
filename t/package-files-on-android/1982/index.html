@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Package files on android
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Package files on android
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6da55e7135c5ce50e5d571e8268487a68c8210f4b43552c7be77dfe3db768a98.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jijingLiu
+     </div>
+     <div class="post_content">
+      <p>
+       i have build an apk, and use PackageTool to pack resources.
+       <br/>
+       but i got error here:
+      </p>
+      <pre><code class="lang-auto">bool PackageFile::Open(const String&amp; fileName, unsigned startOffset)
+{
+#ifdef ANDROID
+    if (URHO3D_IS_ASSET(fileName))
+    {
+        URHO3D_LOGERROR("Package files within the apk are not supported on Android");
+        return false;
+    }
+#endif
+...
+}</code></pre>
+      <p>
+       is there has some reason for  Package files within the apk are not supported on Android and what do i need to do to use PackageTool on android?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Files within the .apk have to be accessed using SDL’s rwops helper functions (which on Android use the  asset manager). Support for reading files from inside a package file inside an .apk simply hasn’t been implemented (yet).
+      </p>
+      <p>
+       The asset manager functionality is not very good for arbitrary access including file seeks, which the package files support would require, so it’s somewhat questionable if this should even be implemented. The .apk already is a package of it’s own kind, so I’d just recommend using individual files on Android.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6da55e7135c5ce50e5d571e8268487a68c8210f4b43552c7be77dfe3db768a98.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      jijingLiu
+     </div>
+     <div class="post_content">
+      <p>
+       OK, thanks.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

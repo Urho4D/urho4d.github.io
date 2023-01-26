@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Urho3D is crashing on Android 12
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Urho3D is crashing on Android 12
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       This is just some information for anyone that is planing to submit a game/app to Google play.
+      </p>
+      <p>
+       I recently uploaded a game to Google Play Console.
+       <br/>
+       During its review it failed and crashed  on an Android 12 device (Pixel 6).
+       <br/>
+       After short investigation , long story short , there are some Android 12 related fixes there were introduced into SDL.
+      </p>
+      <aside class="onebox githubcommit" data-onebox-src="https://github.com/libsdl-org/SDL/commit/97c71371f21187f146872d41f94a5593c0a374ba">
+       <header class="source">
+        <a href="https://github.com/libsdl-org/SDL/commit/97c71371f21187f146872d41f94a5593c0a374ba" rel="noopener nofollow ugc" target="_blank">
+         github.com/libsdl-org/SDL
+        </a>
+       </header>
+       <article class="onebox-body">
+        <div class="github-row">
+         <div class="github-icon-container" title="Commit">
+          <svg aria-hidden="true" class="github-icon" height="60" viewbox="0 0 14 16" width="60">
+           <path d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z">
+           </path>
+          </svg>
+         </div>
+         <div class="github-info-container">
+          <h4>
+           <a href="https://github.com/libsdl-org/SDL/commit/97c71371f21187f146872d41f94a5593c0a374ba" rel="noopener nofollow ugc" target="_blank">
+            If Android version &gt;= API 31 PendingIntent.FLAG_MUTABLE
+           </a>
+          </h4>
+          <div class="github-info">
+           <div class="date">
+            committed
+            <span class="discourse-local-date" data-date="2021-11-12" data-format="ll" data-time="09:21:29" data-timezone="UTC">
+             09:21AM - 12 Nov 21 UTC
+            </span>
+           </div>
+           <div class="user">
+            <a href="https://github.com/slouken" rel="noopener nofollow ugc" target="_blank">
+             <img alt="slouken" class="onebox-avatar-inline" height="20" src="../../../images/cf43b176632dae52186101912b4f89e5f40d5e0ebed78558190f4c12464b6e4c" width="20"/>
+             slouken
+            </a>
+           </div>
+           <div class="lines" title="changed 2 files with 8 additions and 1 deletions">
+            <a href="https://github.com/libsdl-org/SDL/commit/97c71371f21187f146872d41f94a5593c0a374ba" rel="noopener nofollow ugc" target="_blank">
+             <span class="added">
+              +8
+             </span>
+             <span class="removed">
+              -1
+             </span>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="github-row">
+         <p class="github-body-container">
+          "If your app targets Android 12, you must specify the mutability of each Pending
+          <span class="show-more-container">
+           <a class="show-more" href="https://github.com/libsdl-org/SDL/commit/97c71371f21187f146872d41f94a5593c0a374ba" rel="noopener nofollow ugc" target="_blank">
+            …
+           </a>
+          </span>
+          <span class="excerpt hidden">
+           Intent object that your app creates. This additional requirement improves your app's security."
+
+Thanks @FormularSumo and @cgutman
+          </span>
+         </p>
+        </div>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       For now I downgraded my targetSdkVersion to 30 (Android 11) .
+       <br/>
+       Google is still allowing it but not for long ,targetSdkVersion 31 (Android 12) will become mandatory very soon.
+       <br/>
+       I plan to integrate the fix (maybe the entire latest SDL)  into one of my  branches
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

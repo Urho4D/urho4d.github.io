@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   What if – there was animation controller proxy
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    What if – there was animation controller proxy
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Just another one of those processes that I was curious about and wanted to see if it made any difference to create an animation controller proxy for all other characters to use the same animation.
+      </p>
+      <p>
+       <strong>
+        Tested with 400 characters.
+       </strong>
+       <br/>
+       <strong>
+        Release build:
+       </strong>
+       <br/>
+       w/o proxy
+       <br/>
+       <img alt="" src="../../../images/3d9713513c0a2a49500b6a72123284454d4066d5959b7d6dcc6b64b239957a03.png"/>
+      </p>
+      <p>
+       w/ proxy
+       <br/>
+       <img alt="" src="../../../images/c326bae6a5c73abb8a5198372a6c2d3f2cb334e8425ec50d091a46583cef52ee.png"/>
+      </p>
+      <p>
+       <strong>
+        Debug build:
+       </strong>
+       <br/>
+       w/o proxy
+       <br/>
+       <img alt="" src="../../../images/f19fc52cefe4928e879c9f2e1bd8c29ecae1804311357df3970e86bee1dff750.png"/>
+      </p>
+      <p>
+       w/ proxy
+       <br/>
+       <img alt="" src="../../../images/84e0de7d6bf2be90d2de572a43138e25b411d678ecb9ce5c72f3c6887bf8357f.png"/>
+      </p>
+      <p>
+       Makes a slight difference in Release and more significant in Debug.  Any thoughts?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I can conclude that the animation system is pretty optimized and there’s no need to create a proxy controller, even if you have a ton of chars in the scene.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Have you disabled the max frame limit in your tests?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       What of those number shall I check exactly? Update Avg?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       Thanks, weitjong. I didn’t expect “no limit” would make a difference since the char animation control update is in physics fixed update cycle but, wow, a huge difference. I’m not going to repost pics of every setup but the release build ran at around 470 fps for both conditions and 210 for debug - both conditions.
+       <br/>
+       Our current character demo calls animation update every frame, e.g. PlayExclusive() update of Idle anim. And by removing that call, the release frame rate shot up to 470, dbg frame rate shot up to ~210.
+      </p>
+      <p>
+       johnnycable, you want to look at sceneupdate and physicsupdate.
+      </p>
+      <p>
+       Frame capture of debug, non-proxy animation, no constant call to PlayExclusive() in physics fixed update.
+       <br/>
+       <img alt="" src="../../../images/c335432caa98e935db38706f95d2d2bf25de9b0ef3a6907e69e6ee1897fc6fe0.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       So, my conclusion still remains the same, animation system is pretty optimized and using a proxy animation controller will not boost performance.
+       <br/>
+       For a large body count, however, you should look into (some things I can think of):
+      </p>
+      <ul>
+       <li>
+        lod geom
+       </li>
+       <li>
+        lod shadows
+       </li>
+       <li>
+        lod animation - *err, this feature is there but not sure if it’ll help much because of how optimized anim system is.
+       </li>
+       <li>
+        limit draw distance
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <blockquote>
+       <p>
+        For a large body count, however, you should look into (some things I can think of):
+       </p>
+      </blockquote>
+      <p>
+       Other than LOD, time would be better spent on more aggressive batching and applying AZDO principles to instance the characters. On DX11 that scene can get chopped down to &lt; 15 draw calls with minimal hassle.
+      </p>
+      <p>
+       Once you get lights and shadows in there the cost of drawing all of those individually is going to get really high fast.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

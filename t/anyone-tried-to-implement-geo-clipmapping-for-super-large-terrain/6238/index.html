@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Anyone tried to implement geo clipmapping for super large terrain?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Anyone tried to implement geo clipmapping for super large terrain?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/7c6401e9eff906283679d1367c46b3691c9332d2f96c9bf972c4b40cc99461df.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      UrhoIsTheBest
+     </div>
+     <div class="post_content">
+      <p>
+       I just read the
+       <a href="http://hhoppe.com/proj/geomclipmap/" rel="nofollow noopener">
+        original paper
+       </a>
+       , also the
+       <a href="https://developer.nvidia.com/gpugems/gpugems2/part-i-geometric-complexity/chapter-2-terrain-rendering-using-gpu-based-geometry" rel="nofollow noopener">
+        GPU modification
+       </a>
+       .
+       <br/>
+       I was shocked by the amazing performance.
+       <br/>
+       It uses 200k * 100k heightmap (40G compressed to 300M), stores it in video card memory. Very good frame rate even in 2004! 16 years ago! They used the whole US heightmap (1arc resolution, ~30meter).
+       <br/>
+       <a href="https://www.youtube.com/watch?v=yoUQRT-Hmcc&amp;feature=youtu.be" rel="nofollow noopener">
+        youtube video demo
+       </a>
+      </p>
+      <p>
+       That exactly meets my requirement for a large terrain game.
+      </p>
+      <p>
+       I wonder if anyone has tried to implement that in Urho3D or in their project?
+       <br/>
+       Is it easy to integrated with Urho3D?
+       <br/>
+       I cannot wait to try it!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

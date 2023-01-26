@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Interactive Demo Scene
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Interactive Demo Scene
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       I just wanted to do something.
+       <br/>
+       It took about a week of evenings.
+       <br/>
+       Assets are
+       <em>
+        not
+       </em>
+       mine.
+       <br/>
+       Beware of heavy GIFs below (up to 40MB).
+       <br/>
+       <img alt="01A" height="389" src="../../../images/2105f33ca20ebe5cf88a705c4d755b920f4e80ba3d10518c98b0e944d53b7d43.jpg" width="690"/>
+       <br/>
+       <img alt="01B" height="389" src="../../../images/137a593a39d66ade1866bbc7f171ef80eb5f31c122b6d0ed8954aa7c2ccfc790.jpg" width="690"/>
+       <br/>
+       <img alt="A01" height="389" src="../../../images/2b2b59b6dbe3c688c6cfcd536580ddf8df85f87090b2e6bbb8d9fb4f5f8e5da8.jpg" width="690"/>
+       <br/>
+       <img alt="A02" height="389" src="../../../images/f3c7721f60fc7c8085d10ae018fec93f364942120b046febbb4502cc51a6759e.jpg" width="690"/>
+       <br/>
+       <img alt="B01" height="389" src="../../../images/d469a3a797aede890dcc6491246859a863e56c5c87b8cd6c7ce14c328f3e0bf5.jpg" width="690"/>
+       <br/>
+       <img alt="B02" height="389" src="../../../images/d01cb1fbce53ed44b2a12612d52c6da5cbd4877a5580e326bb3a482485aaac5c.jpg" width="690"/>
+       <br/>
+       <a class="onebox" href="https://media.giphy.com/media/w9d4Co3fX913SiBqCV/giphy.gif" rel="nofollow noopener" target="_blank">
+        https://media.giphy.com/media/w9d4Co3fX913SiBqCV/giphy.gif
+       </a>
+       <br/>
+       <a class="onebox" href="https://media.giphy.com/media/5BWVHdvEJarfjfZaxv/giphy.gif" rel="nofollow noopener" target="_blank">
+        https://media.giphy.com/media/5BWVHdvEJarfjfZaxv/giphy.gif
+       </a>
+      </p>
+      <hr/>
+      <p>
+       This is
+       <em>
+        not
+       </em>
+       code exchange.
+       <br/>
+       Re-check your equipement before looking at the code if you are brave enough to even open it.
+       <br/>
+       All sources are here:
+       <br/>
+       <a class="inline-onebox-loading" href="https://github.com/eugeneko/Urho3D/tree/sample-77" rel="nofollow noopener">
+        https://github.com/eugeneko/Urho3D/tree/sample-77
+       </a>
+       <br/>
+       Source/Samples/77_Oddball
+       <br/>
+       bin/Autoload/LargeData/77
+       <br/>
+       bin/Autoload/LargeData/Shaders
+      </p>
+      <p>
+       Tested only with DX11.
+       <br/>
+       Grass animation works only with DX11.
+      </p>
+      <p>
+       Assets info is here:
+       <br/>
+       <a class="inline-onebox-loading" href="https://github.com/eugeneko/Urho3D/blob/sample-77/bin/Autoload/LargeData/77/README.txt" rel="nofollow noopener">
+        https://github.com/eugeneko/Urho3D/blob/sample-77/bin/Autoload/LargeData/77/README.txt
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       One thing that really bothers me with Urho, but I never found a way to tweak it, is how jaggy vegetation and shadows tends to look like. Is there any config that I’m missing on my materials? Did you manage to find a way to fix it?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       There’s one trick that I found helpful and it has nothing to do with Urho.
+       <br/>
+       You should carefully prepare foliage LODs so they doesn’t get too sparse.
+       <br/>
+       In other words, LOD calculation shall be conservative and preserve as much non-transparent pixels as possible…
+       <br/>
+       <img alt="image" height="339" src="../../../images/c0080e67941a5cedf376617aac4f27cc4da3090df62ac56c9220b0e0f8c8e236.jpg" width="690"/>
+      </p>
+      <p>
+       Alpha to Coverage plus MSAA x4, if properly used, may help too.
+       <br/>
+       It has it’s own issues tho.
+       <br/>
+       <a class="inline-onebox-loading" href="https://medium.com/@bgolus/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f" rel="nofollow noopener">
+        https://medium.com/@bgolus/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f
+       </a>
+       <br/>
+       It shall be configured more thoughtfully than just turning switches on like I did below, but it’s enough to get an idea:
+       <br/>
+       <img alt="image" height="234" src="../../../images/fc2f373de3ed55d693194d0ab644dfc871e2289ddae018941ac5ad91fd393409.jpg" width="689"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       Looks really great!
+       <br/>
+       Compiled and ran it on Ubuntu 16.04 and everything seems to be working except the grass animations as you already mentioned. I always thought that vegetation was one of the missing samples in this project and it could be great if someday it can be created in the master repo.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       BTW it’s quite easy to port grass shaders for OpenGL. Add some attributes, copy paste code… maybe I’ll do it next time when I touch this code.
+       <br/>
+       DX9, on the other hand, doesn’t allow to sample textures in vertex shader and cannot support all these animations.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Are these artifacts caused by bad LODs?
+      </p>
+      <p>
+       <img alt="image" height="234" src="../../../images/ba103f23fb2ca347dde7c38b39e8f0ba38b85697c50554cf5341d37af9d1601a.jpg" width="689"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Runs well on a shitty Intel 4th and Ubuntu:
+      </p>
+      <p>
+       <img alt="image" height="500" src="../../../images/14b06f256458896e384d7ef078c3c5bbd882f14df2eaaa90aea113c651dcc978.jpg" width="649"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       Grass noise appeared when I enabled MSAA, don’t know why. Maybe texture mode was set to wrap implicitly.
+       <br/>
+       Tree model itself is quite strange. It seems it was designed to have one-sided leaves. At least, I had artifacts when made leaf material two-sided. I don’t know.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/28ebc440ecd4098f2a6ad505cdc9ec368de1a0cd2616ecbd951089089330fbd9.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      slapin
+     </div>
+     <div class="post_content">
+      <p>
+       Cool, how did you port shaders?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Didn’t port anything. Cloned, built and it worked well.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

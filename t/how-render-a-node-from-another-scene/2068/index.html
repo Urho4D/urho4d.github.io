@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How render a node from another scene?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How render a node from another scene?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <p>
+       Is there a way to render a node (StaticComponent) that belong to another scene (without cloning it) ? (same node instance used in multiple rendertarget)
+       <br/>
+       Because my node is only rendered in the last scene where I added it.
+      </p>
+      <p>
+       Thanks
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       This is a variation of the “layering scenes” question. If you want it to render it in multiple rendertargets or viewports, you could have a viewport + renderpath without clear command whose purpose is to render only this object. Otherwise a node can only exist in one scene at a time.
+      </p>
+      <p>
+       This will introduce some inefficiency because it triggers a whole another scene render processing, so in case you want to keep max. performance I’d just recommend cloning the node to different scenes. The memory overhead from this is very small (just the component’s + node’s attributes) since the large data (mesh) is held in memory only once.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/019827bd0eb5e2a8d89da424f98a6ecba77e382dc37ded5fbae64aa8977db78d.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dakilla
+     </div>
+     <div class="post_content">
+      <aside class="quote">
+       <blockquote>
+        <p>
+         This is a variation of the “layering scenes” question
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes i’m working on a cutscene player, where it is possible to layering multiple scenes to make special fx.
+      </p>
+      <aside class="quote">
+       <blockquote>
+        <p>
+         Otherwise a node can only exist in one scene at a time
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Ok, thanks.
+       <br/>
+       I was looking for a way to do not clone a node because I have a custom animation system for nodes, but finally I found a way to use it as a component and how to create custom attributes of ptr types, so I can now clone nodes that refer to a unique anim ptr instance using this component. That solve my problem.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

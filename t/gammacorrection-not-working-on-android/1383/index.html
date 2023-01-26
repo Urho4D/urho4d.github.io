@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   GammaCorrection not working on Android
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    GammaCorrection not working on Android
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+       <br/>
+       I am testing GammaCorrection shader on Android but I can’t get it to work as it fails to compile.
+       <br/>
+       This is my output.
+      </p>
+      <p>
+       <code>
+        E/Urho3D  ( 6045): Failed to compile pixel shader GammaCorrection():
+E/Urho3D  ( 6045): Compile failed.
+E/Urho3D  ( 6045): ERROR: 0:536:33 reserved keyword 'sampler3D'.
+E/Urho3D  ( 6045): ERROR: 1 compilation errors. No code generated.
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       To follow-up on this issue and not to be off topic, but I’m also curious as well on what default Urho3D postprocess/shaders work on Android/iOS.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Best bet will be to simply exclude anything related to 3D samplers on GLES. Seems this was forgotten in PostProcess.glsl common functions.
+      </p>
+      <p>
+       EDIT: should be fixed in master branch.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

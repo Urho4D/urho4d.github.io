@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   No Urho2D Build Causes Editor Error
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    No Urho2D Build Causes Editor Error
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       Urho3D Editor throws error when Urho3D is build without the 2D components… This error comes from the
+       <a href="http://EditorHierachyWindow.as" rel="nofollow noopener">
+        EditorHierachyWindow.as
+       </a>
+       at line 879 and 883 where ParticleEffect2D is referenced, it throws the error because ParticleEffect2D (and other 2D component) does not exist in the build.
+      </p>
+      <p>
+       If it’s worth it, I believe it will be awesome to implement a work-around for this issue so that those using the Urho3D library without 2D components can still use the Editor without problem
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       It would have to be worked around by completely generic component access, ie. attributes. Will make the code ugly, but is potentially possible.
+      </p>
+      <p>
+       Note that similarly, building without physics will cause several errors in the editor. That I don’t think is worth working around.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“cadaver”]It would have to be worked around by completely generic component access, ie. attributes. Will make the code ugly, but is potentially possible.
+      </p>
+      <p>
+       Note that similarly, building without physics will cause several errors in the editor. That I don’t think is worth working around.[/quote]
+      </p>
+      <p>
+       Okay… I’ll dabble around in the code and see what I can tweak
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       Personally, I just keep a build with everything enabled (Lua, Urho2D, AngelScript, everything) for when I need to do work with the editor or for when I want to experiment with something. Seems much easier to do that than to try to munge the code to get it to work without one of the systems.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       This should now be fixed in the master branch, by using bare Resource &amp; Component classes, and SetAttribute().
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Bake lights
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Bake lights
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/92028b5b94650c5db30122b34a44946b7fc1cfc731bd7f99650f6e64feafdcc1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      artgolf1000
+     </div>
+     <div class="post_content">
+      <p>
+       Hi,
+      </p>
+      <p>
+       Unreal and Godot can bake lights for a scene, I think it is a must have feature for modern 3d engines.
+      </p>
+      <p>
+       Here is a solution:
+       <a data-bbcode="true" href="http://www.pmavridis.com/data/VolumeBasedDiffuseGlobalIllumination_final.pdf" rel="nofollow noopener">
+        http://www.pmavridis.com/data/VolumeBasedDiffuseGlobalIllumination_final.pdf
+       </a>
+      </p>
+      <p>
+       It seems not too difficult to achieve, the only issue is the voxelization step is relatively costly in realtime.
+      </p>
+      <p>
+       But if we bake for static lights and static scenes, it’s not a problem.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/211b5c3ff075cc3199cdcef1a49c4725d1c0a6c3a35dbbc47195606b06d840fe.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      namic
+     </div>
+     <div class="post_content">
+      <p>
+       Ongoing discussion:
+       <a href="http://discourse.urho3d.io/t/open-source-lightmapping-solution/2022/1">
+        topic2118.html
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/1942bc04975c75156629598f61ba11bcc001f312ff469070f61448e051f874dd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Lumak
+     </div>
+     <div class="post_content">
+      <p>
+       I agree the tool is a must.
+      </p>
+      <p>
+       I remember Josh mentioning working on a lightmap tool.
+      </p>
+      <p>
+       [quote=“jenge”]Working on a scene lightmap generation tool, here’s a look at an ambient occlusion bake.  The lightmap UV generation and packing is quite good and uses Thekla’s library from “The Witness”
+      </p>
+      <p>
+       <img alt="" height="" src="missing_image.png?original=http%3A//docs.atomicgameengine.com/forum_images/AOBake.png" width=""/>
+      </p>
+      <p>
+       I made a really quick video of the Atomic Editor C# integration with Visual Studio, including debugging and edit continue.  The editor and command line tooling is able to generate solutions on the fly and parse NET assemblies for component inspector information:
+      </p>
+      <ul>
+       <li>
+        Josh[/quote]
+       </li>
+      </ul>
+      <p>
+       He might be finished with it, if not, perhaps, collaborate.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/92028b5b94650c5db30122b34a44946b7fc1cfc731bd7f99650f6e64feafdcc1.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      artgolf1000
+     </div>
+     <div class="post_content">
+      <p>
+       I’ll look into the technique later, bake full lighting to voxel is an excellent idea, it can be used to lighten dynamic 3d models like it is in Godot engine.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

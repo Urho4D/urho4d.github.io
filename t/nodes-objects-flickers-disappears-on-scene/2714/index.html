@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Nodes/Objects flickers/disappears on scene
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Nodes/Objects flickers/disappears on scene
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcdbfbd7622a54267e5189250c086b7941163de1d8e6bb9dc43a78254fd745b5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Jimmy781
+     </div>
+     <div class="post_content">
+      <p>
+       Hey guys , i created several nodes and static models on a scene which i’m viewing from above .
+      </p>
+      <p>
+       However when i zoom in/out , the items flickers and disappears (reappears when i zoom in) . Sometimes it works fine , other times not .
+      </p>
+      <p>
+       I’m not really sure whats causing it
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/03bd1f8a3e6efbea4fb5c7378bff890a9215df01e5f8713dddfe305ebe3c252c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      hdunderscore
+     </div>
+     <div class="post_content">
+      <p>
+       Camera view/draw distance maybe?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/bcdbfbd7622a54267e5189250c086b7941163de1d8e6bb9dc43a78254fd745b5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Jimmy781
+     </div>
+     <div class="post_content">
+      <p>
+       Is there any function to set that ?
+      </p>
+      <pre><code>CamNode = scene.CreateChild(name: "camera");
+            camera = CamNode.CreateComponent&lt;Camera&gt;();
+           
+
+            camera.FarClip = 300000;
+
+            CamNode.Position = new Vector3(0.0f, 200.0f, 0.0f);</code></pre>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/98ebdab29deeab97e3366d1e6269f19391d6ffb8173c0e3ecf79076ad092bc78.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      GoogleBot42
+     </div>
+     <div class="post_content">
+      <p>
+       Did you set the bounding box of the model correctly?  (If you loaded the model from from one of the included Urho3D models this won’t be a problem.  This is probably only a problem if you generated your own model/meshes on the fly at runtime.)
+      </p>
+      <p>
+       Do you think you could post a screenshot or animated gif?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

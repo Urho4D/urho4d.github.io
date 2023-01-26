@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Reflection Improvements
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Reflection Improvements
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/342649c8f1c6e523793f1c9d7d5a2dab2d2ac5690593c1d9b362d1bb761a194c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pyromancer
+     </div>
+     <div class="post_content">
+      <p>
+       I did a thing!
+      </p>
+      <p>
+       So I have some initial work on improvements to the reflection system. Still very much a work in progress, but I has a fork of Urho3D on my github that has the initial work. It loaded up the NinjaSnowWar example just fine, though it needs a much more thorough battery of testing to make sure that everything works as it should.  :mrgreen:
+      </p>
+      <p>
+       Compiled and ran just fine on Apple LLVM 7.0.0
+      </p>
+      <p>
+       <a data-bbcode="true" href="https://github.com/BrightBlueFlame/Urho3D" rel="nofollow noopener">
+        https://github.com/BrightBlueFlame/Urho3D
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c137363796145d81ad81fb42a872f218cb50a314415cea7f32ff0dd0ee2e74b8.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      gwald
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Sinoid”]
+       <br/>
+       I think you’ve crossed it, actually I think you ran right over it into the sunset never looking back at the explosions behind you.[/quote]
+       <br/>
+       <img alt=":open_mouth:" class="emoji" src="../../../images/53b4e8485067f1290a047a4a938e79e03a18cc18046c0d7d65912487b13f8b91.png" title=":open_mouth:"/>
+      </p>
+      <p>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+       <br/>
+       That’s very funny, everyone has their own style
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/342649c8f1c6e523793f1c9d7d5a2dab2d2ac5690593c1d9b362d1bb761a194c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pyromancer
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“Sinoid”]There’s a fine line between a macro DSL and macro hell.
+      </p>
+      <p>
+       I think you’ve crossed it, actually I think you ran right over it into the sunset never looking back at the explosions behind you.[/quote]
+      </p>
+      <p>
+       So kinda like this you mean?
+       <br/>
+       <img alt="" height="259" src="../../../images/2b48a15bef56fd5773e6c67f598649e68480543576d2183b183839e2d75b1c14.gif" width="400"/>
+      </p>
+      <p>
+       Funny thing is that aster’s commits yesterday implemented everything I wanted, so the most I will need to do now is just update my registration helpers since base type querying is now in the core of the engine. Most of that crap will cease to be.
+      </p>
+      <p>
+       <span class="mention">
+        @gwald
+       </span>
+       - True, but he’s right in a way (though he didn’t
+       <span class="bbcode-i">
+        really
+       </span>
+       need to put me on blast). I shared my fork with you guys specifically so I could get feedback on it. To be honest, I myself was starting to get a little frustrated at the way I went about implementing the feature I wanted.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6f717edbbb6794a81024a65a0b329f4d47f598f032ada0b9ad3e06d3c5e8ecc7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      boberfly
+     </div>
+     <div class="post_content">
+      <p>
+       That gif though, always my favourite.
+      </p>
+      <p>
+       Whatever benefits the eventual ease of binding it for pipeline tools/editors or other languages (python!) the better!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/342649c8f1c6e523793f1c9d7d5a2dab2d2ac5690593c1d9b362d1bb761a194c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pyromancer
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t think this will do much for easing bindings to languages. The ClassConstructor class and URHO_REGISTER_OBJECT macro is more of a wrapper around the existing system, with the AttributeProperty class  acting as a bit of code-level metadata for… whateverthehell you want. I guess it could be used as a means of automating script binding, but there are better ways to do that. I’m of the camp that says script binding should be automated as little as possible because the script-&gt;C++ barrier is slow as hell no matter what language you use. I myself can’t see myself using Angelscript all that much (despite my prior experience with the library when I was in college).
+      </p>
+      <p>
+       Tools implemented in C++ however, that is probably where my additions will help you tremendously.  :mrgreen:
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

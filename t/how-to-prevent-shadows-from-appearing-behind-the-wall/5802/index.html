@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to prevent shadows from appearing behind the wall
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to prevent shadows from appearing behind the wall
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e50bf239659c0f78d63b5178a6476be549232d82edd7c766f13b6dc694d31b9c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dertom
+     </div>
+     <div class="post_content">
+      <p>
+       Hi, here is the problem:
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/6J8xe8qcK67yrANEu2H1FgT4879.jpeg?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/2/2f27403fd806c09536aa284122121ef46d4107eb.jpeg" rel="nofollow noopener" title="image">
+         <img alt="image" data-base62-sha1="6J8xe8qcK67yrANEu2H1FgT4879" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/2f27403fd806c09536aa284122121ef46d4107eb_2_10x10.png" height="499" src="../../../images/efd0e2a9da20c843a47702775409559e6c1f09c4b61d57f0f6912a1d76204dd0.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/2f27403fd806c09536aa284122121ef46d4107eb_2_635x499.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/2/2f27403fd806c09536aa284122121ef46d4107eb_2_952x748.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/2/2f27403fd806c09536aa284122121ef46d4107eb.jpeg 2x" width="635"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           image
+          </span>
+          <span class="informations">
+           1026×807 152 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       The shadow appears on the floor but also on the wall of the floor beneath. I know that this is a common problem. But is there any solution? Maybe another kind of shadow-rendering? I’m using the default way, as it is used in all the samples.
+      </p>
+      <p>
+       Greetz,Tom
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       Shadow-map can only mask out light for what it knows about (what was rendered into it).
+      </p>
+      <p>
+       Either your walls need to be marked as not to receive shadows or your upper-floors need to be set to also cast shadows so the shadow-map is
+       <em>
+        more complete
+       </em>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/e50bf239659c0f78d63b5178a6476be549232d82edd7c766f13b6dc694d31b9c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      dertom
+     </div>
+     <div class="post_content">
+      <p>
+       Thx for your advice. Since ceiling and wall are one mesh (atm) I go for setting the wallparts to cast shadows as well. And it works as intended…
+       <img alt=":+1:" class="emoji" src="../../../images/42b43325b3edacba2a0e72b742bdc6fc5e4bc2ad38adca271fcc6d8353639887.png" title=":+1:"/>
+      </p>
+      <p>
+       <span class="mention">
+        @Sinoid
+       </span>
+       : Hmm,…how exactly would I mark an object as “not to receive shadows”? Would this be done with the shadowmask?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

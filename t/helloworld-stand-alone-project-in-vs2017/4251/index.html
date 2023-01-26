@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   HelloWorld stand alone project in VS2017
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    HelloWorld stand alone project in VS2017
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eb3bcb64cd602f5a50e3601a14c0a04a43bb1ad4034207c8773861ade447ab0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      capelenglish
+     </div>
+     <div class="post_content">
+      <p>
+       First, I’m trying to get up to speed on Urho3D using C++. I’m a C# developer and have minimal C++ experience.
+      </p>
+      <p>
+       I’ve followed
+       <a href="https://discourse.urho3d.io/t/new-blank-project-in-vs2017-set-up-for-urho3d-solved/4071">
+        this process
+       </a>
+       and created a new VS2017 project. Now I’m trying to re-create the HelloWorld project from the samples as a stand alone project. In the HelloWorld example Solution Explorer there is a reference to Urho3D that is not in the blank project I created. I tried to add a reference to it, but can’t seem to navigate to it. Did I miss something?
+      </p>
+      <p>
+       Also, there is an
+       <span class="hashtag">
+        #include
+       </span>
+       “Sample.h” in HelloWorld.h. Do I need this in order to get a simple HelloWorld example up and running? My apologies for the newbe questions, but your help is greatly appreciated.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/44af2cc7f66f8ae81d9d54e3c26dce121922cad21ac9383999d3d4d4db1d05fa.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Miegamicis
+     </div>
+     <div class="post_content">
+      <p>
+       All the samples include the
+       <code>
+        Sample.h
+       </code>
+       file to avoid duplicate code in the repo. If you wan’t to set up your project from those, copy
+       <code>
+        Sample.h
+       </code>
+       file in your project.
+      </p>
+      <p>
+       To use Urho3D as an external project, set environment variable URHO3D_HOME which should lead to Urho3D build tree. If you downloaded compiled binaries, this variable should point to a place, where you extracted this library.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9eb3bcb64cd602f5a50e3601a14c0a04a43bb1ad4034207c8773861ade447ab0.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      capelenglish
+     </div>
+     <div class="post_content">
+      <p>
+       That worked. Thanks!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/88497a7d12adb4484986adc798080e5d6d1d36a0d081809c264215531fce26df.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sehlit
+     </div>
+     <div class="post_content">
+      <p>
+       Haha, I’m a C# developer too, and I’m going to use C++ in Urho because unfortunately there is no good C# scripting support :(. I know how to link libraries, and I don’t understand why you have to set an environment variable (Path?)… can’t you just link Urho statically or so?
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

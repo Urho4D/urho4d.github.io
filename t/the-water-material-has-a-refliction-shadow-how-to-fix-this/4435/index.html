@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   The water material has a refliction shadow,how to fix this
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    The water material has a refliction shadow,how to fix this
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f31938eeee55ecaa5be1a15eb942540a456b3262ede8482b50ed0edbbdb9bbcb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      chenjie199234
+     </div>
+     <div class="post_content">
+      <p>
+       i copy the code in the Water example,NO.23
+       <br/>
+       but there is something strange in my object,like a white shadow~
+       <br/>
+       how to fix it~
+       <br/>
+       it will show when the angle between camera direction and horizontal plane is small.
+       <br/>
+       this is the screen shoot
+       <br/>
+       <img alt="123" height="375" src="../../../images/88846725af874b2943667f08854407fcf965653fa968298ea29da5cd86d372c4.PNG" width="690"/>
+       <img alt="456" height="390" src="../../../images/9a5bd2bb3145d7a5475ffcba3eb9710a1a6566a66ccaeeb151062b3e2721763c.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9ffa785b379770c490f83b61c2bf1a6fd3ee52ed493a1d689aef4f1ee2ebcdc3.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      JTippetts
+     </div>
+     <div class="post_content">
+      <p>
+       That’s the reflection on the surface of the water. In the sample, reflectionCamera is a camera set up to take a picture of the scene from a different viewpoint, and render that shot to a texture. In the water shader, a Fresnel term is used to mix between the refracted background color (your rendered scene from the standard camera viewpoint) and the reflection color. The Fresnel effect means that the shallower your viewing angle becomes, the more the reflected image will dominate over the refracted image.
+      </p>
+      <p>
+       If you don’t want reflections, you can modify the shader to only use the refracted color. This should get rid of the “shadow”, but also means there will be no surface reflections.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f31938eeee55ecaa5be1a15eb942540a456b3262ede8482b50ed0edbbdb9bbcb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      chenjie199234
+     </div>
+     <div class="post_content">
+      <p>
+       got it.I didnt copy all the code in the example.thx for the explain.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <p>
+       Are you using orthographic camera? Some features may not work with it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/f31938eeee55ecaa5be1a15eb942540a456b3262ede8482b50ed0edbbdb9bbcb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      chenjie199234
+     </div>
+     <div class="post_content">
+      <p>
+       yes im using orthograghic camera.what feature not work with it.
+       <br/>
+       do u know how to modify the shader.i dont know how towrite shader.
+       <br/>
+       can we add a technique named WaterWithoutReflect.xml
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c01b8b8b05b6aab492df6eeace88e2282147607ff86cdc28638e9227819a3fcc.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bananaft
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="5" data-topic="4435">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/870b5f1c17c147976225df769b7f2d11f028543c66e10e1bf4c4666ea13fffd1.png" width="20"/>
+        chenjie199234:
+       </div>
+       <blockquote>
+        <p>
+         do u know how to modify the shader.i dont know how towrite shader.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       look into water.glsl, it’s pretty simple actually. You can replace reflectColor texture read with plain blue color and fresnel calculation with static number. Also disable all reflection related code from water example (which is almost all of it.
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+       )
+      </p>
+      <p>
+       Good luck!
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+<meta charset="UTF-8"/>
+
+
+<title>gdURL: Direct Permalinks for Google Drive - 1,091,122 links and counting</title>
+
+<!--[if lte IE 8]>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="image/x-icon" type="image/ico" href="/favicon.ico"/>
+<link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
+<meta name="description" content="Create direct permalinks for your Google Drive files - 1,091,122 links and counting..."/>
+
+<link href="/min/css/10/style.css?u=/vosa/theme/vosa/css/style.css,/vosa/theme/vosa/css/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css" media="all"/><!--[if IE 7]>
+<link href="/min/css/3/style-ie7.css?u=/vosa/theme/vosa/css/ie7.css" rel="stylesheet" type="text/css" media="all"/><![endif]-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" ></script>
+
+<script src="/min/js/2/prefix.js?u=/vosa/theme/vosa/js/jquery.cookie.min.js,/vosa/theme/vosa/js/header.js" type="text/javascript" ></script>
+
+
+<script src="/vosa/theme/vosa/index/script.js" type="text/javascript" ></script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: "ca-pub-7639656561235411",
+  enable_page_level_ads: true
+});
+</script>
+
+</head>
+<body class="no-js" id="body-controller-index">
+<script type="text/javascript">$(document).ready(function(){ $('body').toggleClass('no-js js'); });</script>
+
+<header
+id="header-outer"><div
+id="page-header"><div
+id="page-header-inner"><h1 id="header-logo"> <a
+href="/"> <img
+src="/vosa/theme/vosa/media/header/logo.png" alt="gdURL"/> <span> <b>gdURL.com</b> <br/> Direct Permalinks for Google Drive<span
+style="color:#999;font-size:1em;margin-left:0.75em;line-height:1.6;"> <span
+id="live-count">1,091,122</span> links and counting... </span> </span> </a></h1></div><div
+id="page-header-shares"><div
+style="display: inline-block; margin-top: -7px; font-size: 16px;"> <a
+href="https://www.patreon.com/rommelsantor" target="_blank" style="color: #fff; font-size: 0.85em; padding: 0.5em; border: 1px solid #fff; display: inline-block; background: #444; border-radius: 2px;"> Become a Backer on Patreon &raquo; </a></div></div></div> </header><div
+id="page-outer"><div
+id="page-outer-wssl"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  <ins
+class="adsbygoogle"
+style="display:inline-block;width:160px;height:600px"
+data-ad-client="ca-pub-7639656561235411"
+data-ad-slot="8980169430"></ins> <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> </div><div
+id="page" class="index"><div
+id="all-beta-alert"> <a
+href="/all" title="Browse All Permalinks"> &hearts; <span
+class="new">new feature: </span> <strong>Browse All Permalinks</strong> <sup
+class="beta">beta</sup> </a></div><div
+id="page-inner">
+
+<section>
+  <article>
+          <div class="ui-widget msg-box msgbox-error">
+  <div class="ui-state-error ui-corner-all">
+    <p>
+              <span class="ui-icon ui-icon-alert" style=""></span>
+            <strong>Error:</strong>
+      The requested file/URL has been deleted from Google Drive and/or gdURL.    </p>
+  </div>
+</div>
+    
+    <form method="post" action="" id="index-form">
+              <div style="text-align:center">
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- Leaderboard - gdURL.com -->
+          <ins class="adsbygoogle"
+            style="display:inline-block;width:728px;height:90px"
+            data-ad-client="ca-pub-7639656561235411"
+            data-ad-slot="8438457036"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      
+      <label>
+        <input type="url" name="url" id="url" value="" placeholder="Paste a public Google Drive URL like https://docs.google.com/file/d/0By7D4SJX3kYEdVo1bDdSb0hHWlk/edit?usp=sharing"/>
+      </label>
+      
+      <br/>
+
+      <div class="c">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Medium Rectangle - gdURL.com -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:250px;margin-bottom:1em;"
+             data-ad-client="ca-pub-7639656561235411"
+             data-ad-slot="4336317035"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
+      <div class="c">
+        <button>Create Permalink</button>
+
+              </div>
+    </form>
+
+      <div id="gdrive-tree-header">
+    <img src="/vosa/theme/vosa/media/gdrive-favicon.ico" width="16" height="16"/>
+    <span>
+      Not Connected to Google Drive
+    </span>
+  </div>
+  <div id="gdrive-tree" class="disconnected">
+    <ul class="gdrive">
+      <li>
+        Create permalinks easily by browing your Google Drive files and folders.
+        Just click the button below to connect.
+      </li>
+      <li>
+        <a href="/auth" class="gd-connect">
+          <img src="/vosa/theme/vosa/media/gdrive-favicon.ico"/>
+          <span>
+            Connect Google Drive
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+    <br/><br/><br/>
+
+    <h3>Support gdURL</h3>
+
+    <p>
+      As the popularity of gdURL grows, it is becoming increasingly difficult for our server
+      to keep up with demand. Your support would be greatly appreciated and will help prevent
+      this service from having to shut down!
+    </p>
+
+    
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: inline-block; vertical-align: middle;">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="ZJHTY58EBSKGG">
+<!--
+  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+-->
+  <input type="image" style="width:auto;border:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;padding:0;" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<span style="display: inline-block; vertical-align: middle;">
+  - OR -
+
+  <a href="https://www.patreon.com/rommelsantor" target="_blank" style="font-size: bigger;">
+    <b>Become a Backer on Patreon &raquo;</b>
+  </a>
+</span>
+
+
+    <br/>
+    <br/>
+    <hr/>
+    <br/>
+    <br/>
+
+
+    <h3 class="mmb">FAQ</h3>
+
+    <ol id="faq">
+      <li>
+        <a href="#">Can I see an example?</a>
+        <blockquote>
+          Sure! Here's a public Google Drive file URL you can play with. Click to insert it into the form above:
+          <p>
+                        <a href="https://docs.google.com/file/d/0By7D4SJX3kYEdVo1bDdSb0hHWlk/edit?usp=sharing" onclick="$('#index-form input').val(this.href).focus();return false;">https://docs.google.com/file/d/0By7D4SJX3kYEdVo1bDdSb0hHWlk/edit?usp=sharing</a>
+          </p>
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Do you track views?</a>
+        <blockquote>
+          Yes! You are provided multiple versions of your permalink. For each method, we track
+          every time the link is used by anyone.
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">What else can you do for me?</a>
+        <blockquote>
+          In addition to a direct link to any file and the ability to display any image on a web page
+          (in an &lt;IMG&gt; tag), you are also provided special codes that you can use to embed supported
+          file types (such as .PDF and even .ZIP) in a fancy file viewer on any web page.
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Will an HTML page work?</a>
+        <blockquote>
+          Not anymore. As of March 3, 2015, HTML files are no longer acceptable due to filthy
+          scumbag spammers using them maliciously. They always have to ruin the party for everybody.
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">How do I find a file's public URL in Google Drive?</a>
+        <blockquote>
+          The simplest way to create permalinks is to browse your Google Drive files and folders by
+          connecting to your account above. The old-fashioned method is to copy the URL from Google
+          Drive and pasting it. To do that, follow these four simple steps to access a file's public URL
+          in your Google Drive folders:
+          <ol>
+            <li>
+              <div>
+                Right-click on the desired file.<br/>
+                In the pop-up menu hover over <b>Share...</b> and click <b>Share...</b> in the sub-menu.
+              </div>
+              <img src="/vosa/theme/vosa/media/howto/step1.jpg" alt="" />            </li>
+            <li>
+              <div>
+                The <b>Sharing settings</b> form appears.<br/>
+                Click <b class="blue">Change...</b> in the <b>Who has access</b> section.
+              </div>
+              <img src="/vosa/theme/vosa/media/howto/step2.jpg" alt="" />            </li>
+            <li>
+              <div>
+                The <b>Visibility options</b> form appears.<br/>
+                Select the <b>Public on the web</b> option and click the <b class="green">Save</b> button.
+              </div>
+              <img src="/vosa/theme/vosa/media/howto/step3.jpg" alt="" />            </li>
+            <li>
+              <div>
+                You are returned to the <b>Sharing settings</b> form.<br/>
+                Copy the <b>Link to share</b> URL to your clipboard and paste it here at gdURL.com. That's it!
+              </div>
+              <img src="/vosa/theme/vosa/media/howto/step4.jpg" alt="" />            </li>
+          </ol>
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Are executable files allowed?</a>
+        <blockquote>
+          Sorry, not any longer. They used to be permitted because it was assumed that Google
+          would not allow its users to submit viruses to the Drive service, however some malicious
+          users have proven that to be an incorrect assumption. Thus, executable applications are
+          no longer accepted by gdURL.com.
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Can I link to a folder?</a>
+        <blockquote>
+          Sorry, that's not supported. You can only create a permalink for individual
+          files and not folders. 
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Is copyright-protected content allowed?</a>
+        <blockquote>
+          Please refer to our <a href="/dmca-take-down">DMCA Take-Down Policy</a> page. In short,
+          no. Any valid DMCA take-down request will result in the offending link being deleted.
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">I created an image link. Why won't it load?</a>
+        <blockquote>
+          <p>
+            If your image is very large in size (the exact minimum is unclear), Google cannot scan it
+            for viruses, and when you open the file via a web browser, Drive will display a page with
+            a warning message instead of the actual image itself.
+          </p>
+          <p>
+            In short, this means you can't directly load an image stored at Google Drive if it's
+            too large. :-(
+          </p>
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">What's up with the all the ads?!</a>
+        <blockquote>
+          <p>
+            I know ads are annoying, but servers are expensive, so it's just an attempt to
+            get some help paying the bills from the loyal gdURL users who appreciate the
+            service. (In all honesty, the ads you see here haven't even generated enough
+            revenue to earn a single payout from Google.) You could also help by donating.
+          </p>
+
+          <p>
+            Thanks for your support and appreciation!
+          </p>
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Are there any potential disadvantages?</a>
+        <blockquote>
+          <p>
+            The only real problem with sharing links at Google Drive files in general
+            (whether via gdURL or directly from Drive) is that Google limits the
+            amount of traffic to your files. Once too much bandwidth or too many views
+            have occurred for a file, Google will stop allowing people to load it temporarily.
+          </p>
+        </blockquote>
+      </li>
+      <li>
+        <a href="#">Do you offer any guarantees?</a>
+        <blockquote>
+          <p>
+            Especially as a free public service, there are no guarantees explicit or implied
+            with the availability of this website or any links that have ever been created with
+            it. This is especially important because Google could at any time cause things to
+            break.
+          </p>
+          <p>
+            In fact, after 8 years of providing this service, in January 2020 Google started
+            blocking the manner in which we determined if files still existed, causing us to
+            mark countless files as "deleted in Google Drive." As a result, we are no longer
+            able to determine if files are deleted or have become private in Google Drive, so
+            links to any such files will just land visitors at some kind of Google error page
+            henceforth.
+          </p>
+        </blockquote>
+      </li>
+    </ol>
+  </article>
+</section>
+
+<script src="/min/js/1/index.js?u=/vosa/theme/vosa/index/script.js" type="text/javascript" ></script>
+
+      <div id="content-body-close"></div>
+    </div>  </div></div>
+<footer id="footer">
+  <div id="footer-inner">
+    <section class="fr pmt">
+      <h2>
+        <a href="https://twitter.com/gdURL" target="_blank" class="tw-link" rel="nofollow">
+          <img src="/vosa/theme/vosa/media/tw-bird.png" alt=""/>
+          <span>@gdURL</span>
+        </a>
+      </h2>
+    </section>
+
+    <section class="desc">
+      <p>
+        <a class="dot-sol" href="http://drive.google.com" target="_blank">Google Drive</a>
+        provides online storage for all your data. Google allows you
+        to share your files via email by providing a special link, but to properly embed your file
+        on a website or in an IMG tag, you need a direct and permanent link to your
+        file. That's where gdURL.com comes to the rescue!
+      </p>
+    </section>
+  </div>
+
+  <div id="copyright">
+    <a href="/privacy-policy">Privacy Policy</a>
+    &nbsp; | &nbsp;
+    <a href="/dmca-take-down">DMCA</a>
+
+    &nbsp; - &nbsp;
+
+    Copyright &copy; 2012-2023    <a target="_blank" href="http://vosasoft.com">Vosa Software, Inc.</a>
+  </div>
+</footer>
+
+
+
+<!--[if lt IE 8]>
+<script src="/min/js/2/ie7.js?u=/vosa/theme/vosa/js/ie7.js" type="text/javascript" ></script><![endif]-->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/plusone.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5016477-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+</body>
+</html>
+

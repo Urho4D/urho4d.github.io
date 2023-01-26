@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Android build failed
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Android build failed
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c3d40fec9ed4cb59d6ee5c1493477e36cd1c76fa380f5513055f6823a47bdea2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CaptainCN
+     </div>
+     <div class="post_content">
+      <p>
+       I’m runing  ./gradlew build -PANDROID_ABI=armeabi-v7a
+       <br/>
+       system: Windows 10
+      </p>
+      <p>
+       [216/953] Running utility command for rapidjson
+       <br/>
+       FAILED: cmd.exe /C
+      </p>
+      <p>
+       …
+      </p>
+      <p>
+       ???
+       <br/>
+       ninja: build stopped: subcommand failed.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       I guess when in Rome, do as the Romans do. Use gradlew.bat instead of ./gradlew.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c3d40fec9ed4cb59d6ee5c1493477e36cd1c76fa380f5513055f6823a47bdea2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CaptainCN
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":sweat_smile:" class="emoji" src="../../../images/723bceeff120314bc0b84d09adc1fa250a25361d04ff700964fdee58819b20cd.png" title=":sweat_smile:"/>
+       I tried. Got follow errors.
+      </p>
+      <p>
+       – Detecting CXX compile features - done
+       <br/>
+       CMake Error at E:/test/Urho3D-me/CMake/Modules/CheckCompilerToolchain.cmake:193 (message):
+       <br/>
+       Could not check compiler toolchain as it does not handle ‘-E -dM’ compiler
+       <br/>
+       flags correctly
+       <br/>
+       Call Stack (most recent call first):
+       <br/>
+       E:/test/Urho3D-me/CMake/Modules/UrhoCommon.cmake:123 (include)
+       <br/>
+       CMakeLists.txt:46 (include)
+      </p>
+      <p>
+       – Configuring incomplete, errors occurred!
+       <br/>
+       See also “E:/test/Urho3D-me/android/urho3d-lib/.externalNativeBuild/cmake/debug/armeabi-v7a/Source/Urho3D/tolua+±prefix/src/tolua+±build/CMakeFiles/CMakeOutput.log”.
+       <br/>
+       ninja: build stopped: subcommand failed.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       It’s a common pitfall for Windows host as our build system requires native compiler toolchain to be made available for host tool building. Read the online doc or do some search in the forum. Also make sure you are using master branch.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Also try to nuke your old build tree before retrying. Sometime previous failed attempts may get in the way.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c3d40fec9ed4cb59d6ee5c1493477e36cd1c76fa380f5513055f6823a47bdea2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CaptainCN
+     </div>
+     <div class="post_content">
+      <p>
+       Still failed.
+      </p>
+      <p>
+       <img alt="image" height="231" src="../../../images/89b27a89a5fc8c427acb629f73e0d27a68c5aa6256dae6fdfe0d7d061228724a.png" width="559"/>
+      </p>
+      <p>
+       <img alt="image" height="416" src="../../../images/acec789ba9e0dfa1c78ad0a61c974699e0444b8f89d1089adca4079869fc1f3a.png" width="676"/>
+       <br/>
+       <img alt="image" height="215" src="../../../images/d1b87a8a780bc828b906d176e4b85a9666f37abca0b51e14cb1bad7b8f156ed9.png" width="403"/>
+      </p>
+      <p>
+       What is ‘native compiler toolchain’ ？
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       If you don’t understand what that meant, perhaps you should start by disabling the LUA subsystem first. Our build system tries to build host tool using native compiler toolchain in one go while crosscompiling. This has been asked and answered a few times in the forum. It gets old for me. So, I am sorry if my response is not very useful.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c3d40fec9ed4cb59d6ee5c1493477e36cd1c76fa380f5513055f6823a47bdea2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CaptainCN
+     </div>
+     <div class="post_content">
+      <p>
+       I think this error not about lua.
+      </p>
+      <p>
+       <img alt="image" height="214" src="../../../images/a19b8e9d2b2dfc62cc6e2644774a8e0489ab16f49a4e0e857e6aedd637b8803f.png" width="690"/>
+       <br/>
+       I copy this command in a bat and run.
+       <br/>
+       I got
+       <br/>
+       <img alt="image" height="79" src="../../../images/acfb72c7ef1e20110d5d6b882cc62a75ce2c5d2d92574ca8a380502856a8ecca.png" width="209"/>
+      </p>
+      <p>
+       command too long.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/c3d40fec9ed4cb59d6ee5c1493477e36cd1c76fa380f5513055f6823a47bdea2.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      CaptainCN
+     </div>
+     <div class="post_content">
+      <p>
+       I changed my pc language to English. And rebuild Urho3d.
+       <br/>
+       Got error message in English:
+       <br/>
+       <img alt="image" height="227" src="../../../images/dc8bac01c5ffc5e3bb0126656d31806ff325fa0a5c6deb95e4124a94a5653bac.png" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Yup, that’s another common pitfall for Windows users after managing to clear the compiler toolchain check. See
+       <a href="https://discourse.urho3d.io/t/new-gradle-build-system-for-android-platform/4380/63">
+        New Gradle build system for Android platform
+       </a>
+       . At this point I am also not sure why Windows 10 has this issue while it seems Windows 7 is fine.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       This pitfall was really heartbreaking for me
+       <img alt=":sweat:" class="emoji" src="../../../images/4b164a3c9307f81fa4ca8420223613c13d2df202ca494b9f7fdd0dd8a9c782a0.png" title=":sweat:"/>
+      </p>
+      <p>
+       I even tried the response file solution but it seems not to work ( I might probably be doing something wrong) so I actually gave it a break for a while. It would be nice if there could be a solution
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="11" data-topic="4543">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7af929017df4a2d47983c99fd268398a1752c37e656a86deabff58f69fcb17f0.png" width="20"/>
+        Bluemoon:
+       </div>
+       <blockquote>
+        <p>
+         It would be nice if there could be a solution
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       <img alt=":man_facepalming:" class="emoji" src="../../../images/9d7c273a316ab8873be0fbac31d2834eadc77fc44f2ef27cca074d0382067bd7.png" title=":man_facepalming:"/>
+       <br/>
+       It’s called Linux.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b2a8c7c22223e46073dee26c10aaf9a4d267d7f33d4aa46502c55dba672a9b69.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Bluemoon
+     </div>
+     <div class="post_content">
+      <p>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+       <img alt=":laughing:" class="emoji" src="../../../images/a3f9c0d9c41d961ddc96e236bc4a514a0edada8ce56cd0128d33952054cdc236.png" title=":laughing:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group" data-post="11" data-topic="4543">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/7af929017df4a2d47983c99fd268398a1752c37e656a86deabff58f69fcb17f0.png" width="20"/>
+        Bluemoon:
+       </div>
+       <blockquote>
+        <p>
+         I even tried the response file solution but it seems not to work ( I might probably be doing something wrong) so I actually gave it a break for a while. It would be nice if there could be a solution
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       It may worth your while by getting yourself familiar with Docker. Perhaps I should not say much until the whole thing materialized but there is a good chance Windows users (or as a matter of fact users on any hosts that could run docker image) would be able to pull Urho3d prepared docker image from Docker Hub that targets a  specific platform, run it  locally to build the project, and get the build artifacts as the result.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Porting projects from Unity to Urho
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Porting projects from Unity to Urho
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve put together working unity script to convert Unity assets into Urho assets.
+       <br/>
+      </p>
+      <aside class="onebox allowlistedgeneric">
+       <header class="source">
+        <img class="site-icon" height="32" src="../../../images/6a9577cd4f7fa6b75bde1025af85b944e9dd1388373b55ccba6e9f80ac2eae60.svg" width="32"/>
+        <a href="https://github.com/gleblebedev/Unity2Urho" rel="noopener nofollow ugc" target="_blank">
+         GitHub
+        </a>
+       </header>
+       <article class="onebox-body">
+        <img class="thumbnail onebox-avatar" height="400" src="../../../images/3eace86f2b81ad6196a8db2d807ebaa8a5d44073e1ce8c5bd973eb32aae39a52" width="400"/>
+        <h3>
+         <a href="https://github.com/gleblebedev/Unity2Urho" rel="noopener nofollow ugc" target="_blank">
+          gleblebedev/Unity2Urho
+         </a>
+        </h3>
+        <p>
+         Unity3D to Urho3D assets converter. Contribute to gleblebedev/Unity2Urho development by creating an account on GitHub.
+        </p>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       Here is how result looks like at the moment:
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/qbpgvB69NNohqH21HJlCrmypdQu.jpeg?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442.jpeg" rel="noopener nofollow ugc" title="image">
+         <img alt="image" data-base62-sha1="qbpgvB69NNohqH21HJlCrmypdQu" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_10x10.png" height="372" src="../../../images/c632c84c72ad921b0e14a220d09ba51d013a30a4f42bec88c63cef3d36402306.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_690x372.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_1035x558.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_1380x744.jpeg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           image
+          </span>
+          <span class="informations">
+           1919×1037 903 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/zXhSqE1R47jIVzOjsvgp3CXZh9k.jpeg?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/f/fbffcade9ea3c0f19c044b7e9090f1719c6233ce.jpeg" rel="noopener nofollow ugc" title="image">
+         <img alt="image" data-base62-sha1="zXhSqE1R47jIVzOjsvgp3CXZh9k" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/fbffcade9ea3c0f19c044b7e9090f1719c6233ce_2_10x10.png" height="393" src="../../../images/be4dabaaa055b073ce1fb336895f16a085b7192602fc11433bf5debb7be72b4f.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/fbffcade9ea3c0f19c044b7e9090f1719c6233ce_2_690x393.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/fbffcade9ea3c0f19c044b7e9090f1719c6233ce_2_1035x589.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/f/fbffcade9ea3c0f19c044b7e9090f1719c6233ce_2_1380x786.jpeg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           image
+          </span>
+          <span class="informations">
+           1621×924 671 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+      <p>
+       Just open a package manager in unity and add the package from git URL:
+       <br/>
+       <img alt="image" data-base62-sha1="kM0zoO50Q9OF95NMc9SjjBRD8Ef" height="118" src="../../../images/e4932f5ba09ab432a11f07d11683a991b79884adb58c8e8450b9a01715894f43.png" width="306"/>
+      </p>
+      <p>
+       The URL is:
+       <a href="https://github.com/gleblebedev/Unity2Urho.git" rel="noopener nofollow ugc">
+        https://github.com/gleblebedev/Unity2Urho.git
+       </a>
+      </p>
+      <p>
+       Video instructions:
+      </p>
+      <p>
+       How add it to Unity project:
+       <br/>
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="McsQiEYu_5Y" data-youtube-title="How to export Unity3D project to Urho3D">
+       <a href="https://www.youtube.com/watch?v=McsQiEYu_5Y" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/134a9bf287c323e429f63190ecc09fd0fe2d40b63cf4abdc5028cf8e9a1ad386.jpg" title="How to export Unity3D project to Urho3D" width="480"/>
+       </a>
+      </div>
+      <p>
+       How to create MDL file with LODs:
+       <br/>
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="J21mRrnfkig" data-youtube-title="How to create Urho3D mesh with LODs via Unity3D exporter">
+       <a href="https://www.youtube.com/watch?v=J21mRrnfkig" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/1906d266e351f8dac6933d5c68b9f0f78b12a380e565c8498ed690fa8cdc1417.jpg" title="How to create Urho3D mesh with LODs via Unity3D exporter" width="480"/>
+       </a>
+      </div>
+      <p>
+       Exporting animation:
+       <br/>
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="GyZyO6KM8NQ" data-youtube-title="Export mesh with animation from Unity3D to Urho3D">
+       <a href="https://www.youtube.com/watch?v=GyZyO6KM8NQ" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/d551e09e15d629c8c90e03ad370bcce056d82e1eea577d452a332dbbb54c45e7.jpg" title="Export mesh with animation from Unity3D to Urho3D" width="480"/>
+       </a>
+      </div>
+      <p>
+       Skyboxes and reflection probes:
+       <br/>
+      </p>
+      <div class="onebox lazyYT lazyYT-container" data-parameters="feature=oembed&amp;wmode=opaque" data-youtube-id="rfZ1aU2Xa70" data-youtube-title="How to export Skybox and ReflectionProbe into Urho3D">
+       <a href="https://www.youtube.com/watch?v=rfZ1aU2Xa70" rel="noopener nofollow ugc" target="_blank">
+        <img class="ytp-thumbnail-image" height="360" src="../../../images/7484c56f5d5a5b37844dc48b7292d27f3500da53fba106f7fd684b9e040cd651.jpg" title="How to export Skybox and ReflectionProbe into Urho3D" width="480"/>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Interesting. Can I ask you why are you changing for Urho from Unity? Urho is lightweight in respect to Unity, and no plugins…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t like Unity. Every time I’ve joined a Unity-centric team on a game jam it ended up being a disaster.
+      </p>
+      <p>
+       On other hand I love UrhoSharp - this is exactly what I need in my pet projects. Urho seems to be a small and efficient, not bloated with unnecessary features and very extendable.
+      </p>
+      <p>
+       So I would say it’s a personal preference.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/65f09c7224ca68a4d16618500cded4d288c4f6d5f84eb5eaff93394c1608f946.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      johnnycable
+     </div>
+     <div class="post_content">
+      <p>
+       Think the same, some tools are unnecessary heavy…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/464d037ed6259a2a48d7eb8fcb68d7f38f7d715b0b6b7828a29b8734a9e6a059.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      coldev
+     </div>
+     <div class="post_content">
+      <p>
+       thanks for this usefull script…
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Transparency fixed + technique selection improved:
+      </p>
+      <p>
+       <img src="../../../images/aa7835408547b8bb778b14992db62981721f2599fac301a308a66271af33806e.png"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Now with heightmaps for terrain
+       <br/>
+       <img src="../../../images/2f6176cc0b9abb258eac661a121ef21b794a848c3ef20ac164729dc355c444f7.jpg"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <a href="https://cdn.discordapp.com/attachments/235391394548547584/342033114845020170/unknown.png" rel="nofollow noopener" target="_blank">
+       <img height="280" src="../../../images/a9538dad56a06700a3eac4a95094ac7d8cb15bce13ef7357d24dd8eb9c047801.png" width="690"/>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Can you post the originals for comparison? Lighting sucks in Urho.
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Also, what’s with the artifacts?
+      </p>
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/a1c34c41dd7f47a49b2add78c209a9585948a13e.jpg" rel="nofollow noopener" title="sample.jpg">
+         <img alt="sample" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/a1c34c41dd7f47a49b2add78c209a9585948a13e_2_10x10.png" height="279" src="../../../images/bad9355a64a29d5b193d2879cf639b6646eb238570160b287ecd4c801af88e0d.jpg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/a1c34c41dd7f47a49b2add78c209a9585948a13e_2_690x279.jpg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/a1c34c41dd7f47a49b2add78c209a9585948a13e_2_1035x418.jpg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/a1c34c41dd7f47a49b2add78c209a9585948a13e_2_1380x558.jpg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           sample.jpg
+          </span>
+          <span class="informations">
+           2555×1036 919 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+       <br/>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/1X/bbe948fc422b7e87392f4b6fb16ea5ccfeb29a64.jpg" rel="nofollow noopener" title="sample2.jpg">
+         <img alt="sample2" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/bbe948fc422b7e87392f4b6fb16ea5ccfeb29a64_2_10x10.png" height="280" src="../../../images/ace08f9284f708a875c7f2ebfd0780675b785023c80fe9773c774175c8708797.jpg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/bbe948fc422b7e87392f4b6fb16ea5ccfeb29a64_2_690x280.jpg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/bbe948fc422b7e87392f4b6fb16ea5ccfeb29a64_2_1035x420.jpg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/1X/bbe948fc422b7e87392f4b6fb16ea5ccfeb29a64_2_1380x560.jpg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           sample2.jpg
+          </span>
+          <span class="informations">
+           2555×1040 743 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I think these artifacts appear due to dynamic lighting. Unity use lightmaps and I don’t know yet how to export them correctly.  Vanila Urho doesn’t support lightmaps as they should be shared among multiple meshes.
+      </p>
+      <p>
+       Original assets utilize PBR rendering. I failed to extract cubemaps - Unity doesn’t allow to read them in editor
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+      <p>
+       The latest source is available by the original link. You can try it on any other unity asset you have and report any issues you found.
+      </p>
+      <p>
+       The same asset in Unity and Unreal:
+       <br/>
+       <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="Q3KUoWiTBbU" data-youtube-title="HQ Western Saloon | Unreal Engine 4">
+       </div>
+      </p>
+      <div class="lazyYT" data-height="270" data-parameters="feature=oembed&amp;wmode=opaque" data-width="480" data-youtube-id="WuGBwd3DyM4" data-youtube-title="HQ Western Saloon | Unity 5">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I’m looking for someone who would help me to make the best Urho can deliver from the assets. The very first question people ask me about Urho3D - what level of graphics it could deliver. I believe that with right assets and shaders it could be quite good.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="11" data-topic="3274">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/9bcfff23cffac56e316605668a79edbcddd81327dd74db13bf7cc48da99d6aeb.png" width="20"/>
+        glebedev:
+       </div>
+       <blockquote>
+        <p>
+         Vanila Urho doesn’t support lightmaps as they should be shared among multiple meshes.
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       It does, but diffuse only and with alpha.
+      </p>
+      <p>
+       CoreData/Techniques/DiffLightMap.xml
+       <br/>
+       CoreData/Techniques/DiffLightMapAlpha.xml
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I mean: It does but not in a practical way. I can’t create a unique material for each mesh in the scene. I should be able to keep original material + pass a second stream of UVs and lightmap texture for each static model.
+      </p>
+      <p>
+       The easiest way from my perspective at the moment - to merge all static geometry during the export and then put it in the scene as a single static model with generated materials based on original + lightmap. It’s 100% doable… But I just don’t have much time to do it. I want to make a small game first and as a result I’m updating the export script only when I need to add something that my game needs.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/5775ca4ae33489a2bcc299dd30363673c37d994ec83cfc8b666b914026ff2719.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      rasteron
+     </div>
+     <div class="post_content">
+      <p>
+       You can use different materials and share one lightmap texture on 2nd UV. Merging objects or a single mesh is of course great for mobiles or optimization.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       Yeah, it definitely doesn’t look as good as it could be. But it’s not just the lightmap, IMO. The materials all look like plastic. Are they using the same specular configuration? Or do they have specular maps? Is Urho configured to read the speculars?
+      </p>
+      <p>
+       As for artifacts, they shouldn’t happen. Unity also has dynamic lighting and that does not occur. Same for other engines, like Ogre. Maybe it’s the shadowmapping configuration needing some tweaks?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a3f0560dd5a627876cb05e881084edf47d9a2c9c387e576f67ed33fcf4cfa926.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      monkeyface
+     </div>
+     <div class="post_content">
+      <p>
+       I gave this a try with the Unity viking demo scene but my results weren’t so successful
+       <img alt=":frowning:" class="emoji" src="../../../images/f52368fabff51bf20b9b2a7726cfecb3ca01ecdec8d99f872cca862812b131a7.png" title=":frowning:"/>
+      </p>
+      <p>
+       <img alt="image" height="491" src="../../../images/dd362d4c7de606a016fa8273c7d2702b1914f68f7f687612e047d4ff8a6ecf8a.jpg" width="690"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       And a year later I’ve made some improvements to the script:
+       <br/>
+       <img src="../../../images/712890eede11721661114a9b157ad8c022ac5f9c6c7610174bf7dde4c9763bdb.jpeg"/>
+      </p>
+      <p>
+       I’ll publish the fixed version later
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Source code and unity asset are now available on github:
+       <br/>
+       <aside class="onebox whitelistedgeneric">
+        <header class="source">
+         <img class="site-icon" height="32" src="../../../images/2ee43237d196100210f1786e7b73b57cd140f6013c072c70dbdffd9e9bc695f8.ico" width="32"/>
+         <a href="https://github.com/gleblebedev/Unity2Urho/" rel="nofollow noopener" target="_blank">
+          GitHub
+         </a>
+        </header>
+        <article class="onebox-body">
+         <img class="thumbnail onebox-avatar" height="400" src="../../../images/7c88329c04230e83cf64288120115269214f9f34f3ccb42470d5db4db8dd5bc6.jpeg" width="400"/>
+         <h3>
+          <a href="https://github.com/gleblebedev/Unity2Urho/" rel="nofollow noopener" target="_blank">
+           gleblebedev/Unity2Urho
+          </a>
+         </h3>
+         <p>
+          Unity3D to Urho3D assets converter. Contribute to gleblebedev/Unity2Urho development by creating an account on GitHub.
+         </p>
+        </article>
+        <div class="onebox-metadata">
+        </div>
+        <div style="clear: both">
+        </div>
+       </aside>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d810aa1dd979a5c8db3b6d0294588b69a8215f93e681cdc858fbdc963aedce1f.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      smellymumbler
+     </div>
+     <div class="post_content">
+      <p>
+       That’s super useful. Thanks a lot for the hard work!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       … And couple years later I’ve made few fixes for PBR compatibility:
+      </p>
+      <p>
+       <a class="onebox" href="https://i.gyazo.com/dbb37a48c1e43557a2d5908dba0676ff.jpg" rel="nofollow noopener" target="_blank">
+        <img height="315" src="../../../images/f9f1cdd7e3f1d29b06cabf381dd88de181bf7614f7752720ac6d3c9b874e94d0.jpg" width="690"/>
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I know 3 years passed… May I ask you to try again? I’ve fixed a lot of small issues and now it should be way better.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Now it converts all textures to compressed DDS format. it makes project loading times shorter.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <p>
+       Hey is there a specific version of unity that I should use? Just curious
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       I would guess any 2017+ version should work. If you have any troubles - open a ticket on GitHub.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/aa37c204b97818f682b86ad9ad1e641f3dc3df9a6f189cfcffd203013c171399.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      HeadClot
+     </div>
+     <div class="post_content">
+      <p>
+       Noted and will do
+       <img alt=":slight_smile:" class="emoji" src="../../../images/8a8941f0486df9dda1e89ec988e1591cf959e1ea7809a249dc2decb694b30a6c.png" title=":slight_smile:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       New feature: now it exports terrain trees. Also custom geometry naming is kinda fixed so you can export rivers and roads generated with R.A.M.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/464d037ed6259a2a48d7eb8fcb68d7f38f7d715b0b6b7828a29b8734a9e6a059.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      coldev
+     </div>
+     <div class="post_content">
+      <p>
+       thank you very very very very much
+       <img alt=":grinning:" class="emoji" src="../../../images/f88b3dd8be457c7635b001536c53b98923c1c4de31b14a9aba5910f7f9e98e7c.png" title=":grinning:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       <div class="lightbox-wrapper">
+        <a class="lightbox" data-download-href="/uploads/short-url/qbpgvB69NNohqH21HJlCrmypdQu.jpeg?dl=1" href="https://global.discourse-cdn.com/standard17/uploads/urho3d/original/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442.jpeg" rel="noopener nofollow ugc" title="image">
+         <img alt="image" data-base62-sha1="qbpgvB69NNohqH21HJlCrmypdQu" data-small-upload="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_10x10.png" height="372" src="../../../images/c632c84c72ad921b0e14a220d09ba51d013a30a4f42bec88c63cef3d36402306.jpeg" srcset="https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_690x372.jpeg, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_1035x558.jpeg 1.5x, https://global.discourse-cdn.com/standard17/uploads/urho3d/optimized/2X/b/b782a3282d11ecd1e70e1bb5db20c69f56314442_2_1380x744.jpeg 2x" width="690"/>
+         <div class="meta">
+          <svg aria-hidden="true" class="fa d-icon d-icon-far-image svg-icon">
+           <use xlink:href="#far-image">
+           </use>
+          </svg>
+          <span class="filename">
+           image
+          </span>
+          <span class="informations">
+           1919×1037 903 KB
+          </span>
+          <svg aria-hidden="true" class="fa d-icon d-icon-discourse-expand svg-icon">
+           <use xlink:href="#discourse-expand">
+           </use>
+          </svg>
+         </div>
+        </a>
+       </div>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       Now exporter support LODgroup. Only works with static geometry at the moment.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <p>
+       I played with this tool a little bit.
+       <br/>
+       Amazing stuff !!
+       <br/>
+       Found some issue  ,
+       <br/>
+       Disabled components in Unity are not disabled in Urho3D .
+       <br/>
+       For example  disabled “Mesh Renderer”  in Unity , Static model is shown in Urho3D.
+       <br/>
+       The exported components are missing the “Is Enabled” attribute
+       <br/>
+       Every disabled component should have the following attribute.
+      </p>
+      <blockquote>
+       <p>
+        attribute name=“Is Enabled” value=“false”
+       </p>
+      </blockquote>
+      <p>
+       Thanks for sharing this amazing tool
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/6354db788232face5856b366d4e8ea99cd1f20e4cbe2f2b8a15f1119c56d85fb.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      glebedev
+     </div>
+     <div class="post_content">
+      <p>
+       May I ask you to open an issue on GitHub? I may forget to fix it otherwise.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/616fa05f1013e3614a4d081038142fb528f27ac0018bf7a24d481c1658c1e90e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      elix22
+     </div>
+     <div class="post_content">
+      <h2>
+       Sure
+       <br/>
+       Done
+      </h2>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

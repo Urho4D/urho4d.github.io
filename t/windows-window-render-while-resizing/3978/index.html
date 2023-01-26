@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Windows window: render while resizing
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Windows window: render while resizing
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d126304f5103b2d7cee2c6e244e6a162b45a28fcb40bfc5dd544e0bbf8b220ea.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Sinoid
+     </div>
+     <div class="post_content">
+      <p>
+       I’m probably not the only one that can’t stand the way things resize in windowed mode (on Windows at least).
+      </p>
+      <p>
+       This snippet attaches an SDL callback for window-resizing so the window will continue to paint while being resized, it’s usually behind a by a short bit but it’s much better than watching a giant black square expand.
+      </p>
+      <p>
+       Specific snippet for D3D11Graphics.cpp (applies to wherever each target starts the window):
+      </p>
+      <pre><code>static int ResizingEventWatcher(void* data, SDL_Event* event)
+{
+    if (event-&gt;type == SDL_WINDOWEVENT &amp;&amp;
+        event-&gt;window.event == SDL_WINDOWEVENT_RESIZED) {
+        SDL_Window* win = SDL_GetWindowFromID(event-&gt;window.windowID);
+        if (win == (SDL_Window*)data) 
+        {
+            Context* ctx = (Context*)SDL_GetWindowData(win, "CONTEXT");
+            auto graphics = ctx-&gt;GetSubsystem&lt;Graphics&gt;();
+            auto renderer = ctx-&gt;GetSubsystem&lt;Renderer&gt;();
+            if (renderer &amp;&amp; graphics-&gt;IsInitialized())
+            {
+                graphics-&gt;OnWindowResized();
+                ctx-&gt;GetSubsystem&lt;Engine&gt;()-&gt;RunFrame(); 
+                // or break the frame down as desired if running won't cut it
+                // beware of glorious rawPtr crashes from unexpected state, ie. Time system not running, etc
+                // resized event still happens, just after this happens a whole bunch
+            }
+        }
+    }
+    return 0;
+}
+
+bool Graphics::OpenWindow(int width, int height, bool resizable, bool borderless)
+{
+    if (!externalWindow_)
+    {
+        unsigned flags = 0;
+        if (resizable)
+            flags |= SDL_WINDOW_RESIZABLE;
+        if (borderless)
+            flags |= SDL_WINDOW_BORDERLESS;
+
+        window_ = SDL_CreateWindow(windowTitle_.CString(), position_.x_, position_.y_, width, height, flags);
+    }
+    else
+        window_ = SDL_CreateWindowFrom(externalWindow_, 0);
+
+    if (!window_)
+    {
+        URHO3D_LOGERRORF("Could not create window, root cause: '%s'", SDL_GetError());
+        return false;
+    }
+
+// &lt; NEW CODE &gt; ============================================
+
+    SDL_SetWindowData(window_, "CONTEXT", GetContext());
+    SDL_AddEventWatch(ResizingEventWatcher, window_);
+
+// &lt; END NEW CODE &gt; ========================================
+
+    SDL_GetWindowPosition(window_, &amp;position_.x_, &amp;position_.y_);
+
+    CreateWindowIcon();
+
+    return true;
+}
+</code></pre>
+      <p>
+       Likely Windows specific unless other OS’ have similar issues with sizing seizing.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ac13286af345bef5a8e8da90a88e9fc0e9d6f349d8aa367436e7ffdeeddaeb9e.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      weitjong
+     </div>
+     <div class="post_content">
+      <p>
+       Could be related to this issue.
+      </p>
+      <aside class="onebox githubissue">
+       <header class="source">
+        <a href="https://github.com/urho3d/Urho3D/issues/2150" rel="nofollow noopener" target="_blank">
+         github.com/urho3d/Urho3D
+        </a>
+       </header>
+       <article class="onebox-body">
+        <a href="https://github.com/uniquejack" rel="nofollow noopener">
+         <img class="thumbnail onebox-avatar" height="420" src="../../../images/1a9a829ab1003bd430b3bddfcf86dea6ca0d07db0d3cb38d66145e047b51040c.png" width="420"/>
+        </a>
+        <h4>
+         <a href="https://github.com/urho3d/Urho3D/issues/2150" rel="nofollow noopener" target="_blank">
+          Issue: App not being updated on window resize
+         </a>
+        </h4>
+        <div class="date" style="margin-top:10px;">
+         <div class="user" style="margin-top:10px;">
+          opened by
+          <a href="https://github.com/uniquejack" rel="nofollow noopener" target="_blank">
+           uniquejack
+          </a>
+          on
+          <a href="https://github.com/urho3d/Urho3D/issues/2150" rel="nofollow noopener" target="_blank">
+           2017-10-13
+          </a>
+         </div>
+         <div class="user">
+          closed by
+          <a href="https://github.com/weitjong" rel="nofollow noopener" target="_blank">
+           weitjong
+          </a>
+          on
+          <a href="https://github.com/urho3d/Urho3D/issues/2150" rel="nofollow noopener" target="_blank">
+           2017-10-24
+          </a>
+         </div>
+        </div>
+        <pre class="content" style="white-space: pre-wrap;">Whenever I try to resize the window, the application stops to update until I release the mouse button.
+Here's an image of...</pre>
+        <div class="labels">
+         <span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">
+          wontfix
+         </span>
+        </div>
+       </article>
+       <div class="onebox-metadata">
+       </div>
+       <div style="clear: both">
+       </div>
+      </aside>
+      <p>
+       The OP of the issue didn’t respond to the last comment and so the issue was closed. I think your solution might help in his case as well.
+      </p>
+      <p>
+       If it is generic enough then we welcome you submit it as PR.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

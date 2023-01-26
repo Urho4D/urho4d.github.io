@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   How to connect a node to scene after adding models?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    How to connect a node to scene after adding models?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4d909c6b5e325cfca134fd490260097a1f0f51e560163c67fb9730f106795571.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      v0van1981
+     </div>
+     <div class="post_content">
+      <p>
+       How to create node three and then add it to the scene?
+      </p>
+      <p>
+       <code>
+        Node* result = new Node(context_);
+  Model* model = cache-&gt;GetResource&lt;Model&gt;("Models/Mushroom.mdl");
+  Material* material = cache-&gt;GetResource&lt;Material&gt;("Materials/Mushroom.xml");
+  Node* node = result-&gt;CreateChild();
+  StaticModel* staticModel = node-&gt;CreateComponent&lt;StaticModel&gt;();
+  staticModel-&gt;SetModel(model);
+  staticModel-&gt;SetMaterial(material);
+  staticModel-&gt;SetCastShadows(true);
+  node-&gt;SetPosition(Vector3(0, 0, 0));
+  scene_-&gt;AddChild(result); // do not works, model is not added to scene
+       </code>
+      </p>
+      <p>
+       <code>
+        Node* result = new Node(context_);
+  scene_-&gt;AddChild(result); // ------------------------  it's work
+  Model* model = cache-&gt;GetResource&lt;Model&gt;("Models/Mushroom.mdl");
+  Material* material = cache-&gt;GetResource&lt;Material&gt;("Materials/Mushroom.xml");
+  Node* node = result-&gt;CreateChild();
+  StaticModel* staticModel = node-&gt;CreateComponent&lt;StaticModel&gt;();
+  staticModel-&gt;SetModel(model);
+  staticModel-&gt;SetMaterial(material);
+  staticModel-&gt;SetCastShadows(true);
+  node-&gt;SetPosition(Vector3(0, 0, 0));
+       </code>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Drawable components need to find the octree at their creation time, so the scenario isn’t supported. Make sure the node is in the scene before creating components. Easiest is to always use scene-&gt;CreateChild() instead of new’ing a node, and reparent later if necessary.
+      </p>
+      <p>
+       There is a related “reverse” issue in github tracker (drawable continues to render if its node has refcount even when removed from scene), so this might be revisited later. But for now you need to follow that rule.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/4d909c6b5e325cfca134fd490260097a1f0f51e560163c67fb9730f106795571.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      v0van1981
+     </div>
+     <div class="post_content">
+      <p>
+       I try to realise background loading parts of big world and connect it to scene? Any way for it?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       If you’re doing this in a background thread, don’t - operations like setting a model for a StaticModel are only safe to do in the main thread.
+      </p>
+      <p>
+       Use Instantiate() or InstantiateXML() to load pieces of scene (prefabs) into the scene. Beforehand, you can background load resources used by them, which is supported by ResourceCache in a background thread. For this, you can “misuse” Scene’s LoadAsync() or LoadAsyncXML() functions in the LOAD_RESOURCES_ONLY mode. This should mostly but not completely mitigate framerate hitches caused by loading the new node(s).
+      </p>
+      <p>
+       Urho3D doesn’t however promise fitness for large world scenarios such as this so be prepared to modify the engine heavily if you want true background loading of scenenode hierarchies.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       [quote=“cadaver”]If you’re doing this in a background thread, don’t - operations like setting a model for a StaticModel are only safe to do in the main thread.
+      </p>
+      <p>
+       Use Instantiate() or InstantiateXML() to load pieces of scene (prefabs) into the scene. Beforehand, you can background load resources used by them, which is supported by ResourceCache in a background thread. For this, you can “misuse” Scene’s LoadAsync() or LoadAsyncXML() functions in the LOAD_RESOURCES_ONLY mode. This should mostly but not completely mitigate framerate hitches caused by loading the new node(s).
+      </p>
+      <p>
+       Urho3D doesn’t however promise fitness for large world scenarios such as this so be prepared to modify the engine heavily if you want true background loading of scenenode hierarchies.[/quote]
+      </p>
+      <p>
+       Lasse what would you do to overcome the floating point precision in Urho for very large scenes?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Without actually moving to doubles, which may be a problem on the GPU side, move the world regions (pieces) around so that 0,0,0 is always the center of the region the player is in. This may not be trouble-free or cheap performance-wise, though (think physics for example)
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       The support for correctly working Drawables etc. after constructing outside the scene and then moving in later should now exist in the master branch.
+      </p>
+      <p>
+       There are some pitfalls, which can be devious, for example a RigidBody does not store its velocities until the Bullet rigidbody exists, and it can’t create that before belonging to a scene. Also, joining rigidbodies with constraints depends on node ID’s, which are not assigned before the nodes/components are in the scene.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/ad9bc7eb192b88d1c364c9b8fb8f80cf85ee14d41f54e1ae6101313dd36e4cba.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      friesencr
+     </div>
+     <div class="post_content">
+      <p>
+       There is a spline path that uses NodeID if I recall too.
+      </p>
+      <p>
+       Does the system create all the nodes and then all the components?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/035f283cae2d056de202879867b5272fcc6bf7558625c1c9ffb77812527e2fac.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      cadaver
+     </div>
+     <div class="post_content">
+      <p>
+       Roughly yes, in normal deserialization, a node gets loaded first (and is created directly into the scene, so there isn’t this “disconnected mode” happening), then its components, then its child nodes.
+      </p>
+      <p>
+       Furthermore, because the runtime ID’s may be different than ones in the scene file or prefab, all created objects are stored into the SceneResolver which will go through all ID attributes and remap the old IDs to new IDs after loading the scene or the prefab is complete.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

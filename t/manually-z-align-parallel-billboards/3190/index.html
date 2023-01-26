@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Manually z-align parallel billboards
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Manually z-align parallel billboards
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       I have couple of billboard sets that lay on the same plane, say their nodes all have Z = 0 and are parallel.
+       <br/>
+       <img height="403" src="../../../images/b04663cc086cd473ca2a240981762312883be1366429034b1d15fd37891a50d2.png" width="690"/>
+       <br/>
+       I need the green plane on top right to be rendered over the white plane. One way is to change the green plane’s Z axis closer to the camera with very small value, but I don’t like the results (I really need them to be parallel). The other way I can think of is to use materials with different z-bias, I used that with Ogre3D, but the problem is I need to use different materials for every plane.
+       <br/>
+       Any other ways I can do this ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Maybe you could couple the z-bias to the vertex colours using a custom shader? Or can it only be set per material?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Hmm yes that sounds logical. Thanks, I’ll try that.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       This looks really similar to my problem here:
+       <a href="https://discourse.urho3d.io/t/alpha-sorting-issue/3172/11">
+        Alpha sorting issue
+       </a>
+       .
+       <br/>
+       It works if there is no transparency if there is between two batches one is opaque not sure why.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       If you use the vertex alpha channel you can still
+       <em>
+        colour
+       </em>
+       the vertices as you like.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       I could but I will lose alpha, I still need to control every quad’s transparency.
+       <br/>
+       In Ogre3D I had an option to control the rendering order of every entity by using setRenderQueueGroupAndPriority(), which solved most of the problems when having transparency.
+      </p>
+      <p>
+       What I’m trying to achieve is 2D functionality inside 3D, by having a “screen” component as master and “media” component as child nodes, then those get placed on a plane with common Z, camera moved back and adjusted so it captures the whole “screen” plane. Every child plane must have color/transparency and Z order.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       Could you add an extra channel?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Sorry I edited my post after your response.
+      </p>
+      <p>
+       I can add an extra channel to pass z-order, I’m still not sure how to control which item renders over another with vertex shader, unless I touch the vertexes to get closer to the camera and that breaks things. I’m not a shader expert, maybe there’s a legit way of doing it.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote" data-post="8" data-topic="3190">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/fded5ebb3c0a0765a9317cae282522622958a735f68167e3f93b5c9d6554dfd3.png" width="20"/>
+        Pencheff:
+       </div>
+       <blockquote>
+        <p>
+         I’m not a shader expert
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Neither am I. I couldn’t tell you the exact implemention as of now. Just connecting blurs here.
+       <img alt=":wink:" class="emoji" src="../../../images/f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb.png" title=":wink:"/>
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       This is what worked for me in the same batch. For example in the Unlit shader you can add:
+      </p>
+      <pre><code>int index = int(iObjectIndex);
+gl_Position.z = -index * 0.001;
+</code></pre>
+      <p>
+       Where
+       <code>
+        ObjectIndex
+       </code>
+       is an attribute per billboard or you can add shader override in two different materials to override the
+       <code>
+        gl_Position.z
+       </code>
+       . The advantage over modifying the position is won’t get closer to the camera.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Isn’t gl_Position modifying the vertex position ? What happens if you choose a bigger multiplier than 0.001, doesn’t this move the vertex closer ?
+       <br/>
+       There’s a Drawable::sortValue_ and accessor methods, but it only seems to be used for input raycasting, if only it was used for sorting rendering order …
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       I don’t think it modifies the vertex position. It is used in the depth directly:
+       <br/>
+       <code>
+        vWorldPos = vec4(worldPos, GetDepth(gl_Position));
+       </code>
+       <br/>
+       Where
+       <code>
+        worldPos
+       </code>
+       is the actual vertex position.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       OK then, that sounds like a solution, it still limits me to use special material (with that shader), but it’s something.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Either I’m doing something wrong, or gl_Position doesn’t do what I desire. Here’s my VS, copied from Unlit:
+      </p>
+      <pre><code class="lang-auto">#include "Uniforms.glsl"
+#include "Samplers.glsl"
+#include "Transform.glsl"
+#include "ScreenPos.glsl"
+#include "Fog.glsl"
+
+varying vec2 vTexCoord;
+varying vec4 vWorldPos;
+#ifdef VERTEXCOLOR
+    varying vec4 vColor;
+#endif
+uniform float cZorder;
+
+void VS()
+{
+    mat4 modelMatrix = iModelMatrix;
+    vec3 worldPos = GetWorldPos(modelMatrix);
+    gl_Position = GetClipPos(worldPos);
+    gl_Position.z = -cZorder;
+    vTexCoord = GetTexCoord(iTexCoord);
+    vWorldPos = vec4(worldPos, GetDepth(gl_Position));
+
+    #ifdef VERTEXCOLOR
+        vColor = iColor;
+    #endif
+}</code></pre>
+      <p>
+       When I change the cZorder, the billboard only flickers, no matter the values.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       Oh, my bad, my material is same for both planes I’m testing this on, I need to clone materials so every component gets its own cloned instance.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       <span class="mention">
+        @sabotage3d
+       </span>
+       , it works fine thanks. Any other ideas how to do this without having to use special material for the purpose ?
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/684585e23c00534a4d0cb1c1bc542909f34fad260b0ad446b3e3b5a99d7771d5.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      sabotage3d
+     </div>
+     <div class="post_content">
+      <p>
+       You can try
+       <code>
+        Material::SetRenderOrder
+       </code>
+       it might work in your case.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       That is exactly what would I was looking for. Now the element on top still bugs like in the screenshot, but if I set an appropriate BiasParameters that should do the trick.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       I can’t seem to find a way to do this with BiasParameters, so the best technique so far is the one with gl_Position.z adjustment.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

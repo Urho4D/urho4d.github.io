@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Can an Urho3D game written in AngelScript can be complied?
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Can an Urho3D game written in AngelScript can be complied?
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90d68ddef14aece144d916da817c168a7480ad11e994b3aa5ddcbdca8745ab42.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Thysta
+     </div>
+     <div class="post_content">
+      <p>
+       Can an Urho3D game written in AngelScript can be complied into an EXE or only if I use C++? I mean, do I have to use a .BAT and Urho3DPlayer.Exe and have my source code open or there is a way to do it?
+      </p>
+      <p>
+       Or, can a whole game be written in an AngelScript and just have the CPP load it?
+      </p>
+      <p>
+       Thank you!
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/d4cf3830911459ab503a214fec4a49494d5ec5b67931d1b4ea923aa8ea91a1cd.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Pencheff
+     </div>
+     <div class="post_content">
+      <p>
+       You can modify the Urho3DPlayer.exe source code to load an AngelScript file of your choice, without having to call a .bat file.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/b00374e028c0b9437b331166f048a4764f1ca43c738c5f96011c9a6451ca494c.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      evolgames
+     </div>
+     <div class="post_content">
+      <p>
+       I dont believe you understood what he was asking. I’m also curious on this but I’m not sure.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/a90ddfa002995c31b5c93aca4213c480a31c7272db11e21266b71156c46856c7.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Eugene
+     </div>
+     <div class="post_content">
+      <p>
+       You can do it in the same way as for any other resource.
+       <br/>
+       There are 3rdparty tools to compile binary resources as part of exe. Urho is not integrated with such tools, but nothing stops you from doing so.
+      </p>
+      <p>
+       So, you can alter Urho in a way that let you “compile” AS. You cannot do it with Urho as is.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <aside class="quote no-group quote-modified" data-post="1" data-topic="6573" data-username="Thysta">
+       <div class="title">
+        <div class="quote-controls">
+        </div>
+        <img alt="" class="avatar" height="20" src="../../../images/f16d2612c9a82939712394cf78aec6e1e775d9276e2361f617d3f952a09cc7e3.png" width="20"/>
+        Thysta:
+       </div>
+       <blockquote>
+        <p>
+         […] can a whole game be written in an AngelScript and just have the CPP load it?
+        </p>
+       </blockquote>
+      </aside>
+      <p>
+       Yes.
+      </p>
+      <p>
+       Also, welcome!
+       <img alt=":confetti_ball:" class="emoji" src="../../../images/f0e40083ca9e956baa5a2159c91f833a3b03b95f50f3a6a9b56b236794e7ae1e.png" title=":confetti_ball:"/>
+      </p>
+      <p>
+       Also also, the
+       <em>
+        developer
+       </em>
+       category is for engine development. Please ask your questions in
+       <em>
+        support
+       </em>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/90d68ddef14aece144d916da817c168a7480ad11e994b3aa5ddcbdca8745ab42.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Thysta
+     </div>
+     <div class="post_content">
+      <p>
+       Thank you for everyone for the answers it helped at least in that I don’t miss something completely. Sorry for using the wrong forum I just saw “Developers” and thought it is the place sorry guys.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/9f4d89a6ec8768b8bd5426c30c4812f04cddcb7e43e803179951cb20a4f1c8bf.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      Modanung
+     </div>
+     <div class="post_content">
+      <p>
+       No worries, you’re not the first to be confused. You
+       <em>
+        can
+       </em>
+       still move a thread after posting, btw.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

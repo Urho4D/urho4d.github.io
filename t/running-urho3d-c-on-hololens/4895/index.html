@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width" name="viewport"/>
+  <title>
+   Running Urho3D c++ on Hololens
+  </title>
+  <link href="../../../archived.css" rel="stylesheet"/>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});
+  </script>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="title-span">
+    <a href="../../../">
+     <img alt="Urho3D" height="40" id="site-logo" src="../../../images/site-logo.png"/>
+    </a>
+   </div>
+  </header>
+  <div class="main">
+   <div class="archive-span">
+    Archive 19/01/2023.
+   </div>
+   <h1 class="topic-title">
+    Running Urho3D c++ on Hololens
+   </h1>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/138937667855a8668d050e16912c524cb5b3d1e12b712bc1c3697a0c4e1788ee.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      I3DB
+     </div>
+     <div class="post_content">
+      <p>
+       I’ve been using the UrhoSharp binding to run Urho3D on hololens.
+      </p>
+      <p>
+       Now wondering if I can get the latest Urho3D release and run it directly on hololens.
+      </p>
+      <p>
+       Is it possible?
+      </p>
+      <p>
+       <a href="https://github.com/xamarin/urho/tree/master/Urho3D/Urho3D_SharpReality/UrhoSharp.SharpReality" rel="nofollow noopener">
+        The urhosharp binding adds urhoholo.h/.cpp
+       </a>
+       in creating a specific UrhoSharp version used by the hololens. This goes into a dll, mono-holourho.dll.
+      </p>
+      <p>
+       This dll is consumed by
+       <a href="https://github.com/xamarin/urho/tree/master/Bindings/SharpReality" rel="nofollow noopener">
+        the SharpReality binding
+       </a>
+       .
+      </p>
+      <p>
+       Of course, I’d be switching over to c++ in walking away from the binding. That’s understood. I don’t want to update the binding, that’s not the goal here.
+      </p>
+      <p>
+       <a href="https://docs.microsoft.com/en-us/windows/mixed-reality/creating-a-holographic-directx-project" rel="nofollow noopener">
+        Here’s some windows docs on starting a holographic app in c++
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="post_container">
+    <div class="avatar_container">
+     <img class="avatar" src="../../../images/138937667855a8668d050e16912c524cb5b3d1e12b712bc1c3697a0c4e1788ee.png"/>
+    </div>
+    <div class="post">
+     <div class="user_name">
+      I3DB
+     </div>
+     <div class="post_content">
+      <p>
+       Here’s a
+       <a href="https://github.com/Microsoft/Windows-universal-samples/blob/master/Samples/BasicHologram/cpp/AppView.cpp" rel="nofollow noopener">
+        sample UWP app
+       </a>
+       , that shows AppView and AppViewSource, both in c++.
+      </p>
+      <p>
+       The UrhoSharp binding provides
+       <a href="https://github.com/xamarin/urho/blob/050fdf9943b154549e7928b32f398e727191202a/Bindings/SharpReality/UrhoAppView.cs#L1" rel="nofollow noopener">
+        UrhoAppView.cs
+       </a>
+       and
+       <a href="https://github.com/xamarin/urho/blob/050fdf9943b154549e7928b32f398e727191202a/Bindings/SharpReality/UrhoAppViewSource.cs#L1" rel="nofollow noopener">
+        UrhoAppViewSource.cs
+       </a>
+      </p>
+      <p>
+       <a href="https://github.com/xamarin/urho/blob/050fdf9943b154549e7928b32f398e727191202a/Urho3D/Urho3D_SharpReality/UrhoSharp.SharpReality/UrhoHolo.cpp#L1" rel="nofollow noopener">
+        Then this c++ file ties urho3d to the urhoappview
+       </a>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
